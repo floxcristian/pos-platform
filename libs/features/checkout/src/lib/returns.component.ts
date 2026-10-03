@@ -37,7 +37,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <pos-page-header
-      title="Devoluciones y notas de crédito"
+      heading="Devoluciones y notas de crédito"
       eyebrow="Postventa"
       subtitle="Emite la nota de crédito y gestiona la devolución de dinero como operaciones distintas."
       ><p-button
@@ -55,15 +55,15 @@ import {
     }
     <div class="grid gap-4 sm:grid-cols-3 mb-6">
       <pos-metric-card
-        title="Notas de crédito"
+        heading="Notas de crédito"
         [value]="store.snapshot().creditNotes.length"
         icon="note-pencil"
       /><pos-metric-card
-        title="Monto acreditado"
+        heading="Monto acreditado"
         [value]="money(totalCredited())"
         icon="arrow-counter-clockwise"
       /><pos-metric-card
-        title="Saldo por devolver"
+        heading="Saldo por devolver"
         [value]="money(pendingRefund())"
         detail="Emitir la NC no devuelve dinero automáticamente"
         icon="wallet"

@@ -43,7 +43,7 @@ import { PriceRulesComponent } from './price-rules.component';
   template: `<div class="pos-section">
       <pos-page-header
         eyebrow="Gestión comercial"
-        title="Precios y ofertas"
+        heading="Precios y ofertas"
         subtitle="Precios finales en pesos chilenos, con vigencia y control de cambios."
         ><p-button
           ariaLabel="Exportar precios"

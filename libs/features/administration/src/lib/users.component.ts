@@ -32,7 +32,7 @@ import { FeedbackService } from './feedback.service';
   template: `<div class="pos-section">
       <pos-page-header
         eyebrow="Administración"
-        title="Usuarios y permisos"
+        heading="Usuarios y permisos"
         subtitle="Perfiles y sucursales asignadas para separar operación, supervisión y auditoría."
         ><p-button ariaLabel="Nuevo usuario" label="Nuevo usuario" icon="pi pi-user-plus" (onClick)="edit()"
       /></pos-page-header>

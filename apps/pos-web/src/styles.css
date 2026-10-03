@@ -1,4 +1,5 @@
 @import '@fontsource-variable/inter';
+@import '@angular/cdk/overlay-prebuilt.css';
 @import 'primeicons/primeicons.css';
 @import 'tailwindcss' source(none);
 @source './app';
@@ -27,6 +28,51 @@ html {
 }
 body {
   margin: 0;
+}
+/* Tooltip presentation follows Aura; CDK handles placement for both owned and PrimeNG controls. */
+.cdk-overlay-container:has(.pos-tooltip-panel) {
+  z-index: 1500;
+}
+.pos-tooltip {
+  display: block;
+  position: relative;
+  width: max-content;
+  max-width: min(12.5rem, calc(100vw - 2rem));
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--p-overlay-popover-border-radius, 6px);
+  background: var(--p-surface-700);
+  color: var(--p-surface-0);
+  box-shadow: var(--p-overlay-popover-shadow);
+  font: inherit;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.pos-tooltip-arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border: 4px solid transparent;
+  pointer-events: none;
+}
+.pos-tooltip[data-position='top'] .pos-tooltip-arrow {
+  top: 100%;
+  left: calc(50% - 4px);
+  border-top-color: var(--p-surface-700);
+}
+.pos-tooltip[data-position='bottom'] .pos-tooltip-arrow {
+  bottom: 100%;
+  left: calc(50% - 4px);
+  border-bottom-color: var(--p-surface-700);
+}
+.pos-tooltip[data-position='left'] .pos-tooltip-arrow {
+  left: 100%;
+  top: calc(50% - 4px);
+  border-left-color: var(--p-surface-700);
+}
+.pos-tooltip[data-position='right'] .pos-tooltip-arrow {
+  right: 100%;
+  top: calc(50% - 4px);
+  border-right-color: var(--p-surface-700);
 }
 /* Header contract measured from prime-showcase-mu.vercel.app (2026-10-03).
    Keep its original artwork and header palette independent of the newer app surfaces. */
@@ -244,6 +290,8 @@ p-button {
 /* Match table edges to the containing heading without changing column density. */
 .pos-table {
   --pos-table-edge-padding: calc(var(--spacing) * 5);
+  font-size: 1rem;
+  line-height: 1.5rem;
 }
 .pos-table--compact {
   --pos-table-edge-padding: calc(var(--spacing) * 4);
@@ -264,6 +312,7 @@ p-button {
 }
 .pos-field {
   display: grid;
+  align-content: start;
   gap: 0.5rem;
   min-width: 0;
 }
@@ -281,6 +330,9 @@ p-button {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+}
+.pos-section > pos-page-header {
+  margin-block-end: 0;
 }
 .pos-filter {
   display: flex;

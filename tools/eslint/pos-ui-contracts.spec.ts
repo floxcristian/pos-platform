@@ -7,7 +7,7 @@ const plugin = require('./pos-ui-contracts.cjs');
 const parser = require('@angular-eslint/template-parser');
 const linter = new Linter();
 
-function check(template: string) {
+function check(template: string, tooltips = false) {
   return linter.verify(
     template,
     [
@@ -16,6 +16,7 @@ function check(template: string) {
         languageOptions: { parser },
         plugins: { 'pos-ui': plugin },
         rules: {
+          'pos-ui/icon-button-tooltip': tooltips ? 'error' : 'off',
           'pos-ui/no-secondary-outlined-button': 'error',
           'pos-ui/no-labeled-secondary-text-button': 'error',
         },
@@ -26,6 +27,24 @@ function check(template: string) {
 }
 
 describe('contratos de botones PrimeNG', () => {
+  it.each([
+    '<p-button icon="pi pi-search" ariaLabel="Buscar" />',
+    '<p-button [icon]="icon()" [ariaLabel]="label()" />',
+    '<button pButton aria-label="Cerrar"><i class="pi pi-times"></i></button>',
+    '<button aria-label="Cerrar"><svg aria-hidden="true"></svg><span class="sr-only">Cerrar</span></button>',
+  ])('impide iconos sin ayuda visible: %s', (template) => {
+    expect(check(template, true).map((message) => message.ruleId)).toEqual(['pos-ui/icon-button-tooltip']);
+  });
+
+  it.each([
+    '<p-button posTooltip icon="pi pi-search" ariaLabel="Buscar" />',
+    '<button [posTooltip]="help()" aria-label="Cerrar"><svg></svg></button>',
+    '<p-button icon="pi pi-plus" label="Crear" />',
+    '<p-button icon="pi pi-plus" [label]="caption()" />',
+    '<button><i class="pi pi-plus"></i> Crear</button>',
+  ])('conserva tooltips y etiquetas visibles: %s', (template) => {
+    expect(check(template, true)).toEqual([]);
+  });
   // Loading the full ESLint/Nx graph is an integration check, including a cold CI workspace.
   it('analiza templates inline mediante la configuración real del repositorio', async () => {
     const source = `import { Component } from '@angular/core';

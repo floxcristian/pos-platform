@@ -29,6 +29,7 @@ import {
   chileCivilDate,
 } from '@corporate-pos/domain';
 import {
+  PosTooltipDirective,
   CivilDateTimeComponent,
   DuotoneIconComponent,
   PageHeaderComponent,
@@ -42,6 +43,7 @@ import {
   selector: 'pos-checkout',
   standalone: true,
   imports: [
+    PosTooltipDirective,
     FormsModule,
     RouterLink,
     ButtonModule,

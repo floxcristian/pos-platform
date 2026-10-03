@@ -10,6 +10,7 @@ import { MessageModule } from 'primeng/message';
 import { PosStore } from '@corporate-pos/data-access';
 import { CashMovement, chileCivilDate } from '@corporate-pos/domain';
 import {
+  PosTooltipDirective,
   CivilDateTimeComponent,
   DuotoneIconComponent,
   PageHeaderComponent,
@@ -25,6 +26,7 @@ import {
   selector: 'pos-cash-session',
   standalone: true,
   imports: [
+    PosTooltipDirective,
     CivilDateTimeComponent,
     DuotoneIconComponent,
     FormsModule,
@@ -42,7 +44,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <pos-page-header
-      title="Caja y turno"
+      heading="Caja y turno"
       eyebrow="Control de caja"
       subtitle="Apertura, movimientos, arqueo y cierre en un solo lugar."
     >
@@ -66,25 +68,25 @@ import {
     }
     <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4 mb-6">
       <pos-metric-card
-        title="Estado de caja"
+        heading="Estado de caja"
         [value]="open() ? 'Abierta' : 'Cerrada'"
         [detail]="store.snapshot().settings.terminalId"
         icon="desktop"
       />
       <pos-metric-card
-        title="Fondo de apertura"
+        heading="Fondo de apertura"
         [value]="money(session()?.openingAmount ?? 0)"
         [detail]="session() ? dateTime(session()!.openedAt) : 'Sin turno iniciado'"
         icon="wallet"
       />
       <pos-metric-card
-        title="Efectivo esperado"
+        heading="Efectivo esperado"
         [value]="money(session()?.expectedAmount ?? 0)"
         detail="Apertura y movimientos del turno"
         icon="money"
       />
       <pos-metric-card
-        title="Operaciones del turno"
+        heading="Operaciones del turno"
         [value]="movements().length"
         [detail]="session()?.cashier ?? 'Selecciona una caja para empezar'"
         icon="list-checks"
@@ -240,6 +242,7 @@ import {
                 <td class="p-4 text-right">{{ item.difference === null ? '—' : money(item.difference) }}</td>
                 <td class="p-3">
                   <p-button
+                    posTooltip
                     icon="pi pi-download"
                     severity="secondary"
                     [text]="true"

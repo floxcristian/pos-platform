@@ -9,7 +9,7 @@ import { DuotoneIconComponent, type DuotoneIconName } from './duotone-icon.compo
   host: { class: 'block min-w-0 rounded-2xl border border-surface bg-surface-0 dark:bg-surface-950 p-5' },
   template: `
     <div class="flex items-center justify-between gap-3">
-      <span class="min-w-0 text-sm text-muted-color font-medium">{{ title() }}</span>
+      <span class="min-w-0 text-sm text-muted-color font-medium">{{ heading() }}</span>
       @if (icon(); as iconName) {
         <span
           class="inline-flex size-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary"
@@ -27,7 +27,7 @@ import { DuotoneIconComponent, type DuotoneIconName } from './duotone-icon.compo
   `,
 })
 export class MetricCardComponent {
-  readonly title = input.required<string>();
+  readonly heading = input.required<string>();
   readonly value = input.required<string | number>();
   readonly detail = input<string>('');
   readonly icon = input<DuotoneIconName>();

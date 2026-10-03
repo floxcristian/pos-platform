@@ -14,6 +14,7 @@ import { MessageModule } from 'primeng/message';
 import { PosStore } from '@corporate-pos/data-access';
 import type { SyncJob, SyncSchedule } from '@corporate-pos/domain';
 import {
+  PosTooltipDirective,
   CivilDateTimeComponent,
   PageHeaderComponent,
   StatusTagComponent,
@@ -27,6 +28,7 @@ import { FeedbackService } from './feedback.service';
   selector: 'pos-sync-center',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    PosTooltipDirective,
     CivilDateTimeComponent,
     FormsModule,
     ButtonModule,
@@ -47,7 +49,7 @@ import { FeedbackService } from './feedback.service';
   template: ` <div class="pos-section">
       <pos-page-header
         eyebrow="Control"
-        title="Centro de sincronización"
+        heading="Centro de sincronización"
         subtitle="Controla qué información viaja, cuándo se ejecuta y qué queda pendiente."
       >
         <p-button
@@ -61,25 +63,25 @@ import { FeedbackService } from './feedback.service';
       </pos-page-header>
       <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <pos-metric-card
-          title="Flujos"
+          heading="Flujos"
           [value]="'' + store.snapshot().syncJobs.length"
           detail="Subidas y bajadas independientes"
           icon="arrows-left-right"
         />
         <pos-metric-card
-          title="Programados"
+          heading="Programados"
           [value]="'' + scheduled()"
           detail="Horario de Santiago de Chile"
           icon="clock"
         />
         <pos-metric-card
-          title="Eventos pendientes"
+          heading="Eventos pendientes"
           [value]="'' + pending()"
           detail="Conservan su identificador al reintentar"
           icon="tray"
         />
         <pos-metric-card
-          title="Requieren atención"
+          heading="Requieren atención"
           [value]="'' + failed()"
           detail="Revisa el error antes de reintentar"
           icon="warning-circle"
@@ -164,6 +166,7 @@ import { FeedbackService } from './feedback.service';
                 <td>
                   <div class="flex gap-2">
                     <p-button
+                      posTooltip
                       icon="pi pi-play"
                       severity="secondary"
                       [ariaLabel]="'Ejecutar ' + job.name"

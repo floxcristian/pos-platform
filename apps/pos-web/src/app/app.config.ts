@@ -8,7 +8,7 @@ import {
 import { provideRouter, withHashLocation, withComponentInputBinding } from '@angular/router';
 import { PrimeNG, providePrimeNG } from 'primeng/config';
 import { MessageService, ConfirmationService } from 'primeng/api';
-import { AppPreset, PRIMENG_OPTIONS } from '@corporate-pos/ui';
+import { AppPreset, PRIMENG_OPTIONS, createTooltipPassThrough } from '@corporate-pos/ui';
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
@@ -19,6 +19,7 @@ export const appConfig: ApplicationConfig = {
     providePrimeNG({
       ripple: false,
       overlayAppendTo: 'body',
+      ptOptions: { mergeProps: true },
       theme: { preset: AppPreset, options: PRIMENG_OPTIONS },
       translation: {
         accept: 'Aceptar',
@@ -67,6 +68,7 @@ export const appConfig: ApplicationConfig = {
     }),
     provideAppInitializer(() => {
       const prime = inject(PrimeNG);
+      prime.pt.set({ ...prime.pt(), ...createTooltipPassThrough() });
       prime.setTranslation({
         aria: {
           ...prime.translation.aria,

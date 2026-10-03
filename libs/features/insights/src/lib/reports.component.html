@@ -1,5 +1,5 @@
 <pos-page-header
-  title="Reportes"
+  heading="Reportes"
   eyebrow="Gestión"
   subtitle="Explora resultados, concilia movimientos y exporta la información filtrada."
   ><p-button
@@ -94,22 +94,22 @@
 </section>
 <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-6">
   <pos-metric-card
-    title="Registros"
+    heading="Registros"
     [value]="number(rows().length)"
     detail="Coinciden con los filtros"
     icon="list-checks"
   /><pos-metric-card
-    [title]="amountTitle()"
+    [heading]="amountTitle()"
     [value]="money(amount())"
     [detail]="amountDetail()"
     icon="wallet"
   /><pos-metric-card
-    title="Importe promedio"
+    heading="Importe promedio"
     [value]="money(average())"
     [detail]="usesConfirmedPayments() ? 'Por registro con pago confirmado' : 'Por registro del reporte'"
     icon="chart-bar"
   /><pos-metric-card
-    title="Por revisar"
+    heading="Por revisar"
     [value]="number(pending())"
     [detail]="
       usesConfirmedPayments()
@@ -202,6 +202,8 @@
         <td class="text-right tabular-nums font-medium">{{ money(row.amount) }}</td>
         <td>
           <p-button
+            posTooltip
+            posTooltipPosition="left"
             icon="pi pi-eye"
             [text]="true"
             [ariaLabel]="'Ver detalle de ' + row.reference"
@@ -212,16 +214,13 @@
     <ng-template #emptymessage
       ><tr>
         <td colspan="7">
-          <div class="py-12 text-center">
-            <div class="flex justify-center mb-3">
-              <pos-duotone-icon name="funnel" [size]="40" class="text-muted-color" />
-            </div>
-            <p class="font-medium">No hay registros con estos filtros</p>
-            <p class="mt-2 text-sm text-muted-color">Cambia el período, la sucursal o el estado.</p>
-          </div>
-        </td>
-      </tr></ng-template
-    >
+          <pos-empty-state
+            heading="No hay registros con estos filtros"
+            description="Cambia el período, la sucursal o el estado."
+            [headingLevel]="3"
+          />
+        </td></tr
+    ></ng-template>
   </p-table>
 </section>
 <p role="status" class="text-sm text-primary mt-4 min-h-5">{{ exportMessage() }}</p>

@@ -9,6 +9,8 @@
     class="brand-header-bg shrink-0 bg-primary-500 text-white h-16 flex items-center gap-1 sm:gap-3 px-2 sm:px-4 lg:px-6"
   >
     <p-button
+      posTooltip
+      posTooltipPosition="bottom"
       icon="pi pi-bars"
       [text]="true"
       ariaLabel="Abrir navegación"
@@ -47,6 +49,8 @@
       >DEMO</span
     >
     <p-button
+      posTooltip
+      posTooltipPosition="bottom"
       icon="pi pi-search"
       [text]="true"
       ariaLabel="Buscar"
@@ -54,6 +58,8 @@
       (onClick)="openSearch()"
     />
     <p-button
+      posTooltip
+      posTooltipPosition="bottom"
       [icon]="dark() ? 'pi pi-sun' : 'pi pi-moon'"
       [text]="true"
       [ariaLabel]="dark() ? 'Usar tema claro' : 'Usar tema oscuro'"
@@ -61,6 +67,8 @@
       (onClick)="toggleTheme()"
     />
     <p-button
+      posTooltip
+      posTooltipPosition="bottom"
       icon="pi pi-bell"
       [text]="true"
       [ariaLabel]="'Notificaciones: ' + notifications().length + ' avisos'"
@@ -69,6 +77,8 @@
     />
     <button
       type="button"
+      posTooltip
+      posTooltipPosition="bottom"
       class="brand-header-profile flex items-center gap-2 h-11 p-1 rounded-lg cursor-pointer"
       (click)="profileOpen.set(true)"
       aria-label="Perfil y entorno de demostración"

@@ -33,7 +33,7 @@ import { FeedbackService } from './feedback.service';
   template: `<div class="pos-section">
       <pos-page-header
         eyebrow="Control"
-        title="Dispositivos de caja"
+        heading="Dispositivos de caja"
         subtitle="Impresión, terminal de pago, lectores y cajón. Pruebas simuladas sin hardware real."
       />
       <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
@@ -213,7 +213,7 @@ export class DevicesComponent {
   template: `<div class="pos-section">
       <pos-page-header
         eyebrow="Administración"
-        title="Integraciones"
+        heading="Integraciones"
         subtitle="Adaptadores de la operación: ERP, fiscalidad y validación de pagos."
       />
       <p-message severity="info"
@@ -396,7 +396,7 @@ export class IntegrationsComponent {
   template: `<div class="pos-section">
     <pos-page-header
       eyebrow="Administración"
-      title="Actualizaciones"
+      heading="Actualizaciones"
       subtitle="Control de versión de la caja de escritorio y despliegue por etapas."
     />
     <section class="pos-panel p-6 max-w-4xl">

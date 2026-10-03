@@ -17,8 +17,9 @@ import { ChartModule } from 'primeng/chart';
 import { InputTextModule } from 'primeng/inputtext';
 import { PosStore } from '@corporate-pos/data-access';
 import {
+  PosTooltipDirective,
   CivilDateTimeComponent,
-  DuotoneIconComponent,
+  EmptyStateComponent,
   PageHeaderComponent,
   ThemeService,
   MetricCardComponent,
@@ -55,8 +56,9 @@ interface ReportRow {
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    PosTooltipDirective,
     CivilDateTimeComponent,
-    DuotoneIconComponent,
+    EmptyStateComponent,
     FormsModule,
     ButtonModule,
     SelectModule,

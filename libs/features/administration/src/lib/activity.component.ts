@@ -9,6 +9,8 @@ import { DrawerModule } from 'primeng/drawer';
 import { PosStore } from '@corporate-pos/data-access';
 import type { LogEntry, AuditEntry } from '@corporate-pos/domain';
 import {
+  PosTooltipDirective,
+  EmptyStateComponent,
   PageHeaderComponent,
   StatusTagComponent,
   MetricCardComponent,
@@ -20,6 +22,7 @@ import {
   selector: 'pos-activity',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    PosTooltipDirective,
     FormsModule,
     ButtonModule,
     TableModule,
@@ -27,6 +30,7 @@ import {
     SelectModule,
     InputTextModule,
     DrawerModule,
+    EmptyStateComponent,
     PageHeaderComponent,
     StatusTagComponent,
     MetricCardComponent,
@@ -34,7 +38,7 @@ import {
   template: `<div class="pos-section">
       <pos-page-header
         eyebrow="Control"
-        title="Actividad y auditoría"
+        heading="Actividad y auditoría"
         subtitle="Sigue los eventos de operación y los cambios administrativos."
         ><p-button
           ariaLabel="Exportar vista"
@@ -50,17 +54,17 @@ import {
       /></pos-page-header>
       <div class="grid gap-4 sm:grid-cols-3">
         <pos-metric-card
-          title="Eventos registrados"
+          heading="Eventos registrados"
           [value]="store.snapshot().logs.length"
           icon="list-bullets"
           detail="Actividad del entorno mock"
         /><pos-metric-card
-          title="Errores"
+          heading="Errores"
           [value]="errors()"
           icon="warning-circle"
           detail="Con mensaje y correlación"
         /><pos-metric-card
-          title="Cambios auditados"
+          heading="Cambios auditados"
           [value]="store.snapshot().audit.length"
           icon="shield-check"
           detail="Actor, acción y entidad"
@@ -122,6 +126,8 @@ import {
                 <td class="max-w-xl">{{ log.message }}</td>
                 <td>
                   <p-button
+                    posTooltip
+                    posTooltipPosition="left"
                     icon="pi pi-search"
                     [text]="true"
                     severity="secondary"
@@ -131,10 +137,13 @@ import {
                 </td></tr></ng-template
             ><ng-template #emptymessage
               ><tr>
-                <td colspan="5" class="pos-empty">No hay eventos que coincidan con tus filtros.</td>
-              </tr></ng-template
-            ></p-table
-          >
+                <td colspan="5">
+                  <pos-empty-state
+                    heading="No hay eventos que coincidan con tus filtros."
+                    description="Prueba con otro nivel o término de búsqueda."
+                  />
+                </td></tr></ng-template
+          ></p-table>
         </div>
       }
       @if (tab === 'audit') {
@@ -165,12 +174,14 @@ import {
               </tr></ng-template
             ><ng-template #emptymessage
               ><tr>
-                <td colspan="5" class="pos-empty">
-                  Los cambios de configuración y operaciones aparecerán aquí.
-                </td>
-              </tr></ng-template
-            ></p-table
-          >
+                <td colspan="5">
+                  <pos-empty-state
+                    icon="list-checks"
+                    heading="Sin cambios para mostrar"
+                    description="Los cambios de configuración y operaciones aparecerán aquí."
+                  />
+                </td></tr></ng-template
+          ></p-table>
         </div>
       }
     </div>

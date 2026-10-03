@@ -11,7 +11,14 @@ import { DialogModule } from 'primeng/dialog';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
 import { PosStore } from '@corporate-pos/data-access';
 import type { Customer, Product, ReferenceItem, ReferenceKind } from '@corporate-pos/domain';
-import { PageHeaderComponent, StatusTagComponent, money, dateTime, downloadCsv } from '@corporate-pos/ui';
+import {
+  EmptyStateComponent,
+  PageHeaderComponent,
+  StatusTagComponent,
+  money,
+  dateTime,
+  downloadCsv,
+} from '@corporate-pos/ui';
 import { FeedbackService } from './feedback.service';
 
 @Component({
@@ -27,13 +34,14 @@ import { FeedbackService } from './feedback.service';
     InputNumberModule,
     DialogModule,
     ToggleSwitchModule,
+    EmptyStateComponent,
     PageHeaderComponent,
     StatusTagComponent,
   ],
   template: ` <div class="pos-section">
       <pos-page-header
         eyebrow="Gestión"
-        title="Maestros"
+        heading="Maestros"
         subtitle="Datos compartidos por venta, cobranza y operación de sucursal."
         ><p-button
           ariaLabel="Exportar"
@@ -117,10 +125,13 @@ import { FeedbackService } from './feedback.service';
                 </td></tr></ng-template
             ><ng-template #emptymessage
               ><tr>
-                <td colspan="6" class="pos-empty">No encontramos productos con esa búsqueda.</td>
-              </tr></ng-template
-            ></p-table
-          >
+                <td colspan="6">
+                  <pos-empty-state
+                    heading="No encontramos productos con esa búsqueda."
+                    description="Prueba con otro nombre, código o categoría."
+                  />
+                </td></tr></ng-template
+          ></p-table>
         </div>
       }
       @if (tab === 'customers') {
@@ -169,12 +180,13 @@ import { FeedbackService } from './feedback.service';
                 </td></tr></ng-template
             ><ng-template #emptymessage
               ><tr>
-                <td colspan="6" class="pos-empty">
-                  No encontramos clientes. Puedes crear un registro nuevo.
-                </td>
-              </tr></ng-template
-            ></p-table
-          >
+                <td colspan="6">
+                  <pos-empty-state
+                    heading="No encontramos clientes."
+                    description="Puedes crear un registro nuevo."
+                  />
+                </td></tr></ng-template
+          ></p-table>
         </div>
       }
       @if (tab === 'catalogs') {
@@ -214,10 +226,13 @@ import { FeedbackService } from './feedback.service';
                 </td></tr></ng-template
             ><ng-template #emptymessage
               ><tr>
-                <td colspan="4" class="pos-empty">Sin registros para esta búsqueda.</td>
-              </tr></ng-template
-            ></p-table
-          >
+                <td colspan="4">
+                  <pos-empty-state
+                    heading="Sin registros para esta búsqueda."
+                    description="Prueba con otro nombre o código del catálogo."
+                  />
+                </td></tr></ng-template
+          ></p-table>
         </div>
       }
     </div>

@@ -51,6 +51,7 @@ module.exports = tseslint.config(
     extends: [...angular.configs.templateRecommended, ...angular.configs.templateAccessibility],
     plugins: { 'pos-ui': posUi },
     rules: {
+      'pos-ui/icon-button-tooltip': 'error',
       'pos-ui/no-secondary-outlined-button': 'error',
       'pos-ui/no-labeled-secondary-text-button': 'error',
     },

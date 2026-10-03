@@ -17,6 +17,7 @@ import {
   chileCivilDate,
 } from '@corporate-pos/domain';
 import {
+  PosTooltipDirective,
   CivilDateTimeComponent,
   DuotoneIconComponent,
   PageHeaderComponent,
@@ -32,6 +33,7 @@ import {
   selector: 'pos-collections',
   standalone: true,
   imports: [
+    PosTooltipDirective,
     CivilDateTimeComponent,
     DuotoneIconComponent,
     FormsModule,
@@ -48,7 +50,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <pos-page-header
-      title="Cobranzas y anticipos"
+      heading="Cobranzas y anticipos"
       eyebrow="Cuenta del cliente"
       subtitle="Consulta la deuda, registra un abono y conserva cada aplicación de pago."
     >
@@ -115,22 +117,22 @@ import {
     </section>
     <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4 mb-6">
       <pos-metric-card
-        title="Deuda pendiente"
+        heading="Deuda pendiente"
         [value]="money(totalDebt())"
         [detail]="receivables().length + ' documentos'"
         icon="file-text"
       /><pos-metric-card
-        title="Deuda vencida"
+        heading="Deuda vencida"
         [value]="money(overdue())"
         detail="Según vencimiento de documento"
         icon="calendar-x"
       /><pos-metric-card
-        title="Cupo disponible"
+        heading="Cupo disponible"
         [value]="money((customer()?.creditLimit ?? 0) - (customer()?.creditUsed ?? 0))"
         detail="Sujeto a autorización de crédito"
         icon="credit-card"
       /><pos-metric-card
-        title="Anticipos disponibles"
+        heading="Anticipos disponibles"
         [value]="money(advances())"
         detail="Saldo aplicable en una venta u orden"
         icon="wallet"
@@ -239,6 +241,7 @@ import {
                 </td>
                 <td class="p-3">
                   <p-button
+                    posTooltip
                     icon="pi pi-file"
                     severity="secondary"
                     [text]="true"

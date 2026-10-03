@@ -12,6 +12,8 @@ Los iconos decorativos de tarjetas usan un componente compartido con SVG duotono
 
 Se compararon el preset, `DESIGN.md`, las recetas PrimeNG, los estilos ejecutados y el formulario renderizado del Storybook original. Los presets de origen y de la primera entrega eran equivalentes: la divergencia venía de reglas CSS y variantes elegidas en los templates. El repositorio de referencia se mantuvo sin modificaciones.
 
+En la ampliación de esta revisión, la referencia pública accesible fue la pantalla de inicio de sesión. No se compararon los módulos autenticados de esa publicación. La comparación interna de tablas, formularios, cabeceras y estados vacíos se basa en el código y las recetas del repositorio local de prime-showcase; esa versión puede diferir de la publicada. Los ajustes previamente medidos contra la referencia pública —foco y encabezado SVG— se conservan.
+
 El encabezado usa el archivo exacto `images/tornado.svg` de [prime-showcase publicado](https://prime-showcase-mu.vercel.app/), comprobado el 3 de octubre de 2026. Esa versión conserva los tonos `#005DB9`, `#0089D6` y `#0073c8`; la revisión posterior del repositorio local tenía otra paleta. Se mantienen sus opacidades internas y el encuadre `cover` / `center`, como recurso local de la web y del paquete Tauri. Los botones del header usan los estados de la misma referencia: iconos blancos, hover oscuro al 40% en escritorio y 25% en móvil; el botón de tema y el perfil conservan sus variantes. Estos tokens se limitan al encabezado para no alterar los controles de las demás pantallas.
 
 | Hallazgo                                | Corrección y criterio                                                                                                                                           |
@@ -26,6 +28,34 @@ El encabezado usa el archivo exacto `images/tornado.svg` de [prime-showcase publ
 | Paneles con radios arbitrarios          | Paneles de datos de 16 px y formularios de 24 px; títulos y etiquetas con jerarquía común.                                                                      |
 
 Se conservan PrimeIcons por licencia. No se copian FontAwesome Pro, módulos ajenos, configuradores de marca, modificaciones a `node_modules` ni el paquete de parches del origen. Los estados se resuelven con tokens soportados de PrimeNG y recetas compartidas, no con excepciones por pantalla. La igualdad visual se comprueba en controles renderizados y accesibilidad; no implica que el POS reproduzca los módulos de otro producto.
+
+## Ampliación visual y tooltips
+
+Esta ampliación corrige los siguientes hallazgos. Su verificación se registra por separado de los resultados históricos de la sección Verificación.
+
+| Hallazgo                                                                                        | Cambio implementado                                                                                                                                                                                  |
+| ----------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Los botones compactos solo tenían nombre accesible, sin una ayuda visible uniforme              | Directiva `posTooltip` y un único TooltipService compartido entre templates y controles internos de PrimeNG. La regla `pos-ui/icon-button-tooltip` evita omitirla en botones de solo icono.          |
+| Los inputs llamados `title` podían producir tooltips nativos sobre cabeceras y métricas         | PageHeaderComponent, MetricCardComponent y EmptyStateComponent usan `heading`. Las ayudas de acciones usan el overlay compartido.                                                                    |
+| Cabecera de 30 px en negrita frente a la receta local de 24 px y peso medio                     | PageHeaderComponent adopta la escala de 24 px, peso 500 y acento vertical; conserva metadatos y subtítulo.                                                                                           |
+| Maestros y Sucursales sumaban 48 px bajo la cabecera, mientras Documentos e Inicio tenían 24 px | `pos-section` aporta el único gap en las páginas que lo usan; el margen del PageHeader se conserva para los otros contextos.                                                                         |
+| Datos principales de Documentos a 14 px frente a los 16 px de Maestros                          | `pos-table` fija el cuerpo principal a 16 px, manteniendo los tamaños explícitos de metadatos y los paddings ya revisados.                                                                           |
+| Resultados vacíos con presentaciones distintas                                                  | EmptyStateComponent reúne icono duotono de 40 px, título compacto, descripción y slot de acciones. Documentos, Actividad, Maestros y Reportes usan la misma receta sin añadir contenedores anidados. |
+| Nueva/Editar sucursal comunicaba errores solo mediante un toast temporal                        | Campos obligatorios con estado inválido y error persistente asociado por `aria-describedby`, conservando la validación del comando.                                                                  |
+
+El motor de tooltips usa CDK Overlay para posición, ajuste al viewport y montaje por encima de diálogos; la presentación comparte los colores, espaciado y flecha de la receta visual. La directiva toma el texto de la etiqueta accesible cuando no recibe un valor explícito. `createTooltipPassThrough` extiende los controles internos con los tipos públicos de `GlobalPassThrough` y de cada componente: cierres de Dialog/Drawer/Toast, paginadores, calendario, InputNumber, Select y MultiSelect. ConfirmDialog reutiliza el cierre de Dialog. Toast recibe también PT local para asociar cada ayuda a su notificación y limpiarla al expirar.
+
+PrimeNG PT añade atributos, listeners y hooks a sus slots; **no crea directivas Angular en tiempo de ejecución**. Por eso no se agrega un atributo `pTooltip` o `posTooltip` esperando que Angular lo instancie en el DOM interno. Los listeners PT llaman al mismo TooltipService que la directiva de los templates, sin escanear todo el documento ni modificar `node_modules`.
+
+El contrato de interacción mantiene una sola ayuda visible: hover y foco de teclado la abren; el puntero puede cruzar hasta el texto sin cerrarla; no tiene caducidad mientras se está leyendo. Escape cierra la ayuda primero y conserva el foco. Clic, navegación, scroll y destrucción o cierre del control limpian la ayuda, sus listeners y su ID de `aria-describedby`, respetando otras descripciones existentes. Los controles deshabilitados no presentan ayuda de disponibilidad. Este comportamiento debe comprobarse tanto en controles propios como en overlays de PrimeNG.
+
+`e2e/tooltips.spec.ts` incorpora seis recorridos para claro/oscuro, teclado, acciones dinámicas, cierres de overlays, campos, controles bloqueados, expiración de avisos y viewport de 375 px; también comprueba la escala de la cabecera, la separación de 24 px y los estados vacíos. El refoco del calendario tras pulsar una flecha no vuelve a abrir una ayuda descartada; hace falta una nueva interacción del puntero o del teclado. Los cierres de paneles tampoco reabren ayudas durante su animación de salida.
+
+La revisión de capturas detectó además que el número de cajas sobrepasaba su columna del formulario de sucursal. Se usa la propiedad oficial `fluid` de InputNumber. Los campos se alinean arriba cuando una columna muestra un error más alto que la otra; se comprueban los bordes derecho y superior de los controles.
+
+Evidencia visual: [tooltip claro](screenshots/tooltip-light.png), [tooltip oscuro](screenshots/tooltip-dark.png), [estado vacío](screenshots/masters-empty.png) y [validación de sucursal](screenshots/branch-validation.png).
+
+Verificación final de esta ampliación: build de producción, lint y formato aprobados; **153 pruebas de lógica y contratos y los 45 E2E de la suite completa aprobados**. Los seis recorridos nuevos también pasaron dos repeticiones consecutivas. El helper espera a que termine el desplazamiento al control antes de hacer hover: el scroll cierra los tooltips por contrato. Se revisaron las capturas en claro y oscuro y los estados de formulario y búsqueda vacía. Los ajustes previos de foco, hover, header, tablas y gráficos conservan sus regresiones aprobadas.
 
 ## Defectos reproducidos y corregidos
 
@@ -53,7 +83,7 @@ Verificación de esta corrección: build, lint, 144 pruebas de lógica y 14 E2E 
 
 ## Verificación
 
-Resultado local y de [CI](https://github.com/floxcristian/corporate-pos/actions/runs/37151843645) para `0d09abc`: **144 pruebas de lógica e infraestructura y 37 E2E sobre producción aprobadas**, además de lint, formato y build. El smoke con CSP no registró violaciones ni errores de JavaScript. La misma ejecución generó el instalador NSIS de Windows; no se ha instalado ni ejercitado dentro de WebView2 local.
+Resultado histórico local y de [CI](https://github.com/floxcristian/corporate-pos/actions/runs/37151843645) para `0d09abc`, anterior a la ampliación visual y de tooltips: **144 pruebas de lógica e infraestructura y 37 E2E sobre producción aprobadas**, además de lint, formato y build. El smoke con CSP no registró violaciones ni errores de JavaScript. La misma ejecución generó el instalador NSIS de Windows; no se ha instalado ni ejercitado dentro de WebView2 local.
 
 Las regresiones cubren invariantes monetarias, deuda y cuotas, persistencia fallida, recuperación, calendario y zona horaria, borradores, cambios de configuración, controles PrimeNG y accesibilidad. Se validan recorridos reales de navegador en claro/oscuro y anchos de 375 y 1440 px. ESLint verifica arquitectura, accesibilidad de templates y variantes del sistema visual; TypeScript y Angular compilan en modo estricto.
 

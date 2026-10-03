@@ -1,5 +1,5 @@
 <pos-page-header
-  title="Tu operación, en un vistazo"
+  heading="Tu operación, en un vistazo"
   eyebrow="Centro de operación"
   subtitle="Ventas, estado de la caja y pendientes que requieren atención."
 >
@@ -42,25 +42,25 @@
 
 <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-6">
   <pos-metric-card
-    title="Ventas confirmadas netas"
+    heading="Ventas confirmadas netas"
     [value]="money(netSales())"
     [detail]="change()"
     icon="chart-line-up"
   />
   <pos-metric-card
-    title="Documentos registrados"
+    heading="Documentos registrados"
     [value]="number(sales().length)"
     [detail]="paymentReview() + ' con pago pendiente, fallido o por conciliar'"
     icon="file-text"
   />
   <pos-metric-card
-    title="Ticket promedio"
+    heading="Ticket promedio"
     [value]="money(average())"
     detail="Solo ventas con pago confirmado"
     icon="shopping-bag"
   />
   <pos-metric-card
-    title="Devoluciones"
+    heading="Devoluciones"
     [value]="money(refunded())"
     [detail]="returns().length + ' notas de crédito en el período'"
     icon="arrow-counter-clockwise"

@@ -11,7 +11,9 @@ import { MessageModule } from 'primeng/message';
 import { PosStore } from '@corporate-pos/data-access';
 import { PAYMENT_LABELS } from '@corporate-pos/domain';
 import {
+  PosTooltipDirective,
   CivilDateTimeComponent,
+  EmptyStateComponent,
   PageHeaderComponent,
   StatusTagComponent,
   MetricCardComponent,
@@ -24,7 +26,9 @@ import {
   selector: 'pos-documents',
   standalone: true,
   imports: [
+    PosTooltipDirective,
     CivilDateTimeComponent,
+    EmptyStateComponent,
     FormsModule,
     RouterLink,
     ButtonModule,
@@ -40,7 +44,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <pos-page-header
-      title="Documentos y pagos"
+      heading="Documentos y pagos"
       eyebrow="Trazabilidad comercial"
       subtitle="Sigue cada venta desde su guardado local hasta la emisión y el registro en ERP."
     >
@@ -62,21 +66,21 @@ import {
     }
     <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4 mb-6">
       <pos-metric-card
-        title="Ventas registradas"
+        heading="Ventas registradas"
         [value]="store.snapshot().sales.length"
         icon="receipt"
       /><pos-metric-card
-        title="Pendientes fiscales"
+        heading="Pendientes fiscales"
         [value]="fiscalPending()"
         detail="Emisión o revisión necesaria"
         icon="seal-check"
       /><pos-metric-card
-        title="Pendientes ERP"
+        heading="Pendientes ERP"
         [value]="erpPending()"
         detail="Venta local conservada"
         icon="arrows-clockwise"
       /><pos-metric-card
-        title="Pagos por conciliar"
+        heading="Pagos por conciliar"
         [value]="unknownPayments()"
         detail="Consultar antes de volver a cobrar"
         icon="warning-circle"
@@ -122,7 +126,7 @@ import {
         /></label>
       </div>
       <div class="overflow-x-auto">
-        <table class="pos-table w-full text-sm">
+        <table class="pos-table w-full">
           <thead class="text-left bg-surface-50 dark:bg-surface-900 text-muted-color">
             <tr>
               <th class="p-4 font-medium">Documento</th>
@@ -155,6 +159,8 @@ import {
                 </td>
                 <td class="p-3">
                   <p-button
+                    posTooltip
+                    posTooltipPosition="left"
                     icon="pi pi-arrow-right"
                     severity="secondary"
                     [text]="true"
@@ -165,8 +171,11 @@ import {
               </tr>
             } @empty {
               <tr>
-                <td colspan="7" class="p-12 text-center text-muted-color">
-                  No hay documentos que coincidan con los filtros.
+                <td colspan="7">
+                  <pos-empty-state
+                    heading="No hay documentos que coincidan con los filtros."
+                    description="Cambia el período, el tipo o el estado del documento."
+                  />
                 </td>
               </tr>
             }
@@ -287,7 +296,7 @@ import {
         }
         <h3 class="font-semibold mb-3">Productos</h3>
         <div class="overflow-x-auto mb-5">
-          <table class="pos-table pos-table--flush w-full text-sm">
+          <table class="pos-table pos-table--flush w-full">
             <thead class="text-left bg-surface-50 dark:bg-surface-900">
               <tr>
                 <th class="p-3 font-medium">Producto</th>

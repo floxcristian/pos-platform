@@ -1,5 +1,5 @@
 <pos-page-header
-  title="Punto de venta"
+  heading="Punto de venta"
   eyebrow="Operación · Chile"
   subtitle="Una venta, desde el primer producto hasta su comprobante."
 >
@@ -165,6 +165,7 @@
                   </td>
                   <td class="p-2">
                     <p-button
+                      posTooltip
                       icon="pi pi-trash"
                       severity="secondary"
                       [text]="true"
@@ -720,6 +721,7 @@
             </div>
             <strong class="tabular-nums ml-auto">{{ money(payment.amount) }}</strong
             ><p-button
+              posTooltip
               icon="pi pi-times"
               [text]="true"
               severity="secondary"

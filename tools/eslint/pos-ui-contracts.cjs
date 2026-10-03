@@ -31,7 +31,7 @@ function variant(element, name) {
 }
 
 function projectedText(node) {
-  if (['i', 'svg'].includes(node.name)) return false;
+  if (['i', 'svg'].includes(node.name?.split(':').at(-1))) return false;
   const classes = node.attributes?.find((item) => item.name === 'class')?.value ?? '';
   if (classes.split(/\s+/).includes('sr-only')) return false;
   if (typeof node.value === 'string') return node.value.trim().length > 0;
@@ -73,6 +73,30 @@ function rule(kind, message) {
 
 module.exports = {
   rules: {
+    'icon-button-tooltip': {
+      meta: {
+        type: 'problem',
+        docs: { description: 'Los botones de solo icono deben usar el tooltip compartido.' },
+        schema: [],
+        messages: { missing: 'Añade posTooltip al botón de solo icono; reutiliza su etiqueta accesible.' },
+      },
+      create(context) {
+        const services = getTemplateParserServices(context);
+        return {
+          Element(element) {
+            if (!(isPrimeButton(element) || element.name === 'button') || hasLabel(element)) return;
+            if (attribute(element, 'posTooltip')) return;
+            const hasIcon = (node) =>
+              ['i', 'svg'].includes(node.name?.split(':').at(-1)) || (node.children ?? []).some(hasIcon);
+            if (!attribute(element, 'icon') && !element.children.some(hasIcon)) return;
+            context.report({
+              loc: services.convertNodeSourceSpanToLoc(element.sourceSpan),
+              messageId: 'missing',
+            });
+          },
+        };
+      },
+    },
     'no-secondary-outlined-button': rule(
       'outlined',
       'Las acciones secundarias usan relleno gris; elimina outlined en este botón secondary.',

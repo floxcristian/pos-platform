@@ -5,8 +5,9 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DialogModule } from 'primeng/dialog';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
+import { MessageModule } from 'primeng/message';
 import { PosStore } from '@corporate-pos/data-access';
-import type { Branch } from '@corporate-pos/domain';
+import { validMoney, type Branch } from '@corporate-pos/domain';
 import { DuotoneIconComponent, PageHeaderComponent, StatusTagComponent } from '@corporate-pos/ui';
 import { FeedbackService } from './feedback.service';
 
@@ -20,6 +21,7 @@ import { FeedbackService } from './feedback.service';
     InputNumberModule,
     DialogModule,
     ToggleSwitchModule,
+    MessageModule,
     PageHeaderComponent,
     StatusTagComponent,
     DuotoneIconComponent,
@@ -27,7 +29,7 @@ import { FeedbackService } from './feedback.service';
   template: `<div class="pos-section">
       <pos-page-header
         eyebrow="Administración"
-        title="Sucursales y cajas"
+        heading="Sucursales y cajas"
         subtitle="Organiza la red comercial y el alcance de cada puesto de trabajo."
         ><p-button ariaLabel="Nueva sucursal" label="Nueva sucursal" icon="pi pi-plus" (onClick)="edit()"
       /></pos-page-header>
@@ -89,40 +91,113 @@ import { FeedbackService } from './feedback.service';
       [(visible)]="dialog"
       [modal]="true"
       [style]="{ width: '38rem' }"
-      ><div class="pos-form-grid">
+    >
+      <p class="text-sm text-muted-color mb-5">Los campos marcados con * son obligatorios.</p>
+      @if (saveError) {
+        <p-message id="branch-save-error" severity="error" class="block mb-5">{{ saveError }}</p-message>
+      }
+      <div class="pos-form-grid">
         <div class="pos-field">
           <label for="branch-code">Código *</label
-          ><input pInputText id="branch-code" [(ngModel)]="branch.code" />
+          ><input
+            pInputText
+            id="branch-code"
+            [(ngModel)]="branch.code"
+            (ngModelChange)="saveError = ''"
+            required
+            aria-required="true"
+            [invalid]="!!fieldError('code')"
+            [attr.aria-invalid]="!!fieldError('code')"
+            [attr.aria-describedby]="fieldError('code') ? 'branch-code-error' : null"
+          />
+          @if (fieldError('code'); as error) {
+            <p-message id="branch-code-error" severity="error" variant="simple" size="small">{{
+              error
+            }}</p-message>
+          }
         </div>
         <div class="pos-field">
           <label for="branch-name">Nombre *</label
-          ><input pInputText id="branch-name" [(ngModel)]="branch.name" />
+          ><input
+            pInputText
+            id="branch-name"
+            [(ngModel)]="branch.name"
+            (ngModelChange)="saveError = ''"
+            required
+            aria-required="true"
+            [invalid]="!!fieldError('name')"
+            [attr.aria-invalid]="!!fieldError('name')"
+            [attr.aria-describedby]="fieldError('name') ? 'branch-name-error' : null"
+          />
+          @if (fieldError('name'); as error) {
+            <p-message id="branch-name-error" severity="error" variant="simple" size="small">{{
+              error
+            }}</p-message>
+          }
         </div>
         <div class="pos-field sm:col-span-2">
-          <label for="branch-address">Dirección *</label
-          ><input pInputText id="branch-address" [(ngModel)]="branch.address" />
+          <label for="branch-address">Dirección (opcional)</label
+          ><input
+            pInputText
+            id="branch-address"
+            [(ngModel)]="branch.address"
+            (ngModelChange)="saveError = ''"
+          />
         </div>
         <div class="pos-field">
           <label for="branch-city">Comuna *</label
-          ><input pInputText id="branch-city" [(ngModel)]="branch.city" />
+          ><input
+            pInputText
+            id="branch-city"
+            [(ngModel)]="branch.city"
+            (ngModelChange)="saveError = ''"
+            required
+            aria-required="true"
+            [invalid]="!!fieldError('city')"
+            [attr.aria-invalid]="!!fieldError('city')"
+            [attr.aria-describedby]="fieldError('city') ? 'branch-city-error' : null"
+          />
+          @if (fieldError('city'); as error) {
+            <p-message id="branch-city-error" severity="error" variant="simple" size="small">{{
+              error
+            }}</p-message>
+          }
         </div>
         <div class="pos-field">
-          <label for="branch-terminals">Cajas registradas</label
+          <label for="branch-terminals">Cajas registradas *</label
           ><p-inputnumber
             inputId="branch-terminals"
             [(ngModel)]="branch.terminals"
+            (ngModelChange)="saveError = ''"
             [min]="1"
             [max]="100"
             [showButtons]="true"
+            [fluid]="true"
+            [ariaRequired]="true"
+            [invalid]="!!fieldError('terminals')"
+            [ariaDescribedBy]="fieldError('terminals') ? 'branch-terminals-error' : undefined"
           />
+          @if (fieldError('terminals'); as error) {
+            <p-message id="branch-terminals-error" severity="error" variant="simple" size="small">{{
+              error
+            }}</p-message>
+          }
         </div>
         <div class="flex justify-between items-center">
           <label for="branch-active">Sucursal activa</label
-          ><p-toggleswitch inputId="branch-active" [(ngModel)]="branch.active" />
+          ><p-toggleswitch
+            inputId="branch-active"
+            [(ngModel)]="branch.active"
+            (ngModelChange)="saveError = ''"
+          />
         </div>
         <div class="flex justify-between items-center">
           <label for="branch-online">Conectada (mock)</label
-          ><p-toggleswitch inputId="branch-online" [(ngModel)]="branch.online" />
+          ><p-toggleswitch
+            inputId="branch-online"
+            [(ngModel)]="branch.online"
+            (ngModelChange)="saveError = ''"
+          />
         </div>
       </div>
       <ng-template #footer
@@ -140,6 +215,8 @@ export class BranchesComponent {
   readonly store = inject(PosStore);
   private readonly feedback = inject(FeedbackService);
   dialog = false;
+  submitted = false;
+  saveError = '';
   branch: Branch = {
     id: '',
     name: '',
@@ -157,15 +234,26 @@ export class BranchesComponent {
     this.branch = branch
       ? structuredClone(branch)
       : { id: '', name: '', code: '', city: '', address: '', active: true, terminals: 1, online: true };
+    this.submitted = false;
+    this.saveError = '';
     this.dialog = true;
   }
+  fieldError(field: 'code' | 'name' | 'city' | 'terminals'): string | null {
+    if (!this.submitted) return null;
+    if (field === 'terminals') {
+      return validMoney(this.branch.terminals) ? null : 'Ingresa un número entero de cajas mayor que cero.';
+    }
+    if (this.branch[field].trim()) return null;
+    return {
+      code: 'Ingresa el código de la sucursal.',
+      name: 'Ingresa el nombre de la sucursal.',
+      city: 'Ingresa la comuna de la sucursal.',
+    }[field];
+  }
   save(): void {
-    if (
-      this.feedback.result(
-        this.store.saveBranch({ ...this.branch, id: this.branch.id || crypto.randomUUID() }),
-        'Sucursal guardada',
-      )
-    )
-      this.dialog = false;
+    this.submitted = true;
+    const result = this.store.saveBranch({ ...this.branch, id: this.branch.id || crypto.randomUUID() });
+    this.saveError = result.ok ? '' : result.error;
+    if (this.feedback.result(result, 'Sucursal guardada')) this.dialog = false;
   }
 }

@@ -32,7 +32,7 @@ import { FeedbackService } from './feedback.service';
   template: `<div class="pos-section">
     <pos-page-header
       eyebrow="Administración"
-      title="Módulos y configuración"
+      heading="Módulos y configuración"
       subtitle="Activa capacidades y define las políticas de esta empresa y sucursal."
     />
     <div class="pos-filter">

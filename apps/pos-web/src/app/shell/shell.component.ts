@@ -17,10 +17,10 @@ import { DrawerModule } from 'primeng/drawer';
 import { InputTextModule } from 'primeng/inputtext';
 import { SelectModule } from 'primeng/select';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
-import { TooltipModule } from 'primeng/tooltip';
 import { PosStore } from '@corporate-pos/data-access';
 import type { Role } from '@corporate-pos/domain';
 import {
+  PosTooltipDirective,
   dateTime,
   DuotoneIconComponent,
   StatusTagComponent,
@@ -42,6 +42,7 @@ interface SearchResult {
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { '(document:keydown)': 'onShortcut($event)' },
   imports: [
+    PosTooltipDirective,
     RouterOutlet,
     RouterLink,
     RouterLinkActive,
@@ -52,7 +53,6 @@ interface SearchResult {
     InputTextModule,
     SelectModule,
     ToggleSwitchModule,
-    TooltipModule,
     StatusTagComponent,
     DuotoneIconComponent,
   ],
