@@ -100,8 +100,10 @@
     </details>
   </section>
   <section class="bg-surface-0 dark:bg-surface-950 border border-surface rounded-2xl p-5 min-w-0">
-    <h2 class="font-semibold text-lg">Medios de pago</h2>
-    <p class="text-sm text-muted-color mt-1">Importes confirmados de las ventas</p>
+    <div class="mb-5">
+      <h2 class="font-semibold text-lg">Medios de pago</h2>
+      <p class="text-sm text-muted-color mt-1">Importes confirmados de las ventas</p>
+    </div>
     @if (payments().length) {
       @if (chartReady()) {
         <p-chart
