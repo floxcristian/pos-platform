@@ -133,13 +133,16 @@ export const AppPreset = definePreset(Aura, {
     colorScheme: {
       light: {
         surface: IMPLEMENTOS_NEUTRAL,
-        formField: { invalidBorderColor: '{rose.500}' },
+        // Measured in prime-showcase-mu.vercel.app; its published focus palette differs from local main.
+        focusRing: { color: '#b2ddf9' },
+        formField: { focusBorderColor: '#0074c2', invalidBorderColor: '{rose.500}' },
         content: { hoverBackground: '{surface.200}' },
         text: { muted: { color: '{surface.600}' } },
       },
       dark: {
         surface: IMPLEMENTOS_NEUTRAL,
-        formField: { invalidBorderColor: '{rose.400}' },
+        focusRing: { color: '#27a0f1' },
+        formField: { focusBorderColor: '#27a0f1', invalidBorderColor: '{rose.400}' },
         content: { hoverBackground: '{surface.700}' },
         text: { muted: { color: '{surface.300}' } },
       },
@@ -147,9 +150,8 @@ export const AppPreset = definePreset(Aura, {
     focusRing: {
       width: '0',
       style: 'none',
-      color: 'transparent',
       offset: '0',
-      shadow: '0 0 0 0.125rem {surface.0}, 0 0 0 0.25rem {primary.500}',
+      shadow: '0 0 0 0.2rem {focus.ring.color}',
     },
   },
 });

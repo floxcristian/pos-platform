@@ -204,6 +204,7 @@
   [modal]="true"
   [draggable]="false"
   [style]="{ width: '42rem', maxWidth: 'calc(100vw - 2rem)' }"
+  [contentStyle]="{ paddingTop: 'var(--spacing)' }"
   (onShow)="focusSearch()"
 >
   <label [for]="searchInputId" class="sr-only">Buscar productos, clientes, documentos o módulos</label

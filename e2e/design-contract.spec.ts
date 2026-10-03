@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-// Values measured against prime-showcase's rendered Form Card story, not a second theme implementation.
+// Focus measured in the published prime-showcase (2026-10-03); remaining values from its local Form Card.
 for (const theme of ['light', 'dark'] as const) {
   test(`contrato visual ${theme}: marca, foco, controles y secundarios`, async ({ page }) => {
     await page.goto('/#/venta');
@@ -30,11 +30,27 @@ for (const theme of ['light', 'dark'] as const) {
     expect(style.height).toBeGreaterThanOrEqual(40);
     expect(style.height).toBeLessThan(44);
     if (theme === 'light') {
-      expect(style.shadow).toBe('rgb(255, 255, 255) 0px 0px 0px 2px, rgb(0, 109, 182) 0px 0px 0px 4px');
+      expect(style.shadow).toBe('rgb(178, 221, 249) 0px 0px 0px 3.2px');
+      await expect(input).toHaveCSS('border-color', 'rgb(0, 116, 194)');
     } else {
       expect(style.shadow).not.toBe('none');
       expect(style.shadow).toContain('3.2px');
     }
+
+    // The header search dialog must use the same focus treatment as ordinary form fields.
+    await page.keyboard.press('Control+k');
+    const searchDialog = page.getByRole('dialog', { name: 'Buscar en Corporate POS', exact: true });
+    const searchInput = searchDialog.getByRole('textbox');
+    await expect(searchInput).toBeFocused();
+    await expect(searchInput).toHaveCSS('box-shadow', style.shadow);
+    await expect(searchInput).toHaveCSS('outline-width', '0px');
+    const focusClearance = await searchInput.evaluate((el) => {
+      const content = el.closest('.p-dialog-content')!;
+      return el.getBoundingClientRect().top - content.getBoundingClientRect().top;
+    });
+    expect(focusClearance).toBeGreaterThanOrEqual(3.2);
+    await page.keyboard.press('Escape');
+    await expect(searchDialog).not.toBeVisible();
 
     const secondary = page.getByRole('button', { name: 'Cargar orden de venta', exact: true });
     await expect(secondary).toHaveCSS(

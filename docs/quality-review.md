@@ -18,7 +18,7 @@ El encabezado usa el archivo exacto `images/tornado.svg` de [prime-showcase publ
 | --------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Header primary700 en vez de primary500  | Azul de marca `#006db6`, altura 64 px. Textos y avatar conservan contraste en claro y oscuro.                                                                   |
 | Raíz 14 px en vez de 16 px              | Inter local a 16 px; navegación y formularios recuperan la escala de la referencia. Metadatos siguen teniendo tamaños subordinados.                             |
-| Outline separado en inputs              | Halo del preset: 2 px interiores blancos y 4 px exteriores azules en claro; halo oscuro de la referencia. Borde activo nativo de PrimeNG.                       |
+| Outline separado en inputs              | Halo único de 3,2 px, sin separador blanco, medido en la versión publicada: #b2ddf9 sobre borde #0074c2. En oscuro, #27a0f1 al 55 %.                       |
 | Controles forzados a 44 px              | Inputs y selects conservan medidas Aura, aproximadamente 42 px a escala 16. Segmentos con mínimo 40 px; objetivos específicos suben a 44 px con puntero táctil. |
 | Secundarios outlined/text               | Secundarios filled neutros en vistas; tokens tonales dentro de diálogos. Dos reglas ESLint evitan reintroducir las variantes incompatibles.                     |
 | SelectButton sin pista de la referencia | Tokens grises 200/700 y thumb nativo. Contenedores con desplazamiento horizontal para etiquetas largas, sin desbordar la página.                                |

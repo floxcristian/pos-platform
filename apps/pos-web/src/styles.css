@@ -107,7 +107,7 @@ a {
 }
 .p-dark {
   color-scheme: dark;
-  --p-focus-ring-shadow: 0 0 0 0.2rem color-mix(in srgb, var(--p-primary-400) 55%, transparent);
+  --p-focus-ring-shadow: 0 0 0 0.2rem color-mix(in srgb, var(--p-focus-ring-color) 55%, transparent);
 }
 .p-dark body {
   background: var(--p-surface-950);

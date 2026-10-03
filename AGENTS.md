@@ -17,6 +17,7 @@ Maqueta funcional de producto con datos sintéticos. No conectar servicios corpo
 Conservar la identidad y recetas de prime-showcase: Aura corporativo, Inter local, superficies neutras, densidad operativa, navegación predecible y PrimeNG. Tailwind y tokens del preset; evitar colores arbitrarios por componente. PrimeIcons en controles compactos; DuotoneIconComponent (SVG Phosphor MIT) en iconos decorativos grandes, sin copiar FontAwesome Pro. Usar 28–32 px en tarjetas, 40 px en estados vacíos y 48 px en confirmaciones. Mantener la licencia de los SVG en el artefacto web.
 UI en español para cajeros, supervisores y administradores. Acciones completas con validación, estados vacíos, errores, confirmaciones y feedback. Teclado, foco visible, etiquetas y contraste verificables. No controles decorativos ni enlaces sin destino.
 Las tablas usan `pos-table` en el elemento table (`tableStyleClass` en PrimeNG) para alinear sus extremos con las cabeceras: 20 px en tarjetas, `pos-table--compact` para cabeceras de 16 px y `pos-table--flush` cuando el contenedor ya aporta el padding. Conservar el espaciado vertical y entre columnas.
+El foco sigue la referencia publicada en prime-showcase-mu.vercel.app: halo único de 3,2 px sin separador blanco. Verificar esa versión antes de copiar cambios del preset local, que puede ser diferente.
 
 ## Entrega
 
