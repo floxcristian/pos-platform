@@ -88,7 +88,7 @@
       />
     }
     <details class="mt-4 text-sm">
-      <summary class="text-primary cursor-pointer">Ver cifras del gráfico</summary>
+      <summary class="pos-inline-action cursor-pointer">Ver cifras del gráfico</summary>
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-3">
         @for (label of trend().labels; track $index) {
           <div>
@@ -150,7 +150,9 @@
         }}
       </p>
       @if (store.can('cash', 'cash')) {
-        <a routerLink="/caja" class="inline-flex gap-2 items-center text-primary text-sm font-medium mt-3"
+        <a
+          routerLink="/caja"
+          class="pos-inline-action inline-flex gap-2 items-center text-sm font-medium mt-3"
           >Ver caja <i class="pi pi-arrow-right text-xs" aria-hidden="true"></i
         ></a>
       }
@@ -169,7 +171,7 @@
       @if (store.can('sell', 'sales')) {
         <a
           routerLink="/documentos"
-          class="inline-flex gap-2 items-center text-primary text-sm font-medium mt-3"
+          class="pos-inline-action inline-flex gap-2 items-center text-sm font-medium mt-3"
           >Revisar documentos <i class="pi pi-arrow-right text-xs" aria-hidden="true"></i
         ></a>
       }
@@ -188,7 +190,7 @@
       @if (store.can('sync', 'sync')) {
         <a
           routerLink="/sincronizacion"
-          class="inline-flex gap-2 items-center text-primary text-sm font-medium mt-3"
+          class="pos-inline-action inline-flex gap-2 items-center text-sm font-medium mt-3"
           >Ver sincronización <i class="pi pi-arrow-right text-xs" aria-hidden="true"></i
         ></a>
       }
@@ -203,7 +205,7 @@
     <div class="flex items-center justify-between gap-3 p-5 border-b border-surface">
       <h2 class="font-semibold text-lg">Últimas ventas</h2>
       @if (store.can('sell', 'sales')) {
-        <a routerLink="/documentos" class="text-primary text-sm font-medium"
+        <a routerLink="/documentos" class="pos-inline-action text-sm font-medium"
           >Ver todas <i class="pi pi-arrow-right ml-1 text-xs" aria-hidden="true"></i
         ></a>
       }
@@ -264,7 +266,7 @@
   <section class="mt-6 bg-surface-0 dark:bg-surface-950 border border-surface rounded-2xl p-5">
     <div class="flex items-center justify-between gap-3 mb-3">
       <h2 class="font-semibold text-lg">Requieren atención</h2>
-      <a routerLink="/actividad" class="text-primary text-sm"
+      <a routerLink="/actividad" class="pos-inline-action text-sm"
         >Ir a actividad <i class="pi pi-arrow-right ml-1 text-xs" aria-hidden="true"></i
       ></a>
     </div>

@@ -16,6 +16,74 @@ const IMPLEMENTOS_NEUTRAL = {
   900: '#151619',
   950: '#07080a',
 } as const;
+
+type ColorScheme = 'light' | 'dark';
+type ButtonTone =
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'info'
+  | 'warn'
+  | 'help'
+  | 'danger'
+  | 'contrast'
+  | 'plain';
+type ButtonRamp = 'surface' | 'primary' | 'green' | 'sky' | 'orange' | 'purple' | 'red';
+
+interface ButtonInteractionTokens {
+  color: string;
+  hoverBackground: string;
+  activeBackground: string;
+}
+
+// Text and outlined variants share one foreground token across all states.
+// Select its shade against the strongest (active) background, including labeled calendar actions.
+function buttonInteraction(ramp: ButtonRamp, mode: ColorScheme): ButtonInteractionTokens {
+  if (ramp === 'surface') {
+    return mode === 'light'
+      ? { color: '{surface.800}', hoverBackground: '{surface.300}', activeBackground: '{surface.400}' }
+      : { color: '{surface.200}', hoverBackground: '{surface.600}', activeBackground: '{surface.500}' };
+  }
+  return mode === 'light'
+    ? {
+        color: `{${ramp}.${ramp === 'primary' ? 700 : 900}}`,
+        hoverBackground: `{${ramp}.200}`,
+        activeBackground: `{${ramp}.300}`,
+      }
+    : {
+        color: `{${ramp}.100}`,
+        hoverBackground: `{${ramp}.800}`,
+        activeBackground: `{${ramp}.700}`,
+      };
+}
+
+function buttonInteractionPalette(mode: ColorScheme): Record<ButtonTone, ButtonInteractionTokens> {
+  return {
+    primary: buttonInteraction('primary', mode),
+    secondary: buttonInteraction('surface', mode),
+    success: buttonInteraction('green', mode),
+    info: buttonInteraction('sky', mode),
+    warn: buttonInteraction('orange', mode),
+    help: buttonInteraction('purple', mode),
+    danger: buttonInteraction('red', mode),
+    contrast: buttonInteraction('surface', mode),
+    // Aura retains plain for its legacy neutral variant.
+    plain: buttonInteraction('surface', mode),
+  };
+}
+
+const NEUTRAL_HOVER = {
+  light: { hoverBackground: '{surface.300}', hoverColor: '{surface.800}' },
+  dark: { hoverBackground: '{surface.600}', hoverColor: '{surface.100}' },
+} as const;
+
+function toastInteraction(ramp: 'blue' | 'green' | 'yellow' | 'red', mode: ColorScheme) {
+  return {
+    color: `{${ramp}.${mode === 'light' ? 900 : 100}}`,
+    closeButton: { hoverBackground: `{${ramp}.${mode === 'light' ? 300 : 700}}` },
+  };
+}
+
 export const AppPreset = definePreset(Aura, {
   components: {
     togglebutton: {
@@ -23,34 +91,90 @@ export const AppPreset = definePreset(Aura, {
         light: {
           root: {
             background: '{surface.200}',
-            hoverBackground: '{surface.200}',
+            ...NEUTRAL_HOVER.light,
             checkedBackground: '{surface.200}',
             borderColor: '{surface.200}',
             checkedBorderColor: '{surface.200}',
             color: '{surface.600}',
           },
+          icon: { hoverColor: NEUTRAL_HOVER.light.hoverColor },
         },
         dark: {
           root: {
             background: '{surface.700}',
-            hoverBackground: '{surface.700}',
+            ...NEUTRAL_HOVER.dark,
             checkedBackground: '{surface.700}',
             borderColor: '{surface.700}',
             checkedBorderColor: '{surface.700}',
             color: '{surface.300}',
           },
+          icon: { hoverColor: NEUTRAL_HOVER.dark.hoverColor },
         },
       },
     },
     paginator: {
       colorScheme: {
-        light: { navButton: { selectedBackground: '{primary.100}', selectedColor: '{primary.700}' } },
-        dark: { navButton: { selectedBackground: '{primary.900}', selectedColor: '{primary.100}' } },
+        light: {
+          navButton: {
+            ...NEUTRAL_HOVER.light,
+            selectedBackground: '{primary.100}',
+            selectedColor: '{primary.700}',
+          },
+        },
+        dark: {
+          navButton: {
+            ...NEUTRAL_HOVER.dark,
+            selectedBackground: '{primary.900}',
+            selectedColor: '{primary.100}',
+          },
+        },
+      },
+    },
+    datepicker: {
+      colorScheme: {
+        light: {
+          date: NEUTRAL_HOVER.light,
+          selectMonth: NEUTRAL_HOVER.light,
+          selectYear: NEUTRAL_HOVER.light,
+        },
+        dark: {
+          date: NEUTRAL_HOVER.dark,
+          selectMonth: NEUTRAL_HOVER.dark,
+          selectYear: NEUTRAL_HOVER.dark,
+        },
+      },
+    },
+    toast: {
+      colorScheme: {
+        light: {
+          info: toastInteraction('blue', 'light'),
+          success: toastInteraction('green', 'light'),
+          warn: toastInteraction('yellow', 'light'),
+          error: toastInteraction('red', 'light'),
+          secondary: {
+            color: '{surface.800}',
+            closeButton: { hoverBackground: '{surface.300}' },
+          },
+          contrast: { closeButton: { hoverBackground: '{surface.600}' } },
+        },
+        dark: {
+          info: toastInteraction('blue', 'dark'),
+          success: toastInteraction('green', 'dark'),
+          warn: toastInteraction('yellow', 'dark'),
+          error: toastInteraction('red', 'dark'),
+          secondary: {
+            color: '{surface.200}',
+            closeButton: { hoverBackground: '{surface.600}' },
+          },
+          contrast: { closeButton: { hoverBackground: '{surface.300}' } },
+        },
       },
     },
     button: {
       colorScheme: {
         light: {
+          text: buttonInteractionPalette('light'),
+          outlined: buttonInteractionPalette('light'),
           root: {
             secondary: {
               background: '{surface.200}',
@@ -67,6 +191,8 @@ export const AppPreset = definePreset(Aura, {
           },
         },
         dark: {
+          text: buttonInteractionPalette('dark'),
+          outlined: buttonInteractionPalette('dark'),
           root: {
             secondary: {
               background: '{surface.700}',

@@ -71,7 +71,7 @@
       <div class="grid gap-3 sm:grid-cols-2 2xl:grid-cols-3 max-h-[360px] overflow-auto pr-1">
         @for (product of products(); track product.id) {
           <button
-            class="text-left rounded-xl border border-surface p-4 hover:border-primary hover:bg-primary-50 dark:hover:bg-surface-900 transition-colors focus-visible:outline-2 focus-visible:outline-primary"
+            class="pos-interactive-card text-left rounded-xl border border-surface p-4"
             (click)="add(product)"
             [disabled]="!store.can('sell', 'sales') || !!loadedOrder()?.locked"
             [attr.aria-label]="'Agregar ' + product.name"

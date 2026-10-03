@@ -96,10 +96,7 @@ import {
             @for (note of filtered(); track note.id) {
               <tr class="border-t border-surface">
                 <td class="p-4">
-                  <button
-                    class="text-primary font-semibold hover:underline"
-                    (click)="selectedNoteId.set(note.id)"
-                  >
+                  <button class="pos-inline-action font-semibold" (click)="selectedNoteId.set(note.id)">
                     {{ note.number }}
                   </button>
                   <p class="text-xs text-muted-color mt-1">{{ dateTime(note.createdAt) }}</p>

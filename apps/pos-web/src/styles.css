@@ -143,6 +143,53 @@ p-button {
 .pos-segments .p-selectbutton {
   width: max-content;
 }
+/* Native actions share PrimeNG's state tokens, including text/icon contrast. */
+.pos-surface-action:not(:disabled):not([aria-disabled='true']):not([aria-current='page']):hover {
+  background: var(--p-button-text-secondary-hover-background);
+}
+.pos-surface-action:not(:disabled):not([aria-disabled='true']):not([aria-current='page']):active {
+  background: var(--p-button-text-secondary-active-background);
+}
+.pos-surface-action:not(:disabled):not([aria-disabled='true']):not([aria-current='page']):is(
+    :hover,
+    :active
+  ) {
+  color: var(--p-button-text-secondary-color);
+  --p-text-muted-color: var(--p-button-text-secondary-color);
+  --p-primary-color: var(--p-button-text-secondary-color);
+}
+.pos-inline-action {
+  color: var(--p-button-text-primary-color);
+  border-radius: var(--p-button-border-radius);
+  padding: 0.25rem 0.375rem;
+  margin-inline: -0.375rem;
+  cursor: pointer;
+}
+.pos-inline-action:not(:disabled):hover,
+.pos-interactive-card:enabled:hover {
+  background: var(--p-button-text-primary-hover-background);
+  color: var(--p-button-text-primary-color);
+}
+.pos-inline-action:not(:disabled):active,
+.pos-interactive-card:enabled:active {
+  background: var(--p-button-text-primary-active-background);
+}
+.pos-inline-action:not(:disabled):hover {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.pos-interactive-card:enabled {
+  cursor: pointer;
+}
+.pos-interactive-card:enabled:is(:hover, :active) {
+  border-color: var(--p-button-text-primary-color);
+  --p-text-muted-color: var(--p-button-text-primary-color);
+  --p-primary-color: var(--p-button-text-primary-color);
+}
+.pos-interactive-card:disabled {
+  opacity: var(--p-disabled-opacity);
+  cursor: not-allowed;
+}
 @media (pointer: coarse) {
   .p-button-icon-only,
   .p-togglebutton,
@@ -151,6 +198,7 @@ p-button {
   .p-paginator-page,
   .p-paginator-next,
   .p-paginator-last,
+  .p-toast-close-button,
   .p-select-dropdown,
   .p-multiselect-dropdown {
     min-block-size: 2.75rem;

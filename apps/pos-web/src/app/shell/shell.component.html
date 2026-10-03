@@ -102,10 +102,10 @@
             @for (item of group.items; track item.route) {
               <a
                 [routerLink]="item.route"
-                routerLinkActive="!bg-primary-50 !text-primary dark:!bg-primary-950"
+                routerLinkActive="bg-primary-50 text-primary dark:bg-primary-950"
                 [routerLinkActiveOptions]="{ exact: true }"
                 ariaCurrentWhenActive="page"
-                class="flex items-center gap-3 min-h-11 px-3 py-2.5 rounded-lg font-medium text-color hover:bg-surface-100 dark:hover:bg-surface-800"
+                class="pos-surface-action flex items-center gap-3 min-h-11 px-3 py-2.5 rounded-lg font-medium text-color"
                 ><i [class]="'pi ' + item.icon + ' w-5 text-base'" aria-hidden="true"></i
                 ><span>{{ item.label }}</span></a
               >
@@ -188,7 +188,7 @@
             (click)="mobileOpen.set(false)"
             routerLinkActive="bg-primary-50 text-primary dark:bg-primary-950"
             ariaCurrentWhenActive="page"
-            class="flex items-center gap-3 min-h-12 px-3 rounded-lg hover:bg-surface-100 dark:hover:bg-surface-800"
+            class="pos-surface-action flex items-center gap-3 min-h-12 px-3 rounded-lg"
             ><i [class]="'pi ' + item.icon" aria-hidden="true"></i>{{ item.label }}</a
           >
         }
@@ -222,7 +222,7 @@
       <button
         type="button"
         (click)="goTo(result)"
-        class="flex items-center gap-3 w-full text-left p-3 rounded-lg hover:bg-surface-100 dark:hover:bg-surface-800 cursor-pointer"
+        class="pos-surface-action flex items-center gap-3 w-full text-left p-3 rounded-lg cursor-pointer"
       >
         <i [class]="'pi ' + result.icon + ' text-primary'" aria-hidden="true"></i
         ><span class="min-w-0 flex-1"

@@ -18,6 +18,7 @@ Conservar la identidad y recetas de prime-showcase: Aura corporativo, Inter loca
 UI en español para cajeros, supervisores y administradores. Acciones completas con validación, estados vacíos, errores, confirmaciones y feedback. Teclado, foco visible, etiquetas y contraste verificables. No controles decorativos ni enlaces sin destino.
 Las tablas usan `pos-table` en el elemento table (`tableStyleClass` en PrimeNG) para alinear sus extremos con las cabeceras: 20 px en tarjetas, `pos-table--compact` para cabeceras de 16 px y `pos-table--flush` cuando el contenedor ya aporta el padding. Conservar el espaciado vertical y entre columnas.
 El foco sigue la referencia publicada en prime-showcase-mu.vercel.app: halo único de 3,2 px sin separador blanco. Verificar esa versión antes de copiar cambios del preset local, que puede ser diferente.
+Los estados hover/pulsado usan los tokens del preset, incluidos botones text/outlined y cierres de overlays. Para acciones HTML propias, usar pos-surface-action, pos-inline-action o pos-interactive-card. Comprobar contraste del texto contra el fondo pulsado, conservar la selección y excluir controles deshabilitados.
 
 ## Entrega
 

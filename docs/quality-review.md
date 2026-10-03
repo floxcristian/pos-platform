@@ -18,7 +18,7 @@ El encabezado usa el archivo exacto `images/tornado.svg` de [prime-showcase publ
 | --------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Header primary700 en vez de primary500  | Azul de marca `#006db6`, altura 64 px. Textos y avatar conservan contraste en claro y oscuro.                                                                   |
 | Raíz 14 px en vez de 16 px              | Inter local a 16 px; navegación y formularios recuperan la escala de la referencia. Metadatos siguen teniendo tamaños subordinados.                             |
-| Outline separado en inputs              | Halo único de 3,2 px, sin separador blanco, medido en la versión publicada: #b2ddf9 sobre borde #0074c2. En oscuro, #27a0f1 al 55 %.                       |
+| Outline separado en inputs              | Halo único de 3,2 px, sin separador blanco, medido en la versión publicada: #b2ddf9 sobre borde #0074c2. En oscuro, #27a0f1 al 55 %.                            |
 | Controles forzados a 44 px              | Inputs y selects conservan medidas Aura, aproximadamente 42 px a escala 16. Segmentos con mínimo 40 px; objetivos específicos suben a 44 px con puntero táctil. |
 | Secundarios outlined/text               | Secundarios filled neutros en vistas; tokens tonales dentro de diálogos. Dos reglas ESLint evitan reintroducir las variantes incompatibles.                     |
 | SelectButton sin pista de la referencia | Tokens grises 200/700 y thumb nativo. Contenedores con desplazamiento horizontal para etiquetas largas, sin desbordar la página.                                |
@@ -28,6 +28,14 @@ El encabezado usa el archivo exacto `images/tornado.svg` de [prime-showcase publ
 Se conservan PrimeIcons por licencia. No se copian FontAwesome Pro, módulos ajenos, configuradores de marca, modificaciones a `node_modules` ni el paquete de parches del origen. Los estados se resuelven con tokens soportados de PrimeNG y recetas compartidas, no con excepciones por pantalla. La igualdad visual se comprueba en controles renderizados y accesibilidad; no implica que el POS reproduzca los módulos de otro producto.
 
 ## Defectos reproducidos y corregidos
+
+La revisión de hover encontró que los cierres de diálogo/drawer consumían `button.text.secondary`, mientras el preset solo personalizaba `button.root.secondary`. El fondo claro cambiaba de blanco a `#f9fafb` (relación entre superficies 1,05:1), y los selectores segmentados conservaban exactamente el mismo fondo al pasar el cursor.
+
+El preset ahora define hover y pulsado para variantes text/outlined, con colores de texto calculados contra el fondo más intenso. La receta se extiende a paginación, calendario y cierre de avisos. Las acciones HTML de búsqueda, navegación, productos y enlaces comparten esos tokens; la selección y los controles deshabilitados conservan sus estados. Los botones del header mantienen sus tokens específicos de la referencia publicada.
+
+`e2e/interaction-states.spec.ts` comprueba los estados renderizados en claro y oscuro: cambio perceptible de superficie, contraste mínimo de texto de 4,5:1 en hover/pulsado, ausencia de desplazamientos, cierre por teclado y controles bloqueados sin feedback de disponibilidad. El umbral de diferencia entre superficies es una regla visual del producto, no un criterio WCAG entre estados.
+
+Verificación de esta corrección: build, lint, 144 pruebas de lógica y 14 E2E de interacción, contrato visual, navegación y accesibilidad aprobados. Capturas del cierre en [tema claro](screenshots/button-hover-light.png) y [tema oscuro](screenshots/button-hover-dark.png).
 
 | Área                               | Defecto observado                                                                     | Comportamiento corregido                                                                                                                                                      |
 | ---------------------------------- | ------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
