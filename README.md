@@ -8,6 +8,8 @@ Caja corporativa para Chile: prototipo funcional de producto, con datos sintéti
 
 Requiere Node.js 22.13+ o 24 LTS y npm 11.6.0.
 
+Si tu instalación usa otra versión de npm, instala las dependencias con `npx --yes npm@11.6.0 ci`.
+
 ```sh
 npm ci
 npm start
@@ -69,6 +71,10 @@ npm run desktop:info
 ```
 
 Las pruebas cubren políticas, montos, persistencia, permisos, reintentos, calendarios y recorridos de navegador. CI está configurada para compilar y empaquetar la demostración para Windows. Las acciones de CI están fijadas por commit y tienen permisos de lectura.
+
+Validación de la entrega inicial (3 de octubre de 2026): **82 pruebas unitarias y 26 recorridos de navegador pasan**, junto con lint, formato y compilación web de producción. Los recorridos incluyen tamaños de 375 y 1440 px y verificaciones automáticas de accesibilidad del dashboard y reportes en tema claro y oscuro.
+
+La [ejecución inicial de CI](https://github.com/floxcristian/corporate-pos/actions/runs/37149329820) completó correctamente las validaciones web y el instalador NSIS de Windows. El artefacto `corporate-pos-windows-demo` tiene una retención de siete días; se puede regenerar con `npm run desktop:build`.
 
 ## Escritorio
 

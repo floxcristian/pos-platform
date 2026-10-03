@@ -1,6 +1,6 @@
 # Host de escritorio Tauri
 
-`apps/pos-desktop` prepara una aplicación Windows con Tauri 2 y reutiliza exactamente el frontend Angular de `apps/pos-web`. No hay una segunda interfaz ni servicios de caja duplicados. El instalador previsto es NSIS por usuario.
+`apps/pos-desktop` prepara una aplicación Windows con Tauri 2 y reutiliza exactamente el frontend Angular de `apps/pos-web`. No hay una segunda interfaz ni servicios de caja duplicados. El instalador NSIS por usuario fue generado correctamente en CI.
 
 ## Prerrequisitos Windows
 
@@ -39,6 +39,15 @@ Antes de distribuir a sucursales faltan la persistencia de Edge, integración na
 
 ## Verificación y límite actual
 
-Se puede validar el JSON y el layout de archivos con la CLI, además del build web. Para confirmar un ejecutable es imprescindible compilar con Rust y MSVC y abrirlo en Windows. Este entorno no tiene Cargo/Rust disponibles, por lo que no se afirma que exista un instalador probado.
+La compilación y el empaquetado de Windows terminaron correctamente en el [job `windows-desktop` de GitHub Actions](https://github.com/floxcristian/corporate-pos/actions/runs/37149329820/job/111279662932), finalizado el **3 de octubre de 2026 a las 20:01:50 UTC**. Ejecutó `npm run desktop:build` con Rust 1.90.0 para el commit [`563f154faf6ab4e2c3b270ff459bb4fd2efaef23`](https://github.com/floxcristian/corporate-pos/commit/563f154faf6ab4e2c3b270ff459bb4fd2efaef23).
 
-Las versiones directas de Tauri están fijadas en Cargo.toml. La primera compilación con el toolchain debe generar `Cargo.lock`; debe revisarse y versionarse para fijar también las dependencias transitivas. Los iconos pertenecen al proyecto, se generan desde una figura geométrica propia y no incluyen Font Awesome Pro.
+El artefacto **`corporate-pos-windows-demo`** contiene `Corporate POS_0.1.0_x64-setup.exe` (2.033.374 bytes) y el `Cargo.lock` generado por esa misma compilación. El lockfile fue recuperado sin modificaciones en `apps/pos-desktop/src-tauri/Cargo.lock`; fija también las dependencias transitivas del build exitoso. La copia del instalador descargada al workspace está en `dist/installers/`, directorio ignorado por Git.
+
+| Archivo del artefacto               | SHA-256                                                            |
+| ----------------------------------- | ------------------------------------------------------------------ |
+| `Corporate POS_0.1.0_x64-setup.exe` | `d8c4af3c860baeaaaf2b4dc2340848c0f0507d8686a38ade8978e7e489b579d4` |
+| `Cargo.lock`                        | `d0de437f15583981a9420589b81eafdf0c746048a78aeed3d4a6d698f3d941e2` |
+
+**El instalador no se ha ejecutado ni instalado en el equipo local.** La evidencia confirma compilación y empaquetado en CI, no una prueba de apertura o uso del programa nativo. El entorno local sigue sin Cargo/Rust ni MSVC. Falta comprobar la interfaz dentro de WebView2 y su comportamiento en los equipos objetivo. El instalador de demostración no tiene firma comercial.
+
+Las versiones directas de Tauri están fijadas en `Cargo.toml`. Los iconos pertenecen al proyecto, se generan desde una figura geométrica propia y no incluyen Font Awesome Pro.
