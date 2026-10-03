@@ -30,7 +30,7 @@ export default defineConfig({
   webServer: {
     command: production
       ? `node tools/serve-build.mjs --port ${port}`
-      : `node node_modules/nx/bin/nx.js serve pos-web --host 127.0.0.1 --port ${port}`,
+      : `npm exec -- nx serve pos-web --host 127.0.0.1 --port ${port}`,
     url: baseURL,
     reuseExistingServer: !production,
     timeout: 180000,

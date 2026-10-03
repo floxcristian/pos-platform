@@ -24,6 +24,8 @@ Vercel publica la aplicación Angular como archivos estáticos. Nx compila `pos-
 
 El framework `null` en `vercel.json` equivale a **Other**: el comando explícito de Nx genera el sitio y Vercel sirve únicamente `dist/apps/pos-web/browser`. No utilices `dist/apps/pos-web` ni la carpeta de código fuente como salida. Los campos versionados evitan depender de ajustes manuales diferentes en cada entorno.
 
+El archivo también incluye la política CSP de la web y `X-Content-Type-Options: nosniff`. La CSP conserva las restricciones verificadas para la aplicación y omite los destinos IPC que utiliza el contenedor de escritorio.
+
 ## Actualizaciones y datos
 
 Con la integración GitHub conectada, los nuevos commits en la rama de producción generan despliegues. La aplicación usa rutas con `#`, por lo que no necesita reescrituras SPA para recargar una ruta interna. Si más adelante se cambia a rutas sin `#`, habrá que configurar el fallback a `index.html`.
