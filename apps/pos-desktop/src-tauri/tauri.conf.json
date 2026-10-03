@@ -1,0 +1,45 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Corporate POS",
+  "version": "0.1.0",
+  "identifier": "com.floxcristian.corporatepos",
+  "build": {
+    "beforeDevCommand": { "script": "npm start", "cwd": "../../..", "wait": false },
+    "beforeBuildCommand": { "script": "npm run build", "cwd": "../../.." },
+    "devUrl": "http://127.0.0.1:4300",
+    "frontendDist": "../../../dist/apps/pos-web/browser"
+  },
+  "app": {
+    "withGlobalTauri": false,
+    "windows": [
+      {
+        "label": "main",
+        "title": "Corporate POS",
+        "width": 1440,
+        "height": 960,
+        "minWidth": 800,
+        "minHeight": 600,
+        "resizable": true,
+        "center": true,
+        "dragDropEnabled": false
+      }
+    ],
+    "security": {
+      "capabilities": ["main"],
+      "csp": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' ipc: http://ipc.localhost; object-src 'none'; base-uri 'self'; frame-src 'none'; form-action 'none'",
+      "devCsp": "default-src 'self'; script-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' ipc: http://ipc.localhost http://127.0.0.1:4300 ws://127.0.0.1:4300; object-src 'none'; base-uri 'self'; frame-src 'none'; form-action 'none'"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["nsis"],
+    "category": "Business",
+    "shortDescription": "Caja corporativa con datos de demostración",
+    "publisher": "Corporate POS",
+    "icon": ["icons/32x32.png", "icons/128x128.png", "icons/128x128@2x.png", "icons/icon.ico"],
+    "windows": {
+      "allowDowngrades": false,
+      "nsis": { "installMode": "currentUser", "languages": ["Spanish"], "displayLanguageSelector": false }
+    }
+  }
+}

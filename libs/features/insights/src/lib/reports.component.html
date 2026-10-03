@@ -1,0 +1,265 @@
+<pos-page-header
+  title="Reportes"
+  eyebrow="Gestión"
+  subtitle="Explora resultados, concilia movimientos y exporta la información filtrada."
+  ><p-button
+    label="Exportar CSV"
+    ariaLabel="Exportar CSV"
+    icon="pi pi-download"
+    [disabled]="!rows().length || !!rangeError()"
+    (onClick)="export()"
+/></pos-page-header>
+<div
+  class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 mb-6"
+  role="group"
+  aria-label="Tipo de reporte"
+>
+  @for (type of types; track type.value) {
+    <button
+      type="button"
+      [attr.aria-pressed]="reportType() === type.value"
+      (click)="changeType(type.value)"
+      class="text-left border rounded-xl px-4 py-3 cursor-pointer transition-colors"
+      [class]="
+        reportType() === type.value
+          ? 'border-primary bg-primary-50 dark:bg-primary-950 text-primary'
+          : 'border-surface bg-surface-0 dark:bg-surface-950 text-color hover:bg-surface-100 dark:hover:bg-surface-800'
+      "
+    >
+      <span class="font-medium">{{ type.label }}</span>
+    </button>
+  }
+</div>
+<section class="p-5 border border-surface rounded-2xl bg-surface-0 dark:bg-surface-950 mb-6">
+  <h2 class="font-semibold text-lg">{{ typeInfo().label }}</h2>
+  <p class="text-sm text-muted-color mt-1 mb-5">{{ typeInfo().description }}</p>
+  <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-4 items-end">
+    <div>
+      <label for="report-from" class="block mb-2 text-sm font-medium">Desde</label
+      ><input
+        pInputText
+        id="report-from"
+        type="date"
+        [ngModel]="from()"
+        (ngModelChange)="from.set($event)"
+        class="w-full"
+        [attr.aria-invalid]="!!rangeError()"
+        aria-describedby="report-date-error"
+      />
+    </div>
+    <div>
+      <label for="report-to" class="block mb-2 text-sm font-medium">Hasta</label
+      ><input
+        pInputText
+        id="report-to"
+        type="date"
+        [ngModel]="to()"
+        (ngModelChange)="to.set($event)"
+        class="w-full"
+        [attr.aria-invalid]="!!rangeError()"
+        aria-describedby="report-date-error"
+      />
+    </div>
+    <div>
+      <label for="report-branch" class="block mb-2 text-sm font-medium">Sucursal</label
+      ><p-select
+        inputId="report-branch"
+        ariaLabel="Sucursal"
+        [options]="branches()"
+        optionLabel="label"
+        optionValue="value"
+        [ngModel]="branchId()"
+        (ngModelChange)="branchId.set($event)"
+        styleClass="w-full"
+      />
+    </div>
+    <div>
+      <label for="report-status" class="block mb-2 text-sm font-medium">Estado</label
+      ><p-select
+        inputId="report-status"
+        ariaLabel="Estado"
+        [options]="statusOptions()"
+        optionLabel="label"
+        optionValue="value"
+        [ngModel]="status()"
+        (ngModelChange)="status.set($event)"
+        styleClass="w-full"
+      />
+    </div>
+    <div>
+      <p-button
+        label="Limpiar filtros"
+        ariaLabel="Limpiar filtros"
+        icon="pi pi-filter-slash"
+        severity="secondary"
+        [outlined]="true"
+        (onClick)="resetFilters()"
+        styleClass="w-full"
+      />
+    </div>
+  </div>
+  @if (rangeError()) {
+    <p id="report-date-error" role="alert" class="text-red-600 dark:text-red-400 mt-3 text-sm">
+      {{ rangeError() }}
+    </p>
+  }
+</section>
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-6">
+  <pos-metric-card
+    title="Registros"
+    [value]="number(rows().length)"
+    detail="Coinciden con los filtros"
+    icon="pi-list"
+  /><pos-metric-card
+    [title]="amountTitle()"
+    [value]="money(amount())"
+    [detail]="amountDetail()"
+    icon="pi-wallet"
+  /><pos-metric-card
+    title="Importe promedio"
+    [value]="money(average())"
+    [detail]="usesConfirmedPayments() ? 'Por registro con pago confirmado' : 'Por registro del reporte'"
+    icon="pi-chart-bar"
+  /><pos-metric-card
+    title="Por revisar"
+    [value]="number(pending())"
+    [detail]="
+      usesConfirmedPayments()
+        ? money(excludedAmount()) + ' excluidos del importe confirmado'
+        : 'Pendientes, fallidos o en curso'
+    "
+    icon="pi-exclamation-circle"
+  />
+</div>
+@if (summaryRows().length) {
+  <section class="bg-surface-0 dark:bg-surface-950 border border-surface rounded-2xl p-5 mb-6">
+    <div class="flex flex-wrap justify-between gap-3 mb-4">
+      <h2 class="font-semibold">
+        {{ reportType() === 'payments' ? 'Importe por medio de pago' : 'Importe por sucursal' }}
+      </h2>
+      <span class="text-sm text-muted-color"
+        >CLP · {{ usesConfirmedPayments() ? 'pagos confirmados' : 'filtros actuales' }}</span
+      >
+    </div>
+    @if (chartReady()) {
+      <p-chart
+        type="bar"
+        [data]="chart()"
+        [options]="chartOptions()"
+        height="200px"
+        ariaLabel="Importes agrupados del reporte"
+      />
+    }
+    <div class="flex flex-wrap gap-x-6 gap-y-2 mt-3">
+      @for (group of groups(); track group.label) {
+        <span class="text-sm"
+          ><span class="text-muted-color mr-1">{{ group.label }}:</span>
+          <strong class="font-medium">{{ money(group.amount) }}</strong></span
+        >
+      }
+    </div>
+  </section>
+}
+<section class="bg-surface-0 dark:bg-surface-950 border border-surface rounded-2xl overflow-hidden">
+  <div class="p-5 border-b border-surface flex flex-wrap items-center justify-between gap-4">
+    <h2 class="text-lg font-semibold">
+      Detalle del reporte
+      <span class="text-sm text-muted-color font-normal ml-2">{{ rows().length }} registros</span>
+    </h2>
+    <div>
+      <label for="report-search" class="sr-only">Buscar en resultados</label
+      ><input
+        pInputText
+        id="report-search"
+        [ngModel]="query()"
+        (ngModelChange)="query.set($event)"
+        placeholder="Buscar en resultados…"
+      />
+    </div>
+  </div>
+  <p-table
+    [value]="rows()"
+    [paginator]="rows().length > 10"
+    [rows]="10"
+    [rowsPerPageOptions]="[10, 25, 50]"
+    [tableStyle]="{ 'min-width': '58rem' }"
+    size="small"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="{first}–{last} de {totalRecords}"
+  >
+    <ng-template #header
+      ><tr>
+        <th pSortableColumn="at">Fecha <p-sortIcon field="at" /></th>
+        <th pSortableColumn="reference">Referencia <p-sortIcon field="reference" /></th>
+        <th>Concepto</th>
+        <th>Sucursal</th>
+        <th>Estado</th>
+        <th class="text-right" pSortableColumn="amount">Importe <p-sortIcon field="amount" /></th>
+        <th><span class="sr-only">Acciones</span></th>
+      </tr></ng-template
+    >
+    <ng-template #body let-row
+      ><tr>
+        <td class="whitespace-nowrap text-sm">{{ dateTime(row.at) }}</td>
+        <td>
+          <span class="font-medium">{{ row.reference }}</span>
+        </td>
+        <td>
+          <span>{{ row.concept }}</span
+          ><span class="block text-xs text-muted-color mt-1">{{ row.detail }}</span>
+        </td>
+        <td class="text-sm">{{ branchName(row.branchId) }}</td>
+        <td><pos-status-tag [value]="row.status" [label]="statusLabel(row.status)" /></td>
+        <td class="text-right tabular-nums font-medium">{{ money(row.amount) }}</td>
+        <td>
+          <p-button
+            icon="pi pi-eye"
+            [text]="true"
+            [ariaLabel]="'Ver detalle de ' + row.reference"
+            (onClick)="selected.set(row)"
+          />
+        </td></tr
+    ></ng-template>
+    <ng-template #emptymessage
+      ><tr>
+        <td colspan="7">
+          <div class="py-12 text-center">
+            <i class="pi pi-filter text-3xl text-muted-color block mb-3" aria-hidden="true"></i>
+            <p class="font-medium">No hay registros con estos filtros</p>
+            <p class="mt-2 text-sm text-muted-color">Cambia el período, la sucursal o el estado.</p>
+          </div>
+        </td>
+      </tr></ng-template
+    >
+  </p-table>
+</section>
+<p role="status" class="text-sm text-primary mt-4 min-h-5">{{ exportMessage() }}</p>
+<p-dialog
+  [header]="selected()?.reference ?? 'Detalle'"
+  [visible]="!!selected()"
+  (visibleChange)="!$event && selected.set(null)"
+  [modal]="true"
+  [draggable]="false"
+  [style]="{ width: '40rem', maxWidth: 'calc(100vw - 2rem)' }"
+>
+  @if (selected(); as row) {
+    <div class="flex justify-between items-start gap-3 pb-5 border-b border-surface">
+      <div>
+        <p class="font-semibold text-lg">{{ row.concept }}</p>
+        <p class="text-sm text-muted-color mt-1">{{ dateTime(row.at) }} · {{ branchName(row.branchId) }}</p>
+      </div>
+      <pos-status-tag [value]="row.status" [label]="statusLabel(row.status)" />
+    </div>
+    <dl class="mt-3">
+      @for (attribute of row.attributes; track $index) {
+        <div class="flex flex-wrap justify-between gap-x-5 gap-y-1 py-3 border-b border-surface">
+          <dt class="text-sm text-muted-color">{{ attribute.label }}</dt>
+          <dd class="text-sm font-medium break-all">{{ attribute.value }}</dd>
+        </div>
+      }
+    </dl>
+    <div class="mt-5 flex justify-between text-lg font-semibold">
+      <span>Total</span><span class="tabular-nums">{{ money(row.amount) }}</span>
+    </div>
+  }
+</p-dialog>

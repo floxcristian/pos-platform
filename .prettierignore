@@ -1,0 +1,12 @@
+node_modules
+dist
+.nx
+.angular
+coverage
+playwright-report
+test-results
+test-results-*
+package-lock.json
+**/target
+**/icons
+docs/npm-audit*.json

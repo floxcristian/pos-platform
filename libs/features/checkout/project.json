@@ -1,0 +1,6 @@
+{
+  "name": "checkout",
+  "sourceRoot": "libs/features/checkout/src",
+  "projectType": "library",
+  "tags": ["scope:checkout", "type:feature"]
+}

@@ -1,0 +1,35 @@
+{
+  "name": "pos-desktop",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/pos-desktop/src-tauri/src",
+  "tags": ["type:app", "scope:desktop"],
+  "implicitDependencies": ["pos-web"],
+  "targets": {
+    "dev": {
+      "executor": "nx:run-commands",
+      "cache": false,
+      "options": {
+        "cwd": "apps/pos-desktop",
+        "command": "node ../../node_modules/@tauri-apps/cli/tauri.js dev"
+      }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "cache": false,
+      "outputs": ["{projectRoot}/src-tauri/target/release/bundle"],
+      "options": {
+        "cwd": "apps/pos-desktop",
+        "command": "node ../../node_modules/@tauri-apps/cli/tauri.js build"
+      }
+    },
+    "info": {
+      "executor": "nx:run-commands",
+      "cache": false,
+      "options": {
+        "cwd": "apps/pos-desktop",
+        "command": "node ../../node_modules/@tauri-apps/cli/tauri.js info"
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "name": "pos-web",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/pos-web/src",
+  "tags": ["type:app", "scope:pos"],
+  "targets": {
+    "build": {
+      "executor": "@angular/build:application",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/pos-web",
+        "browser": "apps/pos-web/src/main.ts",
+        "index": "apps/pos-web/src/index.html",
+        "tsConfig": "apps/pos-web/tsconfig.app.json",
+        "assets": [{ "glob": "**/*", "input": "apps/pos-web/public" }],
+        "styles": ["apps/pos-web/src/styles.css"],
+        "allowedCommonJsDependencies": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [{ "type": "initial", "maximumWarning": "1.2MB", "maximumError": "1.5MB" }],
+          "outputHashing": "all",
+          "sourceMap": false
+        },
+        "development": { "optimization": false, "extractLicenses": false, "sourceMap": true }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular/build:dev-server",
+      "options": { "buildTarget": "pos-web:build:development" },
+      "configurations": { "production": { "buildTarget": "pos-web:build:production" } }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "preserve",
+    "moduleResolution": "bundler",
+    "lib": ["ES2022", "DOM"],
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "@corporate-pos/domain": ["libs/domain/src/index.ts"],
+      "@corporate-pos/data-access": ["libs/data-access/src/index.ts"],
+      "@corporate-pos/ui": ["libs/ui/src/index.ts"],
+      "@corporate-pos/checkout": ["libs/features/checkout/src/index.ts"],
+      "@corporate-pos/insights": ["libs/features/insights/src/index.ts"],
+      "@corporate-pos/administration": ["libs/features/administration/src/index.ts"]
+    }
+  },
+  "angularCompilerOptions": {
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  }
+}

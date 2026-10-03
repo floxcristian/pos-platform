@@ -1,0 +1,25 @@
+[package]
+name = "corporate-pos-desktop"
+version = "0.1.0"
+description = "Corporate POS — demostración de caja corporativa"
+authors = ["Corporate POS"]
+edition = "2021"
+rust-version = "1.90"
+publish = false
+
+[lib]
+name = "corporate_pos_desktop_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "=2.7.1", features = [] }
+
+[dependencies]
+tauri = { version = "=2.12.1", features = [] }
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = "s"
+strip = true
+panic = "abort"

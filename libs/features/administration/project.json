@@ -1,0 +1,6 @@
+{
+  "name": "administration",
+  "sourceRoot": "libs/features/administration/src",
+  "projectType": "library",
+  "tags": ["scope:administration", "type:feature"]
+}

@@ -1,0 +1,273 @@
+<pos-page-header
+  title="Tu operación, en un vistazo"
+  eyebrow="Centro de operación"
+  subtitle="Ventas, estado de la caja y pendientes que requieren atención."
+>
+  @if (store.can('sell', 'sales')) {
+    <p-button label="Nueva venta" ariaLabel="Nueva venta" icon="pi pi-plus" routerLink="/venta" />
+  }
+</pos-page-header>
+
+<div class="flex flex-wrap items-end justify-between gap-3 mb-6">
+  <p class="text-sm text-muted-color flex items-center gap-2">
+    <i class="pi pi-calendar" aria-hidden="true"></i>Información de la operación guardada en esta demo
+  </p>
+  <div class="flex flex-wrap gap-3">
+    <div>
+      <label for="dashboard-period" class="sr-only">Período</label
+      ><p-select
+        inputId="dashboard-period"
+        ariaLabel="Período"
+        [options]="periods"
+        optionLabel="label"
+        optionValue="value"
+        [ngModel]="period()"
+        (ngModelChange)="period.set($event)"
+      />
+    </div>
+    <div>
+      <label for="dashboard-branch" class="sr-only">Sucursal</label
+      ><p-select
+        inputId="dashboard-branch"
+        ariaLabel="Sucursal"
+        [options]="branchOptions()"
+        optionLabel="label"
+        optionValue="value"
+        [ngModel]="branchId()"
+        (ngModelChange)="branchId.set($event)"
+      />
+    </div>
+  </div>
+</div>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-6">
+  <pos-metric-card
+    title="Ventas confirmadas netas"
+    [value]="money(netSales())"
+    [detail]="change()"
+    icon="pi-chart-line"
+  />
+  <pos-metric-card
+    title="Documentos registrados"
+    [value]="number(sales().length)"
+    [detail]="paymentReview() + ' con pago pendiente, fallido o por conciliar'"
+    icon="pi-file"
+  />
+  <pos-metric-card
+    title="Ticket promedio"
+    [value]="money(average())"
+    detail="Solo ventas con pago confirmado"
+    icon="pi-shopping-bag"
+  />
+  <pos-metric-card
+    title="Devoluciones"
+    [value]="money(refunded())"
+    [detail]="returns().length + ' notas de crédito en el período'"
+    icon="pi-replay"
+  />
+</div>
+
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-6 mb-6">
+  <section
+    class="xl:col-span-2 bg-surface-0 dark:bg-surface-950 border border-surface rounded-2xl p-5 min-w-0"
+  >
+    <div class="flex items-start justify-between gap-3 mb-5">
+      <div>
+        <h2 class="font-semibold text-lg">Evolución de ventas</h2>
+        <p class="text-sm text-muted-color mt-1">Ventas con pago confirmado · CLP</p>
+      </div>
+      <span class="text-sm font-semibold tabular-nums">{{ money(gross()) }}</span>
+    </div>
+    @if (chartReady()) {
+      <p-chart
+        type="line"
+        [data]="trend()"
+        [options]="options()"
+        height="270px"
+        ariaLabel="Gráfico de ventas confirmadas por día"
+      />
+    }
+    <details class="mt-4 text-sm">
+      <summary class="text-primary cursor-pointer">Ver cifras del gráfico</summary>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-3">
+        @for (label of trend().labels; track $index) {
+          <div>
+            <span class="text-muted-color block">{{ label }}</span
+            ><span class="font-medium">{{ money(trend().datasets[0].data[$index]) }}</span>
+          </div>
+        }
+      </div>
+    </details>
+  </section>
+  <section class="bg-surface-0 dark:bg-surface-950 border border-surface rounded-2xl p-5 min-w-0">
+    <h2 class="font-semibold text-lg">Medios de pago</h2>
+    <p class="text-sm text-muted-color mt-1">Importes confirmados de las ventas</p>
+    @if (payments().length) {
+      @if (chartReady()) {
+        <p-chart
+          type="doughnut"
+          [data]="paymentChart()"
+          [options]="doughnutOptions"
+          height="180px"
+          ariaLabel="Distribución por medio de pago"
+        />
+      }
+      <ul class="mt-4 space-y-2">
+        @for (payment of payments(); track payment.label) {
+          <li class="flex items-center gap-2 text-sm">
+            <span class="size-2.5 rounded-full" [style.background]="payment.color" aria-hidden="true"></span
+            ><span class="flex-1">{{ payment.label }}</span
+            ><span class="font-medium tabular-nums">{{ money(payment.total) }}</span>
+          </li>
+        }
+      </ul>
+    } @else {
+      <p class="text-muted-color py-16 text-center">Sin pagos confirmados en este período.</p>
+    }
+  </section>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+  <section
+    class="border border-surface bg-surface-0 dark:bg-surface-950 rounded-xl p-4 flex items-start gap-4"
+  >
+    <span
+      class="size-10 rounded-lg bg-primary-50 dark:bg-primary-950 text-primary flex items-center justify-center shrink-0"
+      ><i class="pi pi-wallet" aria-hidden="true"></i
+    ></span>
+    <div class="min-w-0">
+      <h2 class="font-medium">
+        {{ store.snapshot().session?.status === 'open' ? 'Caja abierta' : 'Caja sin abrir' }}
+      </h2>
+      <p class="text-sm text-muted-color mt-1">
+        {{ store.snapshot().settings.terminalId }} ·
+        {{
+          store.snapshot().session?.status === 'open'
+            ? store.snapshot().session?.cashier
+            : 'Inicia un turno para vender'
+        }}
+      </p>
+      @if (store.can('cash', 'cash')) {
+        <a routerLink="/caja" class="inline-flex gap-2 items-center text-primary text-sm font-medium mt-3"
+          >Ver caja <i class="pi pi-arrow-right text-xs" aria-hidden="true"></i
+        ></a>
+      }
+    </div>
+  </section>
+  <section
+    class="border border-surface bg-surface-0 dark:bg-surface-950 rounded-xl p-4 flex items-start gap-4"
+  >
+    <span
+      class="size-10 rounded-lg bg-primary-50 dark:bg-primary-950 text-primary flex items-center justify-center shrink-0"
+      ><i class="pi pi-file-check" aria-hidden="true"></i
+    ></span>
+    <div>
+      <h2 class="font-medium">{{ pendingFiscal() }} documentos fiscales pendientes</h2>
+      <p class="text-sm text-muted-color mt-1">{{ pendingErp() }} ventas aún no registradas en ERP</p>
+      @if (store.can('sell', 'sales')) {
+        <a
+          routerLink="/documentos"
+          class="inline-flex gap-2 items-center text-primary text-sm font-medium mt-3"
+          >Revisar documentos <i class="pi pi-arrow-right text-xs" aria-hidden="true"></i
+        ></a>
+      }
+    </div>
+  </section>
+  <section
+    class="border border-surface bg-surface-0 dark:bg-surface-950 rounded-xl p-4 flex items-start gap-4"
+  >
+    <span
+      class="size-10 rounded-lg bg-primary-50 dark:bg-primary-950 text-primary flex items-center justify-center shrink-0"
+      ><i class="pi pi-sync" aria-hidden="true"></i
+    ></span>
+    <div>
+      <h2 class="font-medium">{{ syncPending() }} eventos por sincronizar</h2>
+      <p class="text-sm text-muted-color mt-1">Procesamiento manual o según programación</p>
+      @if (store.can('sync', 'sync')) {
+        <a
+          routerLink="/sincronizacion"
+          class="inline-flex gap-2 items-center text-primary text-sm font-medium mt-3"
+          >Ver sincronización <i class="pi pi-arrow-right text-xs" aria-hidden="true"></i
+        ></a>
+      }
+    </div>
+  </section>
+</div>
+
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+  <section
+    class="xl:col-span-2 min-w-0 bg-surface-0 dark:bg-surface-950 border border-surface rounded-2xl overflow-hidden"
+  >
+    <div class="flex items-center justify-between gap-3 p-5 border-b border-surface">
+      <h2 class="font-semibold text-lg">Últimas ventas</h2>
+      @if (store.can('sell', 'sales')) {
+        <a routerLink="/documentos" class="text-primary text-sm font-medium"
+          >Ver todas <i class="pi pi-arrow-right ml-1 text-xs" aria-hidden="true"></i
+        ></a>
+      }
+    </div>
+    <p-table [value]="recent()" [tableStyle]="{ 'min-width': '36rem' }" size="small"
+      ><ng-template #header
+        ><tr>
+          <th>Documento</th>
+          <th>Cliente</th>
+          <th>Fiscal</th>
+          <th class="text-right">Total</th>
+        </tr></ng-template
+      ><ng-template #body let-sale
+        ><tr>
+          <td>
+            <span class="font-medium">{{ sale.number }}</span
+            ><span class="block text-xs text-muted-color mt-1">{{ dateTime(sale.createdAt) }}</span>
+          </td>
+          <td>{{ sale.customerName }}</td>
+          <td><pos-status-tag [value]="sale.fiscalStatus" /></td>
+          <td class="text-right font-medium tabular-nums">{{ money(sale.total) }}</td>
+        </tr></ng-template
+      ><ng-template #emptymessage
+        ><tr>
+          <td colspan="4" class="text-center text-muted-color p-8">
+            No hay ventas para este período y sucursal.
+          </td>
+        </tr></ng-template
+      ></p-table
+    >
+  </section>
+  <section class="bg-surface-0 dark:bg-surface-950 border border-surface rounded-2xl p-5">
+    <h2 class="font-semibold text-lg mb-4">Productos más vendidos</h2>
+    <ol>
+      @for (product of topProducts(); track product.name) {
+        <li class="flex gap-3 py-3 border-b border-surface last:border-0">
+          <span
+            class="size-7 bg-surface-100 dark:bg-surface-800 rounded-md flex items-center justify-center text-xs text-muted-color shrink-0"
+            >{{ $index + 1 }}</span
+          >
+          <div class="min-w-0 flex-1">
+            <p class="text-sm font-medium leading-5">{{ product.name }}</p>
+            <p class="text-xs text-muted-color mt-1">{{ product.quantity }} unidades</p>
+          </div>
+          <span class="text-sm font-medium tabular-nums whitespace-nowrap">{{ money(product.total) }}</span>
+        </li>
+      } @empty {
+        <li class="text-muted-color text-sm py-8">Sin productos vendidos en el período.</li>
+      }
+    </ol>
+  </section>
+</div>
+@if (alerts().length && store.can('audit', 'audit')) {
+  <section class="mt-6 bg-surface-0 dark:bg-surface-950 border border-surface rounded-2xl p-5">
+    <div class="flex items-center justify-between gap-3 mb-3">
+      <h2 class="font-semibold text-lg">Requieren atención</h2>
+      <a routerLink="/actividad" class="text-primary text-sm"
+        >Ir a actividad <i class="pi pi-arrow-right ml-1 text-xs" aria-hidden="true"></i
+      ></a>
+    </div>
+    @for (alert of alerts(); track alert.id) {
+      <div class="py-3 flex flex-wrap items-center gap-3 border-b border-surface last:border-0">
+        <pos-status-tag [value]="alert.level" />
+        <p class="flex-1 min-w-48 text-sm">{{ alert.message }}</p>
+        <span class="text-xs text-muted-color">{{ dateTime(alert.createdAt) }}</span>
+      </div>
+    }
+  </section>
+}

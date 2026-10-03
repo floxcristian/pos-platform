@@ -1,0 +1,162 @@
+@import '@fontsource-variable/inter';
+@import 'primeicons/primeicons.css';
+@import 'tailwindcss' source(none);
+@source './app';
+@source '../../../libs';
+@plugin 'tailwindcss-primeui';
+@custom-variant dark (&:where(.p-dark, .p-dark *));
+@theme inline {
+  --font-sans: 'Inter Variable', Inter, system-ui, sans-serif;
+  --color-accent-50: var(--p-accent-50);
+  --color-accent-100: var(--p-accent-100);
+  --color-accent-400: var(--p-accent-400);
+  --color-accent-500: var(--p-accent-500);
+  --color-accent-600: var(--p-accent-600);
+  --color-accent-700: var(--p-accent-700);
+}
+html {
+  font-family: var(--font-sans);
+  color: var(--p-text-color);
+  background: var(--p-surface-50);
+  font-size: 14px;
+}
+body {
+  margin: 0;
+}
+* {
+  box-sizing: border-box;
+}
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+button,
+a,
+input,
+select,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+button:not(:disabled),
+a {
+  touch-action: manipulation;
+}
+:focus-visible {
+  outline: 2px solid var(--p-primary-color);
+  outline-offset: 3px;
+}
+.p-dark {
+  color-scheme: dark;
+}
+.p-dark body {
+  background: var(--p-surface-950);
+}
+.p-button {
+  min-height: 44px;
+}
+.p-button-icon-only {
+  min-width: 44px;
+}
+.p-inputtext,
+.p-select,
+.p-inputnumber-input {
+  min-height: 44px;
+}
+.p-paginator button,
+.p-selectbutton .p-togglebutton {
+  min-height: 44px;
+  min-width: 44px;
+}
+header button,
+nav a {
+  min-height: 44px;
+}
+.p-dialog {
+  max-width: calc(100vw - 2rem);
+}
+.p-datatable-table {
+  font-variant-numeric: tabular-nums;
+}
+.p-datatable-thead > tr > th {
+  white-space: nowrap;
+}
+.pos-panel {
+  border: 1px solid var(--p-content-border-color);
+  border-radius: 12px;
+  background: var(--p-content-background);
+}
+.pos-field {
+  display: grid;
+  gap: 0.5rem;
+  min-width: 0;
+}
+.pos-field > label {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+.pos-field small {
+  color: var(--p-text-muted-color);
+}
+.pos-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.pos-filter {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.pos-empty {
+  padding: 3rem 1.5rem;
+  text-align: center;
+  color: var(--p-text-muted-color);
+}
+.pos-empty i {
+  display: block;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.pos-empty h3 {
+  color: var(--p-text-color);
+  margin-bottom: 0.5rem;
+}
+.pos-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+@media (max-width: 640px) {
+  .pos-form-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  html {
+    font-size: 14px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+@media print {
+  nav,
+  header,
+  .p-toast,
+  .p-button,
+  .no-print {
+    display: none !important;
+  }
+  body,
+  main {
+    height: auto !important;
+    overflow: visible !important;
+  }
+}

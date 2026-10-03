@@ -1,0 +1,6 @@
+{
+  "name": "insights",
+  "sourceRoot": "libs/features/insights/src",
+  "projectType": "library",
+  "tags": ["scope:insights", "type:feature"]
+}
