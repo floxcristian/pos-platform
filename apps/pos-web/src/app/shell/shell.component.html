@@ -12,7 +12,7 @@
       icon="pi pi-bars"
       [text]="true"
       ariaLabel="Abrir navegación"
-      styleClass="!text-white lg:!hidden"
+      styleClass="h-11 lg:!hidden"
       (onClick)="mobileOpen.set(true)"
     />
     <a
@@ -50,26 +50,26 @@
       icon="pi pi-search"
       [text]="true"
       ariaLabel="Buscar"
-      styleClass="!text-white md:!hidden"
+      styleClass="h-11 md:!hidden"
       (onClick)="openSearch()"
     />
     <p-button
       [icon]="dark() ? 'pi pi-sun' : 'pi pi-moon'"
       [text]="true"
       [ariaLabel]="dark() ? 'Usar tema claro' : 'Usar tema oscuro'"
-      styleClass="!text-white !hidden sm:!inline-flex"
+      styleClass="brand-header-theme-action h-11 !hidden sm:!inline-flex"
       (onClick)="toggleTheme()"
     />
     <p-button
       icon="pi pi-bell"
       [text]="true"
       [ariaLabel]="'Notificaciones: ' + notifications().length + ' avisos'"
-      styleClass="!text-white"
+      styleClass="h-11"
       (onClick)="notificationsOpen.set(true)"
     />
     <button
       type="button"
-      class="flex items-center gap-2 p-1 rounded-lg hover:bg-white/10 cursor-pointer"
+      class="brand-header-profile flex items-center gap-2 h-11 p-1 rounded-lg cursor-pointer"
       (click)="profileOpen.set(true)"
       aria-label="Perfil y entorno de demostración"
     >

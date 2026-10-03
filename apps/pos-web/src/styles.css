@@ -28,12 +28,52 @@ html {
 body {
   margin: 0;
 }
-/* Original prime-showcase header artwork and framing (6ad8d3d), bundled for offline use. */
+/* Header contract measured from prime-showcase-mu.vercel.app (2026-10-03).
+   Keep its original artwork and header palette independent of the newer app surfaces. */
 .brand-header-bg {
+  --pos-header-action-surface: var(--p-slate-950);
+  --pos-header-action-hover-background: color-mix(in srgb, var(--pos-header-action-surface) 25%, transparent);
+  --pos-header-profile-background: color-mix(in srgb, var(--pos-header-action-surface) 25%, transparent);
+  --pos-header-profile-hover-background: color-mix(
+    in srgb,
+    var(--pos-header-action-surface) 40%,
+    transparent
+  );
+  --pos-header-theme-hover-background: #004a7a;
+  --p-button-text-primary-color: var(--p-surface-0);
+  --p-button-text-primary-hover-background: var(--pos-header-action-hover-background);
+  --p-button-text-primary-active-background: var(--pos-header-action-hover-background);
+  --p-button-icon-only-width: 2.75rem;
+  --p-button-border-radius: 0.5rem;
   background-image: url('/images/tornado.svg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+.p-dark .brand-header-bg {
+  --pos-header-action-surface: var(--p-zinc-950);
+  --pos-header-theme-hover-background: #00375c;
+}
+@media (min-width: 64rem) {
+  .brand-header-bg {
+    --pos-header-action-hover-background: color-mix(
+      in srgb,
+      var(--pos-header-action-surface) 40%,
+      transparent
+    );
+  }
+}
+.brand-header-theme-action {
+  --p-button-text-primary-hover-background: var(--pos-header-theme-hover-background);
+  --p-button-text-primary-active-background: var(--pos-header-theme-hover-background);
+}
+.brand-header-profile {
+  color: var(--p-surface-0);
+  background-color: var(--pos-header-profile-background);
+}
+.brand-header-profile:hover,
+.brand-header-profile:active {
+  background-color: var(--pos-header-profile-hover-background);
 }
 * {
   box-sizing: border-box;
