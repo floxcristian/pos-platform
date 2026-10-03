@@ -97,17 +97,17 @@
     title="Registros"
     [value]="number(rows().length)"
     detail="Coinciden con los filtros"
-    icon="pi-list"
+    icon="list-checks"
   /><pos-metric-card
     [title]="amountTitle()"
     [value]="money(amount())"
     [detail]="amountDetail()"
-    icon="pi-wallet"
+    icon="wallet"
   /><pos-metric-card
     title="Importe promedio"
     [value]="money(average())"
     [detail]="usesConfirmedPayments() ? 'Por registro con pago confirmado' : 'Por registro del reporte'"
-    icon="pi-chart-bar"
+    icon="chart-bar"
   /><pos-metric-card
     title="Por revisar"
     [value]="number(pending())"
@@ -116,7 +116,7 @@
         ? money(excludedAmount()) + ' excluidos del importe confirmado'
         : 'Pendientes, fallidos o en curso'
     "
-    icon="pi-exclamation-circle"
+    icon="warning-circle"
   />
 </div>
 @if (summaryRows().length) {
@@ -212,7 +212,9 @@
       ><tr>
         <td colspan="7">
           <div class="py-12 text-center">
-            <i class="pi pi-filter text-3xl text-muted-color block mb-3" aria-hidden="true"></i>
+            <div class="flex justify-center mb-3">
+              <pos-duotone-icon name="funnel" [size]="40" class="text-muted-color" />
+            </div>
             <p class="font-medium">No hay registros con estos filtros</p>
             <p class="mt-2 text-sm text-muted-color">Cambia el período, la sucursal o el estado.</p>
           </div>

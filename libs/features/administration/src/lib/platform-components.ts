@@ -8,7 +8,13 @@ import { ProgressBarModule } from 'primeng/progressbar';
 import { MessageModule } from 'primeng/message';
 import { PosStore } from '@corporate-pos/data-access';
 import type { Device, Integration } from '@corporate-pos/domain';
-import { PageHeaderComponent, StatusTagComponent, dateTime } from '@corporate-pos/ui';
+import {
+  DuotoneIconComponent,
+  PageHeaderComponent,
+  StatusTagComponent,
+  dateTime,
+  type DuotoneIconName,
+} from '@corporate-pos/ui';
 import { FeedbackService } from './feedback.service';
 
 @Component({
@@ -22,6 +28,7 @@ import { FeedbackService } from './feedback.service';
     ToggleSwitchModule,
     PageHeaderComponent,
     StatusTagComponent,
+    DuotoneIconComponent,
   ],
   template: `<div class="pos-section">
       <pos-page-header
@@ -34,8 +41,8 @@ import { FeedbackService } from './feedback.service';
           <article class="pos-panel p-6">
             <div class="flex justify-between items-start gap-3">
               <span
-                class="rounded-xl bg-primary-50 dark:bg-primary-950 text-primary w-12 h-12 flex items-center justify-center"
-                ><i [class]="'pi ' + icon(device.type) + ' text-xl'" aria-hidden="true"></i></span
+                class="rounded-xl bg-primary-50 dark:bg-primary-950 text-primary size-14 shrink-0 flex items-center justify-center"
+                ><pos-duotone-icon [name]="icon(device.type)" [size]="32" /></span
               ><pos-status-tag [value]="device.enabled ? device.status : 'inactive'" />
             </div>
             <h2 class="text-xl font-semibold mt-5">{{ device.name }}</h2>
@@ -149,14 +156,15 @@ export class DevicesComponent {
   readonly error = signal('');
   draft: Pick<Device, 'name' | 'connection' | 'enabled'> = { name: '', connection: '', enabled: true };
   readonly dateTime = (value: string | null): string => (value ? dateTime(value) : 'Sin pruebas');
-  icon(type: Device['type']): string {
-    return {
-      printer: 'pi-print',
-      payment: 'pi-credit-card',
-      scanner: 'pi-barcode',
-      drawer: 'pi-wallet',
-      cheque: 'pi-file-check',
-    }[type];
+  icon(type: Device['type']): DuotoneIconName {
+    const icons: Record<Device['type'], DuotoneIconName> = {
+      printer: 'printer',
+      payment: 'credit-card',
+      scanner: 'barcode',
+      drawer: 'wallet',
+      cheque: 'receipt',
+    };
+    return icons[type];
   }
   configure(device: Device): void {
     this.draft = { name: device.name, connection: device.connection, enabled: device.enabled };
@@ -200,6 +208,7 @@ export class DevicesComponent {
     MessageModule,
     PageHeaderComponent,
     StatusTagComponent,
+    DuotoneIconComponent,
   ],
   template: `<div class="pos-section">
       <pos-page-header
@@ -218,8 +227,8 @@ export class DevicesComponent {
               <div class="flex gap-3 items-center min-w-0">
                 <span
                   class="rounded-xl bg-primary-50 dark:bg-primary-950 text-primary w-12 h-12 shrink-0 flex items-center justify-center"
-                  ><i [class]="'pi ' + icon(integration.kind) + ' text-xl'" aria-hidden="true"></i
-                ></span>
+                  ><pos-duotone-icon [name]="icon(integration.kind)" [size]="28"
+                /></span>
                 <div class="min-w-0">
                   <h2 class="text-lg font-semibold">{{ integration.name }}</h2>
                   <p class="text-sm text-muted-color break-words">{{ integration.provider }}</p>
@@ -331,13 +340,14 @@ export class IntegrationsComponent {
   readonly error = signal('');
   draft: Pick<Integration, 'name' | 'provider' | 'enabled'> = { name: '', provider: '', enabled: true };
   readonly dateTime = (value: string | null): string => (value ? dateTime(value) : 'Sin pruebas');
-  icon(kind: Integration['kind']): string {
-    return {
-      erp: 'pi-building-columns',
-      fiscal: 'pi-file-check',
-      payments: 'pi-credit-card',
-      cheques: 'pi-verified',
-    }[kind];
+  icon(kind: Integration['kind']): DuotoneIconName {
+    const icons: Record<Integration['kind'], DuotoneIconName> = {
+      erp: 'bank',
+      fiscal: 'seal-check',
+      payments: 'credit-card',
+      cheques: 'seal-check',
+    };
+    return icons[kind];
   }
   description(kind: Integration['kind']): string {
     return {

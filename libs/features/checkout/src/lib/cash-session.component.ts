@@ -11,6 +11,7 @@ import { PosStore } from '@corporate-pos/data-access';
 import { CashMovement, chileCivilDate } from '@corporate-pos/domain';
 import {
   CivilDateTimeComponent,
+  DuotoneIconComponent,
   PageHeaderComponent,
   StatusTagComponent,
   MetricCardComponent,
@@ -25,6 +26,7 @@ import {
   standalone: true,
   imports: [
     CivilDateTimeComponent,
+    DuotoneIconComponent,
     FormsModule,
     RouterLink,
     ButtonModule,
@@ -67,33 +69,35 @@ import {
         title="Estado de caja"
         [value]="open() ? 'Abierta' : 'Cerrada'"
         [detail]="store.snapshot().settings.terminalId"
-        icon="pi-desktop"
+        icon="desktop"
       />
       <pos-metric-card
         title="Fondo de apertura"
         [value]="money(session()?.openingAmount ?? 0)"
         [detail]="session() ? dateTime(session()!.openedAt) : 'Sin turno iniciado'"
-        icon="pi-wallet"
+        icon="wallet"
       />
       <pos-metric-card
         title="Efectivo esperado"
         [value]="money(session()?.expectedAmount ?? 0)"
         detail="Apertura y movimientos del turno"
-        icon="pi-money-bill"
+        icon="money"
       />
       <pos-metric-card
         title="Operaciones del turno"
         [value]="movements().length"
         [detail]="session()?.cashier ?? 'Selecciona una caja para empezar'"
-        icon="pi-list"
+        icon="list-checks"
       />
     </div>
     @if (!open()) {
       <section class="rounded-2xl border border-surface bg-surface-0 dark:bg-surface-950 p-6 mb-6 max-w-3xl">
         <div class="flex items-start gap-4">
-          <span class="rounded-xl bg-primary-50 dark:bg-surface-900 text-primary p-4"
-            ><i class="pi pi-lock-open text-2xl" aria-hidden="true"></i
-          ></span>
+          <span
+            class="size-14 shrink-0 flex items-center justify-center rounded-xl bg-primary-50 dark:bg-surface-900 text-primary"
+          >
+            <pos-duotone-icon name="lock-key-open" [size]="32" />
+          </span>
           <div>
             <h2 class="text-xl font-semibold">Comenzar un nuevo turno</h2>
             <p class="text-muted-color text-sm mt-2">

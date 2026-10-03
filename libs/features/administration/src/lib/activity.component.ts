@@ -52,17 +52,17 @@ import {
         <pos-metric-card
           title="Eventos registrados"
           [value]="store.snapshot().logs.length"
-          icon="pi-list"
+          icon="list-bullets"
           detail="Actividad del entorno mock"
         /><pos-metric-card
           title="Errores"
           [value]="errors()"
-          icon="pi-exclamation-circle"
+          icon="warning-circle"
           detail="Con mensaje y correlación"
         /><pos-metric-card
           title="Cambios auditados"
           [value]="store.snapshot().audit.length"
-          icon="pi-shield"
+          icon="shield-check"
           detail="Actor, acción y entidad"
         />
       </div>

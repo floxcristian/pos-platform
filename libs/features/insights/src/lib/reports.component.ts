@@ -18,6 +18,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PosStore } from '@corporate-pos/data-access';
 import {
   CivilDateTimeComponent,
+  DuotoneIconComponent,
   PageHeaderComponent,
   ThemeService,
   MetricCardComponent,
@@ -55,6 +56,7 @@ interface ReportRow {
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     CivilDateTimeComponent,
+    DuotoneIconComponent,
     FormsModule,
     ButtonModule,
     SelectModule,

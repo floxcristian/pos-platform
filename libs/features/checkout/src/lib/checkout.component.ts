@@ -30,6 +30,7 @@ import {
 } from '@corporate-pos/domain';
 import {
   CivilDateTimeComponent,
+  DuotoneIconComponent,
   PageHeaderComponent,
   StatusTagComponent,
   money,
@@ -53,6 +54,7 @@ import {
     PageHeaderComponent,
     StatusTagComponent,
     CivilDateTimeComponent,
+    DuotoneIconComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './checkout.component.html',

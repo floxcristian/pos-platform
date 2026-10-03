@@ -8,6 +8,8 @@ La primera entrega tenía una base modular razonable, pero no justificaba afirma
 
 ## Fidelidad a prime-showcase
 
+Los iconos decorativos de tarjetas usan un componente compartido con SVG duotono de Phosphor 2.1.1 (MIT): capas internas con opacidades 1 y 0,4, heredando el color del tema. Las métricas, sucursales y dispositivos usan 32 px; las tarjetas de estado e integraciones, 28 px; los estados vacíos, 40 px; las confirmaciones, 48 px. Los importes conservan el ancho completo de su tarjeta. Los controles compactos mantienen PrimeIcons. Solo se incluyen los dibujos utilizados, sin cargar otra fuente ni recursos remotos; la licencia acompaña al bundle web y Tauri en `third-party-licenses.txt`.
+
 Se compararon el preset, `DESIGN.md`, las recetas PrimeNG, los estilos ejecutados y el formulario renderizado del Storybook original. Los presets de origen y de la primera entrega eran equivalentes: la divergencia venía de reglas CSS y variantes elegidas en los templates. El repositorio de referencia se mantuvo sin modificaciones.
 
 El encabezado usa el archivo exacto `images/tornado.svg` de [prime-showcase publicado](https://prime-showcase-mu.vercel.app/), comprobado el 3 de octubre de 2026. Esa versión conserva los tonos `#005DB9`, `#0089D6` y `#0073c8`; la revisión posterior del repositorio local tenía otra paleta. Se mantienen sus opacidades internas y el encuadre `cover` / `center`, como recurso local de la web y del paquete Tauri. Los botones del header usan los estados de la misma referencia: iconos blancos, hover oscuro al 40% en escritorio y 25% en móvil; el botón de tema y el perfil conservan sus variantes. Estos tokens se limitan al encabezado para no alterar los controles de las demás pantallas.

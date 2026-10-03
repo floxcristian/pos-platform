@@ -14,7 +14,7 @@ Maqueta funcional de producto con datos sintéticos. No conectar servicios corpo
 
 ## Diseño
 
-Conservar la identidad y recetas de prime-showcase: Aura corporativo, Inter local, superficies neutras, densidad operativa, navegación predecible y PrimeNG. Tailwind y tokens del preset; evitar colores arbitrarios por componente. PrimeIcons, sin copiar FontAwesome Pro.
+Conservar la identidad y recetas de prime-showcase: Aura corporativo, Inter local, superficies neutras, densidad operativa, navegación predecible y PrimeNG. Tailwind y tokens del preset; evitar colores arbitrarios por componente. PrimeIcons en controles compactos; DuotoneIconComponent (SVG Phosphor MIT) en iconos decorativos grandes, sin copiar FontAwesome Pro. Usar 28–32 px en tarjetas, 40 px en estados vacíos y 48 px en confirmaciones. Mantener la licencia de los SVG en el artefacto web.
 UI en español para cajeros, supervisores y administradores. Acciones completas con validación, estados vacíos, errores, confirmaciones y feedback. Teclado, foco visible, etiquetas y contraste verificables. No controles decorativos ni enlaces sin destino.
 
 ## Entrega

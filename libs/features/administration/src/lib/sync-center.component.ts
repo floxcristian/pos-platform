@@ -64,25 +64,25 @@ import { FeedbackService } from './feedback.service';
           title="Flujos"
           [value]="'' + store.snapshot().syncJobs.length"
           detail="Subidas y bajadas independientes"
-          icon="pi pi-arrow-right-arrow-left"
+          icon="arrows-left-right"
         />
         <pos-metric-card
           title="Programados"
           [value]="'' + scheduled()"
           detail="Horario de Santiago de Chile"
-          icon="pi pi-clock"
+          icon="clock"
         />
         <pos-metric-card
           title="Eventos pendientes"
           [value]="'' + pending()"
           detail="Conservan su identificador al reintentar"
-          icon="pi pi-inbox"
+          icon="tray"
         />
         <pos-metric-card
           title="Requieren atención"
           [value]="'' + failed()"
           detail="Revisa el error antes de reintentar"
-          icon="pi pi-exclamation-circle"
+          icon="warning-circle"
         />
       </div>
       @if (!store.snapshot().online) {

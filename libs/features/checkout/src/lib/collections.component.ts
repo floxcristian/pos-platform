@@ -18,6 +18,7 @@ import {
 } from '@corporate-pos/domain';
 import {
   CivilDateTimeComponent,
+  DuotoneIconComponent,
   PageHeaderComponent,
   StatusTagComponent,
   MetricCardComponent,
@@ -32,6 +33,7 @@ import {
   standalone: true,
   imports: [
     CivilDateTimeComponent,
+    DuotoneIconComponent,
     FormsModule,
     ButtonModule,
     InputTextModule,
@@ -116,22 +118,22 @@ import {
         title="Deuda pendiente"
         [value]="money(totalDebt())"
         [detail]="receivables().length + ' documentos'"
-        icon="pi-file"
+        icon="file-text"
       /><pos-metric-card
         title="Deuda vencida"
         [value]="money(overdue())"
         detail="Según vencimiento de documento"
-        icon="pi-calendar-times"
+        icon="calendar-x"
       /><pos-metric-card
         title="Cupo disponible"
         [value]="money((customer()?.creditLimit ?? 0) - (customer()?.creditUsed ?? 0))"
         detail="Sujeto a autorización de crédito"
-        icon="pi-credit-card"
+        icon="credit-card"
       /><pos-metric-card
         title="Anticipos disponibles"
         [value]="money(advances())"
         detail="Saldo aplicable en una venta u orden"
-        icon="pi-wallet"
+        icon="wallet"
       />
     </div>
     <section class="rounded-2xl border border-surface bg-surface-0 dark:bg-surface-950 overflow-hidden mb-6">
@@ -467,7 +469,9 @@ import {
     >
       @if (receipt(); as item) {
         <div class="text-center">
-          <i class="pi pi-check-circle text-primary text-4xl" aria-hidden="true"></i>
+          <div class="flex justify-center">
+            <pos-duotone-icon name="check-circle" [size]="48" class="text-primary" />
+          </div>
           <h2 class="text-xl font-semibold mt-4">{{ item.reference }}</h2>
           <p class="text-muted-color mt-2">{{ customer()?.name }}</p>
           <p class="text-3xl font-semibold my-5">{{ money(receiptTotal()) }}</p>

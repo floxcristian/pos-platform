@@ -45,25 +45,25 @@
     title="Ventas confirmadas netas"
     [value]="money(netSales())"
     [detail]="change()"
-    icon="pi-chart-line"
+    icon="chart-line-up"
   />
   <pos-metric-card
     title="Documentos registrados"
     [value]="number(sales().length)"
     [detail]="paymentReview() + ' con pago pendiente, fallido o por conciliar'"
-    icon="pi-file"
+    icon="file-text"
   />
   <pos-metric-card
     title="Ticket promedio"
     [value]="money(average())"
     detail="Solo ventas con pago confirmado"
-    icon="pi-shopping-bag"
+    icon="shopping-bag"
   />
   <pos-metric-card
     title="Devoluciones"
     [value]="money(refunded())"
     [detail]="returns().length + ' notas de crédito en el período'"
-    icon="pi-replay"
+    icon="arrow-counter-clockwise"
   />
 </div>
 
@@ -132,9 +132,9 @@
     class="border border-surface bg-surface-0 dark:bg-surface-950 rounded-xl p-4 flex items-start gap-4"
   >
     <span
-      class="size-10 rounded-lg bg-primary-50 dark:bg-primary-950 text-primary flex items-center justify-center shrink-0"
-      ><i class="pi pi-wallet" aria-hidden="true"></i
-    ></span>
+      class="size-12 rounded-lg bg-primary-50 dark:bg-primary-950 text-primary flex items-center justify-center shrink-0"
+      ><pos-duotone-icon name="wallet" [size]="28" />
+    </span>
     <div class="min-w-0">
       <h2 class="font-medium">
         {{ store.snapshot().session?.status === 'open' ? 'Caja abierta' : 'Caja sin abrir' }}
@@ -158,9 +158,9 @@
     class="border border-surface bg-surface-0 dark:bg-surface-950 rounded-xl p-4 flex items-start gap-4"
   >
     <span
-      class="size-10 rounded-lg bg-primary-50 dark:bg-primary-950 text-primary flex items-center justify-center shrink-0"
-      ><i class="pi pi-file-check" aria-hidden="true"></i
-    ></span>
+      class="size-12 rounded-lg bg-primary-50 dark:bg-primary-950 text-primary flex items-center justify-center shrink-0"
+      ><pos-duotone-icon name="seal-check" [size]="28" />
+    </span>
     <div>
       <h2 class="font-medium">{{ pendingFiscal() }} documentos fiscales pendientes</h2>
       <p class="text-sm text-muted-color mt-1">{{ pendingErp() }} ventas aún no registradas en ERP</p>
@@ -177,9 +177,9 @@
     class="border border-surface bg-surface-0 dark:bg-surface-950 rounded-xl p-4 flex items-start gap-4"
   >
     <span
-      class="size-10 rounded-lg bg-primary-50 dark:bg-primary-950 text-primary flex items-center justify-center shrink-0"
-      ><i class="pi pi-sync" aria-hidden="true"></i
-    ></span>
+      class="size-12 rounded-lg bg-primary-50 dark:bg-primary-950 text-primary flex items-center justify-center shrink-0"
+      ><pos-duotone-icon name="arrows-clockwise" [size]="28" />
+    </span>
     <div>
       <h2 class="font-medium">{{ syncPending() }} eventos por sincronizar</h2>
       <p class="text-sm text-muted-color mt-1">Procesamiento manual o según programación</p>

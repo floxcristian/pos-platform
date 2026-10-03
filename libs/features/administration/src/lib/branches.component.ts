@@ -7,7 +7,7 @@ import { DialogModule } from 'primeng/dialog';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
 import { PosStore } from '@corporate-pos/data-access';
 import type { Branch } from '@corporate-pos/domain';
-import { PageHeaderComponent, StatusTagComponent } from '@corporate-pos/ui';
+import { DuotoneIconComponent, PageHeaderComponent, StatusTagComponent } from '@corporate-pos/ui';
 import { FeedbackService } from './feedback.service';
 
 @Component({
@@ -22,6 +22,7 @@ import { FeedbackService } from './feedback.service';
     ToggleSwitchModule,
     PageHeaderComponent,
     StatusTagComponent,
+    DuotoneIconComponent,
   ],
   template: `<div class="pos-section">
       <pos-page-header
@@ -35,8 +36,8 @@ import { FeedbackService } from './feedback.service';
           <article class="pos-panel p-6">
             <div class="flex justify-between items-start">
               <span
-                class="flex items-center justify-center rounded-xl w-12 h-12 bg-primary-50 dark:bg-primary-950 text-primary"
-                ><i class="pi pi-building text-xl" aria-hidden="true"></i></span
+                class="flex items-center justify-center rounded-xl size-14 shrink-0 bg-primary-50 dark:bg-primary-950 text-primary"
+                ><pos-duotone-icon name="buildings" [size]="32" /></span
               ><pos-status-tag
                 [value]="branch.active ? (branch.online ? 'connected' : 'offline') : 'inactive'"
               />

@@ -64,22 +64,22 @@ import {
       <pos-metric-card
         title="Ventas registradas"
         [value]="store.snapshot().sales.length"
-        icon="pi-receipt"
+        icon="receipt"
       /><pos-metric-card
         title="Pendientes fiscales"
         [value]="fiscalPending()"
         detail="Emisión o revisión necesaria"
-        icon="pi-file-check"
+        icon="seal-check"
       /><pos-metric-card
         title="Pendientes ERP"
         [value]="erpPending()"
         detail="Venta local conservada"
-        icon="pi-sync"
+        icon="arrows-clockwise"
       /><pos-metric-card
         title="Pagos por conciliar"
         [value]="unknownPayments()"
         detail="Consultar antes de volver a cobrar"
-        icon="pi-exclamation-circle"
+        icon="warning-circle"
       />
     </div>
     <section class="rounded-2xl border border-surface bg-surface-0 dark:bg-surface-950 overflow-hidden">

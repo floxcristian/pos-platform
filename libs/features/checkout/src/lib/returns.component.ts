@@ -57,16 +57,16 @@ import {
       <pos-metric-card
         title="Notas de crédito"
         [value]="store.snapshot().creditNotes.length"
-        icon="pi-file-edit"
+        icon="note-pencil"
       /><pos-metric-card
         title="Monto acreditado"
         [value]="money(totalCredited())"
-        icon="pi-replay"
+        icon="arrow-counter-clockwise"
       /><pos-metric-card
         title="Saldo por devolver"
         [value]="money(pendingRefund())"
         detail="Emitir la NC no devuelve dinero automáticamente"
-        icon="pi-wallet"
+        icon="wallet"
       />
     </div>
     <section class="rounded-2xl border border-surface bg-surface-0 dark:bg-surface-950 overflow-hidden">

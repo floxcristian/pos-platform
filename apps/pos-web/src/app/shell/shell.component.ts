@@ -20,7 +20,13 @@ import { ToggleSwitchModule } from 'primeng/toggleswitch';
 import { TooltipModule } from 'primeng/tooltip';
 import { PosStore } from '@corporate-pos/data-access';
 import type { Role } from '@corporate-pos/domain';
-import { dateTime, StatusTagComponent, ThemeService, type ThemeMode } from '@corporate-pos/ui';
+import {
+  dateTime,
+  DuotoneIconComponent,
+  StatusTagComponent,
+  ThemeService,
+  type ThemeMode,
+} from '@corporate-pos/ui';
 import { NAV_GROUPS, NavItem } from './navigation';
 
 interface SearchResult {
@@ -48,6 +54,7 @@ interface SearchResult {
     ToggleSwitchModule,
     TooltipModule,
     StatusTagComponent,
+    DuotoneIconComponent,
   ],
   templateUrl: './shell.component.html',
 })
