@@ -28,6 +28,13 @@ html {
 body {
   margin: 0;
 }
+/* Original prime-showcase header artwork and framing (6ad8d3d), bundled for offline use. */
+.brand-header-bg {
+  background-image: url('/images/tornado.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 * {
   box-sizing: border-box;
 }

@@ -10,6 +10,8 @@ La primera entrega tenía una base modular razonable, pero no justificaba afirma
 
 Se compararon el preset, `DESIGN.md`, las recetas PrimeNG, los estilos ejecutados y el formulario renderizado del Storybook original. Los presets de origen y de la primera entrega eran equivalentes: la divergencia venía de reglas CSS y variantes elegidas en los templates. El repositorio de referencia se mantuvo sin modificaciones.
 
+El encabezado recupera además `public/images/tornado.svg` de prime-showcase en `6ad8d3d0c3c171aa4495f4c280b94982415449e5`, antes de su sustitución por fondo liso. Se conserva el SVG original con la paleta Implementos, sus opacidades internas y el encuadre `cover` / `center`. Se incluye como recurso local de la web y del paquete Tauri, sin solicitudes externas ni capas que intercepten los controles.
+
 | Hallazgo                                | Corrección y criterio                                                                                                                                           |
 | --------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Header primary700 en vez de primary500  | Azul de marca `#006db6`, altura 64 px. Textos y avatar conservan contraste en claro y oscuro.                                                                   |
