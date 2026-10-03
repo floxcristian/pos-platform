@@ -39,13 +39,13 @@ Antes de distribuir a sucursales faltan la persistencia de Edge, integración na
 
 ## Verificación y límite actual
 
-La compilación y el empaquetado de Windows terminaron correctamente en el [job `windows-desktop` de GitHub Actions](https://github.com/floxcristian/corporate-pos/actions/runs/37149329820/job/111279662932), finalizado el **3 de octubre de 2026 a las 20:01:50 UTC**. Ejecutó `npm run desktop:build` con Rust 1.90.0 para el commit [`563f154faf6ab4e2c3b270ff459bb4fd2efaef23`](https://github.com/floxcristian/corporate-pos/commit/563f154faf6ab4e2c3b270ff459bb4fd2efaef23).
+La compilación y el empaquetado de Windows terminaron correctamente en el [job `windows-desktop` de GitHub Actions](https://github.com/floxcristian/corporate-pos/actions/runs/37151843645/job/111287161510), finalizado el **3 de octubre de 2026 a las 20:37:51 UTC**. Ejecutó `npm run desktop:build` con Rust 1.90.0 para el commit [`0d09abc01ca0d0314d51056e2f7d1eaf8027d256`](https://github.com/floxcristian/corporate-pos/commit/0d09abc01ca0d0314d51056e2f7d1eaf8027d256).
 
-El artefacto **`corporate-pos-windows-demo`** contiene `Corporate POS_0.1.0_x64-setup.exe` (2.033.374 bytes) y el `Cargo.lock` generado por esa misma compilación. El lockfile fue recuperado sin modificaciones en `apps/pos-desktop/src-tauri/Cargo.lock`; fija también las dependencias transitivas del build exitoso. La copia del instalador descargada al workspace está en `dist/installers/`, directorio ignorado por Git.
+El artefacto **`corporate-pos-windows-demo`** contiene `Corporate POS_0.1.0_x64-setup.exe` (2.035.184 bytes) y el `Cargo.lock` generado por esa misma compilación. El lockfile fue recuperado sin modificaciones en `apps/pos-desktop/src-tauri/Cargo.lock`; fija también las dependencias transitivas del build exitoso. La copia de esta revisión está en `dist/installers/0d09abc/target/release/bundle/nsis/`, directorio ignorado por Git. El hash del lockfile del artefacto coincide con el versionado.
 
 | Archivo del artefacto               | SHA-256                                                            |
 | ----------------------------------- | ------------------------------------------------------------------ |
-| `Corporate POS_0.1.0_x64-setup.exe` | `d8c4af3c860baeaaaf2b4dc2340848c0f0507d8686a38ade8978e7e489b579d4` |
+| `Corporate POS_0.1.0_x64-setup.exe` | `77b0a0a71ac10856c77a439e7970fdea48af64f1c212281a3d31ce59f013b1d4` |
 | `Cargo.lock`                        | `d0de437f15583981a9420589b81eafdf0c746048a78aeed3d4a6d698f3d941e2` |
 
 **El instalador no se ha ejecutado ni instalado en el equipo local.** La evidencia confirma compilación y empaquetado en CI, no una prueba de apertura o uso del programa nativo. El entorno local sigue sin Cargo/Rust ni MSVC. Falta comprobar la interfaz dentro de WebView2 y su comportamiento en los equipos objetivo. El instalador de demostración no tiene firma comercial.

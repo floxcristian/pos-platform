@@ -41,7 +41,7 @@ Se conservan PrimeIcons por licencia. No se copian FontAwesome Pro, módulos aje
 
 ## Verificación
 
-Resultado local final: **144 pruebas de lógica e infraestructura y 37 E2E sobre producción aprobadas**, además de lint, formato y build. El smoke con CSP no registró violaciones ni errores de JavaScript.
+Resultado local y de [CI](https://github.com/floxcristian/corporate-pos/actions/runs/37151843645) para `0d09abc`: **144 pruebas de lógica e infraestructura y 37 E2E sobre producción aprobadas**, además de lint, formato y build. El smoke con CSP no registró violaciones ni errores de JavaScript. La misma ejecución generó el instalador NSIS de Windows; no se ha instalado ni ejercitado dentro de WebView2 local.
 
 Las regresiones cubren invariantes monetarias, deuda y cuotas, persistencia fallida, recuperación, calendario y zona horaria, borradores, cambios de configuración, controles PrimeNG y accesibilidad. Se validan recorridos reales de navegador en claro/oscuro y anchos de 375 y 1440 px. ESLint verifica arquitectura, accesibilidad de templates y variantes del sistema visual; TypeScript y Angular compilan en modo estricto.
 
