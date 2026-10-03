@@ -208,7 +208,11 @@
         ></a>
       }
     </div>
-    <p-table [value]="recent()" [tableStyle]="{ 'min-width': '36rem' }" size="small"
+    <p-table
+      tableStyleClass="pos-table"
+      [value]="recent()"
+      [tableStyle]="{ 'min-width': '36rem' }"
+      size="small"
       ><ng-template #header
         ><tr>
           <th>Documento</th>

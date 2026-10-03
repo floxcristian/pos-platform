@@ -39,6 +39,7 @@ import { FeedbackService } from './feedback.service';
       </div>
       <div class="pos-panel overflow-hidden">
         <p-table
+          tableStyleClass="pos-table"
           [value]="store.snapshot().priceRules"
           [paginator]="true"
           [rows]="10"

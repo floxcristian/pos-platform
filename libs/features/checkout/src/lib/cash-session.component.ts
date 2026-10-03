@@ -181,7 +181,7 @@ import {
         <span class="text-xs text-muted-color">{{ session()?.id ?? 'Sin sesión' }}</span>
       </div>
       <div class="overflow-x-auto">
-        <table class="w-full text-sm">
+        <table class="pos-table w-full text-sm">
           <thead class="bg-surface-50 dark:bg-surface-900 text-left text-muted-color">
             <tr>
               <th class="p-4 font-medium">Hora</th>
@@ -217,7 +217,7 @@ import {
     <section class="rounded-2xl border border-surface bg-surface-0 dark:bg-surface-950 overflow-hidden">
       <h2 class="p-5 text-lg font-semibold border-b border-surface">Historial de turnos</h2>
       <div class="overflow-x-auto">
-        <table class="w-full text-sm">
+        <table class="pos-table w-full text-sm">
           <thead class="bg-surface-50 dark:bg-surface-900 text-left text-muted-color">
             <tr>
               <th class="p-4 font-medium">Apertura</th>
@@ -260,7 +260,7 @@ import {
     <section class="rounded-2xl border border-surface bg-surface-0 dark:bg-surface-950 overflow-hidden mt-6">
       <h2 class="p-5 text-lg font-semibold border-b border-surface">Custodia y depósitos</h2>
       <div class="overflow-x-auto">
-        <table class="w-full text-sm">
+        <table class="pos-table w-full text-sm">
           <thead class="text-left bg-surface-50 dark:bg-surface-900">
             <tr>
               <th class="p-4 font-medium">Entrega</th>

@@ -51,6 +51,7 @@ import { FeedbackService } from './feedback.service';
       @if (tab === 'users') {
         <div class="pos-panel overflow-hidden">
           <p-table
+            tableStyleClass="pos-table"
             [value]="store.snapshot().users"
             [paginator]="true"
             [rows]="10"
@@ -98,7 +99,7 @@ import { FeedbackService } from './feedback.service';
       }
       @if (tab === 'roles') {
         <div class="pos-panel overflow-hidden">
-          <p-table [value]="permissions" [tableStyle]="{ 'min-width': '44rem' }"
+          <p-table tableStyleClass="pos-table" [value]="permissions" [tableStyle]="{ 'min-width': '44rem' }"
             ><ng-template #header
               ><tr>
                 <th>Permiso</th>

@@ -73,7 +73,12 @@ import { PriceRulesComponent } from './price-rules.component';
       </div>
       @if (tab === 'prices') {
         <div class="pos-panel overflow-hidden">
-          <p-table [value]="products()" [paginator]="true" [rows]="10" [tableStyle]="{ 'min-width': '44rem' }"
+          <p-table
+            tableStyleClass="pos-table"
+            [value]="products()"
+            [paginator]="true"
+            [rows]="10"
+            [tableStyle]="{ 'min-width': '44rem' }"
             ><ng-template #header
               ><tr>
                 <th>Producto</th>

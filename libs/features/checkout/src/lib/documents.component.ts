@@ -122,7 +122,7 @@ import {
         /></label>
       </div>
       <div class="overflow-x-auto">
-        <table class="w-full text-sm">
+        <table class="pos-table w-full text-sm">
           <thead class="text-left bg-surface-50 dark:bg-surface-900 text-muted-color">
             <tr>
               <th class="p-4 font-medium">Documento</th>
@@ -176,7 +176,7 @@ import {
           </tbody>
         </table>
       </div>
-      <div class="p-4 border-t border-surface text-xs text-muted-color">
+      <div class="px-5 py-4 border-t border-surface text-xs text-muted-color">
         {{ filtered().length }} documentos · {{ money(filteredTotal()) }} en el resultado
       </div>
     </section>
@@ -289,8 +289,8 @@ import {
           </section>
         }
         <h3 class="font-semibold mb-3">Productos</h3>
-        <div class="overflow-x-auto rounded-xl border border-surface mb-5">
-          <table class="w-full text-sm">
+        <div class="overflow-x-auto mb-5">
+          <table class="pos-table pos-table--flush w-full text-sm">
             <thead class="text-left bg-surface-50 dark:bg-surface-900">
               <tr>
                 <th class="p-3 font-medium">Producto</th>

@@ -81,7 +81,7 @@ import {
         />
       </div>
       <div class="overflow-x-auto">
-        <table class="w-full text-sm">
+        <table class="pos-table w-full text-sm">
           <thead class="text-left bg-surface-50 dark:bg-surface-900 text-muted-color">
             <tr>
               <th class="p-4 font-medium">Nota de crédito</th>
@@ -180,7 +180,7 @@ import {
           />
         </div>
         <div class="overflow-x-auto mb-5">
-          <table class="w-full text-sm">
+          <table class="pos-table pos-table--flush w-full text-sm">
             <thead class="bg-surface-50 dark:bg-surface-900 text-left">
               <tr>
                 <th class="p-3 font-medium">Producto</th>

@@ -100,7 +100,12 @@ import {
       </div>
       @if (tab === 'logs') {
         <div class="pos-panel overflow-hidden">
-          <p-table [value]="logs()" [paginator]="true" [rows]="15" [tableStyle]="{ 'min-width': '58rem' }"
+          <p-table
+            tableStyleClass="pos-table"
+            [value]="logs()"
+            [paginator]="true"
+            [rows]="15"
+            [tableStyle]="{ 'min-width': '58rem' }"
             ><ng-template #header
               ><tr>
                 <th>Fecha</th>
@@ -134,7 +139,12 @@ import {
       }
       @if (tab === 'audit') {
         <div class="pos-panel overflow-hidden">
-          <p-table [value]="audit()" [paginator]="true" [rows]="15" [tableStyle]="{ 'min-width': '58rem' }"
+          <p-table
+            tableStyleClass="pos-table"
+            [value]="audit()"
+            [paginator]="true"
+            [rows]="15"
+            [tableStyle]="{ 'min-width': '58rem' }"
             ><ng-template #header
               ><tr>
                 <th>Fecha</th>

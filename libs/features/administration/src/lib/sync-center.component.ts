@@ -119,6 +119,7 @@ import { FeedbackService } from './feedback.service';
         </div>
         <div class="pos-panel overflow-hidden">
           <p-table
+            tableStyleClass="pos-table"
             [value]="jobs()"
             [paginator]="true"
             [rows]="10"
@@ -195,6 +196,7 @@ import { FeedbackService } from './feedback.service';
         </div>
         <div class="pos-panel overflow-hidden">
           <p-table
+            tableStyleClass="pos-table"
             [value]="store.snapshot().outbox"
             [paginator]="true"
             [rows]="10"
@@ -257,6 +259,7 @@ import { FeedbackService } from './feedback.service';
         </div>
         <div class="pos-panel overflow-hidden">
           <p-table
+            tableStyleClass="pos-table"
             [value]="store.snapshot().syncRuns"
             [paginator]="true"
             [rows]="10"

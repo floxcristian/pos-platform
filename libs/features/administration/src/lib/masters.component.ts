@@ -78,6 +78,7 @@ import { FeedbackService } from './feedback.service';
         </div>
         <div class="pos-panel overflow-hidden">
           <p-table
+            tableStyleClass="pos-table"
             [value]="products()"
             [paginator]="true"
             [rows]="10"
@@ -125,6 +126,7 @@ import { FeedbackService } from './feedback.service';
       @if (tab === 'customers') {
         <div class="pos-panel overflow-hidden">
           <p-table
+            tableStyleClass="pos-table"
             [value]="customers()"
             [paginator]="true"
             [rows]="10"
@@ -188,7 +190,7 @@ import { FeedbackService } from './feedback.service';
           />
         </div>
         <div class="pos-panel overflow-hidden">
-          <p-table [value]="references()" [paginator]="true" [rows]="10"
+          <p-table tableStyleClass="pos-table" [value]="references()" [paginator]="true" [rows]="10"
             ><ng-template #header
               ><tr>
                 <th>Código</th>

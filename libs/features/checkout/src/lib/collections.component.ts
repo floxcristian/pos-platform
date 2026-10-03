@@ -148,7 +148,7 @@ import {
         />
       </div>
       <div class="overflow-x-auto">
-        <table class="w-full text-sm">
+        <table class="pos-table w-full text-sm">
           <thead class="text-left text-muted-color bg-surface-50 dark:bg-surface-900">
             <tr>
               <th class="p-4 font-medium">Documento</th>
@@ -209,7 +209,7 @@ import {
     <section class="rounded-2xl border border-surface bg-surface-0 dark:bg-surface-950 overflow-hidden">
       <h2 class="p-5 font-semibold text-lg border-b border-surface">Pagos y anticipos registrados</h2>
       <div class="overflow-x-auto">
-        <table class="w-full text-sm">
+        <table class="pos-table w-full text-sm">
           <thead class="text-left text-muted-color bg-surface-50 dark:bg-surface-900">
             <tr>
               <th class="p-4 font-medium">Comprobante</th>
@@ -273,7 +273,7 @@ import {
               <pos-status-tag [value]="agreement.status" />
             </div>
             <div class="overflow-x-auto">
-              <table class="w-full text-sm">
+              <table class="pos-table pos-table--compact w-full text-sm">
                 <thead class="text-left text-muted-color">
                   <tr>
                     <th class="p-3 font-medium">Cuota</th>

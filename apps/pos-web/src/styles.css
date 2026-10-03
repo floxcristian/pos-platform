@@ -193,6 +193,22 @@ p-button {
 .p-datatable-thead > tr > th {
   white-space: nowrap;
 }
+/* Match table edges to the containing heading without changing column density. */
+.pos-table {
+  --pos-table-edge-padding: calc(var(--spacing) * 5);
+}
+.pos-table--compact {
+  --pos-table-edge-padding: calc(var(--spacing) * 4);
+}
+.pos-table--flush {
+  --pos-table-edge-padding: 0px;
+}
+.pos-table > :is(thead, tbody, tfoot) > tr > :is(th, td):first-child {
+  padding-inline-start: var(--pos-table-edge-padding);
+}
+.pos-table > :is(thead, tbody, tfoot) > tr > :is(th, td):last-child {
+  padding-inline-end: var(--pos-table-edge-padding);
+}
 .pos-panel {
   border: 1px solid var(--p-content-border-color);
   border-radius: 1rem;
