@@ -49,12 +49,12 @@ import {
       subtitle="Apertura, movimientos, arqueo y cierre en un solo lugar."
     >
       @if (open()) {
-        <a pButton routerLink="/venta" icon="pi pi-shopping-cart">Ir a vender</a>
+        <a pButton routerLink="/venta" icon="pos-icon pos-icon-shopping-cart">Ir a vender</a>
       }
       <p-button
         label="Informe de caja"
         ariaLabel="Informe de caja"
-        icon="pi pi-download"
+        icon="pos-icon pos-icon-download-simple"
         severity="secondary"
         (onClick)="exportSession()"
         [disabled]="!session()"
@@ -143,7 +143,7 @@ import {
         <p-button
           label="Abrir caja"
           ariaLabel="Abrir caja"
-          icon="pi pi-lock-open"
+          icon="pos-icon pos-icon-lock-key-open"
           class="block mt-5"
           (onClick)="openSession()"
           [disabled]="!store.can('cash', 'cash')"
@@ -154,25 +154,25 @@ import {
         <p-button
           label="Ingreso o retiro"
           ariaLabel="Ingreso o retiro"
-          icon="pi pi-arrow-right-arrow-left"
+          icon="pos-icon pos-icon-arrows-left-right"
           severity="secondary"
           (onClick)="movementVisible.set(true)"
         /><p-button
           label="Arqueo parcial"
           ariaLabel="Arqueo parcial"
-          icon="pi pi-calculator"
+          icon="pos-icon pos-icon-calculator"
           severity="secondary"
           (onClick)="beginClose('partial')"
         /><p-button
           label="Cambio de cajero"
           ariaLabel="Cambio de cajero"
-          icon="pi pi-users"
+          icon="pos-icon pos-icon-users"
           severity="secondary"
           (onClick)="beginClose('handover')"
         /><p-button
           label="Cerrar turno"
           ariaLabel="Cerrar turno"
-          icon="pi pi-lock"
+          icon="pos-icon pos-icon-lock-key"
           (onClick)="beginClose('complete')"
         />
       </div>
@@ -243,7 +243,7 @@ import {
                 <td class="p-3">
                   <p-button
                     posTooltip
-                    icon="pi pi-download"
+                    icon="pos-icon pos-icon-download-simple"
                     severity="secondary"
                     [text]="true"
                     ariaLabel="Descargar informe del turno"
@@ -517,7 +517,7 @@ import {
                 ? 'Entregar caja'
                 : 'Confirmar cierre'
           "
-          icon="pi pi-check"
+          icon="pos-icon pos-icon-check"
           (onClick)="closeSession()"
       /></ng-template>
     </p-dialog>

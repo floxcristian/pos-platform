@@ -130,7 +130,7 @@ export class ShellComponent {
           .map((product) => ({
             label: product.name,
             detail: `Producto · ${product.sku}`,
-            icon: 'pi-box',
+            icon: 'pos-icon-cube',
             route: '/maestros',
             query: product.sku,
           })),
@@ -142,7 +142,7 @@ export class ShellComponent {
           .map((customer) => ({
             label: customer.name,
             detail: `Cliente · ${customer.rut}`,
-            icon: 'pi-user',
+            icon: 'pos-icon-user',
             route: '/maestros',
             query: customer.rut,
           })),
@@ -156,7 +156,7 @@ export class ShellComponent {
           .map((sale) => ({
             label: sale.number,
             detail: sale.customerName,
-            icon: 'pi-file',
+            icon: 'pos-icon-file',
             route: '/documentos',
             query: sale.number,
           })),

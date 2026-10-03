@@ -16,7 +16,7 @@ import { DuotoneIconComponent } from '@corporate-pos/ui';
     <p-button
       ariaLabel="Volver al inicio"
       label="Volver al inicio"
-      icon="pi pi-arrow-left"
+      icon="pos-icon pos-icon-arrow-left"
       routerLink="/inicio"
     />
   </section>`,

@@ -16,18 +16,23 @@ export const NAV_GROUPS: NavGroup[] = [
   {
     label: 'Operación',
     items: [
-      { label: 'Inicio', route: '/inicio', icon: 'pi-th-large', keywords: 'panel resumen dashboard' },
+      {
+        label: 'Inicio',
+        route: '/inicio',
+        icon: 'pos-icon-squares-four',
+        keywords: 'panel resumen dashboard',
+      },
       {
         label: 'Nueva venta',
         route: '/venta',
-        icon: 'pi-shopping-cart',
+        icon: 'pos-icon-shopping-cart',
         permission: 'sell',
         module: 'sales',
       },
       {
         label: 'Mi caja',
         route: '/caja',
-        icon: 'pi-wallet',
+        icon: 'pos-icon-wallet',
         permission: 'cash',
         module: 'cash',
         keywords: 'turno apertura cierre arqueo custodia',
@@ -35,7 +40,7 @@ export const NAV_GROUPS: NavGroup[] = [
       {
         label: 'Documentos',
         route: '/documentos',
-        icon: 'pi-file',
+        icon: 'pos-icon-file',
         permission: 'sell',
         module: 'sales',
         keywords: 'boleta factura DTE impresión fiscal',
@@ -43,14 +48,14 @@ export const NAV_GROUPS: NavGroup[] = [
       {
         label: 'Cobranzas y anticipos',
         route: '/cobranzas',
-        icon: 'pi-credit-card',
+        icon: 'pos-icon-credit-card',
         permission: 'collect',
         module: 'collections',
       },
       {
         label: 'Devoluciones',
         route: '/devoluciones',
-        icon: 'pi-replay',
+        icon: 'pos-icon-arrow-counter-clockwise',
         permission: 'refund',
         module: 'returns',
         keywords: 'nota crédito reembolso',
@@ -63,7 +68,7 @@ export const NAV_GROUPS: NavGroup[] = [
       {
         label: 'Maestros',
         route: '/maestros',
-        icon: 'pi-database',
+        icon: 'pos-icon-database',
         permission: 'masters',
         module: 'masters',
         keywords: 'productos clientes catálogo stock vendedores',
@@ -71,7 +76,7 @@ export const NAV_GROUPS: NavGroup[] = [
       {
         label: 'Precios y ofertas',
         route: '/precios',
-        icon: 'pi-tags',
+        icon: 'pos-icon-tag',
         permission: 'pricing',
         module: 'pricing',
         keywords: 'descuento promoción',
@@ -79,7 +84,7 @@ export const NAV_GROUPS: NavGroup[] = [
       {
         label: 'Reportes',
         route: '/reportes',
-        icon: 'pi-chart-bar',
+        icon: 'pos-icon-chart-bar',
         permission: 'reports',
         module: 'reports',
         keywords: 'estadísticas ventas ingresos exportar',
@@ -92,7 +97,7 @@ export const NAV_GROUPS: NavGroup[] = [
       {
         label: 'Sincronización',
         route: '/sincronizacion',
-        icon: 'pi-sync',
+        icon: 'pos-icon-arrows-clockwise',
         permission: 'sync',
         module: 'sync',
         keywords: 'programar sincronizadores colas outbox reintentos',
@@ -100,7 +105,7 @@ export const NAV_GROUPS: NavGroup[] = [
       {
         label: 'Actividad y auditoría',
         route: '/actividad',
-        icon: 'pi-history',
+        icon: 'pos-icon-clock-counter-clockwise',
         permission: 'audit',
         module: 'audit',
         keywords: 'logs errores eventos trazabilidad',
@@ -108,7 +113,7 @@ export const NAV_GROUPS: NavGroup[] = [
       {
         label: 'Dispositivos',
         route: '/dispositivos',
-        icon: 'pi-desktop',
+        icon: 'pos-icon-desktop',
         permission: 'devices',
         module: 'devices',
         keywords: 'impresora transbank lector cheques cajón',
@@ -121,28 +126,28 @@ export const NAV_GROUPS: NavGroup[] = [
       {
         label: 'Módulos y configuración',
         route: '/configuracion',
-        icon: 'pi-sliders-h',
+        icon: 'pos-icon-sliders-horizontal',
         permission: 'configure',
         keywords: 'funcionalidades habilitar deshabilitar políticas empresa',
       },
       {
         label: 'Usuarios y permisos',
         route: '/usuarios',
-        icon: 'pi-users',
+        icon: 'pos-icon-users',
         permission: 'users',
         module: 'users',
       },
       {
         label: 'Sucursales y cajas',
         route: '/sucursales',
-        icon: 'pi-building',
+        icon: 'pos-icon-buildings',
         permission: 'configure',
         module: 'branches',
       },
       {
         label: 'Integraciones',
         route: '/integraciones',
-        icon: 'pi-directions',
+        icon: 'pos-icon-plugs-connected',
         permission: 'configure',
         module: 'integrations',
         keywords: 'Dynamics AX ERP fiscal orsan transbank',
@@ -150,7 +155,7 @@ export const NAV_GROUPS: NavGroup[] = [
       {
         label: 'Actualizaciones',
         route: '/actualizaciones',
-        icon: 'pi-cloud-download',
+        icon: 'pos-icon-cloud-arrow-down',
         permission: 'configure',
         module: 'updates',
         keywords: 'versiones despliegue tauri',

@@ -1,5 +1,10 @@
-Phosphor Icons - selected duotone SVG paths from @phosphor-icons/core 2.1.1
+Phosphor Icons - selected Bold and Duotone SVG paths from @phosphor-icons/core 2.1.1
 https://github.com/phosphor-icons/core
+
+Corporate POS uses the official Bold geometry for compact icons and combines
+official Bold primary paths with official Duotone secondary paths at 40% opacity
+for large decorative icons. This composition is a Corporate POS adaptation;
+the individual path geometries are unchanged.
 
 MIT License
 

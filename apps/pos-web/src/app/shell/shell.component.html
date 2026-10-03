@@ -11,7 +11,7 @@
     <p-button
       posTooltip
       posTooltipPosition="bottom"
-      icon="pi pi-bars"
+      icon="pos-icon pos-icon-list"
       [text]="true"
       ariaLabel="Abrir navegación"
       styleClass="h-11 lg:!hidden"
@@ -23,7 +23,7 @@
       class="flex items-center gap-3 lg:w-60 shrink-0"
     >
       <span class="size-9 rounded-lg bg-white/15 flex items-center justify-center"
-        ><i class="pi pi-th-large text-lg" aria-hidden="true"></i
+        ><i class="pos-icon pos-icon-squares-four text-lg" aria-hidden="true"></i
       ></span>
       <span class="font-semibold tracking-tight text-lg hidden sm:inline"
         >Corporate <span class="font-normal">POS</span></span
@@ -37,7 +37,7 @@
       aria-haspopup="dialog"
       [attr.aria-expanded]="searchOpen()"
     >
-      <i class="pi pi-search" aria-hidden="true"></i
+      <i class="pos-icon pos-icon-magnifying-glass" aria-hidden="true"></i
       ><span class="truncate text-left flex-1">Buscar productos, documentos o módulos</span
       ><kbd
         class="shrink-0 text-xs text-surface-600 bg-surface-100 border border-surface-300 rounded px-1.5 py-0.5"
@@ -51,7 +51,7 @@
     <p-button
       posTooltip
       posTooltipPosition="bottom"
-      icon="pi pi-search"
+      icon="pos-icon pos-icon-magnifying-glass"
       [text]="true"
       ariaLabel="Buscar"
       styleClass="h-11 md:!hidden"
@@ -60,7 +60,7 @@
     <p-button
       posTooltip
       posTooltipPosition="bottom"
-      [icon]="dark() ? 'pi pi-sun' : 'pi pi-moon'"
+      [icon]="dark() ? 'pos-icon pos-icon-sun' : 'pos-icon pos-icon-moon'"
       [text]="true"
       [ariaLabel]="dark() ? 'Usar tema claro' : 'Usar tema oscuro'"
       styleClass="brand-header-theme-action h-11 !hidden sm:!inline-flex"
@@ -69,7 +69,7 @@
     <p-button
       posTooltip
       posTooltipPosition="bottom"
-      icon="pi pi-bell"
+      icon="pos-icon pos-icon-bell"
       [text]="true"
       [ariaLabel]="'Notificaciones: ' + notifications().length + ' avisos'"
       styleClass="h-11"
@@ -88,7 +88,7 @@
       ><span class="hidden xl:flex flex-col text-left text-xs"
         ><span class="font-semibold">{{ roleLabel() }}</span
         ><span>{{ store.snapshot().settings.terminalId }}</span></span
-      ><i class="pi pi-chevron-down text-xs hidden xl:block" aria-hidden="true"></i>
+      ><i class="pos-icon pos-icon-caret-down text-xs hidden xl:block" aria-hidden="true"></i>
     </button>
   </header>
 
@@ -116,7 +116,7 @@
                 [routerLinkActiveOptions]="{ exact: true }"
                 ariaCurrentWhenActive="page"
                 class="pos-surface-action flex items-center gap-3 min-h-11 px-3 py-2.5 rounded-lg font-medium text-color"
-                ><i [class]="'pi ' + item.icon + ' w-5 text-base'" aria-hidden="true"></i
+                ><i [class]="'pos-icon ' + item.icon + ' w-5 text-base'" aria-hidden="true"></i
                 ><span>{{ item.label }}</span></a
               >
             }
@@ -135,7 +135,7 @@
       >
         <div class="flex items-center gap-2 text-muted-color min-w-0">
           <span class="hidden sm:inline">{{ activeGroup() }}</span
-          ><i class="pi pi-angle-right text-xs hidden sm:inline" aria-hidden="true"></i
+          ><i class="pos-icon pos-icon-caret-right text-xs hidden sm:inline" aria-hidden="true"></i
           ><span class="font-medium text-color truncate">{{ activeItem()?.label ?? 'Inicio' }}</span>
         </div>
         <div class="flex items-center gap-3">
@@ -152,8 +152,8 @@
           role="status"
           class="px-4 lg:px-7 py-2 bg-orange-50 dark:bg-orange-950 text-orange-900 dark:text-orange-100 text-sm border-b border-orange-200 dark:border-orange-800"
         >
-          <i class="pi pi-wifi mr-2" aria-hidden="true"></i>Sin conexión simulada. Las operaciones permitidas
-          quedan guardadas para sincronizar.
+          <i class="pos-icon pos-icon-wifi-high mr-2" aria-hidden="true"></i>Sin conexión simulada. Las
+          operaciones permitidas quedan guardadas para sincronizar.
         </div>
       }
       @if (store.persistenceError(); as persistenceError) {
@@ -162,8 +162,7 @@
           class="px-4 lg:px-7 py-3 bg-red-50 dark:bg-red-950 text-red-900 dark:text-red-100 text-sm border-b border-red-200 dark:border-red-800"
         >
           <p class="font-semibold">
-            <i class="pi pi-exclamation-triangle mr-2" aria-hidden="true"></i>No se pudo guardar en este
-            equipo
+            <i class="pos-icon pos-icon-warning mr-2" aria-hidden="true"></i>No se pudo guardar en este equipo
           </p>
           <p class="mt-1">
             {{ persistenceError }} Las operaciones que no se pudieron guardar no se han confirmado.
@@ -199,7 +198,7 @@
             routerLinkActive="bg-primary-50 text-primary dark:bg-primary-950"
             ariaCurrentWhenActive="page"
             class="pos-surface-action flex items-center gap-3 min-h-12 px-3 rounded-lg"
-            ><i [class]="'pi ' + item.icon" aria-hidden="true"></i>{{ item.label }}</a
+            ><i [class]="'pos-icon ' + item.icon" aria-hidden="true"></i>{{ item.label }}</a
           >
         }
       </section>
@@ -234,11 +233,11 @@
         (click)="goTo(result)"
         class="pos-surface-action flex items-center gap-3 w-full text-left p-3 rounded-lg cursor-pointer"
       >
-        <i [class]="'pi ' + result.icon + ' text-primary'" aria-hidden="true"></i
+        <i [class]="'pos-icon ' + result.icon + ' text-primary'" aria-hidden="true"></i
         ><span class="min-w-0 flex-1"
           ><span class="block font-medium">{{ result.label }}</span
           ><span class="block text-sm text-muted-color">{{ result.detail }}</span></span
-        ><i class="pi pi-arrow-up-right text-xs text-muted-color" aria-hidden="true"></i>
+        ><i class="pos-icon pos-icon-arrow-up-right text-xs text-muted-color" aria-hidden="true"></i>
       </button>
     } @empty {
       <div class="py-10 text-center text-muted-color">
@@ -274,7 +273,7 @@
     <p-button
       label="Ver toda la actividad"
       ariaLabel="Ver toda la actividad"
-      icon="pi pi-arrow-right"
+      icon="pos-icon pos-icon-arrow-right"
       [outlined]="true"
       styleClass="mt-5 w-full"
       routerLink="/actividad"

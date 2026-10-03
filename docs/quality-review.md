@@ -8,7 +8,7 @@ La primera entrega tenía una base modular razonable, pero no justificaba afirma
 
 ## Fidelidad a prime-showcase
 
-Los iconos decorativos de tarjetas usan un componente compartido con SVG duotono de Phosphor 2.1.1 (MIT): capas internas con opacidades 1 y 0,4, heredando el color del tema. Las métricas, sucursales y dispositivos usan 32 px; las tarjetas de estado e integraciones, 28 px; los estados vacíos, 40 px; las confirmaciones, 48 px. Los importes conservan el ancho completo de su tarjeta. Los controles compactos mantienen PrimeIcons. Solo se incluyen los dibujos utilizados, sin cargar otra fuente ni recursos remotos; la licencia acompaña al bundle web y Tauri en `third-party-licenses.txt`.
+Los iconos decorativos de tarjetas usan un componente compartido con SVG duotono de Phosphor 2.1.1 (MIT): capas internas con opacidades 1 y 0,4, heredando el color del tema. Las métricas, sucursales y dispositivos usan 32 px; las tarjetas de estado e integraciones, 28 px; los estados vacíos, 40 px; las confirmaciones, 48 px. Los importes conservan el ancho completo de su tarjeta. Los controles compactos propios usan máscaras SVG Phosphor Bold; los grandes combinan su geometría Bold con la capa secundaria Duotone, según [el catálogo de iconografía](iconography.md). Solo se incluyen los dibujos utilizados, sin cargar otra fuente ni recursos remotos; la licencia acompaña al bundle web y Tauri en `third-party-licenses.txt`.
 
 Se compararon el preset, `DESIGN.md`, las recetas PrimeNG, los estilos ejecutados y el formulario renderizado del Storybook original. Los presets de origen y de la primera entrega eran equivalentes: la divergencia venía de reglas CSS y variantes elegidas en los templates. El repositorio de referencia se mantuvo sin modificaciones.
 
@@ -27,7 +27,15 @@ El encabezado usa el archivo exacto `images/tornado.svg` de [prime-showcase publ
 | Calendarios nativos inconsistentes      | Un ControlValueAccessor usa PrimeNG DatePicker y adapta fechas civiles y horas sin convertirlas a UTC. Textos y navegación del calendario en español.           |
 | Paneles con radios arbitrarios          | Paneles de datos de 16 px y formularios de 24 px; títulos y etiquetas con jerarquía común.                                                                      |
 
-Se conservan PrimeIcons por licencia. No se copian FontAwesome Pro, módulos ajenos, configuradores de marca, modificaciones a `node_modules` ni el paquete de parches del origen. Los estados se resuelven con tokens soportados de PrimeNG y recetas compartidas, no con excepciones por pantalla. La igualdad visual se comprueba en controles renderizados y accesibilidad; no implica que el POS reproduzca los módulos de otro producto.
+La iconografía propia utiliza Phosphor con licencia MIT. No se copian FontAwesome Pro, módulos ajenos, configuradores de marca, modificaciones a `node_modules` ni el paquete de parches del origen. Los estados se resuelven con tokens soportados de PrimeNG y recetas compartidas, no con excepciones por pantalla. La igualdad visual se comprueba en controles renderizados y accesibilidad; no implica que el POS reproduzca los módulos de otro producto.
+
+## Grosor de iconos
+
+La referencia local usa Font Awesome Sharp; PrimeIcons daba a los controles del POS un trazo más fino. Se reemplazó por 59 dibujos Phosphor Bold oficiales para navegación, encabezado y acciones. Los 31 iconos grandes combinan el contorno Bold con su capa secundaria Duotone. El catálogo y sus generadores están documentados en [Iconografía](iconography.md); CI comprueba que los recursos coincidan con la versión fijada. Los iconos internos de PrimeNG mantienen sus SVG nativos.
+
+Se revisaron los catálogos completos y las pantallas en claro, oscuro, móvil y alto contraste. Se corrigió el relleno de las máscaras en alto contraste y el estado «Sin ofertas», que ahora usa el componente duotono compartido. Capturas: [claro](screenshots/icons-bold-light.png), [oscuro](screenshots/icons-bold-dark.png) y [catálogo](screenshots/icons-catalogue.png).
+
+Validación local: build de producción, lint, formato, generación reproducible y 153 pruebas de lógica/contratos aprobados. La suite de 46 E2E dio 45 aprobados y una aserción global de tooltip incorrecta: el detalle retiraba su ayuda, pero el cierre del diálogo recibía foco y mostraba una nueva. El trace confirmó la limpieza del ID original y de `aria-describedby`. Se corrigió la aserción para comprobar esa asociación concreta; los seis E2E de tooltips pasaron después. La regresión nueva de iconos comprueba carga de máscaras bajo CSP y colores del control en alto contraste claro y oscuro. No se ejecutó el instalador Tauri localmente.
 
 ## Ampliación visual y tooltips
 

@@ -1,5 +1,38 @@
 import { expect, test } from '@playwright/test';
 
+test('alto contraste: los iconos conservan el color del control y su máscara carga bajo CSP', async ({
+  page,
+}) => {
+  await page.goto('/#/venta');
+  for (const colorScheme of ['light', 'dark'] as const) {
+    await page.emulateMedia({ forcedColors: 'active', colorScheme });
+    const controls = [
+      page.getByRole('button', { name: 'Usar tema oscuro', exact: true }),
+      page.getByRole('link', { name: 'Inicio', exact: true }),
+      page.getByRole('button', { name: 'Pausar', exact: true }),
+    ];
+    for (const control of controls) {
+      const icon = control.locator('.pos-icon');
+      await expect(icon).toBeVisible();
+      const rendered = await icon.evaluate(async (element) => {
+        const style = getComputedStyle(element);
+        const mask = style.maskImage.match(/^url\("(.*)"\)$/)?.[1];
+        if (!mask) throw new Error('Missing icon mask');
+        const image = new Image();
+        image.src = mask;
+        await image.decode();
+        return {
+          paint: style.backgroundColor,
+          foreground: getComputedStyle(element.parentElement!).color,
+          width: image.naturalWidth,
+        };
+      });
+      expect(rendered.paint).toBe(rendered.foreground);
+      expect(rendered.width).toBeGreaterThan(0);
+    }
+  }
+});
+
 // Focus measured in the published prime-showcase (2026-10-03); remaining values from its local Form Card.
 for (const theme of ['light', 'dark'] as const) {
   test(`contrato visual ${theme}: marca, foco, controles y secundarios`, async ({ page }) => {

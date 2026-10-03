@@ -59,7 +59,7 @@ import { FeedbackService } from './feedback.service';
               <p-button
                 ariaLabel="Probar"
                 label="Probar"
-                icon="pi pi-bolt"
+                icon="pos-icon pos-icon-lightning"
                 severity="secondary"
                 [loading]="busy() === device.id"
                 [disabled]="!device.enabled"
@@ -70,7 +70,7 @@ import { FeedbackService } from './feedback.service';
               <p-button
                 ariaLabel="Configurar"
                 label="Configurar"
-                icon="pi pi-cog"
+                icon="pos-icon pos-icon-gear"
                 severity="secondary"
                 styleClass="mt-3"
                 (onClick)="configure(device)"
@@ -142,7 +142,7 @@ import { FeedbackService } from './feedback.service';
             type="submit"
             label="Guardar configuración"
             ariaLabel="Guardar configuración"
-            icon="pi pi-check"
+            icon="pos-icon pos-icon-check"
           />
         </div>
       </form>
@@ -249,7 +249,7 @@ export class DevicesComponent {
               <p-button
                 ariaLabel="Probar conexión"
                 label="Probar conexión"
-                icon="pi pi-link"
+                icon="pos-icon pos-icon-link"
                 severity="secondary"
                 [loading]="busy() === integration.id"
                 [disabled]="!integration.enabled"
@@ -259,7 +259,7 @@ export class DevicesComponent {
             <p-button
               ariaLabel="Configurar"
               label="Configurar"
-              icon="pi pi-cog"
+              icon="pos-icon pos-icon-gear"
               severity="secondary"
               styleClass="mt-3"
               (onClick)="configure(integration)"
@@ -326,7 +326,7 @@ export class DevicesComponent {
             type="submit"
             label="Guardar configuración"
             ariaLabel="Guardar configuración"
-            icon="pi pi-check"
+            icon="pos-icon pos-icon-check"
           />
         </div>
       </form>
@@ -427,7 +427,7 @@ export class IntegrationsComponent {
         <p-button
           ariaLabel="Buscar actualizaciones"
           label="Buscar actualizaciones"
-          icon="pi pi-refresh"
+          icon="pos-icon pos-icon-arrow-clockwise"
           severity="secondary"
           [loading]="busy()"
           (onClick)="check()"
@@ -436,7 +436,7 @@ export class IntegrationsComponent {
           <p-button
             ariaLabel="Descargar actualización"
             label="Descargar actualización"
-            icon="pi pi-download"
+            icon="pos-icon pos-icon-download-simple"
             [disabled]="busy()"
             (onClick)="download()"
           />
@@ -445,7 +445,7 @@ export class IntegrationsComponent {
           <p-button
             ariaLabel="Aplicar actualización"
             label="Aplicar actualización"
-            icon="pi pi-check"
+            icon="pos-icon pos-icon-check"
             [disabled]="busy()"
             (onClick)="apply()"
           />

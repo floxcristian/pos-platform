@@ -13,8 +13,8 @@ Cubre `p-button` y las directivas `pButton` sobre `button` o `a`, propiedades bo
 La regla de tooltips también cubre botones HTML nativos. Identifica el atributo `icon` o un elemento `i`/`svg` descendiente; un texto `sr-only` aporta accesibilidad pero no cuenta como etiqueta visible. Acepta `posTooltip` estático o enlazado y no exige tooltip a controles con texto visible. No analiza el DOM interno de PrimeNG: sus cierres, paginadores y controles de campos se cubren mediante `createTooltipPassThrough`, con slots PT tipados y el mismo servicio de overlay.
 
 ```html
-<p-button posTooltip icon="pi pi-search" ariaLabel="Buscar" />
-<button posTooltip aria-label="Cerrar"><i class="pi pi-times" aria-hidden="true"></i></button>
+<p-button posTooltip icon="pos-icon pos-icon-magnifying-glass" ariaLabel="Buscar" />
+<button posTooltip aria-label="Cerrar"><i class="pos-icon pos-icon-x" aria-hidden="true"></i></button>
 ```
 
 Importar `PosTooltipDirective` desde `@corporate-pos/ui` en el componente consumidor. El valor vacío reutiliza `ariaLabel`/`aria-label`, incluidas las etiquetas dinámicas; no duplicar el texto en un atributo nativo `title`. ESLint comprueba la presencia declarada de la directiva, no su comportamiento ejecutado ni el contenido final de la etiqueta. Hover, foco, Escape, clic y limpieza de overlays se comprueban en los recorridos de navegador.

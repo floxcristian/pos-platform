@@ -12,6 +12,7 @@ import { PosStore } from '@corporate-pos/data-access';
 import { chileCivilDate, type Offer, type Product } from '@corporate-pos/domain';
 import {
   CivilDateTimeComponent,
+  EmptyStateComponent,
   PageHeaderComponent,
   StatusTagComponent,
   money,
@@ -27,6 +28,7 @@ import { PriceRulesComponent } from './price-rules.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     CivilDateTimeComponent,
+    EmptyStateComponent,
     PriceRulesComponent,
     FormsModule,
     ButtonModule,
@@ -48,12 +50,12 @@ import { PriceRulesComponent } from './price-rules.component';
         ><p-button
           ariaLabel="Exportar precios"
           label="Exportar precios"
-          icon="pi pi-download"
+          icon="pos-icon pos-icon-download-simple"
           severity="secondary"
           (onClick)="export()" /><p-button
           ariaLabel="Nueva oferta"
           label="Nueva oferta"
-          icon="pi pi-plus"
+          icon="pos-icon pos-icon-plus"
           (onClick)="editOffer()"
       /></pos-page-header>
       <div class="pos-filter">
@@ -100,7 +102,7 @@ import { PriceRulesComponent } from './price-rules.component';
                   <p-button
                     ariaLabel="Cambiar precio"
                     label="Cambiar precio"
-                    icon="pi pi-pencil"
+                    icon="pos-icon pos-icon-pencil"
                     severity="secondary"
                     (onClick)="editPrice(product)"
                   />
@@ -131,17 +133,19 @@ import { PriceRulesComponent } from './price-rules.component';
                 <p-button
                   ariaLabel="Editar oferta"
                   label="Editar oferta"
-                  icon="pi pi-pencil"
+                  icon="pos-icon pos-icon-pencil"
                   severity="secondary"
                   (onClick)="editOffer(offer)"
                 />
               </div>
             </article>
           } @empty {
-            <div class="pos-panel pos-empty lg:col-span-2">
-              <i class="pi pi-tags" aria-hidden="true"></i>
-              <h3>Sin ofertas</h3>
-              <p>Crea una promoción y define sus productos y vigencia.</p>
+            <div class="pos-panel lg:col-span-2">
+              <pos-empty-state
+                icon="shopping-bag"
+                heading="Sin ofertas"
+                description="Crea una promoción y define sus productos y vigencia."
+              />
             </div>
           }
         </div>
@@ -234,7 +238,7 @@ import { PriceRulesComponent } from './price-rules.component';
           (onClick)="offerDialog = false" /><p-button
           ariaLabel="Guardar oferta"
           label="Guardar oferta"
-          icon="pi pi-check"
+          icon="pos-icon pos-icon-check"
           (onClick)="saveOffer()" /></ng-template
     ></p-dialog>`,
 })

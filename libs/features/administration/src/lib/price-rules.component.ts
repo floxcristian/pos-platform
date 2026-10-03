@@ -35,7 +35,12 @@ import { FeedbackService } from './feedback.service';
             alcanzada.
           </p>
         </div>
-        <p-button ariaLabel="Nueva condición" label="Nueva condición" icon="pi pi-plus" (onClick)="edit()" />
+        <p-button
+          ariaLabel="Nueva condición"
+          label="Nueva condición"
+          icon="pos-icon pos-icon-plus"
+          (onClick)="edit()"
+        />
       </div>
       <div class="pos-panel overflow-hidden">
         <p-table
@@ -66,7 +71,7 @@ import { FeedbackService } from './feedback.service';
                 <p-button
                   ariaLabel="Editar condición"
                   label="Editar"
-                  icon="pi pi-pencil"
+                  icon="pos-icon pos-icon-pencil"
                   severity="secondary"
                   (onClick)="edit(rule)"
                 />
@@ -155,7 +160,7 @@ import { FeedbackService } from './feedback.service';
           (onClick)="dialog = false" /><p-button
           label="Guardar condición"
           ariaLabel="Guardar condición"
-          icon="pi pi-check"
+          icon="pos-icon pos-icon-check"
           (onClick)="save()" /></ng-template
     ></p-dialog>`,
 })

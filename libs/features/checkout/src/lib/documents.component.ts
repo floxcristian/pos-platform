@@ -51,12 +51,12 @@ import {
       <p-button
         label="Exportar"
         ariaLabel="Exportar"
-        icon="pi pi-download"
+        icon="pos-icon pos-icon-download-simple"
         severity="secondary"
         (onClick)="export()"
         [disabled]="!store.can('reports', 'reports')"
       />
-      <a pButton routerLink="/venta" icon="pi pi-plus">Nueva venta</a>
+      <a pButton routerLink="/venta" icon="pos-icon pos-icon-plus">Nueva venta</a>
     </pos-page-header>
     @if (error()) {
       <p-message severity="error" class="block mb-4">{{ error() }}</p-message>
@@ -161,7 +161,7 @@ import {
                   <p-button
                     posTooltip
                     posTooltipPosition="left"
-                    icon="pi pi-arrow-right"
+                    icon="pos-icon pos-icon-arrow-right"
                     severity="secondary"
                     [text]="true"
                     [ariaLabel]="'Ver ' + sale.number"
@@ -238,7 +238,7 @@ import {
           <p-button
             label="Reimprimir"
             ariaLabel="Reimprimir"
-            icon="pi pi-print"
+            icon="pos-icon pos-icon-printer"
             severity="secondary"
             (onClick)="print(sale.id)"
             [disabled]="!store.can('sell', 'sales')"
@@ -247,7 +247,7 @@ import {
             <p-button
               label="Reintentar emisión"
               ariaLabel="Reintentar emisión"
-              icon="pi pi-refresh"
+              icon="pos-icon pos-icon-arrow-clockwise"
               severity="secondary"
               [loading]="retrying()"
               (onClick)="retry(sale.id)"
@@ -258,7 +258,7 @@ import {
             <p-button
               label="Conciliar pago"
               ariaLabel="Conciliar pago"
-              icon="pi pi-check-square"
+              icon="pos-icon pos-icon-check-square"
               (onClick)="reconcileVisible.set(true)"
             />
           }

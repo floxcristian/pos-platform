@@ -57,21 +57,21 @@ import {
       <p-button
         label="Exportar cartola"
         ariaLabel="Exportar cartola"
-        icon="pi pi-download"
+        icon="pos-icon pos-icon-download-simple"
         severity="secondary"
         (onClick)="export()"
         [disabled]="!customerId()"
       /><p-button
         label="Plan de cuotas"
         ariaLabel="Plan de cuotas"
-        icon="pi pi-calendar"
+        icon="pos-icon pos-icon-calendar"
         severity="secondary"
         (onClick)="beginAgreement()"
         [disabled]="!customerId() || !store.can('collect', 'collections')"
       /><p-button
         label="Nuevo anticipo"
         ariaLabel="Nuevo anticipo"
-        icon="pi pi-plus"
+        icon="pos-icon pos-icon-plus"
         (onClick)="beginAdvance()"
         [disabled]="!customerId() || !store.can('collect', 'collections')"
       />
@@ -185,7 +185,7 @@ import {
                   <p-button
                     label="Abonar"
                     ariaLabel="Abonar"
-                    icon="pi pi-wallet"
+                    icon="pos-icon pos-icon-wallet"
                     size="small"
                     severity="secondary"
                     (onClick)="beginCollection(debt)"
@@ -242,7 +242,7 @@ import {
                 <td class="p-3">
                   <p-button
                     posTooltip
-                    icon="pi pi-file"
+                    icon="pos-icon pos-icon-file"
                     severity="secondary"
                     [text]="true"
                     ariaLabel="Ver comprobante de abono"
@@ -458,7 +458,7 @@ import {
           (onClick)="dialogVisible.set(false)" /><p-button
           label="Confirmar abono"
           ariaLabel="Confirmar abono"
-          icon="pi pi-check"
+          icon="pos-icon pos-icon-check"
           (onClick)="pay()"
       /></ng-template>
     </p-dialog>
@@ -506,7 +506,7 @@ import {
         ><p-button
           label="Descargar comprobante"
           ariaLabel="Descargar comprobante"
-          icon="pi pi-download"
+          icon="pos-icon pos-icon-download-simple"
           severity="secondary"
           (onClick)="exportReceipt()" /><p-button
           label="Listo"

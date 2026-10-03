@@ -21,7 +21,7 @@ export class FeedbackService {
     this.confirmations.confirm({
       message,
       header,
-      icon: 'pi pi-exclamation-triangle',
+      icon: 'pos-icon pos-icon-warning',
       rejectLabel: 'Cancelar',
       acceptLabel: 'Confirmar',
       rejectButtonProps: { severity: 'secondary' },

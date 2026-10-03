@@ -28,20 +28,20 @@ function check(template: string, tooltips = false) {
 
 describe('contratos de botones PrimeNG', () => {
   it.each([
-    '<p-button icon="pi pi-search" ariaLabel="Buscar" />',
+    '<p-button icon="pos-icon pos-icon-magnifying-glass" ariaLabel="Buscar" />',
     '<p-button [icon]="icon()" [ariaLabel]="label()" />',
-    '<button pButton aria-label="Cerrar"><i class="pi pi-times"></i></button>',
+    '<button pButton aria-label="Cerrar"><i class="pos-icon pos-icon-x"></i></button>',
     '<button aria-label="Cerrar"><svg aria-hidden="true"></svg><span class="sr-only">Cerrar</span></button>',
   ])('impide iconos sin ayuda visible: %s', (template) => {
     expect(check(template, true).map((message) => message.ruleId)).toEqual(['pos-ui/icon-button-tooltip']);
   });
 
   it.each([
-    '<p-button posTooltip icon="pi pi-search" ariaLabel="Buscar" />',
+    '<p-button posTooltip icon="pos-icon pos-icon-magnifying-glass" ariaLabel="Buscar" />',
     '<button [posTooltip]="help()" aria-label="Cerrar"><svg></svg></button>',
-    '<p-button icon="pi pi-plus" label="Crear" />',
-    '<p-button icon="pi pi-plus" [label]="caption()" />',
-    '<button><i class="pi pi-plus"></i> Crear</button>',
+    '<p-button icon="pos-icon pos-icon-plus" label="Crear" />',
+    '<p-button icon="pos-icon pos-icon-plus" [label]="caption()" />',
+    '<button><i class="pos-icon pos-icon-plus"></i> Crear</button>',
   ])('conserva tooltips y etiquetas visibles: %s', (template) => {
     expect(check(template, true)).toEqual([]);
   });
@@ -64,7 +64,7 @@ describe('contratos de botones PrimeNG', () => {
     '<p-button [severity]="\'secondary\'" label="Guardar" [outlined]="true" />',
     '<button pButton type="button" severity="secondary" outlined>Exportar</button>',
     '<a pButton href="/reportes" severity="secondary" variant="outlined">Reportes</a>',
-    '<p-button severity="secondary" [variant]="\'outlined\'" icon="pi pi-plus" />',
+    '<p-button severity="secondary" [variant]="\'outlined\'" icon="pos-icon pos-icon-plus" />',
   ])('impide secundarios outlined: %s', (template) => {
     expect(check(template).map((message) => message.ruleId)).toEqual(['pos-ui/no-secondary-outlined-button']);
   });
@@ -86,10 +86,10 @@ describe('contratos de botones PrimeNG', () => {
     '<p-button severity="secondary" [outlined]="false" label="Guardar" />',
     '<p-button severity="secondary" outlined="false" label="Guardar" />',
     '<p-button severity="secondary" [text]="false" label="Guardar" />',
-    '<p-button severity="secondary" text icon="pi pi-search" ariaLabel="Buscar" />',
-    '<button pButton type="button" severity="secondary" text aria-label="Buscar"><i class="pi pi-search"></i></button>',
-    '<button pButton type="button" severity="secondary" text><i class="pi pi-search"></i><span class="sr-only">Buscar</span></button>',
-    '<p-button severity="secondary" text [label]="\'\'" icon="pi pi-search" />',
+    '<p-button severity="secondary" text icon="pos-icon pos-icon-magnifying-glass" ariaLabel="Buscar" />',
+    '<button pButton type="button" severity="secondary" text aria-label="Buscar"><i class="pos-icon pos-icon-magnifying-glass"></i></button>',
+    '<button pButton type="button" severity="secondary" text><i class="pos-icon pos-icon-magnifying-glass"></i><span class="sr-only">Buscar</span></button>',
+    '<p-button severity="secondary" text [label]="\'\'" icon="pos-icon pos-icon-magnifying-glass" />',
     '<p-button severity="danger" label="Eliminar" outlined />',
     '<p-button label="Cancelar" class="p-button-tonal" />',
     '<button type="button" severity="secondary" outlined>Sin directiva PrimeNG</button>',

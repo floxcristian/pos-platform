@@ -43,12 +43,12 @@ import {
         ><p-button
           ariaLabel="Exportar vista"
           label="Exportar vista"
-          icon="pi pi-download"
+          icon="pos-icon pos-icon-download-simple"
           severity="secondary"
           (onClick)="export()" /><p-button
           ariaLabel="Descargar diagnóstico"
           label="Descargar diagnóstico"
-          icon="pi pi-file-export"
+          icon="pos-icon pos-icon-file-arrow-up"
           severity="secondary"
           (onClick)="diagnostics()"
       /></pos-page-header>
@@ -128,7 +128,7 @@ import {
                   <p-button
                     posTooltip
                     posTooltipPosition="left"
-                    icon="pi pi-search"
+                    icon="pos-icon pos-icon-magnifying-glass"
                     [text]="true"
                     severity="secondary"
                     [ariaLabel]="'Detalle del evento ' + log.id"
@@ -209,7 +209,7 @@ import {
             <p-button
               ariaLabel="Ver eventos relacionados"
               label="Ver eventos relacionados"
-              icon="pi pi-filter"
+              icon="pos-icon pos-icon-funnel"
               severity="secondary"
               (onClick)="correlate()"
             />

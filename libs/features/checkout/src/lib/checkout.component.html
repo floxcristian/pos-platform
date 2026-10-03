@@ -6,14 +6,14 @@
   <p-button
     label="Cargar orden de venta"
     ariaLabel="Cargar orden de venta"
-    icon="pi pi-file-import"
+    icon="pos-icon pos-icon-file-arrow-down"
     severity="secondary"
     (onClick)="ordersVisible.set(true); error.set('')"
   />
   <p-button
     label="Ventas pausadas"
     ariaLabel="Ventas pausadas"
-    icon="pi pi-pause"
+    icon="pos-icon pos-icon-pause"
     severity="secondary"
     (onClick)="heldVisible.set(true)"
     [badge]="store.snapshot().heldSales.length.toString()"
@@ -78,7 +78,7 @@
           >
             <div class="flex justify-between gap-3 mb-2">
               <span class="text-xs font-medium text-muted-color">{{ product.sku }}</span
-              ><i class="pi pi-plus text-primary" aria-hidden="true"></i>
+              ><i class="pos-icon pos-icon-plus text-primary" aria-hidden="true"></i>
             </div>
             <p class="text-sm font-semibold leading-5 min-h-10">{{ product.name }}</p>
             <div class="flex justify-between items-end gap-2 mt-3">
@@ -105,7 +105,7 @@
         <p-button
           label="Pausar"
           ariaLabel="Pausar"
-          icon="pi pi-pause"
+          icon="pos-icon pos-icon-pause"
           severity="secondary"
           size="small"
           (onClick)="hold()"
@@ -166,7 +166,7 @@
                   <td class="p-2">
                     <p-button
                       posTooltip
-                      icon="pi pi-trash"
+                      icon="pos-icon pos-icon-trash"
                       severity="secondary"
                       [text]="true"
                       [rounded]="true"
@@ -234,7 +234,7 @@
       <p-button
         label="Crear cliente express"
         ariaLabel="Crear cliente express"
-        icon="pi pi-user-plus"
+        icon="pos-icon pos-icon-user-plus"
         severity="secondary"
         size="small"
         [disabled]="!!loadedOrder()?.locked || !store.can('sell', 'sales')"
@@ -303,7 +303,7 @@
         /><p-button
           label="Aplicar a productos incluidos"
           ariaLabel="Aplicar a productos incluidos"
-          icon="pi pi-tag"
+          icon="pos-icon pos-icon-tag"
           severity="secondary"
           size="small"
           (onClick)="applyOffer()"
@@ -347,7 +347,7 @@
       <p-button
         [label]="'Cobrar ' + money(total())"
         [ariaLabel]="'Cobrar ' + money(total())"
-        icon="pi pi-arrow-right"
+        icon="pos-icon pos-icon-arrow-right"
         iconPos="right"
         class="block"
         styleClass="w-full"
@@ -378,7 +378,7 @@
         <p-button
           label="Retomar venta"
           ariaLabel="Retomar venta"
-          icon="pi pi-play"
+          icon="pos-icon pos-icon-play"
           size="small"
           class="block mt-3"
           (onClick)="resume(held.id)"
@@ -421,13 +421,14 @@
         </p>
         @if (order.locked) {
           <p class="text-xs text-muted-color mt-2">
-            <i class="pi pi-lock mr-1" aria-hidden="true"></i>Condiciones comerciales protegidas
+            <i class="pos-icon pos-icon-lock-key mr-1" aria-hidden="true"></i>Condiciones comerciales
+            protegidas
           </p>
         }
         <p-button
           label="Cargar esta orden"
           ariaLabel="Cargar esta orden"
-          icon="pi pi-arrow-right"
+          icon="pos-icon pos-icon-arrow-right"
           size="small"
           class="block mt-4"
           (onClick)="loadOrder(order.id)"
@@ -704,7 +705,7 @@
       <p-button
         label="Agregar pago"
         ariaLabel="Agregar pago"
-        icon="pi pi-plus"
+        icon="pos-icon pos-icon-plus"
         [outlined]="true"
         (onClick)="addPayment()"
         [disabled]="!remaining()"
@@ -722,7 +723,7 @@
             <strong class="tabular-nums ml-auto">{{ money(payment.amount) }}</strong
             ><p-button
               posTooltip
-              icon="pi pi-times"
+              icon="pos-icon pos-icon-x"
               [text]="true"
               severity="secondary"
               [ariaLabel]="'Quitar pago ' + ($index + 1)"
@@ -802,7 +803,7 @@
       (onClick)="paying.set(false)" /><p-button
       label="Confirmar venta"
       ariaLabel="Confirmar venta"
-      icon="pi pi-check"
+      icon="pos-icon pos-icon-check"
       (onClick)="finish()"
       [disabled]="remaining() > 0 || !payments().length"
   /></ng-template>
@@ -872,7 +873,7 @@
     ><p-button
       label="Imprimir comprobante"
       ariaLabel="Imprimir comprobante"
-      icon="pi pi-print"
+      icon="pos-icon pos-icon-printer"
       severity="secondary"
       (onClick)="print()" /><p-button
       label="Nueva venta"
@@ -961,7 +962,7 @@
       (onClick)="customerVisible.set(false)" /><p-button
       label="Crear y seleccionar"
       ariaLabel="Crear y seleccionar"
-      icon="pi pi-check"
+      icon="pos-icon pos-icon-check"
       (onClick)="createCustomer()"
   /></ng-template>
 </p-dialog>

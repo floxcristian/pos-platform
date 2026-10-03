@@ -55,7 +55,7 @@ import { FeedbackService } from './feedback.service';
         <p-button
           ariaLabel="Ejecutar flujos habilitados"
           label="Ejecutar flujos habilitados"
-          icon="pi pi-sync"
+          icon="pos-icon pos-icon-arrows-clockwise"
           [loading]="runningAll()"
           [disabled]="!store.snapshot().online"
           (onClick)="runAll()"
@@ -167,14 +167,14 @@ import { FeedbackService } from './feedback.service';
                   <div class="flex gap-2">
                     <p-button
                       posTooltip
-                      icon="pi pi-play"
+                      icon="pos-icon pos-icon-play"
                       severity="secondary"
                       [ariaLabel]="'Ejecutar ' + job.name"
                       [disabled]="!store.snapshot().online || job.status === 'running'"
                       (onClick)="run(job)"
                     /><p-button
                       ariaLabel="Programar"
-                      icon="pi pi-calendar-clock"
+                      icon="pos-icon pos-icon-calendar-dots"
                       label="Programar"
                       severity="secondary"
                       (onClick)="edit(job)"
@@ -232,7 +232,7 @@ import { FeedbackService } from './feedback.service';
                   <p-button
                     ariaLabel="Reintentar"
                     label="Reintentar"
-                    icon="pi pi-refresh"
+                    icon="pos-icon pos-icon-arrow-clockwise"
                     severity="secondary"
                     [disabled]="
                       event.status === 'sent' || event.status === 'processing' || !store.snapshot().online
@@ -255,7 +255,7 @@ import { FeedbackService } from './feedback.service';
           <p-button
             ariaLabel="Exportar historial"
             label="Exportar historial"
-            icon="pi pi-download"
+            icon="pos-icon pos-icon-download-simple"
             severity="secondary"
             (onClick)="exportHistory()"
           />
@@ -381,7 +381,7 @@ import { FeedbackService } from './feedback.service';
           (onClick)="dialog = false" /><p-button
           ariaLabel="Guardar programación"
           label="Guardar programación"
-          icon="pi pi-check"
+          icon="pos-icon pos-icon-check"
           (onClick)="save()"
       /></ng-template>
     </p-dialog>`,

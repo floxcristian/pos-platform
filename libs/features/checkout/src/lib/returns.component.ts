@@ -43,7 +43,7 @@ import {
       ><p-button
         label="Nueva nota de crédito"
         ariaLabel="Nueva nota de crédito"
-        icon="pi pi-plus"
+        icon="pos-icon pos-icon-plus"
         (onClick)="createVisible.set(true)"
         [disabled]="!store.can('refund', 'returns')"
     /></pos-page-header>
@@ -249,7 +249,7 @@ import {
           (onClick)="createVisible.set(false)" /><p-button
           label="Emitir nota de crédito"
           ariaLabel="Emitir nota de crédito"
-          icon="pi pi-check"
+          icon="pos-icon pos-icon-check"
           (onClick)="issue()"
           [disabled]="!returnTotal() || !reason()"
       /></ng-template>
@@ -335,7 +335,7 @@ import {
           <p-button
             label="Descargar comprobante"
             ariaLabel="Descargar comprobante"
-            icon="pi pi-download"
+            icon="pos-icon pos-icon-download-simple"
             severity="secondary"
             (onClick)="exportNote()"
           />
@@ -343,7 +343,7 @@ import {
             <p-button
               label="Emitir documento fiscal"
               ariaLabel="Emitir documento fiscal"
-              icon="pi pi-file-check"
+              icon="pos-icon pos-icon-file-text"
               severity="secondary"
               [loading]="issuingFiscal()"
               (onClick)="emitFiscal()"
@@ -353,7 +353,7 @@ import {
           <p-button
             label="Devolver dinero"
             ariaLabel="Devolver dinero"
-            icon="pi pi-wallet"
+            icon="pos-icon pos-icon-wallet"
             (onClick)="refundVisible.set(true)"
             [disabled]="
               note.fiscalStatus !== 'issued' ||

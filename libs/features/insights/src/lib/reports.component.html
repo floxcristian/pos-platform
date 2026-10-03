@@ -5,7 +5,7 @@
   ><p-button
     label="Exportar CSV"
     ariaLabel="Exportar CSV"
-    icon="pi pi-download"
+    icon="pos-icon pos-icon-download-simple"
     [disabled]="!rows().length || !!rangeError()"
     (onClick)="export()"
 /></pos-page-header>
@@ -79,7 +79,7 @@
       <p-button
         label="Limpiar filtros"
         ariaLabel="Limpiar filtros"
-        icon="pi pi-filter-slash"
+        icon="pos-icon pos-icon-funnel-x"
         severity="secondary"
         (onClick)="resetFilters()"
         styleClass="w-full"
@@ -204,7 +204,7 @@
           <p-button
             posTooltip
             posTooltipPosition="left"
-            icon="pi pi-eye"
+            icon="pos-icon pos-icon-eye"
             [text]="true"
             [ariaLabel]="'Ver detalle de ' + row.reference"
             (onClick)="selected.set(row)"

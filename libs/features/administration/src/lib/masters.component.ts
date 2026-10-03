@@ -46,7 +46,7 @@ import { FeedbackService } from './feedback.service';
         ><p-button
           ariaLabel="Exportar"
           label="Exportar"
-          icon="pi pi-download"
+          icon="pos-icon pos-icon-download-simple"
           severity="secondary"
           (onClick)="export()" /><p-button
           [ariaLabel]="
@@ -55,7 +55,7 @@ import { FeedbackService } from './feedback.service';
           [label]="
             tab === 'products' ? 'Nuevo producto' : tab === 'customers' ? 'Nuevo cliente' : 'Nuevo registro'
           "
-          icon="pi pi-plus"
+          icon="pos-icon pos-icon-plus"
           (onClick)="create()"
       /></pos-page-header>
       <div class="pos-filter">
@@ -81,8 +81,8 @@ import { FeedbackService } from './feedback.service';
       </div>
       @if (tab === 'products') {
         <div class="flex items-center gap-2 text-sm text-muted-color">
-          <i class="pi pi-info-circle" aria-hidden="true"></i>El stock es de consulta. La caja no administra
-          existencias.
+          <i class="pos-icon pos-icon-info" aria-hidden="true"></i>El stock es de consulta. La caja no
+          administra existencias.
         </div>
         <div class="pos-panel overflow-hidden">
           <p-table
@@ -118,7 +118,7 @@ import { FeedbackService } from './feedback.service';
                   <p-button
                     ariaLabel="Editar"
                     label="Editar"
-                    icon="pi pi-pencil"
+                    icon="pos-icon pos-icon-pencil"
                     severity="secondary"
                     (onClick)="editProduct(product)"
                   />
@@ -173,7 +173,7 @@ import { FeedbackService } from './feedback.service';
                   <p-button
                     ariaLabel="Editar"
                     label="Editar"
-                    icon="pi pi-pencil"
+                    icon="pos-icon pos-icon-pencil"
                     severity="secondary"
                     (onClick)="editCustomer(customer)"
                   />
@@ -219,7 +219,7 @@ import { FeedbackService } from './feedback.service';
                   <p-button
                     ariaLabel="Editar"
                     label="Editar"
-                    icon="pi pi-pencil"
+                    icon="pos-icon pos-icon-pencil"
                     severity="secondary"
                     (onClick)="editReference(item)"
                   />
@@ -385,7 +385,7 @@ import { FeedbackService } from './feedback.service';
           (onClick)="dialog = false" /><p-button
           ariaLabel="Guardar"
           label="Guardar"
-          icon="pi pi-check"
+          icon="pos-icon pos-icon-check"
           (onClick)="save()"
       /></ng-template>
     </p-dialog>`,

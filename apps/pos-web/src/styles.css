@@ -1,6 +1,6 @@
 @import '@fontsource-variable/inter';
 @import '@angular/cdk/overlay-prebuilt.css';
-@import 'primeicons/primeicons.css';
+@import '../../../libs/ui/src/lib/compact-icons.css';
 @import 'tailwindcss' source(none);
 @source './app';
 @source '../../../libs';

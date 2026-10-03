@@ -34,7 +34,11 @@ import { FeedbackService } from './feedback.service';
         eyebrow="Administración"
         heading="Usuarios y permisos"
         subtitle="Perfiles y sucursales asignadas para separar operación, supervisión y auditoría."
-        ><p-button ariaLabel="Nuevo usuario" label="Nuevo usuario" icon="pi pi-user-plus" (onClick)="edit()"
+        ><p-button
+          ariaLabel="Nuevo usuario"
+          label="Nuevo usuario"
+          icon="pos-icon pos-icon-user-plus"
+          (onClick)="edit()"
       /></pos-page-header>
       <div class="pos-filter">
         <div class="pos-segments">
@@ -85,7 +89,7 @@ import { FeedbackService } from './feedback.service';
                   <p-button
                     ariaLabel="Editar"
                     label="Editar"
-                    icon="pi pi-pencil"
+                    icon="pos-icon pos-icon-pencil"
                     severity="secondary"
                     (onClick)="edit(user)"
                   />

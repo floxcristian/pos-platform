@@ -31,7 +31,11 @@ import { FeedbackService } from './feedback.service';
         eyebrow="Administración"
         heading="Sucursales y cajas"
         subtitle="Organiza la red comercial y el alcance de cada puesto de trabajo."
-        ><p-button ariaLabel="Nueva sucursal" label="Nueva sucursal" icon="pi pi-plus" (onClick)="edit()"
+        ><p-button
+          ariaLabel="Nueva sucursal"
+          label="Nueva sucursal"
+          icon="pos-icon pos-icon-plus"
+          (onClick)="edit()"
       /></pos-page-header>
       <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
         @for (branch of store.snapshot().branches; track branch.id) {
@@ -68,7 +72,7 @@ import { FeedbackService } from './feedback.service';
               <p-button
                 ariaLabel="Editar"
                 label="Editar"
-                icon="pi pi-pencil"
+                icon="pos-icon pos-icon-pencil"
                 severity="secondary"
                 (onClick)="edit(branch)"
               />

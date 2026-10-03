@@ -132,7 +132,7 @@ import { FeedbackService } from './feedback.service';
           /><p-button
             ariaLabel="Guardar políticas"
             label="Guardar políticas"
-            icon="pi pi-check"
+            icon="pos-icon pos-icon-check"
             (onClick)="save()"
           />
         </div>
@@ -182,7 +182,7 @@ import { FeedbackService } from './feedback.service';
           /><p-button
             ariaLabel="Guardar empresa"
             label="Guardar empresa"
-            icon="pi pi-check"
+            icon="pos-icon pos-icon-check"
             (onClick)="save()"
           />
         </div>
@@ -213,7 +213,7 @@ import { FeedbackService } from './feedback.service';
           <p-button
             ariaLabel="Restablecer demostración"
             label="Restablecer demostración"
-            icon="pi pi-refresh"
+            icon="pos-icon pos-icon-arrow-clockwise"
             severity="danger"
             [outlined]="true"
             (onClick)="reset()"

@@ -74,8 +74,11 @@ for (const theme of ['light', 'dark'] as const) {
     await page.goto('/#/reportes');
     const detail = page.getByRole('button', { name: /Ver detalle de/ }).first();
     await expectTooltip(page, detail, (await detail.getAttribute('aria-label')) as string);
+    const detailTooltipId = await tooltip.getAttribute('id');
     await detail.click();
-    await expect(tooltip).toHaveCount(0);
+    // The dialog autofocus may show a new Close tooltip. Verify cleanup of the clicked action itself.
+    await expect(page.locator(`#${detailTooltipId}`)).toHaveCount(0);
+    await expect(detail).not.toHaveAttribute('aria-describedby');
     await page.getByRole('dialog').locator('.p-dialog-close-button').click();
     await expectTooltip(page, page.locator('.p-paginator-next'), 'Página siguiente');
     await page.locator('.p-paginator-next').click();

@@ -4,13 +4,14 @@
   subtitle="Ventas, estado de la caja y pendientes que requieren atención."
 >
   @if (store.can('sell', 'sales')) {
-    <p-button label="Nueva venta" ariaLabel="Nueva venta" icon="pi pi-plus" routerLink="/venta" />
+    <p-button label="Nueva venta" ariaLabel="Nueva venta" icon="pos-icon pos-icon-plus" routerLink="/venta" />
   }
 </pos-page-header>
 
 <div class="flex flex-wrap items-end justify-between gap-3 mb-6">
   <p class="text-sm text-muted-color flex items-center gap-2">
-    <i class="pi pi-calendar" aria-hidden="true"></i>Información de la operación guardada en esta demo
+    <i class="pos-icon pos-icon-calendar" aria-hidden="true"></i>Información de la operación guardada en esta
+    demo
   </p>
   <div class="flex flex-wrap gap-3">
     <div>
@@ -153,7 +154,7 @@
         <a
           routerLink="/caja"
           class="pos-inline-action inline-flex gap-2 items-center text-sm font-medium mt-3"
-          >Ver caja <i class="pi pi-arrow-right text-xs" aria-hidden="true"></i
+          >Ver caja <i class="pos-icon pos-icon-arrow-right text-xs" aria-hidden="true"></i
         ></a>
       }
     </div>
@@ -172,7 +173,7 @@
         <a
           routerLink="/documentos"
           class="pos-inline-action inline-flex gap-2 items-center text-sm font-medium mt-3"
-          >Revisar documentos <i class="pi pi-arrow-right text-xs" aria-hidden="true"></i
+          >Revisar documentos <i class="pos-icon pos-icon-arrow-right text-xs" aria-hidden="true"></i
         ></a>
       }
     </div>
@@ -191,7 +192,7 @@
         <a
           routerLink="/sincronizacion"
           class="pos-inline-action inline-flex gap-2 items-center text-sm font-medium mt-3"
-          >Ver sincronización <i class="pi pi-arrow-right text-xs" aria-hidden="true"></i
+          >Ver sincronización <i class="pos-icon pos-icon-arrow-right text-xs" aria-hidden="true"></i
         ></a>
       }
     </div>
@@ -206,7 +207,7 @@
       <h2 class="font-semibold text-lg">Últimas ventas</h2>
       @if (store.can('sell', 'sales')) {
         <a routerLink="/documentos" class="pos-inline-action text-sm font-medium"
-          >Ver todas <i class="pi pi-arrow-right ml-1 text-xs" aria-hidden="true"></i
+          >Ver todas <i class="pos-icon pos-icon-arrow-right ml-1 text-xs" aria-hidden="true"></i
         ></a>
       }
     </div>
@@ -267,7 +268,7 @@
     <div class="flex items-center justify-between gap-3 mb-3">
       <h2 class="font-semibold text-lg">Requieren atención</h2>
       <a routerLink="/actividad" class="pos-inline-action text-sm"
-        >Ir a actividad <i class="pi pi-arrow-right ml-1 text-xs" aria-hidden="true"></i
+        >Ir a actividad <i class="pos-icon pos-icon-arrow-right ml-1 text-xs" aria-hidden="true"></i
       ></a>
     </div>
     @for (alert of alerts(); track alert.id) {
