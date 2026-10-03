@@ -19,36 +19,51 @@ export function validateSchedule(schedule: SyncSchedule): Result<SyncSchedule> {
     return failure('La programación usa la zona America/Santiago.');
   return success(schedule);
 }
-function zonedParts(date: Date, timezone: string): { weekday: number; time: string } {
-  const values = new Intl.DateTimeFormat('en-US', {
-    timeZone: timezone,
-    weekday: 'short',
-    hour: '2-digit',
-    minute: '2-digit',
-    hourCycle: 'h23',
-  }).formatToParts(date);
+function zonedParts(
+  date: Date,
+  formatter: Intl.DateTimeFormat,
+): { weekday: number; time: string; day: string } {
+  const values = formatter.formatToParts(date);
   const find = (key: Intl.DateTimeFormatPartTypes): string =>
     values.find((part) => part.type === key)?.value ?? '';
   return {
     weekday: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(find('weekday')),
     time: `${find('hour')}:${find('minute')}`,
+    day: `${find('year')}-${find('month')}-${find('day')}`,
   };
 }
 /** The mock scheduler only runs while the app is open. UTC iteration handles DST gaps and folds. */
 export function nextScheduledRun(schedule: SyncSchedule, after: Date): string | null {
   if (!schedule.enabled || schedule.mode === 'manual' || !validateSchedule(schedule).ok) return null;
+  const formatter = new Intl.DateTimeFormat('en-US', {
+    timeZone: schedule.timezone,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    weekday: 'short',
+    hour: '2-digit',
+    minute: '2-digit',
+    hourCycle: 'h23',
+  });
+  const seenDays = new Set<string>();
   const start =
     schedule.mode === 'interval'
       ? after.getTime() + schedule.intervalMinutes * 60000
-      : Math.floor(after.getTime() / 60000) * 60000 + 60000;
-  for (let minute = 0; minute < 15 * 24 * 60; minute++) {
+      : // Include the preceding day to recognize the first occurrence of a repeated local hour.
+        Math.floor(after.getTime() / 60000) * 60000 - 24 * 60 * 60000;
+  for (let minute = 0; minute < 16 * 24 * 60; minute++) {
     const candidate = new Date(start + minute * 60000);
-    const parts = zonedParts(candidate, schedule.timezone);
+    const parts = zonedParts(candidate, formatter);
     if (
       schedule.weekdays.includes(parts.weekday) &&
       (schedule.mode === 'interval' || parts.time === schedule.time)
-    )
-      return candidate.toISOString();
+    ) {
+      if (schedule.mode === 'daily') {
+        if (seenDays.has(parts.day)) continue;
+        seenDays.add(parts.day);
+      }
+      if (candidate.getTime() > after.getTime()) return candidate.toISOString();
+    }
   }
   return null;
 }

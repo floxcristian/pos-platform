@@ -211,6 +211,7 @@ export function createFixtures(now = new Date()): PosSnapshot {
     customers,
     sales,
     heldSales: [],
+    activeDraft: null,
     session: {
       id: sessionId,
       openedAt: iso(now, 0, -3),

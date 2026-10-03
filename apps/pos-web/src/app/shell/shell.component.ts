@@ -20,7 +20,7 @@ import { ToggleSwitchModule } from 'primeng/toggleswitch';
 import { TooltipModule } from 'primeng/tooltip';
 import { PosStore } from '@corporate-pos/data-access';
 import type { Role } from '@corporate-pos/domain';
-import { dateTime, StatusTagComponent } from '@corporate-pos/ui';
+import { dateTime, StatusTagComponent, ThemeService, type ThemeMode } from '@corporate-pos/ui';
 import { NAV_GROUPS, NavItem } from './navigation';
 
 interface SearchResult {
@@ -56,17 +56,18 @@ export class ShellComponent {
   private readonly router = inject(Router);
   private readonly document = inject(DOCUMENT);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly theme = inject(ThemeService);
   readonly mobileOpen = signal(false);
   readonly searchOpen = signal(false);
   readonly notificationsOpen = signal(false);
   readonly profileOpen = signal(false);
   readonly query = signal('');
-  readonly dark = computed(
-    () =>
-      this.store.snapshot().settings.theme === 'dark' ||
-      (this.store.snapshot().settings.theme === 'system' &&
-        window.matchMedia('(prefers-color-scheme: dark)').matches),
-  );
+  readonly dark = this.theme.dark;
+  readonly themes: { label: string; value: ThemeMode }[] = [
+    { label: 'Claro', value: 'light' },
+    { label: 'Oscuro', value: 'dark' },
+    { label: 'Sistema', value: 'system' },
+  ];
   readonly currentUrl = signal(this.router.url);
   readonly searchInputId = 'global-search-input';
   readonly roles: { label: string; value: Role }[] = [
@@ -166,7 +167,7 @@ export class ShellComponent {
       }
     });
     effect(() => {
-      this.document.documentElement.classList.toggle('p-dark', this.dark());
+      this.theme.setMode(this.store.snapshot().settings.theme);
     });
     effect(() => {
       const item = this.activeItem();
@@ -201,6 +202,9 @@ export class ShellComponent {
   }
   toggleTheme(): void {
     this.store.setTheme(this.dark() ? 'light' : 'dark');
+  }
+  changeTheme(mode: ThemeMode): void {
+    this.store.setTheme(mode);
   }
   onShortcut(event: KeyboardEvent): void {
     if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') {

@@ -5,6 +5,34 @@ describe('versioned mock persistence', () => {
   it('round-trips a typed fixture', () => {
     expect(decodeSnapshot(JSON.stringify(createFixtures())).ok).toBe(true);
   });
+  it('loads earlier v1 drafts and credit-note settlements without discarding other operations', () => {
+    const fixture = createFixtures();
+    const legacy = JSON.parse(JSON.stringify(fixture));
+    delete legacy.activeDraft;
+    legacy.creditNotes = [
+      {
+        id: 'legacy-nc',
+        number: 'NC-legacy',
+        saleId: fixture.sales[2].id,
+        amount: 1000,
+        reason: 'Devolución demo',
+        lineQuantities: {},
+        createdAt: new Date().toISOString(),
+        fiscalStatus: 'issued',
+        refundMethod: 'cuenta',
+        refundedAmount: 1000,
+        refundedAt: new Date().toISOString(),
+        appliedAmount: 0,
+      },
+    ];
+    const loaded = decodeSnapshot(JSON.stringify(legacy));
+    expect(loaded.ok && loaded.value.sales).toHaveLength(fixture.sales.length);
+    expect(loaded.ok && loaded.value.activeDraft).toBeNull();
+    expect(loaded.ok && loaded.value.creditNotes[0]).toMatchObject({
+      debtOffsetAmount: 1000,
+      refundPaymentAmount: 0,
+    });
+  });
   it('round-trips a scheduler audit identity without granting a system login role', () => {
     const fixture = createFixtures();
     fixture.audit[0].role = 'system';

@@ -41,13 +41,11 @@ import {
           label="Exportar vista"
           icon="pi pi-download"
           severity="secondary"
-          [outlined]="true"
           (onClick)="export()" /><p-button
           ariaLabel="Descargar diagnóstico"
           label="Descargar diagnóstico"
           icon="pi pi-file-export"
           severity="secondary"
-          [outlined]="true"
           (onClick)="diagnostics()"
       /></pos-page-header>
       <div class="grid gap-4 sm:grid-cols-3">
@@ -69,14 +67,16 @@ import {
         />
       </div>
       <div class="pos-filter">
-        <p-selectbutton
-          [options]="tabs"
-          optionLabel="label"
-          optionValue="value"
-          [(ngModel)]="tab"
-          [allowEmpty]="false"
-          ariaLabel="Registro de actividad"
-        />
+        <div class="pos-segments">
+          <p-selectbutton
+            [options]="tabs"
+            optionLabel="label"
+            optionValue="value"
+            [(ngModel)]="tab"
+            [allowEmpty]="false"
+            ariaLabel="Registro de actividad"
+          />
+        </div>
         <div class="flex-1"></div>
         @if (tab === 'logs') {
           <label class="sr-only" for="log-level">Nivel</label
@@ -190,7 +190,6 @@ import {
               label="Ver eventos relacionados"
               icon="pi pi-filter"
               severity="secondary"
-              [outlined]="true"
               (onClick)="correlate()"
             />
           }

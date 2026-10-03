@@ -2,6 +2,7 @@ const eslint = require('@eslint/js');
 const tseslint = require('typescript-eslint');
 const angular = require('angular-eslint');
 const nx = require('@nx/eslint-plugin');
+const posUi = require('./tools/eslint/pos-ui-contracts.cjs');
 
 module.exports = tseslint.config(
   { ignores: ['dist/**', 'node_modules/**', '.nx/**', 'coverage/**', '**/target/**'] },
@@ -29,7 +30,11 @@ module.exports = tseslint.config(
               sourceTag: 'type:app',
               onlyDependOnLibsWithTags: ['type:feature', 'type:domain', 'type:data-access', 'type:ui'],
             },
-            { sourceTag: 'type:domain', onlyDependOnLibsWithTags: ['type:domain'] },
+            {
+              sourceTag: 'type:domain',
+              onlyDependOnLibsWithTags: ['type:domain'],
+              allowedExternalImports: ['vitest'],
+            },
             { sourceTag: 'type:data-access', onlyDependOnLibsWithTags: ['type:domain', 'type:data-access'] },
             { sourceTag: 'type:ui', onlyDependOnLibsWithTags: ['type:ui', 'type:domain'] },
             {
@@ -44,5 +49,10 @@ module.exports = tseslint.config(
   {
     files: ['**/*.html'],
     extends: [...angular.configs.templateRecommended, ...angular.configs.templateAccessibility],
+    plugins: { 'pos-ui': posUi },
+    rules: {
+      'pos-ui/no-secondary-outlined-button': 'error',
+      'pos-ui/no-labeled-secondary-text-button': 'error',
+    },
   },
 );

@@ -1,6 +1,7 @@
 import { DestroyRef, Injectable, computed, inject, signal } from '@angular/core';
 import {
   Agreement,
+  ActiveSaleDraft,
   AgreementInput,
   AppUpdate,
   AuditIdentity,
@@ -11,6 +12,8 @@ import {
   CheckoutInput,
   Collection,
   CreditNote,
+  CreditNoteRefundQuote,
+  CreditNoteApplicationQuote,
   Customer,
   CustodyDeposit,
   Device,
@@ -60,6 +63,8 @@ import {
   collectInstallmentTransaction,
   issueCreditNoteTransaction,
   refundCreditNoteTransaction,
+  quoteCreditNoteRefundTransaction,
+  quoteCreditNoteApplicationTransaction,
   quoteTransaction,
 } from './transactions';
 import {
@@ -116,16 +121,7 @@ export class PosStore {
       ): Result<T> => this.commit(draft, value, action, entity, action, identity),
       log: (draft, source, message, correlationId, level) =>
         this.log(draft, source, message, correlationId, level),
-      publish: (draft) => {
-        const saved = this.repository.save(draft);
-        if (!saved.ok) {
-          this.persistenceError.set(saved.error);
-          return saved;
-        }
-        this.persistenceError.set(null);
-        this.state.set(freeze(draft));
-        return success(undefined);
-      },
+      publish: (draft) => this.publish(draft),
     },
     this.simulation,
   );
@@ -189,6 +185,16 @@ export class PosStore {
   }
   private auditIdentity(): AuditIdentity {
     return { actor: this.context().actor, role: this.snapshot().role };
+  }
+  private publish(draft: PosSnapshot): Result<void> {
+    const saved = this.repository.save(draft);
+    if (!saved.ok) {
+      this.persistenceError.set(saved.error);
+      return saved;
+    }
+    this.persistenceError.set(null);
+    this.state.set(freeze(draft));
+    return success(undefined);
   }
   private commit<T>(
     draft: PosSnapshot,
@@ -369,6 +375,44 @@ export class PosStore {
       checkoutTransaction(draft, input, context),
     );
   }
+  saveActiveDraft(input: Omit<ActiveSaleDraft, 'updatedAt'>): Result<ActiveSaleDraft | null> {
+    if (!this.can('sell', 'sales')) return failure('No tienes permiso para guardar un borrador de venta.');
+    if (!['boleta', 'factura'].includes(input.documentType)) return failure('Selecciona boleta o factura.');
+    if (input.lines.length) {
+      const valid = calculateTotals(input.lines, this.snapshot().products);
+      if (!valid.ok) return valid;
+    }
+    if (input.customerId && !this.snapshot().customers.some((customer) => customer.id === input.customerId))
+      return failure('El cliente no existe.');
+    const metadata: SaleMetadata = {};
+    for (const key of ['orderReference', 'deliveryMode', 'deliveryAddress', 'contact', 'coupon'] as const) {
+      const value = input.metadata[key];
+      if (value !== undefined) {
+        if (typeof value !== 'string' || value.length > 2000)
+          return failure('Revisa los datos del borrador.');
+        Object.assign(metadata, { [key]: value });
+      }
+    }
+    if (metadata.deliveryMode && !['pickup', 'delivery'].includes(metadata.deliveryMode))
+      return failure('El modo de entrega no es válido.');
+    const activeDraft: ActiveSaleDraft = {
+      lines: input.lines.map(({ productId, quantity, discount }) => ({ productId, quantity, discount })),
+      customerId: input.customerId,
+      documentType: input.documentType,
+      metadata,
+      updatedAt: this.context().now,
+    };
+    const draft = structuredClone(this.snapshot());
+    draft.activeDraft = activeDraft;
+    const saved = this.publish(draft);
+    return saved.ok ? success(activeDraft) : saved;
+  }
+  clearActiveDraft(): Result<void> {
+    if (!this.can('sell', 'sales')) return failure('No tienes permiso para descartar el borrador.');
+    const draft = structuredClone(this.snapshot());
+    draft.activeDraft = null;
+    return this.publish(draft);
+  }
   holdSale(
     lines: CartLine[],
     customerId: string | null,
@@ -391,14 +435,22 @@ export class PosStore {
         metadata: structuredClone(metadata),
       };
       draft.heldSales.unshift(held);
+      draft.activeDraft = null;
       return success(held);
     });
   }
   resumeSale(id: string): Result<HeldSale> {
-    return this.command('sell', 'sales', 'sale.resumed', id, (draft) => {
+    return this.command('sell', 'sales', 'sale.resumed', id, (draft, context) => {
       const held = draft.heldSales.find((item) => item.id === id);
       if (!held) return failure('La venta en espera no existe.');
       draft.heldSales = draft.heldSales.filter((item) => item.id !== id);
+      draft.activeDraft = {
+        lines: structuredClone(held.lines),
+        customerId: held.customerId,
+        documentType: held.documentType,
+        metadata: structuredClone(held.metadata),
+        updatedAt: context.now,
+      };
       return success(held);
     });
   }
@@ -502,9 +554,26 @@ export class PosStore {
     );
   }
   refundCreditNote(id: string, method: PaymentMethod): Result<CreditNote> {
-    return this.command('refund', 'returns', 'credit-note.refunded', id, (draft, context) =>
-      refundCreditNoteTransaction(draft, id, method, context),
-    );
+    return this.command('refund', 'returns', 'credit-note.refunded', id, (draft, context) => {
+      const result = refundCreditNoteTransaction(draft, id, method, context);
+      if (result.ok)
+        this.log(
+          draft,
+          'returns',
+          `NC ${result.value.number}: deuda compensada ${result.value.debtOffsetAmount} CLP; dinero devuelto ${result.value.refundPaymentAmount} CLP (${method}); importe nominal saldado ${result.value.refundedAmount} CLP.`,
+          id,
+        );
+      return result;
+    });
+  }
+  quoteCreditNoteRefund(id: string, method: PaymentMethod): Result<CreditNoteRefundQuote> {
+    if (!this.can('refund', 'returns')) return failure('No tienes permiso para reembolsar notas de crédito.');
+    return quoteCreditNoteRefundTransaction(this.snapshot(), id, method);
+  }
+  quoteCreditNoteApplication(id: string, customerId: string | null): Result<CreditNoteApplicationQuote> {
+    if (!this.can('sell', 'sales') || !this.isEnabled('creditNotePayment'))
+      return failure('El pago con nota de crédito está deshabilitado.');
+    return quoteCreditNoteApplicationTransaction(this.snapshot(), id, customerId);
   }
   resolvePayment(saleId: string, outcome: 'confirmed' | 'failed'): Result<Sale> {
     return this.command('refund', 'sales', 'payment.reconciled', saleId, (draft) => {
@@ -749,10 +818,11 @@ export class PosStore {
   }
   resetDemo(): Result<void> {
     if (!this.can('configure')) return failure('Solo un administrador puede reiniciar la demostración.');
-    this.generation++;
     const fresh = createFixtures(this.simulation.now());
     fresh.syncJobs.forEach((job) => (job.nextRun = nextScheduledRun(job.schedule, this.simulation.now())));
-    return this.commit(fresh, undefined, 'demo.reset', 'workspace');
+    const result = this.commit(fresh, undefined, 'demo.reset', 'workspace');
+    if (result.ok) this.generation++;
+    return result;
   }
 
   runSync(id: string): Promise<Result<SyncRun>> {

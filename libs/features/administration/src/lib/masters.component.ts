@@ -40,7 +40,6 @@ import { FeedbackService } from './feedback.service';
           label="Exportar"
           icon="pi pi-download"
           severity="secondary"
-          [outlined]="true"
           (onClick)="export()" /><p-button
           [ariaLabel]="
             tab === 'products' ? 'Nuevo producto' : tab === 'customers' ? 'Nuevo cliente' : 'Nuevo registro'
@@ -52,14 +51,16 @@ import { FeedbackService } from './feedback.service';
           (onClick)="create()"
       /></pos-page-header>
       <div class="pos-filter">
-        <p-selectbutton
-          [options]="tabs"
-          optionLabel="label"
-          optionValue="value"
-          [(ngModel)]="tab"
-          [allowEmpty]="false"
-          ariaLabel="Maestros"
-        />
+        <div class="pos-segments">
+          <p-selectbutton
+            [options]="tabs"
+            optionLabel="label"
+            optionValue="value"
+            [(ngModel)]="tab"
+            [allowEmpty]="false"
+            ariaLabel="Maestros"
+          />
+        </div>
         <div class="flex-1"></div>
         <label class="sr-only" for="master-search">Buscar registros</label
         ><input
@@ -110,7 +111,6 @@ import { FeedbackService } from './feedback.service';
                     label="Editar"
                     icon="pi pi-pencil"
                     severity="secondary"
-                    [text]="true"
                     (onClick)="editProduct(product)"
                   />
                 </td></tr></ng-template
@@ -162,7 +162,6 @@ import { FeedbackService } from './feedback.service';
                     label="Editar"
                     icon="pi pi-pencil"
                     severity="secondary"
-                    [text]="true"
                     (onClick)="editCustomer(customer)"
                   />
                 </td></tr></ng-template
@@ -208,7 +207,6 @@ import { FeedbackService } from './feedback.service';
                     label="Editar"
                     icon="pi pi-pencil"
                     severity="secondary"
-                    [text]="true"
                     (onClick)="editReference(item)"
                   />
                 </td></tr></ng-template
@@ -367,7 +365,6 @@ import { FeedbackService } from './feedback.service';
           ariaLabel="Cancelar"
           label="Cancelar"
           severity="secondary"
-          [outlined]="true"
           (onClick)="dialog = false" /><p-button
           ariaLabel="Guardar"
           label="Guardar"

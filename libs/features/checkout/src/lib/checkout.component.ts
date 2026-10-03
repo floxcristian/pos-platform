@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  signal,
+  untracked,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
@@ -18,8 +26,16 @@ import {
   Sale,
   PAYMENT_LABELS,
   roundCash,
+  chileCivilDate,
 } from '@corporate-pos/domain';
-import { PageHeaderComponent, StatusTagComponent, money, date, dateTime } from '@corporate-pos/ui';
+import {
+  CivilDateTimeComponent,
+  PageHeaderComponent,
+  StatusTagComponent,
+  money,
+  date,
+  dateTime,
+} from '@corporate-pos/ui';
 
 @Component({
   selector: 'pos-checkout',
@@ -36,21 +52,23 @@ import { PageHeaderComponent, StatusTagComponent, money, date, dateTime } from '
     MessageModule,
     PageHeaderComponent,
     StatusTagComponent,
+    CivilDateTimeComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './checkout.component.html',
 })
 export class CheckoutComponent {
   readonly store = inject(PosStore);
+  private readonly initialDraft = structuredClone(this.store.snapshot().activeDraft);
   readonly money = money;
   readonly date = date;
   readonly dateTime = dateTime;
   readonly paymentLabels = PAYMENT_LABELS;
   readonly query = signal('');
   readonly category = signal('Todas');
-  readonly lines = signal<CartLine[]>([]);
-  readonly customerId = signal<string | null>(null);
-  readonly documentType = signal<DocumentType>('boleta');
+  readonly lines = signal<CartLine[]>(this.initialDraft?.lines ?? []);
+  readonly customerId = signal<string | null>(this.initialDraft?.customerId ?? null);
+  readonly documentType = signal<DocumentType>(this.initialDraft?.documentType ?? 'boleta');
   readonly error = signal('');
   readonly feedback = signal('');
   readonly paying = signal(false);
@@ -65,13 +83,13 @@ export class CheckoutComponent {
   readonly customerAddress = signal('');
   readonly customerCity = signal('');
   readonly customerBusiness = signal('');
-  readonly deliveryMode = signal<'pickup' | 'delivery'>('pickup');
-  readonly deliveryAddress = signal('');
-  readonly deliveryContact = signal('');
-  readonly orderReference = signal('');
+  readonly deliveryMode = signal<'pickup' | 'delivery'>(this.initialDraft?.metadata.deliveryMode ?? 'pickup');
+  readonly deliveryAddress = signal(this.initialDraft?.metadata.deliveryAddress ?? '');
+  readonly deliveryContact = signal(this.initialDraft?.metadata.contact ?? '');
+  readonly orderReference = signal(this.initialDraft?.metadata.orderReference ?? '');
   readonly paymentScenario = signal<'confirmed' | 'unknown' | 'failed'>('confirmed');
   readonly offerId = signal('');
-  readonly appliedOffer = signal('');
+  readonly appliedOffer = signal(this.initialDraft?.metadata.coupon ?? '');
   readonly ordersVisible = signal(false);
   readonly orderSearch = signal('');
   readonly loadedOrder = computed(() =>
@@ -95,7 +113,7 @@ export class CheckoutComponent {
   readonly plazaId = signal('');
   readonly chequeNumber = signal('');
   readonly accountNumber = signal('');
-  readonly chequeDate = signal(new Date().toISOString().slice(0, 10));
+  readonly chequeDate = signal(chileCivilDate());
   readonly issuerName = signal('');
   readonly issuerRut = signal('');
   readonly holderName = signal('');
@@ -178,15 +196,17 @@ export class CheckoutComponent {
       .map(([value, label]) => ({ value, label })),
   );
   readonly creditNotes = computed(() =>
-    this.store
-      .snapshot()
-      .creditNotes.filter(
-        (item) => item.fiscalStatus === 'issued' && item.amount > item.refundedAmount + item.appliedAmount,
-      )
-      .map((item) => ({
-        id: item.id,
-        label: `${item.number} · Saldo ${money(item.amount - item.refundedAmount - item.appliedAmount)}`,
-      })),
+    this.store.snapshot().creditNotes.flatMap((item) => {
+      const quote = this.store.quoteCreditNoteApplication(item.id, this.customerId());
+      return quote.ok && quote.value.availableAmount > 0
+        ? [
+            {
+              id: item.id,
+              label: `${item.number} · Saldo utilizable ${money(quote.value.availableAmount)}`,
+            },
+          ]
+        : [];
+    }),
   );
   readonly advances = computed(() =>
     this.store
@@ -220,12 +240,41 @@ export class CheckoutComponent {
       .snapshot()
       .offers.filter(
         (item) =>
-          item.active &&
-          item.startsAt.slice(0, 10) <= new Date().toISOString().slice(0, 10) &&
-          item.endsAt.slice(0, 10) >= new Date().toISOString().slice(0, 10),
+          item.active && Date.parse(item.startsAt) <= Date.now() && Date.parse(item.endsAt) >= Date.now(),
       ),
   );
   private operationKey = crypto.randomUUID();
+
+  constructor() {
+    effect(() => {
+      const draft = {
+        lines: this.lines(),
+        customerId: this.customerId(),
+        documentType: this.documentType(),
+        metadata: {
+          orderReference: this.orderReference(),
+          deliveryMode: this.deliveryMode(),
+          deliveryAddress: this.deliveryAddress(),
+          contact: this.deliveryContact(),
+          coupon: this.appliedOffer(),
+        },
+      };
+      const empty =
+        !draft.lines.length &&
+        !draft.customerId &&
+        draft.documentType === 'boleta' &&
+        draft.metadata.deliveryMode === 'pickup' &&
+        !draft.metadata.orderReference &&
+        !draft.metadata.deliveryAddress &&
+        !draft.metadata.contact &&
+        !draft.metadata.coupon;
+      untracked(() => {
+        if (empty && !this.store.snapshot().activeDraft) return;
+        const result = empty ? this.store.clearActiveDraft() : this.store.saveActiveDraft(draft);
+        if (!result.ok) this.error.set(result.error);
+      });
+    });
+  }
 
   product(id: string): Product | undefined {
     return this.store.snapshot().products.find((item) => item.id === id);

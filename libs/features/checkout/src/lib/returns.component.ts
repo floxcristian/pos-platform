@@ -117,7 +117,6 @@ import {
                     ariaLabel="Ver detalle"
                     size="small"
                     severity="secondary"
-                    [text]="true"
                     (onClick)="selectedNoteId.set(note.id)"
                   />
                 </td>
@@ -145,7 +144,7 @@ import {
         <p-message severity="error" class="block mb-4">{{ error() }}</p-message>
       }
       <label class="block mb-5" for="checkout-returns-1"
-        ><span class="block text-sm font-medium mb-2">Documento original</span
+        ><span class="block font-semibold mb-2">Documento original</span
         ><p-select
           inputId="checkout-returns-1"
           class="w-full"
@@ -216,7 +215,7 @@ import {
       }
       <div class="grid gap-4 sm:grid-cols-2">
         <label for="checkout-returns-2"
-          ><span class="block text-sm font-medium mb-2">Motivo</span
+          ><span class="block font-semibold mb-2">Motivo</span
           ><p-select
             inputId="checkout-returns-2"
             class="w-full"
@@ -228,7 +227,7 @@ import {
             (ngModelChange)="reason.set($event)"
             ariaLabel="Motivo de devolución" /></label
         ><label for="checkout-returns-3"
-          ><span class="block text-sm font-medium mb-2">Detalle adicional</span
+          ><span class="block font-semibold mb-2">Detalle adicional</span
           ><input
             id="checkout-returns-3"
             pInputText
@@ -250,7 +249,6 @@ import {
           label="Cancelar"
           ariaLabel="Cancelar"
           severity="secondary"
-          [text]="true"
           (onClick)="createVisible.set(false)" /><p-button
           label="Emitir nota de crédito"
           ariaLabel="Emitir nota de crédito"
@@ -285,7 +283,21 @@ import {
               <dd class="font-semibold">{{ money(note.amount) }}</dd>
             </div>
             <div class="flex justify-between">
-              <dt>Devuelto</dt>
+              <dt>Deuda compensada</dt>
+              <dd class="font-semibold">{{ money(note.debtOffsetAmount) }}</dd>
+            </div>
+            <div class="flex justify-between">
+              <dt>Dinero devuelto</dt>
+              <dd class="font-semibold">{{ money(note.refundPaymentAmount) }}</dd>
+            </div>
+            @if (note.debtOffsetAmount + note.refundPaymentAmount - note.refundedAmount; as rounding) {
+              <div class="flex justify-between">
+                <dt>Ajuste por redondeo original</dt>
+                <dd>{{ money(rounding) }}</dd>
+              </div>
+            }
+            <div class="flex justify-between">
+              <dt>Saldo de NC liquidado</dt>
               <dd class="font-semibold">{{ money(note.refundedAmount) }}</dd>
             </div>
             <div class="flex justify-between">
@@ -313,9 +325,14 @@ import {
         </div>
         @if (note.refundedAt) {
           <p-message severity="success" class="block mt-5"
-            >Devolución de {{ money(note.refundedAmount) }} registrada por
-            {{ paymentLabels[note.refundMethod] }} el {{ dateTime(note.refundedAt) }}.</p-message
-          >
+            >Liquidación registrada el {{ dateTime(note.refundedAt) }}.
+            @if (note.refundPaymentAmount) {
+              {{ money(note.refundPaymentAmount) }} devueltos por {{ paymentLabels[note.refundMethod] }}.
+            }
+            @if (note.debtOffsetAmount) {
+              {{ money(note.debtOffsetAmount) }} descontados de la deuda del cliente.
+            }
+          </p-message>
         }
         <div class="flex flex-wrap gap-3 mt-6">
           <p-button
@@ -323,7 +340,6 @@ import {
             ariaLabel="Descargar comprobante"
             icon="pi pi-download"
             severity="secondary"
-            [outlined]="true"
             (onClick)="exportNote()"
           />
           @if (note.fiscalStatus !== 'issued') {
@@ -332,7 +348,6 @@ import {
               ariaLabel="Emitir documento fiscal"
               icon="pi pi-file-check"
               severity="secondary"
-              [outlined]="true"
               [loading]="issuingFiscal()"
               (onClick)="emitFiscal()"
               [disabled]="!store.can('sync', 'sync')"
@@ -360,7 +375,8 @@ import {
       [style]="{ width: '32rem' }"
       [breakpoints]="{ '640px': '95vw' }"
       ><p class="text-muted-color mb-3">
-        Revisa el saldo y el medio de devolución. Esta acción registra el pago de la NC existente.
+        Primero se descuenta la deuda pendiente de esta venta. Solo el resto se devuelve por el medio elegido,
+        hasta el importe efectivamente pagado.
       </p>
       <p class="text-3xl font-semibold mb-5">
         {{
@@ -372,7 +388,7 @@ import {
         }}
       </p>
       <label for="checkout-returns-4"
-        ><span class="block text-sm font-medium mb-2">Medio de devolución</span
+        ><span class="block font-semibold mb-2">Medio de devolución</span
         ><p-select
           inputId="checkout-returns-4"
           class="w-full"
@@ -381,16 +397,39 @@ import {
           optionValue="value"
           [ngModel]="refundMethod()"
           (ngModelChange)="refundMethod.set($event)"
-          ariaLabel="Medio de devolución de dinero" /></label
-      ><ng-template #footer
+          ariaLabel="Medio de devolución de dinero"
+      /></label>
+      @if (refundQuote(); as quote) {
+        @if (quote.ok) {
+          <dl class="space-y-3 mt-5 rounded-xl bg-surface-50 dark:bg-surface-900 p-4">
+            <div class="flex justify-between gap-4">
+              <dt>Deuda a compensar</dt>
+              <dd class="font-semibold">{{ money(quote.value.debtOffsetAmount) }}</dd>
+            </div>
+            <div class="flex justify-between gap-4">
+              <dt>Dinero a devolver</dt>
+              <dd class="font-semibold">{{ money(quote.value.refundPaymentAmount) }}</dd>
+            </div>
+            @if (quote.value.roundingAdjustment) {
+              <div class="flex justify-between gap-4">
+                <dt>Ajuste por redondeo original</dt>
+                <dd>{{ money(quote.value.roundingAdjustment) }}</dd>
+              </div>
+            }
+          </dl>
+        } @else {
+          <p-message severity="error" class="block mt-4">{{ quote.error }}</p-message>
+        }
+      }
+      <ng-template #footer
         ><p-button
           label="Cancelar"
           ariaLabel="Cancelar"
           severity="secondary"
-          [text]="true"
           (onClick)="refundVisible.set(false)" /><p-button
           label="Confirmar devolución"
           ariaLabel="Confirmar devolución"
+          [disabled]="!refundQuote()?.ok"
           (onClick)="refund()" /></ng-template
     ></p-dialog>
   `,
@@ -419,6 +458,10 @@ export class ReturnsComponent {
   readonly reason = signal('');
   readonly reasonDetail = signal('');
   readonly refundMethod = signal<PaymentMethod>('efectivo');
+  readonly refundQuote = computed(() => {
+    const id = this.selectedNoteId();
+    return id && this.refundVisible() ? this.store.quoteCreditNoteRefund(id, this.refundMethod()) : null;
+  });
   readonly reasons = computed(() =>
     this.store.snapshot().referenceCatalogs.returnReason.filter((item) => item.active),
   );
@@ -578,7 +621,13 @@ export class ReturnsComponent {
       ['Fecha', note.createdAt],
       ['Motivo', note.reason],
       ['Monto', note.amount],
-      ['Devuelto', note.refundedAmount],
+      ['Saldo NC liquidado', note.refundedAmount],
+      ['Deuda compensada', note.debtOffsetAmount],
+      ['Dinero devuelto', note.refundPaymentAmount],
+      [
+        'Ajuste por redondeo original',
+        note.debtOffsetAmount + note.refundPaymentAmount - note.refundedAmount,
+      ],
       ['Medio', PAYMENT_LABELS[note.refundMethod]],
       [],
       ['Producto', 'Cantidad'],

@@ -37,6 +37,14 @@ export interface SyncHost {
   ): void;
 }
 export class MockSyncEngine {
+  private readonly pendingJobRecovery = new Map<
+    string,
+    { runId: string; generation: number; identity: AuditIdentity; error: string }
+  >();
+  private readonly pendingEventRecovery = new Map<
+    string,
+    { generation: number; identity: AuditIdentity; error: string }
+  >();
   constructor(
     private readonly host: SyncHost,
     private readonly simulation: SimulationPort,
@@ -48,6 +56,8 @@ export class MockSyncEngine {
     if (trigger === 'manual' && !this.host.can('sync', 'sync'))
       return failure('No tienes permiso para ejecutar sincronizaciones.');
     if (!this.host.isEnabled('sync')) return failure('El módulo de sincronización está deshabilitado.');
+    const recovered = this.recoverPending();
+    if (!recovered.ok) return recovered;
     if (!this.host.snapshot().online) return failure('Conecta la caja para ejecutar la sincronización.');
     const job = this.host.snapshot().syncJobs.find((item) => item.id === id);
     if (!job || job.status === 'running') return failure('La tarea no existe o ya está en ejecución.');
@@ -99,6 +109,7 @@ export class MockSyncEngine {
       current.progress = progress;
       const saved = this.host.publish(progressState);
       if (!saved.ok) {
+        this.pendingJobRecovery.set(id, { runId: run.id, generation, identity, error: saved.error });
         return saved;
       }
     }
@@ -171,6 +182,13 @@ export class MockSyncEngine {
     run.records = records;
     this.host.log(draft, id, error ?? `${records} registros procesados.`, runId, error ? 'error' : 'info');
     const saved = this.host.commit(draft, run, error ? 'sync.failed' : 'sync.completed', id, identity);
+    if (!saved.ok)
+      this.pendingJobRecovery.set(id, {
+        runId,
+        generation: this.host.generation(),
+        identity,
+        error: saved.error,
+      });
     return !saved.ok ? saved : error ? failure(error) : saved;
   }
   private deliverEvent(draft: PosSnapshot, event: OutboxEvent, now: string): void {
@@ -205,6 +223,8 @@ export class MockSyncEngine {
     module: ModuleId,
   ): Promise<Result<OutboxEvent>> {
     if (!this.host.can(permission, module)) return failure('No tienes permiso para reenviar eventos.');
+    const recovered = this.recoverPending();
+    if (!recovered.ok) return recovered;
     if (!this.host.snapshot().online) return failure('Conecta la caja para reenviar eventos.');
     const event = this.host.snapshot().outbox.find((item) => item.id === id);
     if (!event) return failure('El evento no existe.');
@@ -249,7 +269,54 @@ export class MockSyncEngine {
       id,
       identity,
     );
+    if (!result.ok) this.pendingEventRecovery.set(id, { generation, identity, error: result.error });
     return !result.ok ? result : error ? failure(error) : result;
+  }
+  /** Terminal state is retried after storage recovers; no unsaved snapshot is published. */
+  private recoverPending(): Result<void> {
+    for (const [id, recovery] of this.pendingJobRecovery) {
+      if (recovery.generation !== this.host.generation()) {
+        this.pendingJobRecovery.delete(id);
+        continue;
+      }
+      const draft = structuredClone(this.host.snapshot());
+      const job = draft.syncJobs.find((item) => item.id === id),
+        run = draft.syncRuns.find((item) => item.id === recovery.runId);
+      if (!job || !run) {
+        this.pendingJobRecovery.delete(id);
+        continue;
+      }
+      const error = `La ejecución se interrumpió al guardar: ${recovery.error}`;
+      job.status = 'failed';
+      job.progress = 0;
+      job.lastError = error;
+      run.status = 'failed';
+      run.error = error;
+      run.finishedAt = this.simulation.now().toISOString();
+      this.host.log(draft, 'persistence', error, run.id, 'error');
+      const saved = this.host.commit(draft, undefined, 'sync.persistence.recovered', id, recovery.identity);
+      if (!saved.ok) return saved;
+      this.pendingJobRecovery.delete(id);
+    }
+    for (const [id, recovery] of this.pendingEventRecovery) {
+      if (recovery.generation !== this.host.generation()) {
+        this.pendingEventRecovery.delete(id);
+        continue;
+      }
+      const draft = structuredClone(this.host.snapshot()),
+        event = draft.outbox.find((item) => item.id === id);
+      if (!event) {
+        this.pendingEventRecovery.delete(id);
+        continue;
+      }
+      const error = `El envío se interrumpió al guardar: ${recovery.error}`;
+      this.failEvent(draft, event, error);
+      this.host.log(draft, 'persistence', error, event.id, 'error');
+      const saved = this.host.commit(draft, undefined, 'outbox.persistence.recovered', id, recovery.identity);
+      if (!saved.ok) return saved;
+      this.pendingEventRecovery.delete(id);
+    }
+    return success(undefined);
   }
   async retryFiscal(saleId: string): Promise<Result<Sale>> {
     if (!this.host.can('sell', 'sales')) return failure('No tienes permiso para emitir documentos.');
@@ -268,6 +335,7 @@ export class MockSyncEngine {
     return current ? success(current) : failure('El documento ya no existe.');
   }
   tickSchedules(): void {
+    if (!this.recoverPending().ok) return;
     if (!this.host.snapshot().online || !this.host.isEnabled('sync')) return;
     const now = this.simulation.now().getTime();
     for (const job of this.host.snapshot().syncJobs)

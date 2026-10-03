@@ -10,13 +10,16 @@ import {
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { SelectModule } from 'primeng/select';
+import { SelectButtonModule } from 'primeng/selectbutton';
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { ChartModule } from 'primeng/chart';
 import { InputTextModule } from 'primeng/inputtext';
 import { PosStore } from '@corporate-pos/data-access';
 import {
+  CivilDateTimeComponent,
   PageHeaderComponent,
+  ThemeService,
   MetricCardComponent,
   StatusTagComponent,
   money,
@@ -51,9 +54,11 @@ interface ReportRow {
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    CivilDateTimeComponent,
     FormsModule,
     ButtonModule,
     SelectModule,
+    SelectButtonModule,
     TableModule,
     DialogModule,
     ChartModule,
@@ -65,6 +70,7 @@ interface ReportRow {
   templateUrl: './reports.component.html',
 })
 export class ReportsComponent {
+  readonly theme = inject(ThemeService);
   readonly store = inject(PosStore);
   readonly reportType = signal<ReportType>('sales');
   readonly from = signal(daysAgo(29));
@@ -244,7 +250,9 @@ export class ReportsComponent {
           { label: 'Motivo', value: note.reason },
           { label: 'Medio de reembolso', value: PAYMENT_LABELS[note.refundMethod] },
           { label: 'Importe de la nota', value: money(note.amount) },
-          { label: 'Reembolsado', value: money(note.refundedAmount) },
+          { label: 'Deuda compensada', value: money(note.debtOffsetAmount) },
+          { label: 'Dinero devuelto', value: money(note.refundPaymentAmount) },
+          { label: 'Saldo de NC liquidado', value: money(note.refundedAmount) },
           { label: 'Aplicado a otra venta', value: money(note.appliedAmount) },
           {
             label: 'Saldo disponible',
@@ -340,12 +348,12 @@ export class ReportsComponent {
   readonly branchName = (id: string): string => branchName(this.store.snapshot().branches, id);
   constructor() {
     afterNextRender(() => {
-      this.palette.set(chartPalette(this.store.snapshot().settings.theme));
+      this.palette.set(chartPalette(this.theme.resolvedTheme()));
       this.chartOptions.set(chartOptions(true));
       this.chartReady.set(true);
     });
     effect(() => {
-      const theme = this.store.snapshot().settings.theme;
+      const theme = this.theme.resolvedTheme();
       if (this.chartReady())
         requestAnimationFrame(() => {
           this.palette.set(chartPalette(theme));

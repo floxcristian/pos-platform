@@ -36,14 +36,16 @@ import { FeedbackService } from './feedback.service';
       subtitle="Activa capacidades y define las políticas de esta empresa y sucursal."
     />
     <div class="pos-filter">
-      <p-selectbutton
-        [options]="tabs"
-        optionLabel="label"
-        optionValue="value"
-        [(ngModel)]="tab"
-        [allowEmpty]="false"
-        ariaLabel="Configuración"
-      />
+      <div class="pos-segments">
+        <p-selectbutton
+          [options]="tabs"
+          optionLabel="label"
+          optionValue="value"
+          [(ngModel)]="tab"
+          [allowEmpty]="false"
+          ariaLabel="Configuración"
+        />
+      </div>
     </div>
     @if (tab === 'modules') {
       <div class="flex flex-wrap items-center justify-between gap-3">
@@ -76,7 +78,7 @@ import { FeedbackService } from './feedback.service';
       }
     }
     @if (tab === 'policies') {
-      <section class="pos-panel p-6 max-w-4xl">
+      <section class="pos-panel pos-form-panel p-6 max-w-4xl">
         <h2 class="font-semibold text-lg mb-5">Políticas de operación</h2>
         <div class="pos-form-grid">
           <div class="pos-field">
@@ -126,7 +128,6 @@ import { FeedbackService } from './feedback.service';
             ariaLabel="Restablecer cambios"
             label="Restablecer cambios"
             severity="secondary"
-            [outlined]="true"
             (onClick)="reload()"
           /><p-button
             ariaLabel="Guardar políticas"
@@ -177,7 +178,6 @@ import { FeedbackService } from './feedback.service';
             ariaLabel="Restablecer cambios"
             label="Restablecer cambios"
             severity="secondary"
-            [outlined]="true"
             (onClick)="reload()"
           /><p-button
             ariaLabel="Guardar empresa"
@@ -279,7 +279,21 @@ export class SettingsComponent {
     this.settings = structuredClone(this.store.snapshot().settings);
   }
   save(): void {
-    this.feedback.result(this.store.updateSettings(this.settings), 'Configuración guardada');
+    const patch: Partial<PosSettings> =
+      this.tab === 'policies'
+        ? {
+            maxDiscountPercent: this.settings.maxDiscountPercent,
+            offlineLimit: this.settings.offlineLimit,
+            autoPrint: this.settings.autoPrint,
+            receiptMessage: this.settings.receiptMessage,
+          }
+        : {
+            companyName: this.settings.companyName,
+            companyRut: this.settings.companyRut,
+            branchId: this.settings.branchId,
+            terminalId: this.settings.terminalId,
+          };
+    this.feedback.result(this.store.updateSettings(patch), 'Configuración guardada');
   }
   reset(): void {
     this.feedback.confirm(

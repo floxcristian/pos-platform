@@ -67,7 +67,6 @@ import { FeedbackService } from './feedback.service';
                 label="Editar"
                 icon="pi pi-pencil"
                 severity="secondary"
-                [text]="true"
                 (onClick)="edit(branch)"
               />
             </div>
@@ -130,7 +129,6 @@ import { FeedbackService } from './feedback.service';
           ariaLabel="Cancelar"
           label="Cancelar"
           severity="secondary"
-          [outlined]="true"
           (onClick)="dialog = false" /><p-button
           ariaLabel="Guardar sucursal"
           label="Guardar sucursal"

@@ -24,7 +24,7 @@ export class FeedbackService {
       icon: 'pi pi-exclamation-triangle',
       rejectLabel: 'Cancelar',
       acceptLabel: 'Confirmar',
-      rejectButtonProps: { severity: 'secondary', outlined: true },
+      rejectButtonProps: { severity: 'secondary' },
       accept,
       reject,
     });

@@ -101,7 +101,7 @@ test('NC por producto limita unidades y devuelve dinero una sola vez', async ({ 
     .getByRole('dialog', { name: 'Devolver saldo de nota de crédito' })
     .getByRole('button', { name: 'Confirmar devolución', exact: true })
     .click();
-  await expect(detail.getByText(/Devolución de/)).toBeVisible();
+  await expect(detail.getByText(/Liquidación registrada/)).toBeVisible();
   await expect(detail.getByRole('button', { name: 'Devolver dinero', exact: true })).toBeDisabled();
 });
 
@@ -299,4 +299,48 @@ test('crédito usa el plazo preasignado al cliente y crea un plan sobre la nueva
   await choose(page, 'Cliente para consultar deuda', 'Constructora Ladera Demo');
   await expect(page.getByRole('row').filter({ hasText: number })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Plan de 2 cuotas', exact: true })).toBeVisible();
+});
+
+test('devolver una venta a crédito descuenta deuda y muestra cero dinero a devolver', async ({ page }) => {
+  await page.goto('/#/venta');
+  await addGloves(page);
+  await choose(page, 'Cliente de la venta', 'Constructora Ladera Demo');
+  await page.getByRole('button', { name: /^Cobrar / }).click();
+  await choose(page, 'Medio de pago', 'Crédito cliente');
+  const payment = page.getByRole('dialog', { name: 'Cobrar venta' });
+  await payment.getByRole('button', { name: 'Agregar pago', exact: true }).click();
+  await payment.getByRole('button', { name: 'Confirmar venta', exact: true }).click();
+  const number = await page
+    .getByRole('dialog', { name: 'Venta guardada' })
+    .getByRole('heading', { name: /B-DEMO-/ })
+    .innerText();
+  await page.goto(`/#/documentos?buscar=${encodeURIComponent(number)}`);
+  await page.getByRole('button', { name: number, exact: true }).click();
+  await page.locator('.p-drawer').getByRole('button', { name: 'Reintentar emisión', exact: true }).click();
+  await expect(page.locator('.p-drawer').getByText('Emitido', { exact: true })).toBeVisible();
+  await page.goto('/#/devoluciones');
+  await page.getByRole('button', { name: 'Nueva nota de crédito', exact: true }).click();
+  await page.getByRole('combobox', { name: 'Documento original de la devolución' }).click();
+  await page.getByRole('option').filter({ hasText: number }).click();
+  await page.getByRole('button', { name: 'Seleccionar todo lo disponible', exact: true }).click();
+  await page.getByRole('combobox', { name: 'Motivo de devolución' }).click();
+  await page.getByRole('option').first().click();
+  await page.getByRole('button', { name: 'Emitir nota de crédito', exact: true }).click();
+  const detail = page.locator('.p-drawer').last();
+  await detail.getByRole('button', { name: 'Emitir documento fiscal', exact: true }).click();
+  await expect(detail.getByText('Emitido', { exact: true })).toBeVisible();
+  await detail.getByRole('button', { name: 'Devolver dinero', exact: true }).click();
+  const refund = page.getByRole('dialog', { name: 'Devolver saldo de nota de crédito' });
+  await expect(refund.locator('dl > div').filter({ hasText: 'Dinero a devolver' }).locator('dd')).toHaveText(
+    '$0',
+  );
+  await expect(
+    refund.locator('dl > div').filter({ hasText: 'Deuda a compensar' }).locator('dd'),
+  ).not.toHaveText('$0');
+  await refund.getByRole('button', { name: 'Confirmar devolución', exact: true }).click();
+  await expect(detail.getByText(/descontados de la deuda del cliente/)).toBeVisible();
+  await expect(detail.locator('dl > div').filter({ hasText: 'Dinero devuelto' }).locator('dd')).toHaveText(
+    '$0',
+  );
+  await expect(detail.getByRole('button', { name: 'Devolver dinero', exact: true })).toBeDisabled();
 });

@@ -18,6 +18,36 @@ const IMPLEMENTOS_NEUTRAL = {
 } as const;
 export const AppPreset = definePreset(Aura, {
   components: {
+    togglebutton: {
+      colorScheme: {
+        light: {
+          root: {
+            background: '{surface.200}',
+            hoverBackground: '{surface.200}',
+            checkedBackground: '{surface.200}',
+            borderColor: '{surface.200}',
+            checkedBorderColor: '{surface.200}',
+            color: '{surface.600}',
+          },
+        },
+        dark: {
+          root: {
+            background: '{surface.700}',
+            hoverBackground: '{surface.700}',
+            checkedBackground: '{surface.700}',
+            borderColor: '{surface.700}',
+            checkedBorderColor: '{surface.700}',
+            color: '{surface.300}',
+          },
+        },
+      },
+    },
+    paginator: {
+      colorScheme: {
+        light: { navButton: { selectedBackground: '{primary.100}', selectedColor: '{primary.700}' } },
+        dark: { navButton: { selectedBackground: '{primary.900}', selectedColor: '{primary.100}' } },
+      },
+    },
     button: {
       colorScheme: {
         light: {

@@ -9,8 +9,9 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { DialogModule } from 'primeng/dialog';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
 import { PosStore } from '@corporate-pos/data-access';
-import type { Offer, Product } from '@corporate-pos/domain';
+import { chileCivilDate, type Offer, type Product } from '@corporate-pos/domain';
 import {
+  CivilDateTimeComponent,
   PageHeaderComponent,
   StatusTagComponent,
   money,
@@ -25,6 +26,7 @@ import { PriceRulesComponent } from './price-rules.component';
   selector: 'pos-pricing',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    CivilDateTimeComponent,
     PriceRulesComponent,
     FormsModule,
     ButtonModule,
@@ -48,7 +50,6 @@ import { PriceRulesComponent } from './price-rules.component';
           label="Exportar precios"
           icon="pi pi-download"
           severity="secondary"
-          [outlined]="true"
           (onClick)="export()" /><p-button
           ariaLabel="Nueva oferta"
           label="Nueva oferta"
@@ -56,14 +57,16 @@ import { PriceRulesComponent } from './price-rules.component';
           (onClick)="editOffer()"
       /></pos-page-header>
       <div class="pos-filter">
-        <p-selectbutton
-          [options]="tabs"
-          optionLabel="label"
-          optionValue="value"
-          [(ngModel)]="tab"
-          [allowEmpty]="false"
-          ariaLabel="Precios y promociones"
-        />
+        <div class="pos-segments">
+          <p-selectbutton
+            [options]="tabs"
+            optionLabel="label"
+            optionValue="value"
+            [(ngModel)]="tab"
+            [allowEmpty]="false"
+            ariaLabel="Precios y promociones"
+          />
+        </div>
         <div class="flex-1"></div>
         <label for="pricing-search" class="sr-only">Buscar producto u oferta</label
         ><input pInputText id="pricing-search" placeholder="Buscar…" [(ngModel)]="search" />
@@ -94,7 +97,6 @@ import { PriceRulesComponent } from './price-rules.component';
                     label="Cambiar precio"
                     icon="pi pi-pencil"
                     severity="secondary"
-                    [text]="true"
                     (onClick)="editPrice(product)"
                   />
                 </td></tr></ng-template
@@ -126,7 +128,6 @@ import { PriceRulesComponent } from './price-rules.component';
                   label="Editar oferta"
                   icon="pi pi-pencil"
                   severity="secondary"
-                  [outlined]="true"
                   (onClick)="editOffer(offer)"
                 />
               </div>
@@ -171,7 +172,6 @@ import { PriceRulesComponent } from './price-rules.component';
           ariaLabel="Cancelar"
           label="Cancelar"
           severity="secondary"
-          [outlined]="true"
           (onClick)="priceDialog = false" /><p-button
           ariaLabel="Guardar precio"
           label="Guardar precio"
@@ -209,11 +209,11 @@ import { PriceRulesComponent } from './price-rules.component';
         <div class="pos-form-grid">
           <div class="pos-field">
             <label for="offer-from">Desde *</label
-            ><input pInputText id="offer-from" type="date" [(ngModel)]="startsAt" />
+            ><pos-civil-date-time inputId="offer-from" ariaLabel="Desde" [(ngModel)]="startsAt" />
           </div>
           <div class="pos-field">
             <label for="offer-to">Hasta *</label
-            ><input pInputText id="offer-to" type="date" [(ngModel)]="endsAt" />
+            ><pos-civil-date-time inputId="offer-to" ariaLabel="Hasta" [(ngModel)]="endsAt" />
           </div>
         </div>
         <div class="flex items-center justify-between">
@@ -226,7 +226,6 @@ import { PriceRulesComponent } from './price-rules.component';
           ariaLabel="Cancelar"
           label="Cancelar"
           severity="secondary"
-          [outlined]="true"
           (onClick)="offerDialog = false" /><p-button
           ariaLabel="Guardar oferta"
           label="Guardar oferta"
@@ -304,8 +303,8 @@ export class PricingComponent {
           endsAt: new Date(Date.now() + 7 * 86400000).toISOString(),
           active: true,
         };
-    this.startsAt = this.offer.startsAt.slice(0, 10);
-    this.endsAt = this.offer.endsAt.slice(0, 10);
+    this.startsAt = chileCivilDate(this.offer.startsAt);
+    this.endsAt = chileCivilDate(this.offer.endsAt);
     this.offerDialog = true;
   }
   saveOffer(): void {

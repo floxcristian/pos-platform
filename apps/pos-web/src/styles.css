@@ -9,16 +9,21 @@
   --font-sans: 'Inter Variable', Inter, system-ui, sans-serif;
   --color-accent-50: var(--p-accent-50);
   --color-accent-100: var(--p-accent-100);
+  --color-accent-200: var(--p-accent-200);
+  --color-accent-300: var(--p-accent-300);
   --color-accent-400: var(--p-accent-400);
   --color-accent-500: var(--p-accent-500);
   --color-accent-600: var(--p-accent-600);
   --color-accent-700: var(--p-accent-700);
+  --color-accent-800: var(--p-accent-800);
+  --color-accent-900: var(--p-accent-900);
+  --color-accent-950: var(--p-accent-950);
 }
 html {
   font-family: var(--font-sans);
   color: var(--p-text-color);
   background: var(--p-surface-50);
-  font-size: 14px;
+  font-size: 16px;
 }
 body {
   margin: 0;
@@ -44,34 +49,93 @@ a {
   touch-action: manipulation;
 }
 :focus-visible {
-  outline: 2px solid var(--p-primary-color);
-  outline-offset: 3px;
+  outline: var(--p-focus-ring-width) var(--p-focus-ring-style) var(--p-focus-ring-color);
+  outline-offset: var(--p-focus-ring-offset);
+  box-shadow: var(--p-focus-ring-shadow);
+  transition-property: none;
+}
+[tabindex='-1']:focus-visible {
+  outline: none;
+  box-shadow: none;
 }
 .p-dark {
   color-scheme: dark;
+  --p-focus-ring-shadow: 0 0 0 0.2rem color-mix(in srgb, var(--p-primary-400) 55%, transparent);
 }
 .p-dark body {
   background: var(--p-surface-950);
 }
-.p-button {
-  min-height: 44px;
+p-button {
+  display: inline-block;
 }
-.p-button-icon-only {
-  min-width: 44px;
+.p-button,
+.p-button-label {
+  white-space: nowrap;
 }
-.p-inputtext,
-.p-select,
-.p-inputnumber-input {
-  min-height: 44px;
+.p-badge,
+.p-tag,
+.p-avatar,
+.p-togglebutton-content {
+  line-height: 1;
 }
-.p-paginator button,
-.p-selectbutton .p-togglebutton {
-  min-height: 44px;
-  min-width: 44px;
+.p-tag {
+  flex: none;
+  inline-size: max-content;
 }
-header button,
-nav a {
-  min-height: 44px;
+.p-togglebutton {
+  min-block-size: 2.5rem;
+  white-space: nowrap;
+}
+.pos-segments {
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 0.25rem;
+  margin: -0.25rem;
+}
+.pos-segments .p-selectbutton {
+  width: max-content;
+}
+@media (pointer: coarse) {
+  .p-button-icon-only,
+  .p-togglebutton,
+  .p-paginator-first,
+  .p-paginator-prev,
+  .p-paginator-page,
+  .p-paginator-next,
+  .p-paginator-last,
+  .p-select-dropdown,
+  .p-multiselect-dropdown {
+    min-block-size: 2.75rem;
+    min-inline-size: 2.75rem;
+  }
+}
+.p-dialog-content,
+.p-drawer-content {
+  overscroll-behavior: contain;
+}
+/* Scoped component tokens: dialog secondary actions use the showcase tonal recipe. */
+.p-dialog {
+  --p-button-secondary-background: var(--p-primary-100);
+  --p-button-secondary-hover-background: var(--p-primary-200);
+  --p-button-secondary-active-background: var(--p-primary-300);
+  --p-button-secondary-border-color: var(--p-primary-100);
+  --p-button-secondary-hover-border-color: var(--p-primary-200);
+  --p-button-secondary-active-border-color: var(--p-primary-300);
+  --p-button-secondary-color: var(--p-primary-700);
+  --p-button-secondary-hover-color: var(--p-primary-700);
+  --p-button-secondary-active-color: var(--p-primary-700);
+}
+.p-dark .p-dialog {
+  --p-button-secondary-background: var(--p-primary-900);
+  --p-button-secondary-hover-background: var(--p-primary-800);
+  --p-button-secondary-active-background: var(--p-primary-700);
+  --p-button-secondary-border-color: var(--p-primary-900);
+  --p-button-secondary-hover-border-color: var(--p-primary-800);
+  --p-button-secondary-active-border-color: var(--p-primary-700);
+  --p-button-secondary-color: var(--p-primary-100);
+  --p-button-secondary-hover-color: var(--p-primary-100);
+  --p-button-secondary-active-color: var(--p-primary-100);
 }
 .p-dialog {
   max-width: calc(100vw - 2rem);
@@ -84,7 +148,7 @@ nav a {
 }
 .pos-panel {
   border: 1px solid var(--p-content-border-color);
-  border-radius: 12px;
+  border-radius: 1rem;
   background: var(--p-content-background);
 }
 .pos-field {
@@ -92,8 +156,11 @@ nav a {
   gap: 0.5rem;
   min-width: 0;
 }
+.pos-form-panel {
+  border-radius: 1.5rem;
+}
 .pos-field > label {
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: 600;
 }
 .pos-field small {
@@ -132,9 +199,6 @@ nav a {
 @media (max-width: 640px) {
   .pos-form-grid {
     grid-template-columns: minmax(0, 1fr);
-  }
-  html {
-    font-size: 14px;
   }
 }
 @media (prefers-reduced-motion: reduce) {

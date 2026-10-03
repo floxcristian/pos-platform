@@ -35,4 +35,10 @@ describe('local mock scheduler', () => {
     expect(validateSchedule({ ...schedule, time: '25:00' }).ok).toBe(false);
     expect(validateSchedule({ ...schedule, weekdays: [] }).ok).toBe(false);
   });
+  it('runs a daily job only once on a repeated Santiago local hour', () => {
+    const daily = { ...schedule, mode: 'daily' as const, time: '23:30', weekdays: [6] };
+    expect(nextScheduledRun(daily, new Date('2027-04-04T01:00:00Z'))).toBe('2027-04-04T02:30:00.000Z');
+    expect(nextScheduledRun(daily, new Date('2027-04-04T02:30:00Z'))).toBe('2027-04-11T03:30:00.000Z');
+    expect(nextScheduledRun(daily, new Date('2027-04-04T03:10:00Z'))).toBe('2027-04-11T03:30:00.000Z');
+  });
 });

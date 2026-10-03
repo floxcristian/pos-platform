@@ -4,12 +4,20 @@
   "namedInputs": {
     "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "production": ["default", "!{projectRoot}/**/*.spec.ts", "!{projectRoot}/**/*.test.ts"],
-    "sharedGlobals": ["{workspaceRoot}/tsconfig.base.json", "{workspaceRoot}/package-lock.json"]
+    "sharedGlobals": [
+      "{workspaceRoot}/tsconfig.base.json",
+      "{workspaceRoot}/package.json",
+      "{workspaceRoot}/package-lock.json",
+      "{workspaceRoot}/.postcssrc.json"
+    ]
   },
   "targetDefaults": {
     "build": { "cache": true, "inputs": ["production", "^production"] },
-    "test": { "cache": true, "inputs": ["default", "^production"] },
-    "lint": { "cache": true }
+    "test": { "cache": true, "inputs": ["default", "^production", "{workspaceRoot}/vitest.config.ts"] },
+    "lint": {
+      "cache": true,
+      "inputs": ["default", "{workspaceRoot}/eslint.config.cjs", "{workspaceRoot}/tools/eslint/**/*"]
+    }
   },
   "analytics": false
 }

@@ -8,8 +8,9 @@ import { SelectModule } from 'primeng/select';
 import { DialogModule } from 'primeng/dialog';
 import { MessageModule } from 'primeng/message';
 import { PosStore } from '@corporate-pos/data-access';
-import { CashMovement } from '@corporate-pos/domain';
+import { CashMovement, chileCivilDate } from '@corporate-pos/domain';
 import {
+  CivilDateTimeComponent,
   PageHeaderComponent,
   StatusTagComponent,
   MetricCardComponent,
@@ -23,6 +24,7 @@ import {
   selector: 'pos-cash-session',
   standalone: true,
   imports: [
+    CivilDateTimeComponent,
     FormsModule,
     RouterLink,
     ButtonModule,
@@ -50,7 +52,6 @@ import {
         ariaLabel="Informe de caja"
         icon="pi pi-download"
         severity="secondary"
-        [outlined]="true"
         (onClick)="exportSession()"
         [disabled]="!session()"
       />
@@ -102,7 +103,7 @@ import {
         </div>
         <div class="grid gap-4 sm:grid-cols-2 mt-6">
           <label for="checkout-cash-session-1"
-            ><span class="block text-sm font-medium mb-2">Monto de apertura</span
+            ><span class="block font-semibold mb-2">Monto de apertura</span
             ><p-inputnumber
               inputId="checkout-cash-session-1"
               class="w-full"
@@ -117,7 +118,7 @@ import {
               [maxFractionDigits]="0"
               ariaLabel="Monto de apertura" /></label
           ><label for="checkout-cash-session-2"
-            ><span class="block text-sm font-medium mb-2">Confirmar monto</span
+            ><span class="block font-semibold mb-2">Confirmar monto</span
             ><p-inputnumber
               inputId="checkout-cash-session-2"
               class="w-full"
@@ -149,21 +150,18 @@ import {
           ariaLabel="Ingreso o retiro"
           icon="pi pi-arrow-right-arrow-left"
           severity="secondary"
-          [outlined]="true"
           (onClick)="movementVisible.set(true)"
         /><p-button
           label="Arqueo parcial"
           ariaLabel="Arqueo parcial"
           icon="pi pi-calculator"
           severity="secondary"
-          [outlined]="true"
           (onClick)="beginClose('partial')"
         /><p-button
           label="Cambio de cajero"
           ariaLabel="Cambio de cajero"
           icon="pi pi-users"
           severity="secondary"
-          [outlined]="true"
           (onClick)="beginClose('handover')"
         /><p-button
           label="Cerrar turno"
@@ -293,7 +291,6 @@ import {
                     ariaLabel="Confirmar depósito"
                     size="small"
                     severity="secondary"
-                    [outlined]="true"
                     [disabled]="!!depositFor(movement.id) || !store.can('cash', 'cash')"
                     (onClick)="beginDeposit(movement)"
                   />
@@ -324,7 +321,7 @@ import {
       <p class="text-2xl font-semibold mb-5">{{ money(depositMovement()?.amount ?? 0) }}</p>
       <div class="space-y-4">
         <label class="block" for="custody-bank"
-          ><span class="block text-sm font-medium mb-2">Banco receptor</span
+          ><span class="block font-semibold mb-2">Banco receptor</span
           ><p-select
             inputId="custody-bank"
             class="w-full"
@@ -335,7 +332,7 @@ import {
             (ngModelChange)="depositBank.set($event)"
             ariaLabel="Banco receptor del depósito" /></label
         ><label class="block" for="custody-reference"
-          ><span class="block text-sm font-medium mb-2">Referencia del depósito</span
+          ><span class="block font-semibold mb-2">Referencia del depósito</span
           ><input
             id="custody-reference"
             pInputText
@@ -343,11 +340,10 @@ import {
             [ngModel]="depositReference()"
             (ngModelChange)="depositReference.set($event)" /></label
         ><label class="block" for="custody-date"
-          ><span class="block text-sm font-medium mb-2">Fecha</span
-          ><input
-            id="custody-date"
-            pInputText
-            type="date"
+          ><span class="block font-semibold mb-2">Fecha</span
+          ><pos-civil-date-time
+            inputId="custody-date"
+            ariaLabel="Fecha de depósito"
             class="w-full"
             [ngModel]="depositDate()"
             (ngModelChange)="depositDate.set($event)"
@@ -361,7 +357,6 @@ import {
           label="Cancelar"
           ariaLabel="Cancelar"
           severity="secondary"
-          [text]="true"
           (onClick)="depositVisible.set(false)" /><p-button
           label="Registrar confirmación"
           ariaLabel="Registrar confirmación"
@@ -380,7 +375,7 @@ import {
       }
       <div class="space-y-4">
         <label class="block" for="checkout-cash-session-3"
-          ><span class="block text-sm font-medium mb-2">Tipo</span
+          ><span class="block font-semibold mb-2">Tipo</span
           ><p-select
             inputId="checkout-cash-session-3"
             class="w-full"
@@ -391,7 +386,7 @@ import {
             (ngModelChange)="movementType.set($event)"
             ariaLabel="Tipo de movimiento" /></label
         ><label class="block" for="checkout-cash-session-4"
-          ><span class="block text-sm font-medium mb-2">Monto</span
+          ><span class="block font-semibold mb-2">Monto</span
           ><p-inputnumber
             inputId="checkout-cash-session-4"
             class="w-full"
@@ -406,7 +401,7 @@ import {
             [maxFractionDigits]="0"
             ariaLabel="Monto de movimiento" /></label
         ><label class="block" for="checkout-cash-session-5"
-          ><span class="block text-sm font-medium mb-2">Motivo</span
+          ><span class="block font-semibold mb-2">Motivo</span
           ><input
             id="checkout-cash-session-5"
             pInputText
@@ -420,7 +415,6 @@ import {
         ><p-button
           label="Cancelar"
           ariaLabel="Cancelar"
-          [text]="true"
           severity="secondary"
           (onClick)="movementVisible.set(false)" /><p-button
           label="Registrar movimiento"
@@ -486,7 +480,7 @@ import {
         </div>
       </dl>
       <label class="block" for="checkout-cash-session-7"
-        ><span class="block text-sm font-medium mb-2"
+        ><span class="block font-semibold mb-2"
           >Observación
           {{ counted() !== session()?.expectedAmount ? '(obligatoria con diferencia)' : '(opcional)' }}</span
         ><input
@@ -500,7 +494,6 @@ import {
         ><p-button
           label="Volver"
           ariaLabel="Volver"
-          [text]="true"
           severity="secondary"
           (onClick)="closingVisible.set(false)" /><p-button
           [label]="
@@ -574,7 +567,7 @@ export class CashSessionComponent {
   readonly depositMovement = signal<CashMovement | null>(null);
   readonly depositBank = signal('');
   readonly depositReference = signal('');
-  readonly depositDate = signal(new Date().toISOString().slice(0, 10));
+  readonly depositDate = signal(chileCivilDate());
   depositFor(id: string) {
     return this.store.snapshot().custodyDeposits.find((item) => item.movementId === id);
   }

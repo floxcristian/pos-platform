@@ -72,7 +72,7 @@ npm run desktop:info
 
 Las pruebas cubren políticas, montos, persistencia, permisos, reintentos, calendarios y recorridos de navegador. CI está configurada para compilar y empaquetar la demostración para Windows. Las acciones de CI están fijadas por commit y tienen permisos de lectura.
 
-Validación de la entrega inicial (3 de octubre de 2026): **82 pruebas unitarias y 26 recorridos de navegador pasan**, junto con lint, formato y compilación web de producción. Los recorridos incluyen tamaños de 375 y 1440 px y verificaciones automáticas de accesibilidad del dashboard y reportes en tema claro y oscuro.
+Validación tras la revisión de calidad (3 de octubre de 2026): **144 pruebas de lógica e infraestructura y 37 recorridos de navegador pasan**, junto con lint, formato y compilación web de producción. Los recorridos ejecutan el bundle productivo con la CSP de Tauri, incluyen tamaños de 375 y 1440 px y verifican controles de prime-showcase y accesibilidad del dashboard/reportes en claro y oscuro. El [informe de revisión](docs/quality-review.md) detalla correcciones y condiciones pendientes para producción.
 
 La [ejecución inicial de CI](https://github.com/floxcristian/corporate-pos/actions/runs/37149329820) completó correctamente las validaciones web y el instalador NSIS de Windows. El artefacto `corporate-pos-windows-demo` tiene una retención de siete días; se puede regenerar con `npm run desktop:build`.
 

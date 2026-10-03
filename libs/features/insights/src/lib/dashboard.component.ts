@@ -16,6 +16,7 @@ import { TableModule } from 'primeng/table';
 import { PosStore } from '@corporate-pos/data-access';
 import {
   PageHeaderComponent,
+  ThemeService,
   MetricCardComponent,
   StatusTagComponent,
   money,
@@ -51,6 +52,7 @@ import {
   templateUrl: './dashboard.component.html',
 })
 export class DashboardComponent {
+  readonly theme = inject(ThemeService);
   readonly store = inject(PosStore);
   readonly period = signal(7);
   readonly branchId = signal(this.store.snapshot().settings.branchId);
@@ -230,12 +232,12 @@ export class DashboardComponent {
         this.branchId.set(this.store.snapshot().settings.branchId);
     });
     afterNextRender(() => {
-      this.palette.set(chartPalette(this.store.snapshot().settings.theme));
+      this.palette.set(chartPalette(this.theme.resolvedTheme()));
       this.options.set(chartOptions());
       this.chartReady.set(true);
     });
     effect(() => {
-      const theme = this.store.snapshot().settings.theme;
+      const theme = this.theme.resolvedTheme();
       if (this.chartReady())
         requestAnimationFrame(() => {
           this.palette.set(chartPalette(theme));

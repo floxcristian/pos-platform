@@ -54,7 +54,6 @@ import { FeedbackService } from './feedback.service';
                 label="Probar"
                 icon="pi pi-bolt"
                 severity="secondary"
-                [outlined]="true"
                 [loading]="busy() === device.id"
                 [disabled]="!device.enabled"
                 (onClick)="test(device)"
@@ -66,7 +65,6 @@ import { FeedbackService } from './feedback.service';
                 label="Configurar"
                 icon="pi pi-cog"
                 severity="secondary"
-                [text]="true"
                 styleClass="mt-3"
                 (onClick)="configure(device)"
               />
@@ -132,7 +130,6 @@ import { FeedbackService } from './feedback.service';
             label="Cancelar"
             ariaLabel="Cancelar"
             severity="secondary"
-            [outlined]="true"
             (onClick)="editing.set(null)"
           /><p-button
             type="submit"
@@ -245,7 +242,6 @@ export class DevicesComponent {
                 label="Probar conexión"
                 icon="pi pi-link"
                 severity="secondary"
-                [outlined]="true"
                 [loading]="busy() === integration.id"
                 [disabled]="!integration.enabled"
                 (onClick)="test(integration)"
@@ -256,7 +252,6 @@ export class DevicesComponent {
               label="Configurar"
               icon="pi pi-cog"
               severity="secondary"
-              [text]="true"
               styleClass="mt-3"
               (onClick)="configure(integration)"
             />
@@ -317,7 +312,6 @@ export class DevicesComponent {
             label="Cancelar"
             ariaLabel="Cancelar"
             severity="secondary"
-            [outlined]="true"
             (onClick)="editing.set(null)"
           /><p-button
             type="submit"
@@ -425,7 +419,6 @@ export class IntegrationsComponent {
           label="Buscar actualizaciones"
           icon="pi pi-refresh"
           severity="secondary"
-          [outlined]="true"
           [loading]="busy()"
           (onClick)="check()"
         />

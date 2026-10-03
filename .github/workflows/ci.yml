@@ -29,7 +29,52 @@ jobs:
       - run: npm run lint
       - run: npm test
       - run: npm run build
-      - run: npm audit --omit=dev --audit-level=high
+      - name: Audit runtime dependencies
+        run: npm audit --omit=dev --audit-level=low
+      - name: Inventory complete dependency audit
+        id: dependency-audit
+        if: always()
+        continue-on-error: true # Demo only: build-tool findings remain visible; production requires remediation.
+        run: |
+          audit_status=0
+          npm audit --json > npm-audit-full.json || audit_status=$?
+          node <<'NODE'
+          const fs = require('node:fs');
+          const audit = JSON.parse(fs.readFileSync('npm-audit-full.json', 'utf8'));
+          const counts = audit.metadata?.vulnerabilities;
+          const lines = [
+            '## Complete dependency audit',
+            '',
+            'Runtime audit is a blocking check. This inventory also includes build, lint and test tools.',
+            'The complete audit keeps its nonzero exit code, with `continue-on-error` only for this demonstration.',
+            'Resolve toolchain findings through compatible upstream releases before production distribution.',
+            '',
+          ];
+          if (counts) {
+            lines.push('| Severity | Affected packages |', '| --- | ---: |');
+            for (const severity of ['critical', 'high', 'moderate', 'low', 'info', 'total']) {
+              lines.push(`| ${severity} | ${counts[severity] ?? 0} |`);
+            }
+            lines.push('', 'Counts include packages affected through their dependencies; see the JSON artifact for full advisories.', '');
+            const packages = Object.keys(audit.vulnerabilities ?? {}).sort();
+            if (packages.length) {
+              lines.push('| Package | Severity |', '| --- | --- |');
+              for (const name of packages) lines.push(`| ${name} | ${audit.vulnerabilities[name].severity} |`);
+            }
+          } else {
+            lines.push('The audit could not produce a vulnerability inventory. This is an audit error, not a clean result. Inspect the JSON artifact.');
+          }
+          fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, `${lines.join('\n')}\n`);
+          NODE
+          exit "$audit_status"
+      - name: Preserve complete audit inventory
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: dependency-audit-inventory
+          path: npm-audit-full.json
+          if-no-files-found: warn
+          retention-days: 7
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4

@@ -11,6 +11,7 @@ import { MessageModule } from 'primeng/message';
 import { PosStore } from '@corporate-pos/data-access';
 import { PAYMENT_LABELS } from '@corporate-pos/domain';
 import {
+  CivilDateTimeComponent,
   PageHeaderComponent,
   StatusTagComponent,
   MetricCardComponent,
@@ -23,6 +24,7 @@ import {
   selector: 'pos-documents',
   standalone: true,
   imports: [
+    CivilDateTimeComponent,
     FormsModule,
     RouterLink,
     ButtonModule,
@@ -47,7 +49,6 @@ import {
         ariaLabel="Exportar"
         icon="pi pi-download"
         severity="secondary"
-        [outlined]="true"
         (onClick)="export()"
         [disabled]="!store.can('reports', 'reports')"
       />
@@ -106,20 +107,16 @@ import {
           ariaLabel="Estado de documento"
         /><label class="flex items-center gap-2 text-sm" for="checkout-documents-1"
           ><span class="text-muted-color">Desde</span
-          ><input
-            id="checkout-documents-1"
-            pInputText
-            type="date"
-            aria-label="Documentos desde"
+          ><pos-civil-date-time
+            inputId="checkout-documents-1"
+            ariaLabel="Documentos desde"
             [ngModel]="from()"
             (ngModelChange)="from.set($event)" /></label
         ><label class="flex items-center gap-2 text-sm" for="checkout-documents-2"
           ><span class="text-muted-color">Hasta</span
-          ><input
-            id="checkout-documents-2"
-            pInputText
-            type="date"
-            aria-label="Documentos hasta"
+          ><pos-civil-date-time
+            inputId="checkout-documents-2"
+            ariaLabel="Documentos hasta"
             [ngModel]="to()"
             (ngModelChange)="to.set($event)"
         /></label>
@@ -237,7 +234,6 @@ import {
             ariaLabel="Reimprimir"
             icon="pi pi-print"
             severity="secondary"
-            [outlined]="true"
             (onClick)="print(sale.id)"
             [disabled]="!store.can('sell', 'sales')"
           />
@@ -247,7 +243,6 @@ import {
               ariaLabel="Reintentar emisión"
               icon="pi pi-refresh"
               severity="secondary"
-              [outlined]="true"
               [loading]="retrying()"
               (onClick)="retry(sale.id)"
               [disabled]="sale.paymentStatus !== 'confirmed'"
@@ -437,7 +432,6 @@ import {
           label="Cancelar"
           ariaLabel="Cancelar"
           severity="secondary"
-          [text]="true"
           (onClick)="reconcileVisible.set(false)" /><p-button
           label="Registrar resultado"
           ariaLabel="Registrar resultado"

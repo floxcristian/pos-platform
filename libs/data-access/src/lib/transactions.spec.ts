@@ -7,6 +7,8 @@ import {
   collectTransaction,
   issueCreditNoteTransaction,
   refundCreditNoteTransaction,
+  quoteCreditNoteRefundTransaction,
+  quoteCreditNoteApplicationTransaction,
 } from './transactions';
 const now = new Date('2026-10-03T15:00:00Z');
 function context(): TransactionContext {
@@ -20,6 +22,246 @@ const input: CheckoutInput = {
   idempotencyKey: 'request-test',
 };
 describe('transaction boundaries', () => {
+  it('cannot turn an unpaid customer-credit sale into cash through another sale paid by credit note', () => {
+    const state = createFixtures(now),
+      ctx = context();
+    const source = checkoutTransaction(
+      state,
+      { ...input, customerId: 'cust-1', payments: [{ method: 'cuenta', amount: 9980 }] },
+      ctx,
+    );
+    if (!source.ok) throw new Error(source.error);
+    source.value.fiscalStatus = 'issued';
+    const note = issueCreditNoteTransaction(
+      state,
+      {
+        saleId: source.value.id,
+        quantities: { 'prod-1': 2 },
+        reason: 'Devolución completa',
+        refundMethod: 'efectivo',
+      },
+      ctx,
+    );
+    if (!note.ok) throw new Error(note.error);
+    note.value.fiscalStatus = 'issued';
+    expect(quoteCreditNoteApplicationTransaction(state, note.value.id, 'cust-1')).toEqual({
+      ok: true,
+      value: { availableAmount: 0, debtOffsetAmount: 9980 },
+    });
+    const before = structuredClone(state);
+    const destination = checkoutTransaction(
+      state,
+      {
+        ...input,
+        idempotencyKey: 'destination',
+        customerId: 'cust-1',
+        payments: [{ method: 'nota_credito', amount: 9980, reference: note.value.id }],
+      },
+      ctx,
+    );
+    expect(destination.ok).toBe(false);
+    expect(state).toEqual(before);
+  });
+  it('offsets source debt once when a funded credit-note balance pays a second sale', () => {
+    const state = createFixtures(now),
+      ctx = context(),
+      openingCash = state.session?.expectedAmount;
+    const source = checkoutTransaction(
+      state,
+      {
+        ...input,
+        customerId: 'cust-1',
+        payments: [
+          { method: 'cuenta', amount: 4990 },
+          { method: 'efectivo', amount: 4990 },
+        ],
+      },
+      ctx,
+    );
+    if (!source.ok) throw new Error(source.error);
+    source.value.fiscalStatus = 'issued';
+    const note = issueCreditNoteTransaction(
+      state,
+      {
+        saleId: source.value.id,
+        quantities: { 'prod-1': 2 },
+        reason: 'Devolución completa',
+        refundMethod: 'efectivo',
+      },
+      ctx,
+    );
+    if (!note.ok) throw new Error(note.error);
+    note.value.fiscalStatus = 'issued';
+    expect(quoteCreditNoteApplicationTransaction(state, note.value.id, 'cust-1')).toEqual({
+      ok: true,
+      value: { availableAmount: 4990, debtOffsetAmount: 4990 },
+    });
+    const destination = checkoutTransaction(
+      state,
+      {
+        ...input,
+        idempotencyKey: 'destination',
+        lines: [{ productId: 'prod-1', quantity: 1, discount: 0 }],
+        customerId: 'cust-1',
+        payments: [
+          { method: 'nota_credito', amount: 2000, reference: note.value.id },
+          { method: 'nota_credito', amount: 2990, reference: note.value.id },
+        ],
+      },
+      ctx,
+    );
+    if (!destination.ok) throw new Error(destination.error);
+    expect(note.value).toMatchObject({
+      debtOffsetAmount: 4990,
+      appliedAmount: 4990,
+      refundedAmount: 4990,
+      refundPaymentAmount: 0,
+    });
+    expect(state.receivables.find((debt) => debt.document === source.value.number)?.balance).toBe(0);
+    destination.value.fiscalStatus = 'issued';
+    const nextNote = issueCreditNoteTransaction(
+      state,
+      {
+        saleId: destination.value.id,
+        quantities: { 'prod-1': 1 },
+        reason: 'Devolución completa',
+        refundMethod: 'efectivo',
+      },
+      ctx,
+    );
+    if (!nextNote.ok) throw new Error(nextNote.error);
+    nextNote.value.fiscalStatus = 'issued';
+    expect(refundCreditNoteTransaction(state, nextNote.value.id, 'efectivo', ctx).ok).toBe(true);
+    expect(nextNote.value.refundPaymentAmount).toBe(4990);
+    expect(state.session?.expectedAmount).toBe(openingCash);
+  });
+  it('does not liquidate a credit note when a funding discrepancy exceeds the original rounding', () => {
+    const state = createFixtures(now),
+      ctx = context();
+    const source = checkoutTransaction(state, input, ctx);
+    if (!source.ok) throw new Error(source.error);
+    source.value.fiscalStatus = 'issued';
+    const note = issueCreditNoteTransaction(
+      state,
+      {
+        saleId: source.value.id,
+        quantities: { 'prod-1': 2 },
+        reason: 'Devolución completa',
+        refundMethod: 'efectivo',
+      },
+      ctx,
+    );
+    if (!note.ok) throw new Error(note.error);
+    note.value.fiscalStatus = 'issued';
+    // An inconsistent imported record must require review, never silently settle the unpaid difference.
+    source.value.payments[0].status = 'failed';
+    const before = structuredClone(state);
+    expect(refundCreditNoteTransaction(state, note.value.id, 'efectivo', ctx).ok).toBe(false);
+    expect(state).toEqual(before);
+  });
+  it.each([
+    { credit: 9980, paid: 0, collected: 0, offset: 9980, refund: 0 },
+    { credit: 7000, paid: 2980, collected: 0, offset: 7000, refund: 2980 },
+    { credit: 9980, paid: 0, collected: 3000, offset: 6980, refund: 3000 },
+  ])(
+    'offsets remaining credit before returning funded money: $credit/$paid/$collected',
+    ({ credit, paid, collected, offset, refund }) => {
+      const state = createFixtures(now),
+        ctx = context(),
+        customer = state.customers[0];
+      customer.creditTerms = { installments: 2, periodDays: 30 };
+      const originalUsed = customer.creditUsed;
+      const sale = checkoutTransaction(
+        state,
+        {
+          ...input,
+          customerId: customer.id,
+          payments: [
+            { method: 'cuenta', amount: credit },
+            ...(paid ? [{ method: 'efectivo' as const, amount: paid }] : []),
+          ],
+        },
+        ctx,
+      );
+      if (!sale.ok) throw new Error(sale.error);
+      sale.value.fiscalStatus = 'issued';
+      const debt = state.receivables.find((item) => item.document === sale.value.number);
+      if (!debt) throw new Error('Missing debt');
+      if (collected)
+        expect(collectTransaction(state, ctx, customer.id, debt.id, collected, 'efectivo').ok).toBe(true);
+      const note = issueCreditNoteTransaction(
+        state,
+        {
+          saleId: sale.value.id,
+          quantities: { 'prod-1': 2 },
+          reason: 'Devolución completa',
+          refundMethod: 'efectivo',
+        },
+        ctx,
+      );
+      if (!note.ok) throw new Error(note.error);
+      note.value.fiscalStatus = 'issued';
+      const before = state.session?.expectedAmount ?? 0;
+      expect(quoteCreditNoteRefundTransaction(state, note.value.id, 'efectivo')).toEqual({
+        ok: true,
+        value: {
+          settlementAmount: 9980,
+          debtOffsetAmount: offset,
+          refundPaymentAmount: refund,
+          roundingAdjustment: 0,
+        },
+      });
+      const result = refundCreditNoteTransaction(state, note.value.id, 'efectivo', ctx);
+      expect(result.ok && result.value).toMatchObject({
+        refundedAmount: 9980,
+        debtOffsetAmount: offset,
+        refundPaymentAmount: refund,
+      });
+      expect(state.session?.expectedAmount).toBe(before - refund);
+      expect(debt.balance).toBe(0);
+      expect(customer.creditUsed).toBe(originalUsed);
+      expect(
+        state.agreements
+          .find((agreement) => agreement.receivableIds.includes(debt.id))
+          ?.installments.every((installment) => installment.balance === 0),
+      ).toBe(true);
+    },
+  );
+  it.each([
+    { price: 1005, paid: 1000 },
+    { price: 1006, paid: 1010 },
+  ])('returns the original rounded cash actually received: $price/$paid', ({ price, paid }) => {
+    const state = createFixtures(now),
+      ctx = context();
+    state.products[0].price = price;
+    const sale = checkoutTransaction(
+      state,
+      {
+        ...input,
+        lines: [{ productId: 'prod-1', quantity: 1, discount: 0 }],
+        payments: [{ method: 'efectivo', amount: paid }],
+      },
+      ctx,
+    );
+    if (!sale.ok) throw new Error(sale.error);
+    sale.value.fiscalStatus = 'issued';
+    const note = issueCreditNoteTransaction(
+      state,
+      {
+        saleId: sale.value.id,
+        quantities: { 'prod-1': 1 },
+        reason: 'Devolución completa',
+        refundMethod: 'efectivo',
+      },
+      ctx,
+    );
+    if (!note.ok) throw new Error(note.error);
+    note.value.fiscalStatus = 'issued';
+    const before = state.session?.expectedAmount ?? 0;
+    const result = refundCreditNoteTransaction(state, note.value.id, 'efectivo', ctx);
+    expect(result.ok && result.value.refundPaymentAmount).toBe(paid);
+    expect(state.session?.expectedAmount).toBe(before - paid);
+  });
   it('records local sale, payment, tax and ERP states independently', () => {
     const state = createFixtures(now),
       result = checkoutTransaction(state, input, context());

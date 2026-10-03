@@ -1,5 +1,5 @@
 import '@angular/compiler';
-import { DestroyRef, Injector, runInInjectionContext } from '@angular/core';
+import { Injector, runInInjectionContext } from '@angular/core';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { CheckoutInput, PosSnapshot, success } from '@corporate-pos/domain';
 import { createFixtures } from './fixtures';
@@ -33,19 +33,130 @@ function createStore(
     providers: [
       { provide: POS_REPOSITORY, useValue: repository },
       { provide: POS_SIMULATION, useValue: simulation },
-      {
-        provide: DestroyRef,
-        useValue: {
-          onDestroy: (fn: () => void) => {
-            cleanup.push(fn);
-          },
-        },
-      },
     ],
   });
+  cleanup.push(() => injector.destroy());
   return { store: runInInjectionContext(injector, () => new PosStore()), repository };
 }
 describe('PosStore command policy and event coordination', () => {
+  it('restores a persisted safe draft and clears it atomically with checkout', () => {
+    const { store, repository } = createStore();
+    const input = {
+      lines: saleInput.lines,
+      customerId: null,
+      documentType: 'boleta' as const,
+      metadata: { contact: 'Contacto Demo', deliveryMode: 'pickup' as const },
+    };
+    expect(store.saveActiveDraft(input).ok).toBe(true);
+    const { store: restored } = createStore(structuredClone(store.snapshot()));
+    expect(restored.snapshot().activeDraft?.metadata.contact).toBe('Contacto Demo');
+    repository.save = () => ({ ok: false, error: 'Disco lleno' });
+    expect(store.checkout(saleInput).ok).toBe(false);
+    expect(store.snapshot().activeDraft?.lines).toEqual(saleInput.lines);
+    repository.save = () => success(undefined);
+    expect(store.checkout(saleInput).ok).toBe(true);
+    expect(store.snapshot().activeDraft).toBeNull();
+  });
+  it('pausing and resuming transfer the active draft in the same durable mutation', () => {
+    const { store } = createStore();
+    store.saveActiveDraft({
+      lines: saleInput.lines,
+      customerId: null,
+      documentType: 'boleta',
+      metadata: { contact: 'Demo' },
+    });
+    const held = store.holdSale(saleInput.lines, null, 'boleta', 'Pausa', { contact: 'Demo' });
+    if (!held.ok) throw new Error(held.error);
+    expect(store.snapshot().activeDraft).toBeNull();
+    expect(store.resumeSale(held.value.id).ok).toBe(true);
+    expect(store.snapshot().activeDraft?.metadata.contact).toBe('Demo');
+    expect(store.snapshot().heldSales.some((item) => item.id === held.value.id)).toBe(false);
+    store.setModule('sales', false);
+    expect(store.clearActiveDraft().ok).toBe(false);
+  });
+  it('never persists payment credentials or unknown fields from a draft input', () => {
+    const { store } = createStore();
+    const input = {
+      lines: [{ ...saleInput.lines[0], cardNumber: 'SECRET-CARD' }],
+      customerId: null,
+      documentType: 'boleta' as const,
+      metadata: { coupon: 'DEMO', voucher: 'SECRET-VOUCHER' },
+      payments: [{ method: 'debito', token: 'SECRET-TOKEN' }],
+    };
+    expect(store.saveActiveDraft(input).ok).toBe(true);
+    expect(JSON.stringify(store.snapshot().activeDraft)).not.toContain('SECRET');
+  });
+  it('the next clock tick recovers a persisted running state after storage returns', async () => {
+    vi.useFakeTimers();
+    let release: () => void = () => undefined;
+    const { store, repository } = createStore(
+      createFixtures(now),
+      () =>
+        new Promise<void>((resolve) => {
+          release = resolve;
+        }),
+    );
+    const pending = store.runSync('sync-products');
+    repository.save = () => ({ ok: false, error: 'Disco lleno' });
+    release();
+    expect((await pending).ok).toBe(false);
+    expect(store.snapshot().syncJobs[0].status).toBe('running');
+    repository.save = () => success(undefined);
+    await vi.advanceTimersByTimeAsync(20000);
+    expect(store.snapshot().syncJobs[0].status).toBe('failed');
+    expect(store.persistenceError()).toBeNull();
+  });
+  it.each(['sync', 'outbox'] as const)(
+    'recovers %s from a transient persistence failure without a reload',
+    async (kind) => {
+      let release: () => void = () => undefined,
+        first = true;
+      const { store, repository } = createStore(createFixtures(now), () => {
+        if (!first) return Promise.resolve();
+        first = false;
+        return new Promise<void>((resolve) => {
+          release = resolve;
+        });
+      });
+      const eventId = store.snapshot().outbox[0].id;
+      const run = kind === 'sync' ? store.runSync('sync-products') : store.retryOutbox(eventId);
+      repository.save = () => ({ ok: false, error: 'Disco lleno' });
+      release();
+      expect((await run).ok).toBe(false);
+      repository.save = () => success(undefined);
+      const retried =
+        kind === 'sync' ? await store.runSync('sync-products') : await store.retryOutbox(eventId);
+      expect(retried.ok).toBe(true);
+      expect(store.snapshot().syncRuns.some((item) => item.status === 'running')).toBe(false);
+      expect(store.snapshot().outbox.some((item) => item.status === 'processing')).toBe(false);
+      expect(
+        store
+          .snapshot()
+          .audit.some(
+            (entry) =>
+              entry.action ===
+              (kind === 'sync' ? 'sync.persistence.recovered' : 'outbox.persistence.recovered'),
+          ),
+      ).toBe(true);
+    },
+  );
+  it('a failed reset does not invalidate an authorized in-flight job', async () => {
+    let release: () => void = () => undefined,
+      first = true;
+    const { store, repository } = createStore(createFixtures(now), () => {
+      if (!first) return Promise.resolve();
+      first = false;
+      return new Promise<void>((resolve) => {
+        release = resolve;
+      });
+    });
+    const pending = store.runSync('sync-products');
+    repository.save = () => ({ ok: false, error: 'Disco lleno' });
+    expect(store.resetDemo().ok).toBe(false);
+    repository.save = () => success(undefined);
+    release();
+    expect((await pending).ok).toBe(true);
+  });
   it('separates the fiscal total from rounding only the cash portion', () => {
     const { store } = createStore();
     store.setPrice('prod-1', 1005);

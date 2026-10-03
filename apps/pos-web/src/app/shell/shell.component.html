@@ -6,7 +6,7 @@
     >Saltar al contenido</a
   >
   <header
-    class="shrink-0 bg-primary-700 text-white h-16 flex items-center gap-1 sm:gap-3 px-2 sm:px-4 lg:px-6 [&_a:focus-visible]:outline-white [&_button:focus-visible]:outline-white"
+    class="shrink-0 bg-primary-500 text-white h-16 flex items-center gap-1 sm:gap-3 px-2 sm:px-4 lg:px-6"
   >
     <p-button
       icon="pi pi-bars"
@@ -24,12 +24,12 @@
         ><i class="pi pi-th-large text-lg" aria-hidden="true"></i
       ></span>
       <span class="font-semibold tracking-tight text-lg hidden sm:inline"
-        >Corporate <span class="font-normal opacity-80">POS</span></span
+        >Corporate <span class="font-normal">POS</span></span
       ><span class="font-semibold sm:hidden">POS</span>
     </a>
     <button
       type="button"
-      class="hidden md:flex items-center gap-3 h-10 rounded-lg bg-white/10 hover:bg-white/20 px-4 text-sm min-w-0 flex-1 max-w-xl cursor-pointer"
+      class="hidden md:flex items-center gap-3 h-10 rounded-lg bg-primary-600 hover:bg-primary-700 px-4 text-sm min-w-0 flex-1 max-w-xl cursor-pointer"
       (click)="openSearch()"
       aria-label="Buscar en la caja, Control K"
     >
@@ -68,11 +68,11 @@
       (click)="profileOpen.set(true)"
       aria-label="Perfil y entorno de demostración"
     >
-      <span class="size-9 rounded-full bg-white/20 flex items-center justify-center text-sm font-semibold"
+      <span class="size-9 rounded-full bg-primary-700 flex items-center justify-center text-sm font-semibold"
         >CP</span
       ><span class="hidden xl:flex flex-col text-left text-xs"
         ><span class="font-semibold">{{ roleLabel() }}</span
-        ><span class="opacity-80">{{ store.snapshot().settings.terminalId }}</span></span
+        ><span>{{ store.snapshot().settings.terminalId }}</span></span
       ><i class="pi pi-chevron-down text-xs hidden xl:block" aria-hidden="true"></i>
     </button>
   </header>
@@ -100,7 +100,7 @@
                 routerLinkActive="!bg-primary-50 !text-primary dark:!bg-primary-950"
                 [routerLinkActiveOptions]="{ exact: true }"
                 ariaCurrentWhenActive="page"
-                class="flex items-center gap-3 min-h-11 px-3 py-2.5 rounded-lg text-sm font-medium text-color hover:bg-surface-100 dark:hover:bg-surface-800"
+                class="flex items-center gap-3 min-h-11 px-3 py-2.5 rounded-lg font-medium text-color hover:bg-surface-100 dark:hover:bg-surface-800"
                 ><i [class]="'pi ' + item.icon + ' w-5 text-base'" aria-hidden="true"></i
                 ><span>{{ item.label }}</span></a
               >
@@ -314,8 +314,17 @@
     />
   </div>
   <div class="flex items-center justify-between gap-4 pb-5">
-    <label for="profile-dark" class="font-medium">Tema oscuro</label
-    ><p-toggleswitch inputId="profile-dark" [ngModel]="dark()" (ngModelChange)="toggleTheme()" />
+    <label for="profile-theme" class="font-medium">Apariencia</label>
+    <p-select
+      inputId="profile-theme"
+      ariaLabel="Apariencia"
+      [options]="themes"
+      optionLabel="label"
+      optionValue="value"
+      [ngModel]="store.snapshot().settings.theme"
+      (ngModelChange)="changeTheme($event)"
+      appendTo="body"
+    />
   </div>
   <p class="text-xs text-muted-color">
     Todos los datos y proveedores son simulados. No se realizan cobros ni se emiten documentos tributarios

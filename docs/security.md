@@ -34,6 +34,8 @@ El audit del lockfile actualizado, ejecutado el 3 de octubre de 2026, devuelve:
 
 Los conteos incluyen paquetes que heredan el riesgo de una dependencia: los dos críticos son `piscina` y `@angular/build`, afectados por el mismo aviso de Piscina. No equivalen a dos fallas independientes de la aplicación. Las versiones y el resultado deben volver a verificarse cuando cambie el lockfile o la base de avisos.
 
+CI bloquea las dependencias de runtime ante cualquier alerta de severidad baja o superior (`npm audit --omit=dev --audit-level=low`). Además ejecuta el audit completo, conserva `npm-audit-full.json` como artefacto durante siete días y muestra sus conteos y paquetes afectados en el resumen del job. El JSON contiene el inventario de npm, no variables de entorno ni configuración de credenciales. El paso completo conserva el código de salida del comando y declara `continue-on-error: true` explícitamente por tratarse de una maqueta; esto permite revisar la demostración sin presentar un audit fallido como limpio. Antes de distribuir un producto deben resolverse los hallazgos del toolchain mediante una actualización compatible y retirar esa excepción. Un error del servicio de audit se muestra como error, nunca como cero alertas.
+
 Se mantienen versiones coherentes entre framework, compilador, CLI y componentes. No se usa `--force`, `--legacy-peer-deps`, `overrides` ni parches locales para sustituir dependencias transitivas que sus proyectos aún no han actualizado.
 
 ### Dependencias transitivas que requieren seguimiento
@@ -59,5 +61,9 @@ Mientras existan alertas en el toolchain, los builds deben ejecutarse en entorno
 ## Host de escritorio
 
 Tauri declara una capability local sin permisos y no registra comandos de negocio, acceso a archivos, shell, red externa o dispositivos. La CSP de producción limita scripts a los assets locales; la política de desarrollo permite además el servidor local. No hay claves de firma ni un updater conectado. La configuración y las limitaciones del entorno de compilación están en [desktop.md](desktop.md).
+
+Los E2E de CI sirven el resultado exacto de `npm run build` con un servidor Node de lectura en `127.0.0.1`, tipos MIME explícitos, rutas confinadas a `dist/apps/pos-web/browser` y la CSP de producción leída de Tauri. No recompilan ni reescriben assets. `inlineCritical` está deshabilitado mediante la configuración de Angular para evitar su handler inline de carga de CSS, que esta CSP rechaza; la minificación sigue activa. El servidor comprueba también rutas codificadas y enlaces simbólicos que salgan del directorio público.
+
+Para repetir el recorrido sobre producción localmente, primero compilar y después ejecutar, por ejemplo en PowerShell: `$env:POS_E2E_PRODUCTION='1'; $env:POS_E2E_PORT='4301'; npm run test:e2e`. Sin esas variables, las pruebas locales siguen usando el servidor de desarrollo. El modo producción no reutiliza servidores previos. Estas pruebas verifican Chromium con la política CSP, no sustituyen una apertura ni una prueba de uso del ejecutable en WebView2. El audit npm tampoco cubre las dependencias de `Cargo.lock`; queda pendiente incorporar una auditoría de avisos Rust antes de distribuir el producto nativo.
 
 El paso a producción requiere identidad real, persistencia transaccional de Edge, contratos autenticados para sincronización e integraciones, una política de retención de datos y logs, firma de artefactos y pruebas con dispositivos y equipos reales. Es trabajo pendiente del producto; esta maqueta permite revisar sus flujos y estados antes de implementarlo.

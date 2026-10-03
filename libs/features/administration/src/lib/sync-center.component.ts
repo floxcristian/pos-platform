@@ -14,6 +14,7 @@ import { MessageModule } from 'primeng/message';
 import { PosStore } from '@corporate-pos/data-access';
 import type { SyncJob, SyncSchedule } from '@corporate-pos/domain';
 import {
+  CivilDateTimeComponent,
   PageHeaderComponent,
   StatusTagComponent,
   MetricCardComponent,
@@ -26,6 +27,7 @@ import { FeedbackService } from './feedback.service';
   selector: 'pos-sync-center',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    CivilDateTimeComponent,
     FormsModule,
     ButtonModule,
     TableModule,
@@ -90,14 +92,16 @@ import { FeedbackService } from './feedback.service';
         >
       }
       <div class="pos-filter">
-        <p-selectbutton
-          [options]="tabs"
-          optionLabel="label"
-          optionValue="value"
-          [(ngModel)]="tab"
-          [allowEmpty]="false"
-          ariaLabel="Vistas de sincronización"
-        />
+        <div class="pos-segments">
+          <p-selectbutton
+            [options]="tabs"
+            optionLabel="label"
+            optionValue="value"
+            [(ngModel)]="tab"
+            [allowEmpty]="false"
+            ariaLabel="Vistas de sincronización"
+          />
+        </div>
       </div>
       @if (tab === 'flows') {
         <div class="pos-filter">
@@ -160,7 +164,6 @@ import { FeedbackService } from './feedback.service';
                   <div class="flex gap-2">
                     <p-button
                       icon="pi pi-play"
-                      [outlined]="true"
                       severity="secondary"
                       [ariaLabel]="'Ejecutar ' + job.name"
                       [disabled]="!store.snapshot().online || job.status === 'running'"
@@ -170,7 +173,6 @@ import { FeedbackService } from './feedback.service';
                       icon="pi pi-calendar-clock"
                       label="Programar"
                       severity="secondary"
-                      [outlined]="true"
                       (onClick)="edit(job)"
                     />
                   </div>
@@ -227,7 +229,6 @@ import { FeedbackService } from './feedback.service';
                     label="Reintentar"
                     icon="pi pi-refresh"
                     severity="secondary"
-                    [outlined]="true"
                     [disabled]="
                       event.status === 'sent' || event.status === 'processing' || !store.snapshot().online
                     "
@@ -251,7 +252,6 @@ import { FeedbackService } from './feedback.service';
             label="Exportar historial"
             icon="pi pi-download"
             severity="secondary"
-            [outlined]="true"
             (onClick)="exportHistory()"
           />
         </div>
@@ -334,7 +334,12 @@ import { FeedbackService } from './feedback.service';
           @if (schedule.mode === 'daily') {
             <div class="pos-field">
               <label for="schedule-time">Hora local</label
-              ><input pInputText id="schedule-time" type="time" [(ngModel)]="schedule.time" />
+              ><pos-civil-date-time
+                inputId="schedule-time"
+                ariaLabel="Hora local"
+                mode="time"
+                [(ngModel)]="schedule.time"
+              />
             </div>
           }
           @if (schedule.mode !== 'manual') {
@@ -367,7 +372,6 @@ import { FeedbackService } from './feedback.service';
           ariaLabel="Cancelar"
           label="Cancelar"
           severity="secondary"
-          [outlined]="true"
           (onClick)="dialog = false" /><p-button
           ariaLabel="Guardar programación"
           label="Guardar programación"

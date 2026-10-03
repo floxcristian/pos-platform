@@ -66,7 +66,6 @@ import { FeedbackService } from './feedback.service';
                   ariaLabel="Editar condición"
                   label="Editar"
                   icon="pi pi-pencil"
-                  [text]="true"
                   severity="secondary"
                   (onClick)="edit(rule)"
                 />
@@ -152,7 +151,6 @@ import { FeedbackService } from './feedback.service';
           label="Cancelar"
           ariaLabel="Cancelar"
           severity="secondary"
-          [outlined]="true"
           (onClick)="dialog = false" /><p-button
           label="Guardar condición"
           ariaLabel="Guardar condición"

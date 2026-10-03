@@ -1,18 +1,12 @@
 import type { Sale, Branch } from '@corporate-pos/domain';
+import { addCalendarDays, chileCivilDate } from '@corporate-pos/domain';
 export { PAYMENT_LABELS } from '@corporate-pos/domain';
 
 export function localDate(value: string | Date): string {
-  return new Intl.DateTimeFormat('en-CA', {
-    timeZone: 'America/Santiago',
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-  }).format(value instanceof Date ? value : new Date(value));
+  return chileCivilDate(value);
 }
 export function daysAgo(days: number, now = new Date()): string {
-  const date = new Date(now);
-  date.setDate(date.getDate() - days);
-  return localDate(date);
+  return addCalendarDays(chileCivilDate(now), -days);
 }
 export function withinDates(value: string, from: string, to: string): boolean {
   const date = localDate(value);
@@ -29,9 +23,8 @@ export function totalSales(sales: Pick<Sale, 'total' | 'paymentStatus'>[]): numb
 export function token(name: string, fallback = 'currentColor'): string {
   return getComputedStyle(document.documentElement).getPropertyValue(name).trim() || fallback;
 }
-export function chartPalette(theme = 'light'): string[] {
-  const dark =
-    theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+export function chartPalette(theme: 'light' | 'dark' = 'light'): string[] {
+  const dark = theme === 'dark';
   return [
     dark ? '--p-primary-400' : '--p-primary-500',
     '--p-primary-300',

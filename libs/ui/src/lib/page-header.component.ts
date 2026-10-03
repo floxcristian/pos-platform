@@ -10,7 +10,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
       @if (eyebrow()) {
         <p class="mb-2 text-xs font-semibold uppercase tracking-widest text-primary">{{ eyebrow() }}</p>
       }
-      <h1 class="text-2xl font-semibold tracking-tight text-color leading-8">{{ title() }}</h1>
+      <h1 class="text-3xl font-bold text-color leading-9">{{ title() }}</h1>
       @if (subtitle()) {
         <p class="mt-2 max-w-4xl text-muted-color leading-6">{{ subtitle() }}</p>
       }

@@ -238,6 +238,15 @@ const shape: Check = obj({
         ),
     }),
   ),
+  activeDraft: nullable(
+    obj({
+      lines: arr(obj(cartLine)),
+      customerId: nullable(str),
+      documentType: one('boleta', 'factura'),
+      metadata,
+      updatedAt: date,
+    }),
+  ),
   heldSales: arr(
     obj({
       id: str,
@@ -302,6 +311,8 @@ const shape: Check = obj({
       fiscalStatus: fiscal,
       refundMethod: method,
       refundedAmount: money,
+      debtOffsetAmount: money,
+      refundPaymentAmount: money,
       refundedAt: nullable(date),
       appliedAmount: money,
     }),
@@ -464,6 +475,22 @@ function isSnapshot(value: unknown): value is PosSnapshot {
 export function decodeSnapshot(raw: string): Result<PosSnapshot> {
   try {
     const parsed: unknown = JSON.parse(raw);
+    // Additive v1 evolution preserves existing demo operations, including earlier credit notes.
+    if (isRecord(parsed) && parsed['schemaVersion'] === 1) {
+      if (!Object.hasOwn(parsed, 'activeDraft')) parsed['activeDraft'] = null;
+      if (Array.isArray(parsed['creditNotes']))
+        for (const note of parsed['creditNotes']) {
+          if (
+            isRecord(note) &&
+            !Object.hasOwn(note, 'debtOffsetAmount') &&
+            !Object.hasOwn(note, 'refundPaymentAmount') &&
+            money(note['refundedAmount'])
+          ) {
+            note['debtOffsetAmount'] = note['refundMethod'] === 'cuenta' ? note['refundedAmount'] : 0;
+            note['refundPaymentAmount'] = Number(note['refundedAmount']) - Number(note['debtOffsetAmount']);
+          }
+        }
+    }
     if (!isSnapshot(parsed))
       return failure(
         'Los datos locales tienen un formato incompatible. Se ha iniciado una nueva demostración.',

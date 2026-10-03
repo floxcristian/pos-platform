@@ -37,14 +37,16 @@ import { FeedbackService } from './feedback.service';
         ><p-button ariaLabel="Nuevo usuario" label="Nuevo usuario" icon="pi pi-user-plus" (onClick)="edit()"
       /></pos-page-header>
       <div class="pos-filter">
-        <p-selectbutton
-          [options]="tabs"
-          optionLabel="label"
-          optionValue="value"
-          [(ngModel)]="tab"
-          [allowEmpty]="false"
-          ariaLabel="Usuarios y perfiles"
-        />
+        <div class="pos-segments">
+          <p-selectbutton
+            [options]="tabs"
+            optionLabel="label"
+            optionValue="value"
+            [(ngModel)]="tab"
+            [allowEmpty]="false"
+            ariaLabel="Usuarios y perfiles"
+          />
+        </div>
       </div>
       @if (tab === 'users') {
         <div class="pos-panel overflow-hidden">
@@ -84,7 +86,6 @@ import { FeedbackService } from './feedback.service';
                     label="Editar"
                     icon="pi pi-pencil"
                     severity="secondary"
-                    [text]="true"
                     (onClick)="edit(user)"
                   />
                 </td></tr></ng-template
@@ -177,7 +178,6 @@ import { FeedbackService } from './feedback.service';
           ariaLabel="Cancelar"
           label="Cancelar"
           severity="secondary"
-          [outlined]="true"
           (onClick)="dialog = false" /><p-button
           ariaLabel="Guardar usuario"
           label="Guardar usuario"

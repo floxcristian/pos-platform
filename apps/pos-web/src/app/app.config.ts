@@ -18,6 +18,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes, withHashLocation(), withComponentInputBinding()),
     providePrimeNG({
       ripple: false,
+      overlayAppendTo: 'body',
       theme: { preset: AppPreset, options: PRIMENG_OPTIONS },
       translation: {
         accept: 'Aceptar',
@@ -49,6 +50,19 @@ export const appConfig: ApplicationConfig = {
         monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
         today: 'Hoy',
         clear: 'Limpiar',
+        prevMonth: 'Mes anterior',
+        nextMonth: 'Mes siguiente',
+        chooseMonth: 'Elegir mes',
+        chooseYear: 'Elegir año',
+        chooseDate: 'Elegir fecha',
+        prevYear: 'Año anterior',
+        nextYear: 'Año siguiente',
+        prevDecade: 'Década anterior',
+        nextDecade: 'Década siguiente',
+        prevHour: 'Hora anterior',
+        nextHour: 'Hora siguiente',
+        prevMinute: 'Minuto anterior',
+        nextMinute: 'Minuto siguiente',
       },
     }),
     provideAppInitializer(() => {

@@ -9,5 +9,9 @@ export default defineConfig({
       ),
     },
   },
-  test: { include: ['libs/**/*.spec.ts', 'libs/**/*.test.ts'], environment: 'node', restoreMocks: true },
+  test: {
+    include: ['libs/**/*.spec.ts', 'libs/**/*.test.ts', 'tools/**/*.spec.ts', 'tools/**/*.spec.mjs'],
+    environment: 'node',
+    restoreMocks: true,
+  },
 });

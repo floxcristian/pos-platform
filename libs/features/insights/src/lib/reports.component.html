@@ -9,59 +9,48 @@
     [disabled]="!rows().length || !!rangeError()"
     (onClick)="export()"
 /></pos-page-header>
-<div
-  class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 mb-6"
-  role="group"
-  aria-label="Tipo de reporte"
->
-  @for (type of types; track type.value) {
-    <button
-      type="button"
-      [attr.aria-pressed]="reportType() === type.value"
-      (click)="changeType(type.value)"
-      class="text-left border rounded-xl px-4 py-3 cursor-pointer transition-colors"
-      [class]="
-        reportType() === type.value
-          ? 'border-primary bg-primary-50 dark:bg-primary-950 text-primary'
-          : 'border-surface bg-surface-0 dark:bg-surface-950 text-color hover:bg-surface-100 dark:hover:bg-surface-800'
-      "
-    >
-      <span class="font-medium">{{ type.label }}</span>
-    </button>
-  }
+<div class="overflow-x-auto p-1 -m-1 mb-6">
+  <p-selectbutton
+    [options]="types"
+    optionLabel="label"
+    optionValue="value"
+    [ngModel]="reportType()"
+    (ngModelChange)="changeType($event)"
+    [allowEmpty]="false"
+    ariaLabel="Tipo de reporte"
+    styleClass="w-max"
+  />
 </div>
 <section class="p-5 border border-surface rounded-2xl bg-surface-0 dark:bg-surface-950 mb-6">
   <h2 class="font-semibold text-lg">{{ typeInfo().label }}</h2>
   <p class="text-sm text-muted-color mt-1 mb-5">{{ typeInfo().description }}</p>
   <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-4 items-end">
     <div>
-      <label for="report-from" class="block mb-2 text-sm font-medium">Desde</label
-      ><input
-        pInputText
-        id="report-from"
-        type="date"
+      <label for="report-from" class="block mb-2 font-semibold">Desde</label
+      ><pos-civil-date-time
+        inputId="report-from"
+        ariaLabel="Desde"
         [ngModel]="from()"
         (ngModelChange)="from.set($event)"
         class="w-full"
-        [attr.aria-invalid]="!!rangeError()"
-        aria-describedby="report-date-error"
+        [invalid]="!!rangeError()"
+        describedBy="report-date-error"
       />
     </div>
     <div>
-      <label for="report-to" class="block mb-2 text-sm font-medium">Hasta</label
-      ><input
-        pInputText
-        id="report-to"
-        type="date"
+      <label for="report-to" class="block mb-2 font-semibold">Hasta</label
+      ><pos-civil-date-time
+        inputId="report-to"
+        ariaLabel="Hasta"
         [ngModel]="to()"
         (ngModelChange)="to.set($event)"
         class="w-full"
-        [attr.aria-invalid]="!!rangeError()"
-        aria-describedby="report-date-error"
+        [invalid]="!!rangeError()"
+        describedBy="report-date-error"
       />
     </div>
     <div>
-      <label for="report-branch" class="block mb-2 text-sm font-medium">Sucursal</label
+      <label for="report-branch" class="block mb-2 font-semibold">Sucursal</label
       ><p-select
         inputId="report-branch"
         ariaLabel="Sucursal"
@@ -74,7 +63,7 @@
       />
     </div>
     <div>
-      <label for="report-status" class="block mb-2 text-sm font-medium">Estado</label
+      <label for="report-status" class="block mb-2 font-semibold">Estado</label
       ><p-select
         inputId="report-status"
         ariaLabel="Estado"
@@ -92,7 +81,6 @@
         ariaLabel="Limpiar filtros"
         icon="pi pi-filter-slash"
         severity="secondary"
-        [outlined]="true"
         (onClick)="resetFilters()"
         styleClass="w-full"
       />

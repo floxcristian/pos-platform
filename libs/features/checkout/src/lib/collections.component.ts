@@ -14,8 +14,10 @@ import {
   PaymentMethod,
   PAYMENT_LABELS,
   Receivable,
+  chileCivilDate,
 } from '@corporate-pos/domain';
 import {
+  CivilDateTimeComponent,
   PageHeaderComponent,
   StatusTagComponent,
   MetricCardComponent,
@@ -29,6 +31,7 @@ import {
   selector: 'pos-collections',
   standalone: true,
   imports: [
+    CivilDateTimeComponent,
     FormsModule,
     ButtonModule,
     InputTextModule,
@@ -52,7 +55,6 @@ import {
         ariaLabel="Exportar cartola"
         icon="pi pi-download"
         severity="secondary"
-        [outlined]="true"
         (onClick)="export()"
         [disabled]="!customerId()"
       /><p-button
@@ -60,7 +62,6 @@ import {
         ariaLabel="Plan de cuotas"
         icon="pi pi-calendar"
         severity="secondary"
-        [outlined]="true"
         (onClick)="beginAgreement()"
         [disabled]="!customerId() || !store.can('collect', 'collections')"
       /><p-button
@@ -80,7 +81,7 @@ import {
     <section class="rounded-2xl border border-surface bg-surface-0 dark:bg-surface-950 p-5 mb-5">
       <div class="grid gap-5 md:grid-cols-[minmax(0,1fr)_2fr] items-center">
         <label for="checkout-collections-1"
-          ><span class="block text-sm font-medium mb-2">Buscar cliente por RUT o nombre</span
+          ><span class="block font-semibold mb-2">Buscar cliente por RUT o nombre</span
           ><p-select
             inputId="checkout-collections-1"
             class="w-full"
@@ -183,7 +184,6 @@ import {
                     icon="pi pi-wallet"
                     size="small"
                     severity="secondary"
-                    [outlined]="true"
                     (onClick)="beginCollection(debt)"
                     [disabled]="debt.balance <= 0 || !store.can('collect', 'collections')"
                   />
@@ -346,7 +346,7 @@ import {
       </div>
       <div class="grid gap-4 sm:grid-cols-3">
         <label for="agreement-count"
-          ><span class="block text-sm font-medium mb-2">Cuotas</span
+          ><span class="block font-semibold mb-2">Cuotas</span
           ><p-inputnumber
             inputId="agreement-count"
             [ngModel]="agreementCount()"
@@ -357,7 +357,7 @@ import {
             styleClass="w-full"
             ariaLabel="Cantidad de cuotas" /></label
         ><label for="agreement-period"
-          ><span class="block text-sm font-medium mb-2">Días entre cuotas</span
+          ><span class="block font-semibold mb-2">Días entre cuotas</span
           ><p-inputnumber
             inputId="agreement-period"
             [ngModel]="agreementPeriod()"
@@ -368,11 +368,10 @@ import {
             styleClass="w-full"
             ariaLabel="Días entre cuotas" /></label
         ><label for="agreement-start"
-          ><span class="block text-sm font-medium mb-2">Primer vencimiento</span
-          ><input
-            id="agreement-start"
-            pInputText
-            type="date"
+          ><span class="block font-semibold mb-2">Primer vencimiento</span
+          ><pos-civil-date-time
+            inputId="agreement-start"
+            ariaLabel="Primer vencimiento"
             class="w-full"
             [ngModel]="agreementStart()"
             (ngModelChange)="agreementStart.set($event)"
@@ -384,7 +383,6 @@ import {
           label="Cancelar"
           ariaLabel="Cancelar"
           severity="secondary"
-          [text]="true"
           (onClick)="agreementVisible.set(false)" /><p-button
           label="Crear acuerdo"
           ariaLabel="Crear acuerdo"
@@ -417,7 +415,7 @@ import {
       </p>
       <div class="space-y-4">
         <label class="block" for="checkout-collections-2"
-          ><span class="block text-sm font-medium mb-2">Monto del abono</span
+          ><span class="block font-semibold mb-2">Monto del abono</span
           ><p-inputnumber
             inputId="checkout-collections-2"
             class="w-full"
@@ -432,7 +430,7 @@ import {
             [maxFractionDigits]="0"
             ariaLabel="Monto del abono" /></label
         ><label class="block" for="checkout-collections-3"
-          ><span class="block text-sm font-medium mb-2">Medio de pago</span
+          ><span class="block font-semibold mb-2">Medio de pago</span
           ><p-select
             inputId="checkout-collections-3"
             class="w-full"
@@ -452,7 +450,6 @@ import {
           label="Cancelar"
           ariaLabel="Cancelar"
           severity="secondary"
-          [text]="true"
           (onClick)="dialogVisible.set(false)" /><p-button
           label="Confirmar abono"
           ariaLabel="Confirmar abono"
@@ -504,7 +501,6 @@ import {
           ariaLabel="Descargar comprobante"
           icon="pi pi-download"
           severity="secondary"
-          [outlined]="true"
           (onClick)="exportReceipt()" /><p-button
           label="Listo"
           ariaLabel="Listo"
@@ -579,7 +575,7 @@ export class CollectionsComponent {
   readonly agreementDebtIds = signal<string[]>([]);
   readonly agreementCount = signal(3);
   readonly agreementPeriod = signal(30);
-  readonly agreementStart = signal(new Date().toISOString().slice(0, 10));
+  readonly agreementStart = signal(chileCivilDate());
   readonly agreementTotal = computed(() =>
     this.receivables()
       .filter((item) => this.agreementDebtIds().includes(item.id))

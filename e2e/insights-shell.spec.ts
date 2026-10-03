@@ -64,7 +64,10 @@ test('reportes: filtros, detalle y exportación CSV de los resultados', async ({
   expect(csv.split('\r\n').length).toBeGreaterThan(2);
   await expect(page.getByRole('status').filter({ hasText: 'Se exportaron' })).toBeVisible();
 
-  await page.getByLabel('Desde', { exact: true }).fill('2099-01-01');
+  const fromDate = page.getByRole('combobox', { name: 'Desde', exact: true });
+  await fromDate.press('ControlOrMeta+a');
+  await fromDate.pressSequentially('01/01/2099');
+  await fromDate.press('Tab');
   await expect(page.getByRole('alert').filter({ hasText: 'La fecha de inicio' })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Exportar CSV', exact: true })).toBeDisabled();
   await page.getByRole('button', { name: 'Limpiar filtros', exact: true }).click();

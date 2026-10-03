@@ -179,6 +179,13 @@ export interface HeldSale {
   createdAt: string;
   metadata: SaleMetadata;
 }
+export interface ActiveSaleDraft {
+  lines: CartLine[];
+  customerId: string | null;
+  documentType: DocumentType;
+  metadata: SaleMetadata;
+  updatedAt: string;
+}
 export interface CashSession {
   id: string;
   openedAt: string;
@@ -235,8 +242,20 @@ export interface CreditNote {
   fiscalStatus: FiscalStatus;
   refundMethod: PaymentMethod;
   refundedAmount: number;
+  debtOffsetAmount: number;
+  refundPaymentAmount: number;
   refundedAt: string | null;
   appliedAmount: number;
+}
+export interface CreditNoteRefundQuote {
+  settlementAmount: number;
+  debtOffsetAmount: number;
+  refundPaymentAmount: number;
+  roundingAdjustment: number;
+}
+export interface CreditNoteApplicationQuote {
+  availableAmount: number;
+  debtOffsetAmount: number;
 }
 export interface ReturnInput {
   saleId: string;
@@ -448,6 +467,7 @@ export interface PosSnapshot {
   agreements: Agreement[];
   custodyDeposits: CustodyDeposit[];
   heldSales: HeldSale[];
+  activeDraft: ActiveSaleDraft | null;
   session: CashSession | null;
   sessions: CashSession[];
   cashMovements: CashMovement[];

@@ -6,6 +6,8 @@ import {
   CheckoutInput,
   Collection,
   CreditNote,
+  CreditNoteRefundQuote,
+  CreditNoteApplicationQuote,
   PaymentMethod,
   PosSnapshot,
   Result,
@@ -14,6 +16,7 @@ import {
   SaleTotals,
   addCalendarDays,
   calculateTotals,
+  calculateCreditNoteRefund,
   failure,
   isValidRut,
   priceCart,
@@ -61,6 +64,45 @@ function reduceAgreementBalance(state: PosSnapshot, receivableId: string, amount
     }
     if (agreement.installments.every((installment) => installment.balance === 0)) agreement.status = 'paid';
   }
+}
+function reduceSaleDebt(state: PosSnapshot, saleId: string, amount: number): Result<void> {
+  if (!amount) return success(undefined);
+  const sale = state.sales.find((item) => item.id === saleId);
+  const debt = state.receivables.find((item) => item.document === sale?.number);
+  if (!debt || debt.balance < amount)
+    return failure('El documento no tiene saldo suficiente para compensar contra crédito.');
+  debt.balance -= amount;
+  debt.status = debt.balance ? 'partial' : 'paid';
+  reduceAgreementBalance(state, debt.id, amount);
+  const customer = state.customers.find((item) => item.id === debt.customerId);
+  if (customer) customer.creditUsed = Math.max(0, customer.creditUsed - amount);
+  return success(undefined);
+}
+export function quoteCreditNoteApplicationTransaction(
+  state: PosSnapshot,
+  id: string,
+  customerId: string | null,
+): Result<CreditNoteApplicationQuote> {
+  const note = state.creditNotes.find((item) => item.id === id);
+  if (!note || note.fiscalStatus !== 'issued') return failure('La nota de crédito no está emitida.');
+  if (note.amount <= note.refundedAmount + note.appliedAmount)
+    return success({ availableAmount: 0, debtOffsetAmount: 0 });
+  const sale = state.sales.find((item) => item.id === note.saleId);
+  if (!sale || sale.paymentStatus !== 'confirmed')
+    return failure('La venta de origen no tiene pago confirmado.');
+  if (sale.customerId && sale.customerId !== customerId)
+    return failure('La nota de crédito pertenece a otro cliente.');
+  const debt = state.receivables.find((item) => item.document === sale.number);
+  if (sale.payments.some((payment) => payment.method === 'cuenta') && !debt)
+    return failure('No se encontró la cuenta por cobrar de origen.');
+  const quote = calculateCreditNoteRefund(sale, note, state.creditNotes, debt, state.collections);
+  return success({
+    availableAmount: Math.max(
+      0,
+      Math.min(quote.settlementAmount - quote.debtOffsetAmount, quote.refundPaymentAmount),
+    ),
+    debtOffsetAmount: quote.debtOffsetAmount,
+  });
 }
 export function cashMovement(
   state: PosSnapshot,
@@ -314,6 +356,10 @@ export function checkoutTransaction(
   if (!['cash', 'advance'].includes(changeDisposition)) return failure('Selecciona el destino del vuelto.');
   if (changeDisposition === 'advance' && (!customer || !moduleEnabled(state, 'collections')))
     return failure('El vuelto como anticipo requiere un cliente y el módulo de cobranzas habilitado.');
+  const notePlans = new Map<string, { amount: number; debtOffsetAmount: number }>();
+  const notePlanningState = input.payments.some((payment) => payment.method === 'nota_credito')
+    ? structuredClone(state)
+    : state;
   for (const payment of input.payments) {
     const valid = validatePayment(state, payment.method);
     if (!valid.ok) return valid;
@@ -358,19 +404,26 @@ export function checkoutTransaction(
         );
     }
     if (payment.method === 'nota_credito') {
-      const note = state.creditNotes.find((item) => item.id === payment.reference);
-      const originalSale = state.sales.find((item) => item.id === note?.saleId);
+      const noteId = payment.reference ?? '';
       const requested = input.payments
         .filter((item) => item.method === 'nota_credito' && item.reference === payment.reference)
         .reduce((sum, item) => sum + item.amount, 0);
-      if (
-        !note ||
-        note.fiscalStatus !== 'issued' ||
-        note.amount - note.refundedAmount - note.appliedAmount < requested
-      )
-        return failure('La nota de crédito no está emitida o no tiene saldo suficiente.');
-      if (originalSale?.customerId && originalSale.customerId !== customer?.id)
-        return failure('La nota de crédito pertenece a otro cliente.');
+      if (!notePlans.has(noteId)) {
+        const quote = quoteCreditNoteApplicationTransaction(notePlanningState, noteId, customer?.id ?? null);
+        if (!quote.ok) return quote;
+        if (requested > quote.value.availableAmount)
+          return failure(
+            'El saldo utilizable de la nota no alcanza: primero se reserva la deuda pendiente de su venta de origen.',
+          );
+        const note = notePlanningState.creditNotes.find((item) => item.id === noteId);
+        if (!note) return failure('La nota de crédito no existe.');
+        const offset = reduceSaleDebt(notePlanningState, note.saleId, quote.value.debtOffsetAmount);
+        if (!offset.ok) return offset;
+        note.refundedAmount += quote.value.debtOffsetAmount;
+        note.debtOffsetAmount += quote.value.debtOffsetAmount;
+        note.appliedAmount += requested;
+        notePlans.set(noteId, { amount: requested, debtOffsetAmount: quote.value.debtOffsetAmount });
+      }
     }
     if (payment.method === 'anticipo') {
       const advance = state.collections.find(
@@ -437,9 +490,18 @@ export function checkoutTransaction(
     order.status = unknown ? 'in_payment' : 'paid';
     order.saleId = sale.id;
   }
-  for (const payment of sale.payments.filter((item) => item.method === 'nota_credito')) {
-    const note = state.creditNotes.find((item) => item.id === payment.reference);
-    if (note) note.appliedAmount += payment.amount;
+  for (const [noteId, plan] of notePlans) {
+    const note = state.creditNotes.find((item) => item.id === noteId);
+    if (!note) return failure('La nota de crédito no existe.');
+    const offset = reduceSaleDebt(state, note.saleId, plan.debtOffsetAmount);
+    if (!offset.ok) return offset;
+    note.refundedAmount += plan.debtOffsetAmount;
+    note.debtOffsetAmount += plan.debtOffsetAmount;
+    if (plan.debtOffsetAmount) {
+      note.refundedAt = context.now;
+      note.refundMethod = 'cuenta';
+    }
+    note.appliedAmount += plan.amount;
   }
   for (const payment of sale.payments.filter((item) => item.method === 'anticipo')) {
     const advance = state.collections.find((item) => item.id === payment.reference);
@@ -486,6 +548,7 @@ export function checkoutTransaction(
   }
   enqueue(state, context, sale.id, 'sale.created', 'erp');
   enqueue(state, context, sale.id, 'sale.created', 'fiscal');
+  state.activeDraft = null;
   return success(sale);
 }
 export function collectTransaction(
@@ -584,6 +647,8 @@ export function issueCreditNoteTransaction(
     fiscalStatus: 'pending',
     refundMethod: input.refundMethod,
     refundedAmount: 0,
+    debtOffsetAmount: 0,
+    refundPaymentAmount: 0,
     refundedAt: null,
     appliedAmount: 0,
   };
@@ -599,41 +664,76 @@ export function issueCreditNoteTransaction(
   enqueue(state, context, note.id, 'credit-note.created', 'erp');
   return success(note);
 }
+export function quoteCreditNoteRefundTransaction(
+  state: PosSnapshot,
+  id: string,
+  method: PaymentMethod,
+): Result<CreditNoteRefundQuote> {
+  const note = state.creditNotes.find((item) => item.id === id);
+  if (!note) return failure('La nota de crédito no existe.');
+  if (note.fiscalStatus !== 'issued')
+    return failure('Emite la nota de crédito antes de registrar el reembolso.');
+  if (note.amount - note.refundedAmount - note.appliedAmount <= 0)
+    return failure('Esta nota de crédito no tiene saldo disponible.');
+  if (!state.session || state.session.status !== 'open')
+    return failure('Abre un turno antes de registrar el reembolso.');
+  if (!['efectivo', 'debito', 'credito', 'transferencia', 'cuenta'].includes(method))
+    return failure('El reembolso admite efectivo, tarjeta, transferencia o compensación de deuda.');
+  const sale = state.sales.find((item) => item.id === note.saleId);
+  if (!sale || sale.paymentStatus !== 'confirmed')
+    return failure('La venta original debe tener un pago confirmado.');
+  const debt = state.receivables.find((item) => item.document === sale.number);
+  if (sale.payments.some((payment) => payment.method === 'cuenta') && !debt)
+    return failure('No se encontró la cuenta por cobrar de la venta. Revisa su conciliación.');
+  const quote = calculateCreditNoteRefund(sale, note, state.creditNotes, debt, state.collections);
+  if (Math.abs(quote.roundingAdjustment) > Math.abs(sale.roundingAdjustment))
+    return failure(
+      'La financiación de esta nota no concilia con su venta. Revisa los pagos antes de liquidarla.',
+    );
+  if (quote.debtOffsetAmount > 0 && !state.online)
+    return failure('La compensación de deuda necesita conexión simulada.');
+  if (method === 'cuenta' && quote.refundPaymentAmount > 0)
+    return failure(
+      'Parte de la venta ya está pagada. Selecciona un medio para devolver el remanente después de compensar la deuda.',
+    );
+  if (quote.refundPaymentAmount > 0 || method === 'cuenta') {
+    const valid = validatePayment(state, method);
+    if (!valid.ok) return valid;
+  }
+  if (method === 'efectivo' && quote.refundPaymentAmount > state.session.expectedAmount)
+    return failure('No hay suficiente efectivo disponible en la caja.');
+  return success(quote);
+}
 export function refundCreditNoteTransaction(
   state: PosSnapshot,
   id: string,
   method: PaymentMethod,
   context: TransactionContext,
 ): Result<CreditNote> {
+  const quote = quoteCreditNoteRefundTransaction(state, id, method);
+  if (!quote.ok) return quote;
   const note = state.creditNotes.find((item) => item.id === id);
   if (!note) return failure('La nota de crédito no existe.');
-  if (note.fiscalStatus !== 'issued')
-    return failure('Emite la nota de crédito antes de registrar el reembolso.');
-  const remaining = note.amount - note.refundedAmount - note.appliedAmount;
-  if (remaining <= 0) return failure('Esta nota de crédito no tiene saldo disponible.');
-  const valid = validatePayment(state, method);
-  if (!valid.ok) return valid;
-  if (!state.session || state.session.status !== 'open')
-    return failure('Abre un turno antes de registrar el reembolso.');
-  if (['cheque', 'usd', 'nota_credito', 'anticipo'].includes(method))
-    return failure('El reembolso admite efectivo, tarjeta, transferencia o compensación de deuda.');
-  if (method === 'efectivo') {
-    const movement = cashMovement(state, context, 'refund', remaining, `Reembolso ${note.number}`, note.id);
+  const { settlementAmount, debtOffsetAmount, refundPaymentAmount } = quote.value;
+  if (method === 'efectivo' && refundPaymentAmount > 0) {
+    const movement = cashMovement(
+      state,
+      context,
+      'refund',
+      refundPaymentAmount,
+      `Reembolso ${note.number}`,
+      note.id,
+    );
     if (!movement.ok) return movement;
   }
-  if (method === 'cuenta') {
-    const sale = state.sales.find((item) => item.id === note.saleId);
-    const debt = state.receivables.find((item) => item.document === sale?.number);
-    if (!debt || debt.balance < remaining)
-      return failure('El documento no tiene saldo suficiente para compensar contra crédito.');
-    debt.balance -= remaining;
-    debt.status = debt.balance ? 'partial' : 'paid';
-    reduceAgreementBalance(state, debt.id, remaining);
-    const customer = state.customers.find((item) => item.id === debt.customerId);
-    if (customer) customer.creditUsed = Math.max(0, customer.creditUsed - remaining);
+  if (debtOffsetAmount > 0) {
+    const offset = reduceSaleDebt(state, note.saleId, debtOffsetAmount);
+    if (!offset.ok) return offset;
   }
   note.refundMethod = method;
-  note.refundedAmount += remaining;
+  note.refundedAmount += settlementAmount;
+  note.debtOffsetAmount += debtOffsetAmount;
+  note.refundPaymentAmount += refundPaymentAmount;
   note.refundedAt = context.now;
   return success(note);
 }

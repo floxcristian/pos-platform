@@ -8,7 +8,6 @@
     ariaLabel="Cargar orden de venta"
     icon="pi pi-file-import"
     severity="secondary"
-    [outlined]="true"
     (onClick)="ordersVisible.set(true); error.set('')"
   />
   <p-button
@@ -16,11 +15,10 @@
     ariaLabel="Ventas pausadas"
     icon="pi pi-pause"
     severity="secondary"
-    [outlined]="true"
     (onClick)="heldVisible.set(true)"
     [badge]="store.snapshot().heldSales.length.toString()"
   />
-  <a pButton routerLink="/caja" severity="secondary" [outlined]="true">Caja y turno</a>
+  <a pButton routerLink="/caja" severity="secondary">Caja y turno</a>
 </pos-page-header>
 @if (error()) {
   <p-message severity="error" class="block mb-4">{{ error() }}</p-message>
@@ -109,7 +107,6 @@
           ariaLabel="Pausar"
           icon="pi pi-pause"
           severity="secondary"
-          [text]="true"
           size="small"
           (onClick)="hold()"
           [disabled]="!lines().length"
@@ -236,7 +233,6 @@
         ariaLabel="Crear cliente express"
         icon="pi pi-user-plus"
         severity="secondary"
-        [text]="true"
         size="small"
         [disabled]="!!loadedOrder()?.locked || !store.can('sell', 'sales')"
         (onClick)="customerVisible.set(true); error.set('')"
@@ -246,7 +242,7 @@
     <section class="rounded-2xl border border-surface bg-surface-0 dark:bg-surface-950 p-5 space-y-4">
       <h2 class="font-semibold text-lg">Entrega y referencias</h2>
       <label class="block" for="checkout-checkout-4"
-        ><span class="block text-sm font-medium mb-2">Forma de entrega</span
+        ><span class="block font-semibold mb-2">Forma de entrega</span
         ><p-select
           inputId="checkout-checkout-4"
           class="w-full"
@@ -259,7 +255,7 @@
       /></label>
       @if (deliveryMode() === 'delivery') {
         <label class="block" for="checkout-checkout-5"
-          ><span class="block text-sm font-medium mb-2">Dirección de despacho</span
+          ><span class="block font-semibold mb-2">Dirección de despacho</span
           ><input
             id="checkout-checkout-5"
             pInputText
@@ -267,7 +263,7 @@
             [ngModel]="deliveryAddress()"
             (ngModelChange)="deliveryAddress.set($event)" /></label
         ><label class="block" for="checkout-checkout-6"
-          ><span class="block text-sm font-medium mb-2">Contacto para la entrega</span
+          ><span class="block font-semibold mb-2">Contacto para la entrega</span
           ><input
             id="checkout-checkout-6"
             pInputText
@@ -277,7 +273,7 @@
         /></label>
       }
       <label class="block" for="checkout-checkout-7"
-        ><span class="block text-sm font-medium mb-2"
+        ><span class="block font-semibold mb-2"
           >Referencia de orden de venta <span class="text-muted-color font-normal">(opcional)</span></span
         ><input
           id="checkout-checkout-7"
@@ -306,7 +302,6 @@
           ariaLabel="Aplicar a productos incluidos"
           icon="pi pi-tag"
           severity="secondary"
-          [outlined]="true"
           size="small"
           (onClick)="applyOffer()"
           [disabled]="!store.can('sell', 'discounts') || !lines().length"
@@ -459,7 +454,7 @@
       </div>
       <div class="text-3xl font-semibold">{{ money(payable()) }}</div>
       <label class="block" for="checkout-checkout-8"
-        ><span class="block text-sm font-medium mb-2">Medio de pago</span
+        ><span class="block font-semibold mb-2">Medio de pago</span
         ><p-select
           inputId="checkout-checkout-8"
           [options]="paymentOptions()"
@@ -471,7 +466,7 @@
           ariaLabel="Medio de pago"
       /></label>
       <label class="block" for="checkout-checkout-9"
-        ><span class="block text-sm font-medium mb-2">{{
+        ><span class="block font-semibold mb-2">{{
           paymentMethod() === 'efectivo' ? 'Efectivo recibido' : 'Monto a aplicar'
         }}</span
         ><p-inputnumber
@@ -491,7 +486,7 @@
       @if (paymentMethod() === 'usd') {
         <div class="grid grid-cols-2 gap-3">
           <label for="checkout-checkout-10"
-            ><span class="block text-sm font-medium mb-2">Efectivo USD</span
+            ><span class="block font-semibold mb-2">Efectivo USD</span
             ><p-inputnumber
               inputId="checkout-checkout-10"
               styleClass="w-full"
@@ -502,7 +497,7 @@
               [maxFractionDigits]="2"
               ariaLabel="Efectivo en dólares" /></label
           ><label for="checkout-checkout-11"
-            ><span class="block text-sm font-medium mb-2">Cambio CLP por USD</span
+            ><span class="block font-semibold mb-2">Cambio CLP por USD</span
             ><p-inputnumber
               inputId="checkout-checkout-11"
               styleClass="w-full"
@@ -520,7 +515,7 @@
       }
       @if (paymentMethod() === 'anticipo') {
         <label class="block" for="payment-advance"
-          ><span class="block text-sm font-medium mb-2">Anticipo disponible del cliente</span
+          ><span class="block font-semibold mb-2">Anticipo disponible del cliente</span
           ><p-select
             inputId="payment-advance"
             class="w-full"
@@ -540,7 +535,7 @@
       }
       @if (paymentMethod() === 'nota_credito') {
         <label class="block" for="checkout-checkout-12"
-          ><span class="block text-sm font-medium mb-2">Nota de crédito disponible</span
+          ><span class="block font-semibold mb-2">Nota de crédito disponible</span
           ><p-select
             inputId="checkout-checkout-12"
             class="w-full"
@@ -552,6 +547,14 @@
             placeholder="Selecciona una NC"
             ariaLabel="Nota de crédito como pago"
         /></label>
+        <p class="text-sm text-muted-color">
+          El saldo utilizable descuenta la deuda pendiente de la venta original.
+        </p>
+        @if (!creditNotes().length) {
+          <p class="text-sm text-muted-color">
+            Este cliente no tiene notas de crédito emitidas con saldo utilizable.
+          </p>
+        }
       }
       @if (
         paymentMethod() !== 'efectivo' &&
@@ -561,7 +564,7 @@
         paymentMethod() !== 'anticipo'
       ) {
         <label class="block" for="checkout-checkout-13"
-          ><span class="block text-sm font-medium mb-2">{{
+          ><span class="block font-semibold mb-2">{{
             paymentMethod() === 'cheque'
               ? 'Referencia cheque / verificación Orsan'
               : 'Referencia o comprobante'
@@ -577,7 +580,7 @@
       @if (paymentMethod() === 'cheque') {
         <div class="grid grid-cols-2 gap-3">
           <label for="checkout-checkout-14"
-            ><span class="block text-sm font-medium mb-2">Banco</span
+            ><span class="block font-semibold mb-2">Banco</span
             ><p-select
               inputId="checkout-checkout-14"
               class="w-full"
@@ -588,7 +591,7 @@
               (ngModelChange)="bankId.set($event)"
               ariaLabel="Banco del cheque" /></label
           ><label for="checkout-checkout-15"
-            ><span class="block text-sm font-medium mb-2">Plaza</span
+            ><span class="block font-semibold mb-2">Plaza</span
             ><p-select
               inputId="checkout-checkout-15"
               class="w-full"
@@ -599,7 +602,7 @@
               (ngModelChange)="plazaId.set($event)"
               ariaLabel="Plaza del cheque" /></label
           ><label for="checkout-checkout-16"
-            ><span class="block text-sm font-medium mb-2">Cuenta</span
+            ><span class="block font-semibold mb-2">Cuenta</span
             ><input
               id="checkout-checkout-16"
               pInputText
@@ -607,7 +610,7 @@
               [ngModel]="accountNumber()"
               (ngModelChange)="accountNumber.set($event)" /></label
           ><label for="checkout-checkout-17"
-            ><span class="block text-sm font-medium mb-2">Número de cheque</span
+            ><span class="block font-semibold mb-2">Número de cheque</span
             ><input
               id="checkout-checkout-17"
               pInputText
@@ -615,19 +618,18 @@
               [ngModel]="chequeNumber()"
               (ngModelChange)="chequeNumber.set($event)" /></label
           ><label class="col-span-2" for="checkout-checkout-18"
-            ><span class="block text-sm font-medium mb-2">Fecha de cobro</span
-            ><input
-              id="checkout-checkout-18"
-              pInputText
+            ><span class="block font-semibold mb-2">Fecha de cobro</span
+            ><pos-civil-date-time
+              inputId="checkout-checkout-18"
+              ariaLabel="Fecha de cobro"
               class="w-full"
-              type="date"
               [ngModel]="chequeDate()"
               (ngModelChange)="chequeDate.set($event)"
           /></label>
         </div>
         <div class="grid grid-cols-2 gap-3">
           <label for="cheque-issuer-name"
-            ><span class="block text-sm font-medium mb-2">Nombre del emisor</span
+            ><span class="block font-semibold mb-2">Nombre del emisor</span
             ><input
               id="cheque-issuer-name"
               pInputText
@@ -635,7 +637,7 @@
               [ngModel]="issuerName()"
               (ngModelChange)="issuerName.set($event)" /></label
           ><label for="cheque-issuer-rut"
-            ><span class="block text-sm font-medium mb-2">RUT del emisor</span
+            ><span class="block font-semibold mb-2">RUT del emisor</span
             ><input
               id="cheque-issuer-rut"
               pInputText
@@ -643,7 +645,7 @@
               [ngModel]="issuerRut()"
               (ngModelChange)="issuerRut.set($event)" /></label
           ><label for="cheque-holder-name"
-            ><span class="block text-sm font-medium mb-2">Nombre del portador</span
+            ><span class="block font-semibold mb-2">Nombre del portador</span
             ><input
               id="cheque-holder-name"
               pInputText
@@ -651,7 +653,7 @@
               [ngModel]="holderName()"
               (ngModelChange)="holderName.set($event)" /></label
           ><label for="cheque-holder-rut"
-            ><span class="block text-sm font-medium mb-2">RUT del portador</span
+            ><span class="block font-semibold mb-2">RUT del portador</span
             ><input
               id="cheque-holder-rut"
               pInputText
@@ -756,7 +758,7 @@
         }
         @if (change() > 0) {
           <label class="block" for="change-disposition"
-            ><span class="block text-sm font-medium mb-2">Destino del vuelto</span
+            ><span class="block font-semibold mb-2">Destino del vuelto</span
             ><p-select
               inputId="change-disposition"
               class="w-full"
@@ -793,7 +795,6 @@
       label="Volver a la venta"
       ariaLabel="Volver a la venta"
       severity="secondary"
-      [text]="true"
       (onClick)="paying.set(false)" /><p-button
       label="Confirmar venta"
       ariaLabel="Confirmar venta"
@@ -810,6 +811,9 @@
   [style]="{ width: '34rem' }"
   [breakpoints]="{ '640px': '95vw' }"
 >
+  @if (error()) {
+    <p-message severity="error" class="block mb-4">{{ error() }}</p-message>
+  }
   @if (receiptChange()) {
     <p-message severity="info" class="block mb-4">
       @if (receipt()?.changeDisposition === 'advance') {
@@ -864,7 +868,6 @@
       ariaLabel="Imprimir comprobante"
       icon="pi pi-print"
       severity="secondary"
-      [outlined]="true"
       (onClick)="print()" /><p-button
       label="Nueva venta"
       ariaLabel="Nueva venta"
@@ -884,7 +887,7 @@
   }
   <div class="grid gap-4 sm:grid-cols-2">
     <label for="checkout-checkout-20"
-      ><span class="block text-sm font-medium mb-2">RUT</span
+      ><span class="block font-semibold mb-2">RUT</span
       ><input
         id="checkout-checkout-20"
         pInputText
@@ -893,7 +896,7 @@
         (ngModelChange)="customerRut.set($event)"
         placeholder="12.345.678-5" /></label
     ><label for="checkout-checkout-21"
-      ><span class="block text-sm font-medium mb-2">Nombre o razón social</span
+      ><span class="block font-semibold mb-2">Nombre o razón social</span
       ><input
         id="checkout-checkout-21"
         pInputText
@@ -901,7 +904,7 @@
         [ngModel]="customerName()"
         (ngModelChange)="customerName.set($event)" /></label
     ><label for="checkout-checkout-22"
-      ><span class="block text-sm font-medium mb-2">Correo electrónico</span
+      ><span class="block font-semibold mb-2">Correo electrónico</span
       ><input
         id="checkout-checkout-22"
         pInputText
@@ -910,7 +913,7 @@
         [ngModel]="customerEmail()"
         (ngModelChange)="customerEmail.set($event)" /></label
     ><label for="checkout-checkout-23"
-      ><span class="block text-sm font-medium mb-2">Teléfono</span
+      ><span class="block font-semibold mb-2">Teléfono</span
       ><input
         id="checkout-checkout-23"
         pInputText
@@ -919,7 +922,7 @@
         [ngModel]="customerPhone()"
         (ngModelChange)="customerPhone.set($event)" /></label
     ><label for="checkout-checkout-24"
-      ><span class="block text-sm font-medium mb-2">Dirección de facturación</span
+      ><span class="block font-semibold mb-2">Dirección de facturación</span
       ><input
         id="checkout-checkout-24"
         pInputText
@@ -927,7 +930,7 @@
         [ngModel]="customerAddress()"
         (ngModelChange)="customerAddress.set($event)" /></label
     ><label for="checkout-checkout-25"
-      ><span class="block text-sm font-medium mb-2">Ciudad</span
+      ><span class="block font-semibold mb-2">Ciudad</span
       ><input
         id="checkout-checkout-25"
         pInputText
@@ -935,7 +938,7 @@
         [ngModel]="customerCity()"
         (ngModelChange)="customerCity.set($event)" /></label
     ><label class="sm:col-span-2" for="checkout-checkout-26"
-      ><span class="block text-sm font-medium mb-2">Giro</span
+      ><span class="block font-semibold mb-2">Giro</span
       ><input
         id="checkout-checkout-26"
         pInputText
@@ -949,7 +952,6 @@
       label="Cancelar"
       ariaLabel="Cancelar"
       severity="secondary"
-      [text]="true"
       (onClick)="customerVisible.set(false)" /><p-button
       label="Crear y seleccionar"
       ariaLabel="Crear y seleccionar"

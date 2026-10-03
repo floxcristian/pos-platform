@@ -1,5 +1,13 @@
 import { defineConfig, devices } from '@playwright/test';
 
+const production = Boolean(process.env['CI']) || process.env['POS_E2E_PRODUCTION'] === '1';
+const rawPort = process.env['POS_E2E_PORT'] ?? '4300';
+const port = Number(rawPort);
+if (!/^\d+$/.test(rawPort) || !Number.isInteger(port) || port < 1024 || port > 65535) {
+  throw new Error('POS_E2E_PORT must be an integer from 1024 to 65535.');
+}
+const baseURL = `http://127.0.0.1:${port}`;
+
 export default defineConfig({
   testDir: './e2e',
   fullyParallel: true,
@@ -10,7 +18,7 @@ export default defineConfig({
   expect: { timeout: 10000 },
   reporter: [['list'], ['html', { open: 'never' }]],
   use: {
-    baseURL: 'http://127.0.0.1:4300',
+    baseURL,
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure',
     locale: 'es-CL',
@@ -20,9 +28,11 @@ export default defineConfig({
     { name: 'chromium', use: { ...devices['Desktop Chrome'], viewport: { width: 1440, height: 1000 } } },
   ],
   webServer: {
-    command: 'npm start',
-    url: 'http://127.0.0.1:4300',
-    reuseExistingServer: !process.env['CI'],
+    command: production
+      ? `node tools/serve-build.mjs --port ${port}`
+      : `node node_modules/nx/bin/nx.js serve pos-web --host 127.0.0.1 --port ${port}`,
+    url: baseURL,
+    reuseExistingServer: !production,
     timeout: 180000,
   },
 });
