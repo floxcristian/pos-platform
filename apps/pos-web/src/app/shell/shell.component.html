@@ -29,13 +29,18 @@
     </a>
     <button
       type="button"
-      class="hidden md:flex items-center gap-3 h-10 rounded-lg bg-primary-600 hover:bg-primary-700 px-4 text-sm min-w-0 flex-1 max-w-xl cursor-pointer"
+      class="hidden md:flex items-center gap-3 h-11 rounded-md border border-surface-300 hover:border-surface-400 bg-surface-0 text-surface-600 px-3 text-base min-w-0 flex-1 max-w-xl cursor-pointer"
       (click)="openSearch()"
       aria-label="Buscar en la caja, Control K"
+      aria-haspopup="dialog"
+      [attr.aria-expanded]="searchOpen()"
     >
       <i class="pi pi-search" aria-hidden="true"></i
       ><span class="truncate text-left flex-1">Buscar productos, documentos o módulos</span
-      ><kbd class="text-xs border border-white/30 rounded px-1.5 py-0.5">Ctrl K</kbd>
+      ><kbd
+        class="shrink-0 text-xs text-surface-600 bg-surface-100 border border-surface-300 rounded px-1.5 py-0.5"
+        >Ctrl K</kbd
+      >
     </button>
     <span class="flex-1 md:hidden"></span>
     <span class="hidden lg:block ml-auto border border-white/30 rounded-md px-2 py-1 text-xs tracking-wide"
