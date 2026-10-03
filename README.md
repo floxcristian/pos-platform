@@ -1,6 +1,8 @@
-# Corporate POS
+# POS Platform
 
 Caja corporativa para Chile: prototipo funcional de producto, con datos sintéticos y recorridos conectados. Conserva el lenguaje visual de **prime-showcase** (PrimeNG, Aura corporativo, Inter, tablas y navegación) sobre un repositorio Nx independiente. No incorpora los módulos ni dependencias de negocio del sistema anterior.
+
+Repositorio principal: [floxcristian/pos-platform](https://github.com/floxcristian/pos-platform). La aplicación mantiene el nombre **Corporate POS**.
 
 ![Centro de operación con indicadores, gráficos y pendientes](docs/screenshots/dashboard.png)
 
@@ -18,6 +20,12 @@ npm start
 Abre **http://127.0.0.1:4300**. El perfil inicial es Administrador y hay una caja abierta con datos de ejemplo. El menú de usuario permite cambiar el perfil, simular desconexión y cambiar el tema. Los cambios se conservan en el navegador. Para comenzar de nuevo: **Módulos y configuración → Demostración → Restablecer**.
 
 Todos los RUT, clientes, usuarios y operaciones son ejemplos sintéticos. No hay autenticación real, cargos bancarios, DTE válidos ni conexiones a sistemas corporativos. No ingreses información de producción.
+
+## Publicar el frontend en Vercel
+
+El repositorio incluye `vercel.json` para compilar el frontend estático. Importa `floxcristian/pos-platform` en Vercel con **Root Directory en la raíz del repositorio**, Framework Preset **Other** y Node.js **24.x**. Los comandos y la carpeta de salida se leen del archivo. No requiere variables de entorno para la demostración.
+
+Consulta la [guía de despliegue](docs/vercel.md) con los valores exactos y los pasos de comprobación. El instalador de Windows se genera por separado con Tauri.
 
 ## Recorridos
 
