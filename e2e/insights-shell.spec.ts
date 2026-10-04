@@ -36,6 +36,57 @@ test('shell: navegación por teclado, búsqueda global y persistencia del tema',
   expect(errors).toEqual([]);
 });
 
+test('shell: el menú lateral conserva su estado sin interferir con la navegación móvil', async ({ page }) => {
+  await openDashboard(page);
+  const sidebar = page.locator('#desktop-navigation');
+  const toggle = page.getByRole('button', { name: 'Ocultar menú lateral', exact: true });
+  await expect(sidebar).toBeVisible();
+  await expect(toggle).toHaveAttribute('aria-controls', 'desktop-navigation');
+  await expect(toggle).toHaveAttribute('aria-expanded', 'true');
+  const originalWidth = (await page.locator('main').boundingBox())!.width;
+
+  await toggle.focus();
+  await expect(page.getByRole('tooltip')).toHaveText('Ocultar menú lateral');
+  await toggle.press('Enter');
+  const reopen = page.getByRole('button', { name: 'Mostrar menú lateral', exact: true });
+  await expect(reopen).toBeFocused();
+  await expect(reopen).toHaveAttribute('aria-expanded', 'false');
+  await expect(sidebar).toBeHidden();
+  expect((await page.locator('main').boundingBox())!.width).toBeGreaterThan(originalWidth + 200);
+
+  await page.keyboard.press('Control+k');
+  const search = page.getByRole('dialog', { name: 'Buscar en Corporate POS' });
+  await search.getByRole('textbox').fill('reportes');
+  await search.getByRole('button', { name: /Reportes Ir al módulo/ }).click();
+  await expect(page).toHaveURL(/#\/reportes$/);
+  await expect(sidebar).toBeHidden();
+  await page.reload();
+  await expect(reopen).toBeVisible();
+  await expect(sidebar).toBeHidden();
+
+  await page.setViewportSize({ width: 375, height: 1000 });
+  await expect(reopen).toBeHidden();
+  await page.getByRole('button', { name: 'Abrir navegación', exact: true }).click();
+  const mobileMenu = page.getByRole('navigation', { name: 'Navegación móvil' });
+  await mobileMenu.getByRole('link', { name: 'Mi caja', exact: true }).click();
+  await expect(page).toHaveURL(/#\/caja$/);
+  await expect(mobileMenu).toBeHidden();
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await expect(sidebar).toBeHidden();
+  await reopen.focus();
+  await expect(page.getByRole('tooltip')).toHaveText('Mostrar menú lateral');
+  await reopen.press('Enter');
+  await expect(sidebar).toBeVisible();
+  await expect(sidebar.getByRole('link', { name: 'Mi caja', exact: true })).toHaveAttribute(
+    'aria-current',
+    'page',
+  );
+  await expect(toggle).toHaveAttribute('aria-expanded', 'true');
+  await page.reload();
+  await expect(toggle).toBeVisible();
+  await expect(sidebar).toBeVisible();
+});
+
 test('reportes: filtros, detalle y exportación CSV de los resultados', async ({ page }, testInfo) => {
   const errors: string[] = [];
   page.on('pageerror', (error) => errors.push(error.message));

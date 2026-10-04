@@ -39,6 +39,48 @@ function createStore(
   return { store: runInInjectionContext(injector, () => new PosStore()), repository };
 }
 describe('PosStore command policy and event coordination', () => {
+  it.each(['admin', 'supervisor', 'cashier', 'auditor'] as const)(
+    'persists the sidebar preference for the %s profile',
+    (role) => {
+      const fixture = createFixtures(now);
+      fixture.role = role;
+      const { store, repository } = createStore(fixture);
+      const save = vi.spyOn(repository, 'save');
+
+      expect(store.setSidebarCollapsed(true).ok).toBe(true);
+      expect(store.snapshot().settings.sidebarCollapsed).toBe(true);
+      expect(save).toHaveBeenLastCalledWith(store.snapshot());
+      expect(store.snapshot().audit[0]).toMatchObject({
+        action: 'preference.sidebar.changed',
+        entity: 'settings',
+        role,
+      });
+      const { store: restored } = createStore(structuredClone(store.snapshot()));
+      expect(restored.snapshot().settings.sidebarCollapsed).toBe(true);
+      expect(store.setSidebarCollapsed(false).ok).toBe(true);
+      expect(store.snapshot().settings.sidebarCollapsed).toBe(false);
+    },
+  );
+  it('keeps the sidebar preference unchanged when its durable save fails', () => {
+    const { store, repository } = createStore();
+    const before = store.snapshot();
+    repository.save = () => ({ ok: false, error: 'Disco lleno' });
+
+    expect(store.setSidebarCollapsed(true)).toEqual({ ok: false, error: 'Disco lleno' });
+    expect(store.snapshot()).toBe(before);
+    expect(store.persistenceError()).toBe('Disco lleno');
+  });
+  it('rejects malformed sidebar preferences through both preference and settings commands', () => {
+    const { store, repository } = createStore();
+    const before = store.snapshot();
+    const save = vi.spyOn(repository, 'save');
+    const invalid = 'false' as unknown as boolean;
+
+    expect(store.setSidebarCollapsed(invalid).ok).toBe(false);
+    expect(store.updateSettings({ sidebarCollapsed: invalid }).ok).toBe(false);
+    expect(store.snapshot()).toBe(before);
+    expect(save).not.toHaveBeenCalled();
+  });
   it('restores a persisted safe draft and clears it atomically with checkout', () => {
     const { store, repository } = createStore();
     const input = {

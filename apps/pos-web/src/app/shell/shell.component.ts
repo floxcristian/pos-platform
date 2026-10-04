@@ -66,6 +66,7 @@ export class ShellComponent {
   private readonly document = inject(DOCUMENT);
   private readonly destroyRef = inject(DestroyRef);
   private readonly theme = inject(ThemeService);
+  readonly sidebarCollapsed = computed(() => this.store.snapshot().settings.sidebarCollapsed);
   readonly mobileOpen = signal(false);
   readonly searchOpen = signal(false);
   readonly notificationsOpen = signal(false);
@@ -211,6 +212,9 @@ export class ShellComponent {
   }
   toggleTheme(): void {
     this.store.setTheme(this.dark() ? 'light' : 'dark');
+  }
+  toggleSidebar(): void {
+    this.store.setSidebarCollapsed(!this.sidebarCollapsed());
   }
   changeTheme(mode: ThemeMode): void {
     this.store.setTheme(mode);

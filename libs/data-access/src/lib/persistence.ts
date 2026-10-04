@@ -455,6 +455,7 @@ const shape: Check = obj({
     autoPrint: bool,
     receiptMessage: str,
     theme: one('light', 'dark', 'system'),
+    sidebarCollapsed: bool,
   }),
   update: obj({
     currentVersion: str,
@@ -478,6 +479,9 @@ export function decodeSnapshot(raw: string): Result<PosSnapshot> {
     // Additive v1 evolution preserves existing demo operations, including earlier credit notes.
     if (isRecord(parsed) && parsed['schemaVersion'] === 1) {
       if (!Object.hasOwn(parsed, 'activeDraft')) parsed['activeDraft'] = null;
+      const settings = parsed['settings'];
+      if (isRecord(settings) && !Object.hasOwn(settings, 'sidebarCollapsed'))
+        settings['sidebarCollapsed'] = false;
       if (Array.isArray(parsed['creditNotes']))
         for (const note of parsed['creditNotes']) {
           if (

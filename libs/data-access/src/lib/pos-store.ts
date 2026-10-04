@@ -285,6 +285,12 @@ export class PosStore {
     draft.settings.theme = theme;
     return this.commit(draft, draft.settings, 'preference.theme.changed', 'settings');
   }
+  setSidebarCollapsed(collapsed: boolean): Result<PosSettings> {
+    if (typeof collapsed !== 'boolean') return failure('La preferencia de navegación no es válida.');
+    const draft = structuredClone(this.snapshot());
+    draft.settings.sidebarCollapsed = collapsed;
+    return this.commit(draft, draft.settings, 'preference.sidebar.changed', 'settings');
+  }
   setModule(id: ModuleId, enabled: boolean): Result<void> {
     return this.command('configure', undefined, 'module.changed', id, (draft) => {
       const module = draft.modules.find((item) => item.id === id);

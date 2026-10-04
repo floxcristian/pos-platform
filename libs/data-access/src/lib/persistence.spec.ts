@@ -5,6 +5,32 @@ describe('versioned mock persistence', () => {
   it('round-trips a typed fixture', () => {
     expect(decodeSnapshot(JSON.stringify(createFixtures())).ok).toBe(true);
   });
+  it('adds the expanded sidebar preference to an earlier v1 snapshot without changing existing data', () => {
+    const fixture = createFixtures();
+    fixture.settings.companyName = 'Empresa personalizada';
+    fixture.settings.theme = 'dark';
+    fixture.activeDraft = {
+      lines: [{ productId: fixture.products[0].id, quantity: 3, discount: 5 }],
+      customerId: fixture.customers[0].id,
+      documentType: 'factura',
+      metadata: { contact: 'Contacto conservado' },
+      updatedAt: new Date().toISOString(),
+    };
+    const legacy = JSON.parse(JSON.stringify(fixture));
+    delete legacy.settings.sidebarCollapsed;
+
+    expect(decodeSnapshot(JSON.stringify(legacy))).toEqual({ ok: true, value: fixture });
+  });
+  it.each([false, true])('preserves the saved sidebar preference: %s', (collapsed) => {
+    const fixture = createFixtures();
+    fixture.settings.sidebarCollapsed = collapsed;
+    expect(decodeSnapshot(JSON.stringify(fixture))).toEqual({ ok: true, value: fixture });
+  });
+  it.each([null, 'false', 0, [], {}])('rejects a malformed sidebar preference: %j', (collapsed) => {
+    const fixture = createFixtures();
+    const raw = { ...fixture, settings: { ...fixture.settings, sidebarCollapsed: collapsed } };
+    expect(decodeSnapshot(JSON.stringify(raw)).ok).toBe(false);
+  });
   it('loads earlier v1 drafts and credit-note settlements without discarding other operations', () => {
     const fixture = createFixtures();
     const legacy = JSON.parse(JSON.stringify(fixture));

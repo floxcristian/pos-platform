@@ -456,6 +456,7 @@ export interface PosSettings {
   autoPrint: boolean;
   receiptMessage: string;
   theme: 'light' | 'dark' | 'system';
+  sidebarCollapsed: boolean;
 }
 export interface PosSnapshot {
   schemaVersion: 1;

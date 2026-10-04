@@ -148,6 +148,8 @@ export function updateSettingsRecord(state: PosSnapshot, input: Partial<PosSetti
   )
     return failure('Revisa el descuento máximo y el límite de venta sin conexión.');
   if (!['light', 'dark', 'system'].includes(settings.theme)) return failure('El tema no es válido.');
+  if (typeof settings.sidebarCollapsed !== 'boolean')
+    return failure('La preferencia de navegación no es válida.');
   if (!state.branches.some((branch) => branch.id === settings.branchId && branch.active))
     return failure('La sucursal seleccionada no está activa.');
   if (settings.branchId !== state.settings.branchId && state.session?.status === 'open')

@@ -666,6 +666,7 @@ export function createFixtures(now = new Date()): PosSnapshot {
       autoPrint: true,
       receiptMessage: 'Gracias por preferirnos. Documento de demostración sin validez tributaria.',
       theme: 'light',
+      sidebarCollapsed: false,
     },
     update: {
       currentVersion: '0.1.0',

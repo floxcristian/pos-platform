@@ -8,6 +8,20 @@
   <header
     class="brand-header-bg shrink-0 bg-primary-500 text-white h-16 flex items-center gap-1 sm:gap-3 px-2 sm:px-4 lg:px-6"
   >
+    <button
+      pButton
+      type="button"
+      posTooltip
+      posTooltipPosition="bottom"
+      [text]="true"
+      [attr.aria-label]="sidebarCollapsed() ? 'Mostrar menú lateral' : 'Ocultar menú lateral'"
+      [attr.aria-expanded]="!sidebarCollapsed()"
+      aria-controls="desktop-navigation"
+      class="h-11 hidden lg:inline-flex"
+      (click)="toggleSidebar()"
+    >
+      <i pButtonIcon class="pos-icon pos-icon-list text-2xl" aria-hidden="true"></i>
+    </button>
     <p-button
       posTooltip
       posTooltipPosition="bottom"
@@ -98,7 +112,9 @@
 
   <div class="flex flex-1 overflow-hidden">
     <aside
-      class="hidden lg:flex w-64 xl:w-68 shrink-0 flex-col border-r border-surface bg-surface-0 dark:bg-surface-950"
+      id="desktop-navigation"
+      [class.lg:flex]="!sidebarCollapsed()"
+      class="hidden w-64 xl:w-68 shrink-0 flex-col border-r border-surface bg-surface-0 dark:bg-surface-950"
     >
       <div class="px-5 py-4 border-b border-surface">
         <p class="text-sm font-semibold truncate">{{ branch()?.name ?? 'Sucursal' }}</p>
