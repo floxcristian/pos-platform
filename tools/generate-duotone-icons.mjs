@@ -49,6 +49,12 @@ const names = [
   'funnel',
   'lock-key',
   'magnifying-glass',
+  'hard-hat',
+  'wrench',
+  'package',
+  'drop',
+  'lightning',
+  'nut',
 ];
 assert.equal(new Set(names).size, names.length, 'The icon catalogue must not contain duplicates.');
 

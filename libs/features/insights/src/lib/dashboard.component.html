@@ -246,20 +246,33 @@
       />
     }
   </section>
-  <section class="bg-surface-0 dark:bg-surface-950 border border-surface rounded-2xl p-5">
-    <h2 class="font-semibold text-lg mb-4">Productos más vendidos</h2>
-    <ol>
-      @for (product of topProducts(); track product.name) {
-        <li class="flex gap-3 py-3 border-b border-surface last:border-0">
+  <section class="min-w-0 bg-surface-0 dark:bg-surface-950 border border-surface rounded-2xl p-5">
+    <div class="mb-4">
+      <h2 class="font-semibold text-lg">Productos más vendidos</h2>
+      <p class="text-sm text-muted-color mt-1">Por importe vendido</p>
+    </div>
+    <ol role="list" aria-label="Ranking de productos por importe vendido" class="space-y-1">
+      @for (product of topProducts(); track product.id) {
+        <li class="flex items-center gap-3 py-3">
           <span
-            class="size-7 bg-surface-100 dark:bg-surface-800 rounded-md flex items-center justify-center text-xs text-muted-color shrink-0"
+            class="size-12 shrink-0 rounded-xl border border-surface bg-surface-50 dark:bg-surface-900 text-primary flex items-center justify-center"
+            ><pos-duotone-icon [name]="product.icon" [size]="32"
+          /></span>
+          <div class="min-w-0 flex-1">
+            <p class="text-sm font-semibold leading-5 break-words">{{ product.name }}</p>
+            <div class="flex flex-wrap items-baseline gap-x-2 gap-y-0.5 mt-1">
+              <span class="text-sm font-semibold text-primary tabular-nums">{{ money(product.total) }}</span>
+              <span class="text-xs text-muted-color">
+                <span aria-hidden="true">· </span>{{ number(product.quantity) }}
+                {{ product.quantity === 1 ? 'unidad' : 'unidades' }}
+              </span>
+            </div>
+          </div>
+          <span
+            class="size-7 shrink-0 rounded-md border border-primary-300 dark:border-primary-600 text-primary-700 dark:text-primary-100 flex items-center justify-center text-sm font-semibold tabular-nums"
+            aria-hidden="true"
             >{{ $index + 1 }}</span
           >
-          <div class="min-w-0 flex-1">
-            <p class="text-sm font-medium leading-5">{{ product.name }}</p>
-            <p class="text-xs text-muted-color mt-1">{{ product.quantity }} unidades</p>
-          </div>
-          <span class="text-sm font-medium tabular-nums whitespace-nowrap">{{ money(product.total) }}</span>
         </li>
       } @empty {
         <li>

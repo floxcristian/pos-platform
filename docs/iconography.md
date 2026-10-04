@@ -27,7 +27,7 @@ npm run icons:generate
 npm run icons:check
 ```
 
-Ambos generadores utilizan `@phosphor-icons/core` 2.1.1 instalado localmente y el formato del proyecto. `--check` compara la salida esperada sin escribir archivos. El generador duotono contiene un catálogo explícito de 31 nombres y escribe `libs/ui/src/lib/duotone-icons.ts`.
+Ambos generadores utilizan `@phosphor-icons/core` 2.1.1 instalado localmente y el formato del proyecto. `--check` compara la salida esperada sin escribir archivos. El generador duotono contiene un catálogo explícito de 37 nombres y escribe `libs/ui/src/lib/duotone-icons.ts`.
 
 `npm run check` y el job web de CI ejecutan la comprobación del catálogo para detectar cambios manuales o recursos desactualizados.
 

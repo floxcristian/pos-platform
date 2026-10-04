@@ -16,6 +16,7 @@ import { TableModule } from 'primeng/table';
 import { PosStore } from '@corporate-pos/data-access';
 import {
   DuotoneIconComponent,
+  type DuotoneIconName,
   EmptyStateComponent,
   PageHeaderComponent,
   ThemeService,
@@ -35,6 +36,23 @@ import {
   totalSales,
   withinDates,
 } from './analytics';
+
+const PRODUCT_CATEGORY_ICONS: Readonly<Record<string, DuotoneIconName>> = {
+  Seguridad: 'hard-hat',
+  Herramientas: 'wrench',
+  Consumibles: 'package',
+  Lubricantes: 'drop',
+  Eléctrico: 'lightning',
+  Fijaciones: 'nut',
+};
+
+interface RankedProduct {
+  id: string;
+  name: string;
+  quantity: number;
+  total: number;
+  icon: DuotoneIconName;
+}
 
 @Component({
   selector: 'pos-dashboard',
@@ -214,11 +232,21 @@ export class DashboardComponent {
     plugins: { legend: { display: false } },
   };
   readonly topProducts = computed(() => {
-    const totals = new Map<string, { name: string; quantity: number; total: number }>();
+    const categories = new Map(
+      this.store.snapshot().products.map((product) => [product.id, product.category]),
+    );
+    const totals = new Map<string, RankedProduct>();
     for (const sale of this.confirmedSales())
       for (const line of sale.lines) {
-        const current = totals.get(line.productId) ?? { name: line.name, quantity: 0, total: 0 };
+        const current = totals.get(line.productId) ?? {
+          id: line.productId,
+          name: line.name,
+          quantity: 0,
+          total: 0,
+          icon: PRODUCT_CATEGORY_ICONS[categories.get(line.productId) ?? ''] ?? 'shopping-bag',
+        };
         totals.set(line.productId, {
+          ...current,
           name: line.name,
           quantity: current.quantity + line.quantity,
           total: current.total + line.total,
