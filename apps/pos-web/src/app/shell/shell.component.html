@@ -11,7 +11,7 @@
     <p-button
       posTooltip
       posTooltipPosition="bottom"
-      icon="pos-icon pos-icon-list"
+      icon="pos-icon pos-icon-list text-2xl"
       [text]="true"
       ariaLabel="Abrir navegación"
       styleClass="h-11 lg:!hidden"
@@ -37,7 +37,7 @@
       aria-haspopup="dialog"
       [attr.aria-expanded]="searchOpen()"
     >
-      <i class="pos-icon pos-icon-magnifying-glass" aria-hidden="true"></i
+      <i class="pos-icon pos-icon-magnifying-glass text-xl" aria-hidden="true"></i
       ><span class="truncate text-left flex-1">Buscar productos, documentos o módulos</span
       ><kbd
         class="shrink-0 text-xs text-surface-600 bg-surface-100 border border-surface-300 rounded px-1.5 py-0.5"
@@ -51,7 +51,7 @@
     <p-button
       posTooltip
       posTooltipPosition="bottom"
-      icon="pos-icon pos-icon-magnifying-glass"
+      icon="pos-icon pos-icon-magnifying-glass text-2xl"
       [text]="true"
       ariaLabel="Buscar"
       styleClass="h-11 md:!hidden"
@@ -60,7 +60,7 @@
     <p-button
       posTooltip
       posTooltipPosition="bottom"
-      [icon]="dark() ? 'pos-icon pos-icon-sun' : 'pos-icon pos-icon-moon'"
+      [icon]="dark() ? 'pos-icon pos-icon-sun text-2xl' : 'pos-icon pos-icon-moon text-2xl'"
       [text]="true"
       [ariaLabel]="dark() ? 'Usar tema claro' : 'Usar tema oscuro'"
       styleClass="brand-header-theme-action h-11 !hidden sm:!inline-flex"
@@ -69,7 +69,7 @@
     <p-button
       posTooltip
       posTooltipPosition="bottom"
-      icon="pos-icon pos-icon-bell"
+      icon="pos-icon pos-icon-bell text-2xl"
       [text]="true"
       [ariaLabel]="'Notificaciones: ' + notifications().length + ' avisos'"
       styleClass="h-11"
@@ -88,7 +88,7 @@
       ><span class="hidden xl:flex flex-col text-left text-xs"
         ><span class="font-semibold">{{ roleLabel() }}</span
         ><span>{{ store.snapshot().settings.terminalId }}</span></span
-      ><i class="pos-icon pos-icon-caret-down text-xs hidden xl:block" aria-hidden="true"></i>
+      ><i class="pos-icon pos-icon-caret-down text-base hidden xl:block" aria-hidden="true"></i>
     </button>
   </header>
 
