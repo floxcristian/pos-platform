@@ -35,7 +35,7 @@
 @if (store.snapshot().session?.status !== 'open') {
   <p-message severity="warn" class="block mb-4"
     >No hay una caja abierta. Puedes preparar la venta y
-    <a routerLink="/caja" class="underline font-semibold">abrir caja</a> antes de cobrar.</p-message
+    <a routerLink="/caja" class="pos-inline-action font-semibold">abrir caja</a> antes de cobrar.</p-message
   >
 }
 <div class="grid gap-5 xl:grid-cols-[minmax(0,1fr)_380px]">
@@ -850,7 +850,7 @@
       <a
         routerLink="/documentos"
         [queryParams]="{ buscar: receipt()?.number }"
-        class="underline font-semibold"
+        class="pos-inline-action font-semibold"
         >Documentos y pagos</a
       >
       para conciliar el resultado.</p-message

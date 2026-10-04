@@ -152,11 +152,7 @@
         }}
       </p>
       @if (store.can('cash', 'cash')) {
-        <a
-          routerLink="/caja"
-          class="pos-inline-action inline-flex gap-2 items-center text-sm font-medium mt-3"
-          >Ver caja <i class="pos-icon pos-icon-arrow-right text-xs" aria-hidden="true"></i
-        ></a>
+        <a routerLink="/caja" class="pos-inline-action inline-block text-sm font-medium mt-3">Ver caja</a>
       }
     </div>
   </section>
@@ -171,11 +167,9 @@
       <h2 class="font-medium">{{ pendingFiscal() }} documentos fiscales pendientes</h2>
       <p class="text-sm text-muted-color mt-1">{{ pendingErp() }} ventas aún no registradas en ERP</p>
       @if (store.can('sell', 'sales')) {
-        <a
-          routerLink="/documentos"
-          class="pos-inline-action inline-flex gap-2 items-center text-sm font-medium mt-3"
-          >Revisar documentos <i class="pos-icon pos-icon-arrow-right text-xs" aria-hidden="true"></i
-        ></a>
+        <a routerLink="/documentos" class="pos-inline-action inline-block text-sm font-medium mt-3"
+          >Revisar documentos</a
+        >
       }
     </div>
   </section>
@@ -190,11 +184,9 @@
       <h2 class="font-medium">{{ syncPending() }} eventos por sincronizar</h2>
       <p class="text-sm text-muted-color mt-1">Procesamiento manual o según programación</p>
       @if (store.can('sync', 'sync')) {
-        <a
-          routerLink="/sincronizacion"
-          class="pos-inline-action inline-flex gap-2 items-center text-sm font-medium mt-3"
-          >Ver sincronización <i class="pos-icon pos-icon-arrow-right text-xs" aria-hidden="true"></i
-        ></a>
+        <a routerLink="/sincronizacion" class="pos-inline-action inline-block text-sm font-medium mt-3"
+          >Ver sincronización</a
+        >
       }
     </div>
   </section>
@@ -207,9 +199,7 @@
     <div class="flex items-center justify-between gap-3 p-5 border-b border-surface">
       <h2 class="font-semibold text-lg">Últimas ventas</h2>
       @if (store.can('sell', 'sales')) {
-        <a routerLink="/documentos" class="pos-inline-action text-sm font-medium"
-          >Ver todas <i class="pos-icon pos-icon-arrow-right ml-1 text-xs" aria-hidden="true"></i
-        ></a>
+        <a routerLink="/documentos" class="pos-inline-action text-sm font-medium">Ver todas</a>
       }
     </div>
     @if (recent().length) {
@@ -291,9 +281,7 @@
   <section class="mt-6 bg-surface-0 dark:bg-surface-950 border border-surface rounded-2xl p-5">
     <div class="flex items-center justify-between gap-3 mb-3">
       <h2 class="font-semibold text-lg">Requieren atención</h2>
-      <a routerLink="/actividad" class="pos-inline-action text-sm"
-        >Ir a actividad <i class="pos-icon pos-icon-arrow-right ml-1 text-xs" aria-hidden="true"></i
-      ></a>
+      <a routerLink="/actividad" class="pos-inline-action text-sm">Ir a actividad</a>
     </div>
     @for (alert of alerts(); track alert.id) {
       <div class="py-3 flex flex-wrap items-center gap-3 border-b border-surface last:border-0">

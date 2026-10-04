@@ -62,6 +62,30 @@ async function expectHover(page: Page, control: Locator, pressed = true): Promis
   }
 }
 
+async function expectInlineAction(page: Page, control: Locator): Promise<void> {
+  await control.scrollIntoViewIfNeeded();
+  await page.mouse.move(0, 0);
+  const normal = await colors(control);
+  const box = await control.boundingBox();
+  await expect(control).toHaveCSS('text-decoration-line', 'underline');
+  await expect(control).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
+  await expect(control.locator('.pos-icon, svg')).toHaveCount(0);
+  expect(contrast(normal.foreground, normal.background)).toBeGreaterThanOrEqual(4.5);
+  await control.hover();
+  await expect.poll(async () => (await colors(control)).foreground).not.toEqual(normal.foreground);
+  const hover = await colors(control);
+  expect(hover.background).toEqual(normal.background);
+  expect(contrast(hover.foreground, hover.background)).toBeGreaterThanOrEqual(4.5);
+  expect(await control.boundingBox()).toEqual(box);
+  await page.mouse.down();
+  const active = await colors(control);
+  expect(active.background).toEqual(normal.background);
+  expect(contrast(active.foreground, active.background)).toBeGreaterThanOrEqual(4.5);
+  await expect(control).toHaveCSS('text-decoration-line', 'underline');
+  await page.mouse.move(0, 0);
+  await page.mouse.up();
+}
+
 for (const theme of ['light', 'dark'] as const) {
   test(`interacciones ${theme}: cierres, acciones, segmentos y controles deshabilitados`, async ({
     page,
@@ -127,8 +151,9 @@ for (const theme of ['light', 'dark'] as const) {
     await page.keyboard.press('Escape');
 
     await page.goto('/#/inicio');
-    await expectHover(page, page.getByRole('link', { name: 'Ver todas', exact: true }));
-    await expectHover(page, page.locator('summary.pos-inline-action'));
+    for (const link of await page.locator('a.pos-inline-action, summary.pos-inline-action').all()) {
+      await expectInlineAction(page, link);
+    }
     const cardLinkGap = await page
       .getByRole('link', { name: 'Ver caja', exact: true })
       .evaluate(
