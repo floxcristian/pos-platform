@@ -13,6 +13,7 @@ import {
   PageHeaderComponent,
   StatusTagComponent,
   MetricCardComponent,
+  EmptyStateComponent,
   money,
   dateTime,
   downloadCsv,
@@ -33,6 +34,7 @@ import {
     PageHeaderComponent,
     StatusTagComponent,
     MetricCardComponent,
+    EmptyStateComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
@@ -80,54 +82,57 @@ import {
           (ngModelChange)="search.set($event)"
         />
       </div>
-      <div class="overflow-x-auto">
-        <table class="pos-table w-full text-sm">
-          <thead class="text-left bg-surface-50 dark:bg-surface-900 text-muted-color">
-            <tr>
-              <th class="p-4 font-medium">Nota de crédito</th>
-              <th class="p-4 font-medium">Documento original</th>
-              <th class="p-4 font-medium">Fiscal</th>
-              <th class="p-4 font-medium text-right">Monto</th>
-              <th class="p-4 font-medium text-right">Devuelto</th>
-              <th class="p-4"></th>
-            </tr>
-          </thead>
-          <tbody>
-            @for (note of filtered(); track note.id) {
-              <tr class="border-t border-surface">
-                <td class="p-4">
-                  <button class="pos-inline-action font-semibold" (click)="selectedNoteId.set(note.id)">
-                    {{ note.number }}
-                  </button>
-                  <p class="text-xs text-muted-color mt-1">{{ dateTime(note.createdAt) }}</p>
-                </td>
-                <td class="p-4">
-                  <p>{{ saleNumber(note.saleId) }}</p>
-                  <p class="text-xs text-muted-color mt-1">{{ note.reason }}</p>
-                </td>
-                <td class="p-4"><pos-status-tag [value]="note.fiscalStatus" /></td>
-                <td class="p-4 text-right font-semibold">{{ money(note.amount) }}</td>
-                <td class="p-4 text-right">{{ money(note.refundedAmount) }}</td>
-                <td class="p-3 text-right">
-                  <p-button
-                    label="Ver detalle"
-                    ariaLabel="Ver detalle"
-                    size="small"
-                    severity="secondary"
-                    (onClick)="selectedNoteId.set(note.id)"
-                  />
-                </td>
-              </tr>
-            } @empty {
+      @if (filtered().length) {
+        <div class="overflow-x-auto">
+          <table class="pos-table w-full text-sm">
+            <thead class="text-left bg-surface-50 dark:bg-surface-900 text-muted-color">
               <tr>
-                <td colspan="6" class="p-12 text-center text-muted-color">
-                  No hay notas de crédito que coincidan. Crea una a partir de una venta registrada.
-                </td>
+                <th class="p-4 font-medium">Nota de crédito</th>
+                <th class="p-4 font-medium">Documento original</th>
+                <th class="p-4 font-medium">Fiscal</th>
+                <th class="p-4 font-medium text-right">Monto</th>
+                <th class="p-4 font-medium text-right">Devuelto</th>
+                <th class="p-4"></th>
               </tr>
-            }
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              @for (note of filtered(); track note.id) {
+                <tr class="border-t border-surface">
+                  <td class="p-4">
+                    <button class="pos-inline-action font-semibold" (click)="selectedNoteId.set(note.id)">
+                      {{ note.number }}
+                    </button>
+                    <p class="text-xs text-muted-color mt-1">{{ dateTime(note.createdAt) }}</p>
+                  </td>
+                  <td class="p-4">
+                    <p>{{ saleNumber(note.saleId) }}</p>
+                    <p class="text-xs text-muted-color mt-1">{{ note.reason }}</p>
+                  </td>
+                  <td class="p-4"><pos-status-tag [value]="note.fiscalStatus" /></td>
+                  <td class="p-4 text-right font-semibold">{{ money(note.amount) }}</td>
+                  <td class="p-4 text-right">{{ money(note.refundedAmount) }}</td>
+                  <td class="p-3 text-right">
+                    <p-button
+                      label="Ver detalle"
+                      ariaLabel="Ver detalle"
+                      size="small"
+                      severity="secondary"
+                      (onClick)="selectedNoteId.set(note.id)"
+                    />
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      } @else {
+        <pos-empty-state
+          icon="note-pencil"
+          heading="No hay notas de crédito que coincidan."
+          description="Crea una a partir de una venta registrada."
+          [headingLevel]="3"
+        />
+      }
     </section>
     <p-dialog
       header="Emitir nota de crédito"

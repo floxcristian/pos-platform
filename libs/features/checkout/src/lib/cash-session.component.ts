@@ -13,6 +13,7 @@ import {
   PosTooltipDirective,
   CivilDateTimeComponent,
   DuotoneIconComponent,
+  EmptyStateComponent,
   PageHeaderComponent,
   StatusTagComponent,
   MetricCardComponent,
@@ -29,6 +30,7 @@ import {
     PosTooltipDirective,
     CivilDateTimeComponent,
     DuotoneIconComponent,
+    EmptyStateComponent,
     FormsModule,
     RouterLink,
     ButtonModule,
@@ -179,140 +181,157 @@ import {
     }
     <section class="rounded-2xl border border-surface bg-surface-0 dark:bg-surface-950 overflow-hidden mb-6">
       <div class="p-5 flex items-center justify-between gap-3 border-b border-surface">
-        <h2 class="text-lg font-semibold">Movimientos del turno</h2>
+        <h2 id="cash-movements-heading" class="text-lg font-semibold">Movimientos del turno</h2>
         <span class="text-xs text-muted-color">{{ session()?.id ?? 'Sin sesión' }}</span>
       </div>
-      <div class="overflow-x-auto">
-        <table class="pos-table w-full text-sm">
-          <thead class="bg-surface-50 dark:bg-surface-900 text-left text-muted-color">
-            <tr>
-              <th class="p-4 font-medium">Hora</th>
-              <th class="p-4 font-medium">Movimiento</th>
-              <th class="p-4 font-medium">Concepto / referencia</th>
-              <th class="p-4 font-medium">Responsable</th>
-              <th class="p-4 font-medium text-right">Monto</th>
-            </tr>
-          </thead>
-          <tbody>
-            @for (movement of movements(); track movement.id) {
-              <tr class="border-t border-surface">
-                <td class="p-4 whitespace-nowrap">{{ dateTime(movement.createdAt) }}</td>
-                <td class="p-4 font-medium">{{ movementLabel(movement.type) }}</td>
-                <td class="p-4">
-                  <p>{{ movement.reason }}</p>
-                  <small class="text-muted-color">{{ movement.reference }}</small>
-                </td>
-                <td class="p-4">{{ movement.actor }}</td>
-                <td class="p-4 text-right tabular-nums">{{ money(movement.amount) }}</td>
-              </tr>
-            } @empty {
+      @if (movements().length) {
+        <div class="overflow-x-auto" role="region" aria-labelledby="cash-movements-heading" tabindex="0">
+          <table class="pos-table w-full text-sm">
+            <thead class="bg-surface-50 dark:bg-surface-900 text-left text-muted-color">
               <tr>
-                <td colspan="5" class="p-10 text-center text-muted-color">
-                  Los movimientos aparecerán al abrir la caja.
-                </td>
+                <th class="p-4 font-medium">Hora</th>
+                <th class="p-4 font-medium">Movimiento</th>
+                <th class="p-4 font-medium">Concepto / referencia</th>
+                <th class="p-4 font-medium">Responsable</th>
+                <th class="p-4 font-medium text-right">Monto</th>
               </tr>
-            }
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              @for (movement of movements(); track movement.id) {
+                <tr class="border-t border-surface">
+                  <td class="p-4 whitespace-nowrap">{{ dateTime(movement.createdAt) }}</td>
+                  <td class="p-4 font-medium">{{ movementLabel(movement.type) }}</td>
+                  <td class="p-4">
+                    <p>{{ movement.reason }}</p>
+                    <small class="text-muted-color">{{ movement.reference }}</small>
+                  </td>
+                  <td class="p-4">{{ movement.actor }}</td>
+                  <td class="p-4 text-right tabular-nums">{{ money(movement.amount) }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      } @else {
+        <pos-empty-state
+          icon="arrows-left-right"
+          heading="Sin movimientos en este turno"
+          description="Aquí aparecerán los ingresos, retiros y movimientos de efectivo del turno."
+          [headingLevel]="3"
+        />
+      }
     </section>
     <section class="rounded-2xl border border-surface bg-surface-0 dark:bg-surface-950 overflow-hidden">
-      <h2 class="p-5 text-lg font-semibold border-b border-surface">Historial de turnos</h2>
-      <div class="overflow-x-auto">
-        <table class="pos-table w-full text-sm">
-          <thead class="bg-surface-50 dark:bg-surface-900 text-left text-muted-color">
-            <tr>
-              <th class="p-4 font-medium">Apertura</th>
-              <th class="p-4 font-medium">Cajero</th>
-              <th class="p-4 font-medium">Estado</th>
-              <th class="p-4 font-medium text-right">Declarado</th>
-              <th class="p-4 font-medium text-right">Diferencia</th>
-              <th class="p-4"></th>
-            </tr>
-          </thead>
-          <tbody>
-            @for (item of store.snapshot().sessions; track item.id) {
-              <tr class="border-t border-surface">
-                <td class="p-4">{{ dateTime(item.openedAt) }}</td>
-                <td class="p-4">{{ item.cashier }}</td>
-                <td class="p-4"><pos-status-tag [value]="item.status" /></td>
-                <td class="p-4 text-right">
-                  {{ item.countedAmount === null ? '—' : money(item.countedAmount) }}
-                </td>
-                <td class="p-4 text-right">{{ item.difference === null ? '—' : money(item.difference) }}</td>
-                <td class="p-3">
-                  <p-button
-                    posTooltip
-                    icon="pos-icon pos-icon-download-simple"
-                    severity="secondary"
-                    [text]="true"
-                    ariaLabel="Descargar informe del turno"
-                    (onClick)="exportSession(item)"
-                  />
-                </td>
-              </tr>
-            } @empty {
+      <h2 id="cash-history-heading" class="p-5 text-lg font-semibold border-b border-surface">
+        Historial de turnos
+      </h2>
+      @if (store.snapshot().sessions.length) {
+        <div class="overflow-x-auto" role="region" aria-labelledby="cash-history-heading" tabindex="0">
+          <table class="pos-table w-full text-sm">
+            <thead class="bg-surface-50 dark:bg-surface-900 text-left text-muted-color">
               <tr>
-                <td colspan="6" class="p-8 text-center text-muted-color">Todavía no hay turnos cerrados.</td>
+                <th class="p-4 font-medium">Apertura</th>
+                <th class="p-4 font-medium">Cajero</th>
+                <th class="p-4 font-medium">Estado</th>
+                <th class="p-4 font-medium text-right">Declarado</th>
+                <th class="p-4 font-medium text-right">Diferencia</th>
+                <th class="p-4"></th>
               </tr>
-            }
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              @for (item of store.snapshot().sessions; track item.id) {
+                <tr class="border-t border-surface">
+                  <td class="p-4">{{ dateTime(item.openedAt) }}</td>
+                  <td class="p-4">{{ item.cashier }}</td>
+                  <td class="p-4"><pos-status-tag [value]="item.status" /></td>
+                  <td class="p-4 text-right">
+                    {{ item.countedAmount === null ? '—' : money(item.countedAmount) }}
+                  </td>
+                  <td class="p-4 text-right">
+                    {{ item.difference === null ? '—' : money(item.difference) }}
+                  </td>
+                  <td class="p-3">
+                    <p-button
+                      posTooltip
+                      icon="pos-icon pos-icon-download-simple"
+                      severity="secondary"
+                      [text]="true"
+                      ariaLabel="Descargar informe del turno"
+                      (onClick)="exportSession(item)"
+                    />
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      } @else {
+        <pos-empty-state
+          icon="clock"
+          heading="Todavía no hay turnos cerrados."
+          description="Al cerrar un turno, podrás consultar su resumen y descargar el informe aquí."
+          [headingLevel]="3"
+        />
+      }
     </section>
     <section class="rounded-2xl border border-surface bg-surface-0 dark:bg-surface-950 overflow-hidden mt-6">
-      <h2 class="p-5 text-lg font-semibold border-b border-surface">Custodia y depósitos</h2>
-      <div class="overflow-x-auto">
-        <table class="pos-table w-full text-sm">
-          <thead class="text-left bg-surface-50 dark:bg-surface-900">
-            <tr>
-              <th class="p-4 font-medium">Entrega</th>
-              <th class="p-4 font-medium">Responsable</th>
-              <th class="p-4 font-medium text-right">Monto</th>
-              <th class="p-4 font-medium">Depósito</th>
-              <th class="p-4"></th>
-            </tr>
-          </thead>
-          <tbody>
-            @for (movement of custodyMovements(); track movement.id) {
-              <tr class="border-t border-surface">
-                <td class="p-4">
-                  {{ dateTime(movement.createdAt) }}
-                  <p class="text-xs text-muted-color mt-1">{{ movement.reason }}</p>
-                </td>
-                <td class="p-4">{{ movement.actor }}</td>
-                <td class="p-4 text-right font-semibold">{{ money(movement.amount) }}</td>
-                <td class="p-4">
-                  @if (depositFor(movement.id); as deposit) {
-                    <pos-status-tag value="confirmed" label="Confirmado" />
-                    <p class="text-xs text-muted-color mt-1">
-                      {{ deposit.reference }} · {{ date(deposit.date) }}
-                    </p>
-                  } @else {
-                    <pos-status-tag value="pending" label="Por confirmar" />
-                  }
-                </td>
-                <td class="p-3">
-                  <p-button
-                    label="Confirmar depósito"
-                    ariaLabel="Confirmar depósito"
-                    size="small"
-                    severity="secondary"
-                    [disabled]="!!depositFor(movement.id) || !store.can('cash', 'cash')"
-                    (onClick)="beginDeposit(movement)"
-                  />
-                </td>
-              </tr>
-            } @empty {
+      <h2 id="cash-custody-heading" class="p-5 text-lg font-semibold border-b border-surface">
+        Custodia y depósitos
+      </h2>
+      @if (custodyMovements().length) {
+        <div class="overflow-x-auto" role="region" aria-labelledby="cash-custody-heading" tabindex="0">
+          <table class="pos-table w-full text-sm">
+            <thead class="text-left bg-surface-50 dark:bg-surface-900">
               <tr>
-                <td colspan="5" class="p-10 text-center text-muted-color">
-                  Registra una entrega a custodia desde Ingreso o retiro. Aquí podrás confirmar su depósito.
-                </td>
+                <th class="p-4 font-medium">Entrega</th>
+                <th class="p-4 font-medium">Responsable</th>
+                <th class="p-4 font-medium text-right">Monto</th>
+                <th class="p-4 font-medium">Depósito</th>
+                <th class="p-4"></th>
               </tr>
-            }
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              @for (movement of custodyMovements(); track movement.id) {
+                <tr class="border-t border-surface">
+                  <td class="p-4">
+                    {{ dateTime(movement.createdAt) }}
+                    <p class="text-xs text-muted-color mt-1">{{ movement.reason }}</p>
+                  </td>
+                  <td class="p-4">{{ movement.actor }}</td>
+                  <td class="p-4 text-right font-semibold">{{ money(movement.amount) }}</td>
+                  <td class="p-4">
+                    @if (depositFor(movement.id); as deposit) {
+                      <pos-status-tag value="confirmed" label="Confirmado" />
+                      <p class="text-xs text-muted-color mt-1">
+                        {{ deposit.reference }} · {{ date(deposit.date) }}
+                      </p>
+                    } @else {
+                      <pos-status-tag value="pending" label="Por confirmar" />
+                    }
+                  </td>
+                  <td class="p-3">
+                    <p-button
+                      label="Confirmar depósito"
+                      ariaLabel="Confirmar depósito"
+                      size="small"
+                      severity="secondary"
+                      [disabled]="!!depositFor(movement.id) || !store.can('cash', 'cash')"
+                      (onClick)="beginDeposit(movement)"
+                    />
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      } @else {
+        <pos-empty-state
+          icon="bank"
+          heading="Sin entregas a custodia"
+          description="Registra una entrega desde Ingreso o retiro. Aquí podrás confirmar su depósito."
+          [headingLevel]="3"
+        />
+      }
     </section>
     <p-dialog
       header="Confirmar depósito de custodia"

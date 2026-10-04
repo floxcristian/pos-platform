@@ -87,9 +87,13 @@
             </div>
           </button>
         } @empty {
-          <p class="p-6 text-muted-color col-span-full">
-            No encontramos productos. Prueba otro nombre o código.
-          </p>
+          <pos-empty-state
+            class="col-span-full"
+            icon="magnifying-glass"
+            heading="No encontramos productos."
+            description="Prueba otro nombre o código."
+            [headingLevel]="3"
+          />
         }
       </div>
     </section>
@@ -387,7 +391,7 @@
         />
       </div>
     } @empty {
-      <p class="text-muted-color py-8 text-center">No hay ventas pausadas.</p>
+      <pos-empty-state icon="shopping-cart" heading="No hay ventas pausadas." [headingLevel]="3" />
     }
   </div>
 </p-drawer>
@@ -437,7 +441,11 @@
         />
       </section>
     } @empty {
-      <p class="text-muted-color py-8">No hay órdenes pendientes con ese criterio.</p>
+      <pos-empty-state
+        icon="file-text"
+        heading="No hay órdenes pendientes con ese criterio."
+        [headingLevel]="3"
+      />
     }
   </div>
 </p-drawer>
@@ -733,7 +741,12 @@
             />
           </div>
         } @empty {
-          <p class="text-sm text-muted-color py-4">Agrega uno o más pagos para cubrir el total.</p>
+          <pos-empty-state
+            icon="wallet"
+            heading="Aún no hay pagos."
+            description="Agrega uno o más pagos para cubrir el total."
+            [headingLevel]="3"
+          />
         }
         <dl class="space-y-3 pt-3">
           <div class="flex justify-between">

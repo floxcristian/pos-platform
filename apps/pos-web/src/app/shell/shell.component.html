@@ -271,7 +271,12 @@
       <p class="mt-1 text-sm text-muted-color">{{ notification.source }}</p>
     </article>
   } @empty {
-    <p class="py-10 text-center text-muted-color">No hay avisos pendientes.</p>
+    <pos-empty-state
+      icon="check-circle"
+      heading="No hay avisos pendientes."
+      description="Las nuevas alertas de la operación aparecerán aquí."
+      [headingLevel]="3"
+    />
   }
   @if (store.can('audit', 'audit')) {
     <p-button

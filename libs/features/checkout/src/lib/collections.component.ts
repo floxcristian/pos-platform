@@ -23,6 +23,7 @@ import {
   PageHeaderComponent,
   StatusTagComponent,
   MetricCardComponent,
+  EmptyStateComponent,
   money,
   date,
   dateTime,
@@ -46,6 +47,7 @@ import {
     PageHeaderComponent,
     StatusTagComponent,
     MetricCardComponent,
+    EmptyStateComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
@@ -149,117 +151,125 @@ import {
           (ngModelChange)="search.set($event)"
         />
       </div>
-      <div class="overflow-x-auto">
-        <table class="pos-table w-full text-sm">
-          <thead class="text-left text-muted-color bg-surface-50 dark:bg-surface-900">
-            <tr>
-              <th class="p-4 font-medium">Documento</th>
-              <th class="p-4 font-medium">Vencimiento</th>
-              <th class="p-4 font-medium">Estado</th>
-              <th class="p-4 font-medium text-right">Original</th>
-              <th class="p-4 font-medium text-right">Saldo</th>
-              <th class="p-4"></th>
-            </tr>
-          </thead>
-          <tbody>
-            @for (debt of visibleReceivables(); track debt.id) {
-              <tr class="border-t border-surface">
-                <td class="p-4 font-medium">
-                  {{ debt.document
-                  }}<small class="block text-xs text-muted-color font-normal mt-1"
-                    >Emitido {{ date(debt.issuedAt) }}</small
-                  >
-                </td>
-                <td class="p-4">{{ date(debt.dueAt) }}</td>
-                <td class="p-4">
-                  <pos-status-tag
-                    [value]="debt.status === 'overdue' ? 'warning' : debt.status"
-                    [label]="
-                      debt.status === 'overdue' ? 'Vencido' : debt.status === 'partial' ? 'Pago parcial' : ''
-                    "
-                  />
-                </td>
-                <td class="p-4 text-right">{{ money(debt.amount) }}</td>
-                <td class="p-4 text-right font-semibold">{{ money(debt.balance) }}</td>
-                <td class="p-3 text-right">
-                  <p-button
-                    label="Abonar"
-                    ariaLabel="Abonar"
-                    icon="pos-icon pos-icon-wallet"
-                    size="small"
-                    severity="secondary"
-                    (onClick)="beginCollection(debt)"
-                    [disabled]="debt.balance <= 0 || !store.can('collect', 'collections')"
-                  />
-                </td>
-              </tr>
-            } @empty {
+      @if (visibleReceivables().length) {
+        <div class="overflow-x-auto">
+          <table class="pos-table w-full text-sm">
+            <thead class="text-left text-muted-color bg-surface-50 dark:bg-surface-900">
               <tr>
-                <td colspan="6" class="p-12 text-center text-muted-color">
-                  {{
-                    customerId()
-                      ? 'No hay documentos con ese folio.'
-                      : 'Selecciona un cliente para consultar su cuenta.'
-                  }}
-                </td>
+                <th class="p-4 font-medium">Documento</th>
+                <th class="p-4 font-medium">Vencimiento</th>
+                <th class="p-4 font-medium">Estado</th>
+                <th class="p-4 font-medium text-right">Original</th>
+                <th class="p-4 font-medium text-right">Saldo</th>
+                <th class="p-4"></th>
               </tr>
-            }
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              @for (debt of visibleReceivables(); track debt.id) {
+                <tr class="border-t border-surface">
+                  <td class="p-4 font-medium">
+                    {{ debt.document
+                    }}<small class="block text-xs text-muted-color font-normal mt-1"
+                      >Emitido {{ date(debt.issuedAt) }}</small
+                    >
+                  </td>
+                  <td class="p-4">{{ date(debt.dueAt) }}</td>
+                  <td class="p-4">
+                    <pos-status-tag
+                      [value]="debt.status === 'overdue' ? 'warning' : debt.status"
+                      [label]="
+                        debt.status === 'overdue'
+                          ? 'Vencido'
+                          : debt.status === 'partial'
+                            ? 'Pago parcial'
+                            : ''
+                      "
+                    />
+                  </td>
+                  <td class="p-4 text-right">{{ money(debt.amount) }}</td>
+                  <td class="p-4 text-right font-semibold">{{ money(debt.balance) }}</td>
+                  <td class="p-3 text-right">
+                    <p-button
+                      label="Abonar"
+                      ariaLabel="Abonar"
+                      icon="pos-icon pos-icon-wallet"
+                      size="small"
+                      severity="secondary"
+                      (onClick)="beginCollection(debt)"
+                      [disabled]="debt.balance <= 0 || !store.can('collect', 'collections')"
+                    />
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      } @else {
+        <pos-empty-state
+          icon="file-text"
+          [heading]="
+            customerId()
+              ? 'No hay documentos con ese folio.'
+              : 'Selecciona un cliente para consultar su cuenta.'
+          "
+          [headingLevel]="3"
+        />
+      }
     </section>
     <section class="rounded-2xl border border-surface bg-surface-0 dark:bg-surface-950 overflow-hidden">
       <h2 class="p-5 font-semibold text-lg border-b border-surface">Pagos y anticipos registrados</h2>
-      <div class="overflow-x-auto">
-        <table class="pos-table w-full text-sm">
-          <thead class="text-left text-muted-color bg-surface-50 dark:bg-surface-900">
-            <tr>
-              <th class="p-4 font-medium">Comprobante</th>
-              <th class="p-4 font-medium">Fecha</th>
-              <th class="p-4 font-medium">Concepto</th>
-              <th class="p-4 font-medium">Medio de pago</th>
-              <th class="p-4 font-medium text-right">Monto</th>
-              <th class="p-4"></th>
-            </tr>
-          </thead>
-          <tbody>
-            @for (collection of collections(); track collection.id) {
-              <tr class="border-t border-surface">
-                <td class="p-4 font-medium">{{ collection.reference }}</td>
-                <td class="p-4">{{ dateTime(collection.createdAt) }}</td>
-                <td class="p-4">
-                  {{ collection.kind === 'advance' ? 'Anticipo' : documentName(collection.receivableId) }}
-                </td>
-                <td class="p-4">{{ paymentLabels[collection.method] }}</td>
-                <td class="p-4 text-right font-semibold">
-                  {{ money(collection.amount) }}
-                  @if (collection.kind === 'advance') {
-                    <p class="text-xs text-muted-color font-normal mt-1">
-                      Disponible {{ money(collection.amount - collection.appliedAmount) }}
-                    </p>
-                  }
-                </td>
-                <td class="p-3">
-                  <p-button
-                    posTooltip
-                    icon="pos-icon pos-icon-file"
-                    severity="secondary"
-                    [text]="true"
-                    ariaLabel="Ver comprobante de abono"
-                    (onClick)="showReceipt(collection)"
-                  />
-                </td>
-              </tr>
-            } @empty {
+      @if (collections().length) {
+        <div class="overflow-x-auto">
+          <table class="pos-table w-full text-sm">
+            <thead class="text-left text-muted-color bg-surface-50 dark:bg-surface-900">
               <tr>
-                <td colspan="6" class="p-10 text-center text-muted-color">
-                  Aún no hay pagos registrados para este cliente.
-                </td>
+                <th class="p-4 font-medium">Comprobante</th>
+                <th class="p-4 font-medium">Fecha</th>
+                <th class="p-4 font-medium">Concepto</th>
+                <th class="p-4 font-medium">Medio de pago</th>
+                <th class="p-4 font-medium text-right">Monto</th>
+                <th class="p-4"></th>
               </tr>
-            }
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              @for (collection of collections(); track collection.id) {
+                <tr class="border-t border-surface">
+                  <td class="p-4 font-medium">{{ collection.reference }}</td>
+                  <td class="p-4">{{ dateTime(collection.createdAt) }}</td>
+                  <td class="p-4">
+                    {{ collection.kind === 'advance' ? 'Anticipo' : documentName(collection.receivableId) }}
+                  </td>
+                  <td class="p-4">{{ paymentLabels[collection.method] }}</td>
+                  <td class="p-4 text-right font-semibold">
+                    {{ money(collection.amount) }}
+                    @if (collection.kind === 'advance') {
+                      <p class="text-xs text-muted-color font-normal mt-1">
+                        Disponible {{ money(collection.amount - collection.appliedAmount) }}
+                      </p>
+                    }
+                  </td>
+                  <td class="p-3">
+                    <p-button
+                      posTooltip
+                      icon="pos-icon pos-icon-file"
+                      severity="secondary"
+                      [text]="true"
+                      ariaLabel="Ver comprobante de abono"
+                      (onClick)="showReceipt(collection)"
+                    />
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      } @else {
+        <pos-empty-state
+          icon="wallet"
+          heading="Aún no hay pagos registrados para este cliente."
+          [headingLevel]="3"
+        />
+      }
     </section>
     <section class="rounded-2xl border border-surface bg-surface-0 dark:bg-surface-950 p-5 mt-6">
       <h2 class="font-semibold text-lg mb-4">Acuerdos y cuotas</h2>
@@ -310,10 +320,12 @@ import {
             </div>
           </div>
         } @empty {
-          <p class="text-muted-color text-sm">
-            Este cliente no tiene acuerdos. Puedes crear un plan sobre documentos pendientes, sin duplicar la
-            deuda.
-          </p>
+          <pos-empty-state
+            icon="list-checks"
+            heading="Este cliente no tiene acuerdos."
+            description="Puedes crear un plan sobre documentos pendientes, sin duplicar la deuda."
+            [headingLevel]="3"
+          />
         }
       </div>
     </section>
@@ -346,7 +358,11 @@ import {
             ><strong class="text-sm">{{ money(debt.balance) }}</strong></label
           >
         } @empty {
-          <p class="text-sm text-muted-color">No hay deuda disponible fuera de un acuerdo activo.</p>
+          <pos-empty-state
+            icon="file-text"
+            heading="No hay deuda disponible fuera de un acuerdo activo."
+            [headingLevel]="3"
+          />
         }
       </div>
       <div class="grid gap-4 sm:grid-cols-3">

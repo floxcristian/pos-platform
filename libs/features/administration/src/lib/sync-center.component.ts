@@ -16,6 +16,7 @@ import type { SyncJob, SyncSchedule } from '@corporate-pos/domain';
 import {
   PosTooltipDirective,
   CivilDateTimeComponent,
+  EmptyStateComponent,
   PageHeaderComponent,
   StatusTagComponent,
   MetricCardComponent,
@@ -30,6 +31,7 @@ import { FeedbackService } from './feedback.service';
   imports: [
     PosTooltipDirective,
     CivilDateTimeComponent,
+    EmptyStateComponent,
     FormsModule,
     ButtonModule,
     TableModule,
@@ -120,74 +122,77 @@ import { FeedbackService } from './feedback.service';
           >
         </div>
         <div class="pos-panel overflow-hidden">
-          <p-table
-            tableStyleClass="pos-table"
-            [value]="jobs()"
-            [paginator]="true"
-            [rows]="10"
-            [rowsPerPageOptions]="[10, 25]"
-            [tableStyle]="{ 'min-width': '62rem' }"
-            dataKey="id"
-          >
-            <ng-template #header
-              ><tr>
-                <th>Flujo</th>
-                <th>Estado</th>
-                <th>Programación</th>
-                <th>Última ejecución</th>
-                <th>Acciones</th>
-              </tr></ng-template
+          @if (jobs().length) {
+            <p-table
+              tableStyleClass="pos-table"
+              [value]="jobs()"
+              [paginator]="true"
+              [rows]="10"
+              [rowsPerPageOptions]="[10, 25]"
+              [tableStyle]="{ 'min-width': '62rem' }"
+              dataKey="id"
             >
-            <ng-template #body let-job
-              ><tr>
-                <td>
-                  <div class="font-semibold">{{ job.name }}</div>
-                  <div class="text-xs text-muted-color mt-1">
-                    {{ job.direction === 'inbound' ? 'Central → sucursal' : 'Sucursal → central' }} ·
-                    {{ job.entities }}
-                  </div>
-                </td>
-                <td>
-                  <pos-status-tag [value]="job.status" />
-                  @if (job.status === 'running') {
-                    <p-progressbar [value]="job.progress" class="block mt-2 w-32" />
-                  }
-                </td>
-                <td>
-                  <div>{{ scheduleLabel(job) }}</div>
-                  <small class="text-muted-color">Próxima: {{ dateTime(job.nextRun) }}</small>
-                </td>
-                <td>
-                  <div>{{ dateTime(job.lastRun) }}</div>
-                  @if (job.lastError) {
-                    <small class="text-red-700 dark:text-red-300">{{ job.lastError }}</small>
-                  }
-                </td>
-                <td>
-                  <div class="flex gap-2">
-                    <p-button
-                      posTooltip
-                      icon="pos-icon pos-icon-play"
-                      severity="secondary"
-                      [ariaLabel]="'Ejecutar ' + job.name"
-                      [disabled]="!store.snapshot().online || job.status === 'running'"
-                      (onClick)="run(job)"
-                    /><p-button
-                      ariaLabel="Programar"
-                      icon="pos-icon pos-icon-calendar-dots"
-                      label="Programar"
-                      severity="secondary"
-                      (onClick)="edit(job)"
-                    />
-                  </div>
-                </td></tr
-            ></ng-template>
-            <ng-template #emptymessage
-              ><tr>
-                <td colspan="5" class="pos-empty">No hay flujos para esta dirección.</td>
-              </tr></ng-template
-            >
-          </p-table>
+              <ng-template #header
+                ><tr>
+                  <th>Flujo</th>
+                  <th>Estado</th>
+                  <th>Programación</th>
+                  <th>Última ejecución</th>
+                  <th>Acciones</th>
+                </tr></ng-template
+              >
+              <ng-template #body let-job
+                ><tr>
+                  <td>
+                    <div class="font-semibold">{{ job.name }}</div>
+                    <div class="text-xs text-muted-color mt-1">
+                      {{ job.direction === 'inbound' ? 'Central → sucursal' : 'Sucursal → central' }} ·
+                      {{ job.entities }}
+                    </div>
+                  </td>
+                  <td>
+                    <pos-status-tag [value]="job.status" />
+                    @if (job.status === 'running') {
+                      <p-progressbar [value]="job.progress" class="block mt-2 w-32" />
+                    }
+                  </td>
+                  <td>
+                    <div>{{ scheduleLabel(job) }}</div>
+                    <small class="text-muted-color">Próxima: {{ dateTime(job.nextRun) }}</small>
+                  </td>
+                  <td>
+                    <div>{{ dateTime(job.lastRun) }}</div>
+                    @if (job.lastError) {
+                      <small class="text-red-700 dark:text-red-300">{{ job.lastError }}</small>
+                    }
+                  </td>
+                  <td>
+                    <div class="flex gap-2">
+                      <p-button
+                        posTooltip
+                        icon="pos-icon pos-icon-play"
+                        severity="secondary"
+                        [ariaLabel]="'Ejecutar ' + job.name"
+                        [disabled]="!store.snapshot().online || job.status === 'running'"
+                        (onClick)="run(job)"
+                      /><p-button
+                        ariaLabel="Programar"
+                        icon="pos-icon pos-icon-calendar-dots"
+                        label="Programar"
+                        severity="secondary"
+                        (onClick)="edit(job)"
+                      />
+                    </div>
+                  </td></tr
+              ></ng-template>
+            </p-table>
+          } @else {
+            <pos-empty-state
+              icon="arrows-left-right"
+              heading="No hay flujos para esta dirección"
+              description="Selecciona otra dirección para consultar los sincronizadores."
+            />
+          }
         </div>
       }
       @if (tab === 'outbox') {
@@ -198,56 +203,58 @@ import { FeedbackService } from './feedback.service';
           </p>
         </div>
         <div class="pos-panel overflow-hidden">
-          <p-table
-            tableStyleClass="pos-table"
-            [value]="store.snapshot().outbox"
-            [paginator]="true"
-            [rows]="10"
-            [tableStyle]="{ 'min-width': '58rem' }"
-            ><ng-template #header
-              ><tr>
-                <th>Evento / operación</th>
-                <th>Destino</th>
-                <th>Estado</th>
-                <th>Intentos</th>
-                <th>Creado</th>
-                <th>Acción</th>
-              </tr></ng-template
-            ><ng-template #body let-event
-              ><tr>
-                <td>
-                  <span class="font-medium">{{ event.type }}</span>
-                  <div class="text-xs text-muted-color font-mono mt-1">{{ event.aggregateId }}</div>
-                </td>
-                <td>{{ event.target === 'erp' ? 'Dynamics AX' : 'Proveedor DTE' }}</td>
-                <td>
-                  <pos-status-tag [value]="event.status" />
-                  @if (event.lastError) {
-                    <p class="text-xs mt-1 text-red-700 dark:text-red-300">{{ event.lastError }}</p>
-                  }
-                </td>
-                <td>{{ event.attempts }}</td>
-                <td>{{ dateTime(event.createdAt) }}</td>
-                <td>
-                  <p-button
-                    ariaLabel="Reintentar"
-                    label="Reintentar"
-                    icon="pos-icon pos-icon-arrow-clockwise"
-                    severity="secondary"
-                    [disabled]="
-                      event.status === 'sent' || event.status === 'processing' || !store.snapshot().online
-                    "
-                    (onClick)="retry(event.id)"
-                  />
-                </td></tr></ng-template
-            ><ng-template #emptymessage
-              ><tr>
-                <td colspan="6" class="pos-empty">
-                  No hay eventos pendientes. Las nuevas operaciones aparecerán aquí.
-                </td>
-              </tr></ng-template
-            ></p-table
-          >
+          @if (store.snapshot().outbox.length) {
+            <p-table
+              tableStyleClass="pos-table"
+              [value]="store.snapshot().outbox"
+              [paginator]="true"
+              [rows]="10"
+              [tableStyle]="{ 'min-width': '58rem' }"
+              ><ng-template #header
+                ><tr>
+                  <th>Evento / operación</th>
+                  <th>Destino</th>
+                  <th>Estado</th>
+                  <th>Intentos</th>
+                  <th>Creado</th>
+                  <th>Acción</th>
+                </tr></ng-template
+              ><ng-template #body let-event
+                ><tr>
+                  <td>
+                    <span class="font-medium">{{ event.type }}</span>
+                    <div class="text-xs text-muted-color font-mono mt-1">{{ event.aggregateId }}</div>
+                  </td>
+                  <td>{{ event.target === 'erp' ? 'Dynamics AX' : 'Proveedor DTE' }}</td>
+                  <td>
+                    <pos-status-tag [value]="event.status" />
+                    @if (event.lastError) {
+                      <p class="text-xs mt-1 text-red-700 dark:text-red-300">{{ event.lastError }}</p>
+                    }
+                  </td>
+                  <td>{{ event.attempts }}</td>
+                  <td>{{ dateTime(event.createdAt) }}</td>
+                  <td>
+                    <p-button
+                      ariaLabel="Reintentar"
+                      label="Reintentar"
+                      icon="pos-icon pos-icon-arrow-clockwise"
+                      severity="secondary"
+                      [disabled]="
+                        event.status === 'sent' || event.status === 'processing' || !store.snapshot().online
+                      "
+                      (onClick)="retry(event.id)"
+                    />
+                  </td></tr></ng-template
+            ></p-table>
+          } @else {
+            <pos-empty-state
+              icon="tray"
+              heading="No hay eventos pendientes"
+              [headingLevel]="3"
+              description="Las nuevas operaciones aparecerán aquí."
+            />
+          }
         </div>
       }
       @if (tab === 'history') {
@@ -261,39 +268,43 @@ import { FeedbackService } from './feedback.service';
           />
         </div>
         <div class="pos-panel overflow-hidden">
-          <p-table
-            tableStyleClass="pos-table"
-            [value]="store.snapshot().syncRuns"
-            [paginator]="true"
-            [rows]="10"
-            [tableStyle]="{ 'min-width': '50rem' }"
-            ><ng-template #header
-              ><tr>
-                <th>Flujo</th>
-                <th>Inicio</th>
-                <th>Origen</th>
-                <th>Registros</th>
-                <th>Resultado</th>
-              </tr></ng-template
-            ><ng-template #body let-run
-              ><tr>
-                <td>{{ jobName(run.jobId) }}</td>
-                <td>{{ dateTime(run.startedAt) }}</td>
-                <td>{{ run.trigger === 'manual' ? 'Manual' : 'Programado' }}</td>
-                <td>{{ run.records }}</td>
-                <td>
-                  <pos-status-tag [value]="run.status" />
-                  @if (run.error) {
-                    <p class="text-xs mt-1 text-red-700 dark:text-red-300">{{ run.error }}</p>
-                  }
-                </td>
-              </tr></ng-template
-            ><ng-template #emptymessage
-              ><tr>
-                <td colspan="5" class="pos-empty">Ejecuta un flujo para ver su historial.</td>
-              </tr></ng-template
-            ></p-table
-          >
+          @if (store.snapshot().syncRuns.length) {
+            <p-table
+              tableStyleClass="pos-table"
+              [value]="store.snapshot().syncRuns"
+              [paginator]="true"
+              [rows]="10"
+              [tableStyle]="{ 'min-width': '50rem' }"
+              ><ng-template #header
+                ><tr>
+                  <th>Flujo</th>
+                  <th>Inicio</th>
+                  <th>Origen</th>
+                  <th>Registros</th>
+                  <th>Resultado</th>
+                </tr></ng-template
+              ><ng-template #body let-run
+                ><tr>
+                  <td>{{ jobName(run.jobId) }}</td>
+                  <td>{{ dateTime(run.startedAt) }}</td>
+                  <td>{{ run.trigger === 'manual' ? 'Manual' : 'Programado' }}</td>
+                  <td>{{ run.records }}</td>
+                  <td>
+                    <pos-status-tag [value]="run.status" />
+                    @if (run.error) {
+                      <p class="text-xs mt-1 text-red-700 dark:text-red-300">{{ run.error }}</p>
+                    }
+                  </td>
+                </tr></ng-template
+              ></p-table
+            >
+          } @else {
+            <pos-empty-state
+              icon="clock"
+              heading="Sin sincronizaciones ejecutadas"
+              description="Ejecuta un flujo para ver su historial."
+            />
+          }
         </div>
       }
     </div>

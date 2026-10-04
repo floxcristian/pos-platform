@@ -16,6 +16,7 @@ import { TableModule } from 'primeng/table';
 import { PosStore } from '@corporate-pos/data-access';
 import {
   DuotoneIconComponent,
+  EmptyStateComponent,
   PageHeaderComponent,
   ThemeService,
   MetricCardComponent,
@@ -47,6 +48,7 @@ import {
     ChartModule,
     TableModule,
     DuotoneIconComponent,
+    EmptyStateComponent,
     PageHeaderComponent,
     MetricCardComponent,
     StatusTagComponent,

@@ -9,7 +9,7 @@ import { ToggleSwitchModule } from 'primeng/toggleswitch';
 import { DialogModule } from 'primeng/dialog';
 import { PosStore } from '@corporate-pos/data-access';
 import type { PriceRule } from '@corporate-pos/domain';
-import { StatusTagComponent, money } from '@corporate-pos/ui';
+import { EmptyStateComponent, StatusTagComponent, money } from '@corporate-pos/ui';
 import { FeedbackService } from './feedback.service';
 
 @Component({
@@ -24,6 +24,7 @@ import { FeedbackService } from './feedback.service';
     InputNumberModule,
     ToggleSwitchModule,
     DialogModule,
+    EmptyStateComponent,
     StatusTagComponent,
   ],
   template: ` <div class="pos-section">
@@ -43,45 +44,49 @@ import { FeedbackService } from './feedback.service';
         />
       </div>
       <div class="pos-panel overflow-hidden">
-        <p-table
-          tableStyleClass="pos-table"
-          [value]="store.snapshot().priceRules"
-          [paginator]="true"
-          [rows]="10"
-          [tableStyle]="{ 'min-width': '56rem' }"
-          ><ng-template #header
-            ><tr>
-              <th>Condición</th>
-              <th>Producto</th>
-              <th>Cliente</th>
-              <th>Desde</th>
-              <th>Precio unitario</th>
-              <th>Estado</th>
-              <th>Acción</th>
-            </tr></ng-template
-          ><ng-template #body let-rule
-            ><tr>
-              <td class="font-semibold">{{ rule.name }}</td>
-              <td>{{ productName(rule.productId) }}</td>
-              <td>{{ customerName(rule.customerId) }}</td>
-              <td>{{ rule.minQuantity }} unidades</td>
-              <td>{{ money(rule.unitPrice) }}<small class="block text-muted-color">IVA incluido</small></td>
-              <td><pos-status-tag [value]="rule.enabled ? 'active' : 'inactive'" /></td>
-              <td>
-                <p-button
-                  ariaLabel="Editar condición"
-                  label="Editar"
-                  icon="pos-icon pos-icon-pencil"
-                  severity="secondary"
-                  (onClick)="edit(rule)"
-                />
-              </td></tr></ng-template
-          ><ng-template #emptymessage
-            ><tr>
-              <td colspan="7" class="pos-empty">Todavía no hay condiciones especiales de precio.</td>
-            </tr></ng-template
-          ></p-table
-        >
+        @if (store.snapshot().priceRules.length) {
+          <p-table
+            tableStyleClass="pos-table"
+            [value]="store.snapshot().priceRules"
+            [paginator]="true"
+            [rows]="10"
+            [tableStyle]="{ 'min-width': '56rem' }"
+            ><ng-template #header
+              ><tr>
+                <th>Condición</th>
+                <th>Producto</th>
+                <th>Cliente</th>
+                <th>Desde</th>
+                <th>Precio unitario</th>
+                <th>Estado</th>
+                <th>Acción</th>
+              </tr></ng-template
+            ><ng-template #body let-rule
+              ><tr>
+                <td class="font-semibold">{{ rule.name }}</td>
+                <td>{{ productName(rule.productId) }}</td>
+                <td>{{ customerName(rule.customerId) }}</td>
+                <td>{{ rule.minQuantity }} unidades</td>
+                <td>{{ money(rule.unitPrice) }}<small class="block text-muted-color">IVA incluido</small></td>
+                <td><pos-status-tag [value]="rule.enabled ? 'active' : 'inactive'" /></td>
+                <td>
+                  <p-button
+                    ariaLabel="Editar condición"
+                    label="Editar"
+                    icon="pos-icon pos-icon-pencil"
+                    severity="secondary"
+                    (onClick)="edit(rule)"
+                  />
+                </td></tr></ng-template
+          ></p-table>
+        } @else {
+          <pos-empty-state
+            icon="list-checks"
+            heading="Sin condiciones especiales de precio"
+            [headingLevel]="3"
+            description="Crea una condición para definir precios por cliente o cantidad."
+          />
+        }
       </div>
       <p class="text-sm text-muted-color">
         Estas condiciones no se acumulan con descuentos manuales u ofertas sobre el mismo producto. Las ventas

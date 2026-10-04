@@ -75,44 +75,47 @@ import { PriceRulesComponent } from './price-rules.component';
       </div>
       @if (tab === 'prices') {
         <div class="pos-panel overflow-hidden">
-          <p-table
-            tableStyleClass="pos-table"
-            [value]="products()"
-            [paginator]="true"
-            [rows]="10"
-            [tableStyle]="{ 'min-width': '44rem' }"
-            ><ng-template #header
-              ><tr>
-                <th>Producto</th>
-                <th>Precio con IVA</th>
-                <th>Costo</th>
-                <th>Margen sobre precio neto</th>
-                <th>Acción</th>
-              </tr></ng-template
-            ><ng-template #body let-product
-              ><tr>
-                <td>
-                  <div class="font-semibold">{{ product.name }}</div>
-                  <small class="text-muted-color">{{ product.sku }}</small>
-                </td>
-                <td>{{ money(product.price) }}</td>
-                <td>{{ money(product.cost) }}</td>
-                <td>{{ margin(product) }} %</td>
-                <td>
-                  <p-button
-                    ariaLabel="Cambiar precio"
-                    label="Cambiar precio"
-                    icon="pos-icon pos-icon-pencil"
-                    severity="secondary"
-                    (onClick)="editPrice(product)"
-                  />
-                </td></tr></ng-template
-            ><ng-template #emptymessage
-              ><tr>
-                <td colspan="5" class="pos-empty">No hay productos para esa búsqueda.</td>
-              </tr></ng-template
-            ></p-table
-          >
+          @if (products().length) {
+            <p-table
+              tableStyleClass="pos-table"
+              [value]="products()"
+              [paginator]="true"
+              [rows]="10"
+              [tableStyle]="{ 'min-width': '44rem' }"
+              ><ng-template #header
+                ><tr>
+                  <th>Producto</th>
+                  <th>Precio con IVA</th>
+                  <th>Costo</th>
+                  <th>Margen sobre precio neto</th>
+                  <th>Acción</th>
+                </tr></ng-template
+              ><ng-template #body let-product
+                ><tr>
+                  <td>
+                    <div class="font-semibold">{{ product.name }}</div>
+                    <small class="text-muted-color">{{ product.sku }}</small>
+                  </td>
+                  <td>{{ money(product.price) }}</td>
+                  <td>{{ money(product.cost) }}</td>
+                  <td>{{ margin(product) }} %</td>
+                  <td>
+                    <p-button
+                      ariaLabel="Cambiar precio"
+                      label="Cambiar precio"
+                      icon="pos-icon pos-icon-pencil"
+                      severity="secondary"
+                      (onClick)="editPrice(product)"
+                    />
+                  </td></tr></ng-template
+            ></p-table>
+          } @else {
+            <pos-empty-state
+              icon="magnifying-glass"
+              heading="No hay productos para esa búsqueda"
+              description="Prueba con otro nombre o código de producto."
+            />
+          }
         </div>
       }
       @if (tab === 'offers') {

@@ -23,6 +23,7 @@ import {
   PosTooltipDirective,
   dateTime,
   DuotoneIconComponent,
+  EmptyStateComponent,
   StatusTagComponent,
   ThemeService,
   type ThemeMode,
@@ -55,6 +56,7 @@ interface SearchResult {
     ToggleSwitchModule,
     StatusTagComponent,
     DuotoneIconComponent,
+    EmptyStateComponent,
   ],
   templateUrl: './shell.component.html',
 })

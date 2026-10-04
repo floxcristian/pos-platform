@@ -125,7 +125,12 @@
         }
       </ul>
     } @else {
-      <p class="text-muted-color py-16 text-center">Sin pagos confirmados en este período.</p>
+      <pos-empty-state
+        icon="credit-card"
+        heading="Sin pagos confirmados en este período."
+        description="Prueba otro período o sucursal para consultar la distribución de los pagos."
+        [headingLevel]="3"
+      />
     }
   </section>
 </div>
@@ -211,36 +216,39 @@
         ></a>
       }
     </div>
-    <p-table
-      tableStyleClass="pos-table"
-      [value]="recent()"
-      [tableStyle]="{ 'min-width': '36rem' }"
-      size="small"
-      ><ng-template #header
-        ><tr>
-          <th>Documento</th>
-          <th>Cliente</th>
-          <th>Fiscal</th>
-          <th class="text-right">Total</th>
-        </tr></ng-template
-      ><ng-template #body let-sale
-        ><tr>
-          <td>
-            <span class="font-medium">{{ sale.number }}</span
-            ><span class="block text-xs text-muted-color mt-1">{{ dateTime(sale.createdAt) }}</span>
-          </td>
-          <td>{{ sale.customerName }}</td>
-          <td><pos-status-tag [value]="sale.fiscalStatus" /></td>
-          <td class="text-right font-medium tabular-nums">{{ money(sale.total) }}</td>
-        </tr></ng-template
-      ><ng-template #emptymessage
-        ><tr>
-          <td colspan="4" class="text-center text-muted-color p-8">
-            No hay ventas para este período y sucursal.
-          </td>
-        </tr></ng-template
-      ></p-table
-    >
+    @if (recent().length) {
+      <p-table
+        tableStyleClass="pos-table"
+        [value]="recent()"
+        [tableStyle]="{ 'min-width': '36rem' }"
+        size="small"
+        ><ng-template #header
+          ><tr>
+            <th>Documento</th>
+            <th>Cliente</th>
+            <th>Fiscal</th>
+            <th class="text-right">Total</th>
+          </tr></ng-template
+        ><ng-template #body let-sale
+          ><tr>
+            <td>
+              <span class="font-medium">{{ sale.number }}</span
+              ><span class="block text-xs text-muted-color mt-1">{{ dateTime(sale.createdAt) }}</span>
+            </td>
+            <td>{{ sale.customerName }}</td>
+            <td><pos-status-tag [value]="sale.fiscalStatus" /></td>
+            <td class="text-right font-medium tabular-nums">{{ money(sale.total) }}</td>
+          </tr></ng-template
+        ></p-table
+      >
+    } @else {
+      <pos-empty-state
+        icon="receipt"
+        heading="No hay ventas para este período y sucursal."
+        description="Prueba con otros filtros para consultar las ventas registradas."
+        [headingLevel]="3"
+      />
+    }
   </section>
   <section class="bg-surface-0 dark:bg-surface-950 border border-surface rounded-2xl p-5">
     <h2 class="font-semibold text-lg mb-4">Productos más vendidos</h2>
@@ -258,7 +266,14 @@
           <span class="text-sm font-medium tabular-nums whitespace-nowrap">{{ money(product.total) }}</span>
         </li>
       } @empty {
-        <li class="text-muted-color text-sm py-8">Sin productos vendidos en el período.</li>
+        <li>
+          <pos-empty-state
+            icon="shopping-bag"
+            heading="Sin productos vendidos en el período."
+            description="Aquí aparecerán los productos con más ventas en el período seleccionado."
+            [headingLevel]="3"
+          />
+        </li>
       }
     </ol>
   </section>

@@ -171,7 +171,7 @@ import {
               </tr>
             } @empty {
               <tr>
-                <td colspan="7">
+                <td colspan="7" class="p-0">
                   <pos-empty-state
                     heading="No hay documentos que coincidan con los filtros."
                     description="Cambia el período, el tipo o el estado del documento."
@@ -408,7 +408,11 @@ import {
               }
             </div>
           } @empty {
-            <p class="text-sm text-muted-color">Sin envíos pendientes para esta venta.</p>
+            <pos-empty-state
+              icon="arrows-clockwise"
+              heading="Sin envíos pendientes para esta venta."
+              [headingLevel]="3"
+            />
           }
         </div>
         <p class="text-xs text-muted-color mt-6 break-all">
