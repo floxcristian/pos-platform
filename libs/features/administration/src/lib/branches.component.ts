@@ -94,6 +94,7 @@ import { FeedbackService } from './feedback.service';
       [header]="branch.id ? 'Editar sucursal' : 'Nueva sucursal'"
       [(visible)]="dialog"
       [modal]="true"
+      [draggable]="false"
       [style]="{ width: '38rem' }"
     >
       <p class="text-sm text-muted-color mb-5">Los campos marcados con * son obligatorios.</p>

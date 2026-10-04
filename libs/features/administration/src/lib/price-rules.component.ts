@@ -97,6 +97,7 @@ import { FeedbackService } from './feedback.service';
       [header]="rule.id ? 'Editar condición de precio' : 'Nueva condición de precio'"
       [(visible)]="dialog"
       [modal]="true"
+      [draggable]="false"
       [style]="{ width: '40rem' }"
       ><div class="pos-section">
         <div class="pos-field">

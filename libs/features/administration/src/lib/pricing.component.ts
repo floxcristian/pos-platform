@@ -157,7 +157,13 @@ import { PriceRulesComponent } from './price-rules.component';
         <pos-price-rules />
       }
     </div>
-    <p-dialog header="Cambiar precio" [(visible)]="priceDialog" [modal]="true" [style]="{ width: '30rem' }">
+    <p-dialog
+      header="Cambiar precio"
+      [(visible)]="priceDialog"
+      [modal]="true"
+      [draggable]="false"
+      [style]="{ width: '30rem' }"
+    >
       @if (selected) {
         <div class="pos-section">
           <p class="font-semibold">{{ selected.name }}</p>
@@ -189,7 +195,12 @@ import { PriceRulesComponent } from './price-rules.component';
           label="Guardar precio"
           (onClick)="savePrice()" /></ng-template
     ></p-dialog>
-    <p-dialog header="Configurar oferta" [(visible)]="offerDialog" [modal]="true" [style]="{ width: '40rem' }"
+    <p-dialog
+      header="Configurar oferta"
+      [(visible)]="offerDialog"
+      [modal]="true"
+      [draggable]="false"
+      [style]="{ width: '40rem' }"
       ><div class="pos-section">
         <div class="pos-field">
           <label for="offer-name">Nombre *</label

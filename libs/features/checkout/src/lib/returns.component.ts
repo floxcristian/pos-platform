@@ -135,6 +135,7 @@ import {
       }
     </section>
     <p-dialog
+      [draggable]="false"
       header="Emitir nota de crédito"
       [visible]="createVisible()"
       (visibleChange)="createVisible.set($event)"
@@ -370,6 +371,7 @@ import {
       }
     </p-drawer>
     <p-dialog
+      [draggable]="false"
       header="Devolver saldo de nota de crédito"
       [visible]="refundVisible()"
       (visibleChange)="refundVisible.set($event)"

@@ -450,6 +450,7 @@
   </div>
 </p-drawer>
 <p-dialog
+  [draggable]="false"
   header="Cobrar venta"
   [visible]="paying()"
   (visibleChange)="paying.set($event)"
@@ -824,6 +825,7 @@
   /></ng-template>
 </p-dialog>
 <p-dialog
+  [draggable]="false"
   header="Venta guardada"
   [visible]="!!receipt()"
   (visibleChange)="!$event && receipt.set(null)"
@@ -897,6 +899,7 @@
   /></ng-template>
 </p-dialog>
 <p-dialog
+  [draggable]="false"
   header="Crear cliente express"
   [visible]="customerVisible()"
   (visibleChange)="customerVisible.set($event)"

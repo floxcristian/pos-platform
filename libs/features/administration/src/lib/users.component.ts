@@ -140,6 +140,7 @@ import { FeedbackService } from './feedback.service';
       [header]="user.id ? 'Editar usuario' : 'Nuevo usuario'"
       [(visible)]="dialog"
       [modal]="true"
+      [draggable]="false"
       [style]="{ width: '36rem' }"
       ><div class="pos-section">
         <div class="pos-field">

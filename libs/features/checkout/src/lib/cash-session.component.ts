@@ -334,6 +334,7 @@ import {
       }
     </section>
     <p-dialog
+      [draggable]="false"
       header="Confirmar depósito de custodia"
       [visible]="depositVisible()"
       (visibleChange)="depositVisible.set($event)"
@@ -389,6 +390,7 @@ import {
           (onClick)="saveDeposit()" /></ng-template
     ></p-dialog>
     <p-dialog
+      [draggable]="false"
       header="Movimiento de efectivo"
       [visible]="movementVisible()"
       (visibleChange)="movementVisible.set($event)"
@@ -449,6 +451,7 @@ import {
       /></ng-template>
     </p-dialog>
     <p-dialog
+      [draggable]="false"
       [header]="
         closeKind() === 'partial'
           ? 'Arqueo parcial'

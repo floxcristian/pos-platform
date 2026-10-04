@@ -421,6 +421,7 @@ import {
       }
     </p-drawer>
     <p-dialog
+      [draggable]="false"
       header="Conciliar resultado del pago"
       [visible]="reconcileVisible()"
       (visibleChange)="reconcileVisible.set($event)"

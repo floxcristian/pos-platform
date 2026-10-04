@@ -236,7 +236,13 @@ import { FeedbackService } from './feedback.service';
         </div>
       }
     </div>
-    <p-dialog [header]="editorTitle" [(visible)]="dialog" [modal]="true" [style]="{ width: '44rem' }">
+    <p-dialog
+      [header]="editorTitle"
+      [(visible)]="dialog"
+      [modal]="true"
+      [draggable]="false"
+      [style]="{ width: '44rem' }"
+    >
       @if (editor === 'product') {
         <div class="pos-form-grid">
           <div class="pos-field sm:col-span-2">

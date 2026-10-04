@@ -312,6 +312,7 @@ import { FeedbackService } from './feedback.service';
       header="Programar sincronización"
       [(visible)]="dialog"
       [modal]="true"
+      [draggable]="false"
       [style]="{ width: '38rem' }"
     >
       @if (selected) {

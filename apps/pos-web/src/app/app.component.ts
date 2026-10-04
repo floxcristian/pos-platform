@@ -14,7 +14,7 @@ import { createToastTooltipPassThrough } from '@corporate-pos/ui';
       [pt]="toastTooltip"
       [breakpoints]="{ '640px': { width: 'calc(100% - 2rem)', right: '1rem' } }"
     />
-    <p-confirmdialog [style]="{ width: '30rem' }" />
+    <p-confirmdialog [draggable]="false" [style]="{ width: '30rem' }" />
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

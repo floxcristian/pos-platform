@@ -330,6 +330,7 @@ import {
       </div>
     </section>
     <p-dialog
+      [draggable]="false"
       header="Crear plan de cuotas"
       [visible]="agreementVisible()"
       (visibleChange)="agreementVisible.set($event)"
@@ -411,6 +412,7 @@ import {
           [disabled]="!agreementDebtIds().length" /></ng-template
     ></p-dialog>
     <p-dialog
+      [draggable]="false"
       [header]="
         kind() === 'advance'
           ? 'Registrar anticipo'
@@ -479,6 +481,7 @@ import {
       /></ng-template>
     </p-dialog>
     <p-dialog
+      [draggable]="false"
       header="Comprobante de abono"
       [visible]="!!receipt()"
       (visibleChange)="!$event && receipt.set(null)"
