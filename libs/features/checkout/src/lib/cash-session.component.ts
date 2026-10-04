@@ -152,7 +152,7 @@ import {
         />
       </section>
     } @else {
-      <div class="flex flex-wrap gap-3 mb-6">
+      <div class="flex flex-wrap justify-end gap-3 mb-6">
         <p-button
           label="Ingreso o retiro"
           ariaLabel="Ingreso o retiro"
