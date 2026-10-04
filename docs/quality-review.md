@@ -37,6 +37,14 @@ Se revisaron los catálogos completos y las pantallas en claro, oscuro, móvil y
 
 Validación local: build de producción, lint, formato, generación reproducible y 153 pruebas de lógica/contratos aprobados. La suite de 46 E2E dio 45 aprobados y una aserción global de tooltip incorrecta: el detalle retiraba su ayuda, pero el cierre del diálogo recibía foco y mostraba una nueva. El trace confirmó la limpieza del ID original y de `aria-describedby`. Se corrigió la aserción para comprobar esa asociación concreta; los seis E2E de tooltips pasaron después. La regresión nueva de iconos comprueba carga de máscaras bajo CSP y colores del control en alto contraste claro y oscuro. No se ejecutó el instalador Tauri localmente.
 
+## Perfil del encabezado
+
+El avatar del encabezado usa una superficie tonal `primary-100`, iniciales `primary-700` y esquinas de 8 px. Se redujo de 36 a 32 px para darle aire dentro del botón de 44 px; avatar, texto y flecha se separan 12 px, con padding exterior de 8/12 px y 2 px entre las líneas. Se conservan tooltip y foco, y el disparador comunica la apertura del diálogo mediante ARIA. Capturas de [Cajero](screenshots/profile-cajero.png) y [Administrador](screenshots/profile-administrador.png).
+
+En móvil el botón ocupa 44 × 44 px. La comprobación detectó que el display sin capa de `.pos-icon` anulaba `hidden`: la flecha seguía visible y el perfil medía 72 px. Los estilos base de la máscara pasan a `components`, después de predeclarar el mismo orden de capas estáticas de Tailwind. Las utilidades responsivas recuperan su prioridad; el preset PrimeNG y las reglas de alto contraste conservan la suya. El recorrido móvil comprueba que la flecha desaparece y el botón mantiene el ancho previsto.
+
+Validación del ajuste: build, lint, formato, generación de iconos y 153 pruebas de lógica aprobados. Pasaron nueve recorridos de perfil, teclado, accesibilidad y tooltips; después de corregir la prioridad de los iconos, los 12 E2E de contrato visual, interacción y tooltips también aprobaron. La inspección del perfil confirmó padding, gaps, radio, apertura del diálogo y ancho móvil en el artefacto de producción local.
+
 ## Ampliación visual y tooltips
 
 Esta ampliación corrige los siguientes hallazgos. Su verificación se registra por separado de los resultados históricos de la sección Verificación.

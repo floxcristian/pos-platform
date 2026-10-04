@@ -142,6 +142,10 @@ test('ayudas en campos, avisos y controles bloqueados; sin tooltips huérfanos',
 test('375px: ayudas del header sin desbordamiento y jerarquía consistente', async ({ page }) => {
   await page.setViewportSize({ width: 375, height: 900 });
   await page.goto('/#/inicio');
+  const profile = page.getByRole('button', { name: 'Perfil y entorno de demostración', exact: true });
+  // SVG mask defaults must not override the responsive hidden utility and widen this control.
+  await expect(profile.locator('.pos-icon-caret-down')).toBeHidden();
+  expect(await profile.boundingBox()).toMatchObject({ width: 44, height: 44 });
   const openNav = page.getByRole('button', { name: 'Abrir navegación', exact: true });
   await expectTooltip(page, openNav, 'Abrir navegación');
   await openNav.click();
