@@ -306,6 +306,8 @@
           icon="pos-icon pos-icon-tag"
           severity="secondary"
           size="small"
+          class="w-full"
+          [fluid]="true"
           (onClick)="applyOffer()"
           [disabled]="!store.can('sell', 'discounts') || !lines().length"
         />
@@ -349,8 +351,8 @@
         [ariaLabel]="'Cobrar ' + money(total())"
         icon="pos-icon pos-icon-arrow-right"
         iconPos="right"
-        class="block"
-        styleClass="w-full"
+        class="w-full"
+        [fluid]="true"
         (onClick)="startPayment()"
         [disabled]="!lines().length || !store.can('sell', 'sales')"
       />
