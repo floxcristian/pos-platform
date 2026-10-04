@@ -84,13 +84,16 @@ import {
     @if (feedback()) {
       <p-message severity="success" class="block mb-4">{{ feedback() }}</p-message>
     }
-    <section class="rounded-2xl border border-surface bg-surface-0 dark:bg-surface-950 p-5 mb-5">
-      <div class="grid gap-5 md:grid-cols-[minmax(0,1fr)_2fr] items-center">
-        <label for="checkout-collections-1"
-          ><span class="block font-semibold mb-2">Buscar cliente por RUT o nombre</span
-          ><p-select
+    <section
+      aria-label="Cliente de cobranza"
+      class="rounded-2xl border border-surface bg-surface-0 dark:bg-surface-950 p-5 mb-5"
+    >
+      <div class="grid gap-5 sm:grid-cols-2 xl:grid-cols-[minmax(0,1.5fr)_repeat(3,minmax(0,1fr))]">
+        <div class="grid grid-rows-subgrid row-span-2 gap-2 min-w-0">
+          <label for="checkout-collections-1" class="font-semibold">Buscar cliente por RUT o nombre</label>
+          <p-select
             inputId="checkout-collections-1"
-            class="w-full"
+            class="w-full min-w-0 self-center"
             [options]="store.snapshot().customers"
             optionLabel="name"
             optionValue="id"
@@ -100,20 +103,21 @@ import {
             [ngModel]="customerId()"
             (ngModelChange)="customerId.set($event)"
             ariaLabel="Cliente para consultar deuda"
-        /></label>
+          />
+        </div>
         @if (customer(); as client) {
-          <div class="grid gap-3 sm:grid-cols-3 text-sm">
-            <div>
-              <span class="text-muted-color block">RUT</span><strong>{{ client.rut }}</strong>
-            </div>
-            <div>
-              <span class="text-muted-color block">Correo</span><span>{{ client.email }}</span>
-            </div>
-            <div>
-              <span class="text-muted-color block">Última actualización</span
-              ><span>{{ dateTime(client.updatedAt) }}</span>
-            </div>
-          </div>
+          <dl class="grid grid-rows-subgrid row-span-2 gap-2 min-w-0">
+            <dt class="text-muted-color text-sm leading-6">RUT</dt>
+            <dd class="self-center font-semibold">{{ client.rut }}</dd>
+          </dl>
+          <dl class="grid grid-rows-subgrid row-span-2 gap-2 min-w-0">
+            <dt class="text-muted-color text-sm leading-6">Correo</dt>
+            <dd class="self-center wrap-anywhere">{{ client.email }}</dd>
+          </dl>
+          <dl class="grid grid-rows-subgrid row-span-2 gap-2 min-w-0">
+            <dt class="text-muted-color text-sm leading-6">Última actualización</dt>
+            <dd class="self-center">{{ dateTime(client.updatedAt) }}</dd>
+          </dl>
         }
       </div>
     </section>
