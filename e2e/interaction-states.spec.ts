@@ -139,7 +139,7 @@ for (const theme of ['light', 'dark'] as const) {
       .getByRole('navigation', { name: 'Navegación principal', exact: true })
       .locator('[aria-current="page"]');
     const currentColor = await colors(currentPage);
-    expect(currentColor.foreground).toEqual(theme === 'light' ? [0, 109, 182] : [68, 150, 222]);
+    expect(currentColor.foreground).toEqual(theme === 'light' ? [0, 70, 120] : [217, 236, 255]);
     await currentPage.hover();
     expect(await colors(currentPage)).toEqual(currentColor);
     await expectHover(
