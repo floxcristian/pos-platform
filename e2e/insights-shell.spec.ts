@@ -100,7 +100,8 @@ test('reportes: filtros, detalle y exportación CSV de los resultados', async ({
     .click();
   await expect(page.getByRole('dialog')).toBeVisible();
   await expect(page.getByRole('dialog').getByText('Estado del pago', { exact: true })).toBeVisible();
-  await page.keyboard.press('Escape');
+  await page.getByRole('dialog').locator('.p-dialog-close-button').click();
+  await expect(page.getByRole('dialog')).not.toBeVisible();
 
   const downloadPromise = page.waitForEvent('download');
   await page.getByRole('button', { name: 'Exportar CSV', exact: true }).click();
@@ -167,14 +168,19 @@ test('configuración mock de dispositivos e integraciones valida y conserva camb
   await expect(page.getByText('AX simulado E2E', { exact: true })).toBeVisible();
 });
 
-for (const width of [375, 1440]) {
+for (const { width, height } of [
+  { width: 375, height: 800 },
+  { width: 1440, height: 1000 },
+  { width: 1536, height: 724 },
+]) {
   test(`dashboard y reportes mantienen gráficos y scroll a ${width}px`, async ({ page }, testInfo) => {
-    await page.setViewportSize({ width, height: 1000 });
+    await page.setViewportSize({ width, height });
     await openDashboard(page);
     const documentOverflow = await page.evaluate(
       () => document.documentElement.scrollWidth > window.innerWidth,
     );
     expect(documentOverflow).toBe(false);
+    expect(await page.evaluate(() => document.documentElement.scrollHeight <= window.innerHeight)).toBe(true);
     const main = page.locator('#main-content');
     expect(await main.evaluate((element) => element.scrollWidth <= element.clientWidth)).toBe(true);
     const canvas = page.locator('p-chart canvas').first();
@@ -197,8 +203,21 @@ for (const width of [375, 1440]) {
     await expect(page.getByRole('heading', { name: 'Reportes', exact: true })).toBeVisible();
     await expect(page.locator('p-chart canvas')).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+    // A screen-reader-only label below the viewport must stay inside the main scroll area.
+    expect(await page.evaluate(() => document.documentElement.scrollHeight <= window.innerHeight)).toBe(true);
     expect(await main.evaluate((element) => element.scrollWidth <= element.clientWidth)).toBe(true);
     await page.screenshot({ path: testInfo.outputPath(`reports-${width}.png`), fullPage: true });
+    await main.hover();
+    await page.mouse.wheel(0, 500);
+    await expect.poll(() => main.evaluate((element) => element.scrollTop)).toBeGreaterThan(0);
+    expect(await page.evaluate(() => window.scrollY)).toBe(0);
+    expect((await page.locator('.brand-header-bg').boundingBox())!.y).toBe(0);
+    await main.evaluate((element) => element.scrollTo({ top: element.scrollHeight }));
+    await expect
+      .poll(() => main.evaluate((element) => element.scrollHeight - element.clientHeight - element.scrollTop))
+      .toBeLessThan(1);
+    await expect(page.locator('.p-paginator')).toBeInViewport();
+    expect(await page.evaluate(() => document.documentElement.scrollHeight <= window.innerHeight)).toBe(true);
   });
 }
 
