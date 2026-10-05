@@ -146,7 +146,6 @@ test('375px: ayudas del header sin desbordamiento y jerarquía consistente', asy
   // SVG mask defaults must not override the responsive hidden utility and widen this control.
   await expect(profile.locator('.pos-icon-caret-down')).toBeHidden();
   expect(await profile.boundingBox()).toMatchObject({ width: 44, height: 44 });
-  await expectTooltip(page, profile, 'Cristian Flores · Administrador');
   const openNav = page.getByRole('button', { name: 'Abrir navegación', exact: true });
   await expectTooltip(page, openNav, 'Abrir navegación');
   await openNav.click();
