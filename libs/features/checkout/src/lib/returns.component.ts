@@ -337,7 +337,7 @@ import {
             }
           </p-message>
         }
-        <div class="flex flex-wrap gap-3 mt-6">
+        <div class="flex flex-wrap justify-end gap-3 mt-6">
           <p-button
             label="Descargar comprobante"
             ariaLabel="Descargar comprobante"

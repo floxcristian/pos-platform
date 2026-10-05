@@ -423,7 +423,7 @@ export class IntegrationsComponent {
           <p-progressbar mode="indeterminate" class="block mt-5" [style]="{ height: '6px' }" />
         }
       </div>
-      <div class="flex flex-wrap gap-3 mt-6">
+      <div class="flex flex-wrap justify-end gap-3 mt-6">
         <p-button
           ariaLabel="Buscar actualizaciones"
           label="Buscar actualizaciones"

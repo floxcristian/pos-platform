@@ -37,6 +37,7 @@ import { FeedbackService } from './feedback.service';
           </p>
         </div>
         <p-button
+          class="ms-auto"
           ariaLabel="Nueva condición"
           label="Nueva condición"
           icon="pos-icon pos-icon-plus"

@@ -234,7 +234,7 @@ import {
         @if (detailFeedback()) {
           <p-message severity="success" class="block mb-4">{{ detailFeedback() }}</p-message>
         }
-        <div class="flex flex-wrap gap-2 mb-6">
+        <div class="flex flex-wrap justify-end gap-2 mb-6">
           <p-button
             label="Reimprimir"
             ariaLabel="Reimprimir"

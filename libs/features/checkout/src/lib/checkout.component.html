@@ -381,14 +381,15 @@
         <p class="text-sm text-muted-color mt-2">
           {{ dateTime(held.createdAt) }} · {{ held.lines.length }} productos
         </p>
-        <p-button
-          label="Retomar venta"
-          ariaLabel="Retomar venta"
-          icon="pos-icon pos-icon-play"
-          size="small"
-          class="block mt-3"
-          (onClick)="resume(held.id)"
-        />
+        <div class="flex justify-end mt-3">
+          <p-button
+            label="Retomar venta"
+            ariaLabel="Retomar venta"
+            icon="pos-icon pos-icon-play"
+            size="small"
+            (onClick)="resume(held.id)"
+          />
+        </div>
       </div>
     } @empty {
       <pos-empty-state icon="shopping-cart" heading="No hay ventas pausadas." [headingLevel]="3" />
@@ -431,14 +432,15 @@
             protegidas
           </p>
         }
-        <p-button
-          label="Cargar esta orden"
-          ariaLabel="Cargar esta orden"
-          icon="pos-icon pos-icon-arrow-right"
-          size="small"
-          class="block mt-4"
-          (onClick)="loadOrder(order.id)"
-        />
+        <div class="flex justify-end mt-4">
+          <p-button
+            label="Cargar esta orden"
+            ariaLabel="Cargar esta orden"
+            icon="pos-icon pos-icon-arrow-right"
+            size="small"
+            (onClick)="loadOrder(order.id)"
+          />
+        </div>
       </section>
     } @empty {
       <pos-empty-state

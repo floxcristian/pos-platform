@@ -50,9 +50,6 @@ import {
       eyebrow="Control de caja"
       subtitle="Apertura, movimientos, arqueo y cierre en un solo lugar."
     >
-      @if (open()) {
-        <a pButton routerLink="/venta" icon="pos-icon pos-icon-shopping-cart">Ir a vender</a>
-      }
       <p-button
         label="Informe de caja"
         ariaLabel="Informe de caja"
@@ -61,6 +58,9 @@ import {
         (onClick)="exportSession()"
         [disabled]="!session()"
       />
+      @if (open()) {
+        <a pButton routerLink="/venta" icon="pos-icon pos-icon-shopping-cart">Ir a vender</a>
+      }
     </pos-page-header>
     @if (error()) {
       <p-message severity="error" class="block mb-4">{{ error() }}</p-message>
@@ -142,14 +142,15 @@ import {
               ariaLabel="Confirmar monto de apertura"
           /></label>
         </div>
-        <p-button
-          label="Abrir caja"
-          ariaLabel="Abrir caja"
-          icon="pos-icon pos-icon-lock-key-open"
-          class="block mt-5"
-          (onClick)="openSession()"
-          [disabled]="!store.can('cash', 'cash')"
-        />
+        <div class="flex justify-end mt-5">
+          <p-button
+            label="Abrir caja"
+            ariaLabel="Abrir caja"
+            icon="pos-icon pos-icon-lock-key-open"
+            (onClick)="openSession()"
+            [disabled]="!store.can('cash', 'cash')"
+          />
+        </div>
       </section>
     } @else {
       <div class="flex flex-wrap justify-end gap-3 mb-6">

@@ -18,7 +18,9 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
         <p class="mt-1 max-w-4xl ps-4 break-words text-pretty text-muted-color leading-6">{{ subtitle() }}</p>
       }
     </div>
-    <div class="flex flex-wrap items-center gap-2 empty:hidden"><ng-content /></div>
+    <div class="flex w-full flex-wrap items-center justify-end gap-2 sm:ms-auto sm:w-auto empty:hidden">
+      <ng-content />
+    </div>
   `,
 })
 export class PageHeaderComponent {
