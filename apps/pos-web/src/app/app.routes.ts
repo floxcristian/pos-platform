@@ -2,7 +2,7 @@ import { inject } from '@angular/core';
 import { CanMatchFn, Router, Routes } from '@angular/router';
 import { PosStore } from '@corporate-pos/data-access';
 import type { ModuleId, Permission } from '@corporate-pos/domain';
-import { ShellComponent } from './shell/shell.component';
+import { guestGuard, sessionChildGuard, sessionMatchGuard } from './session.guards';
 
 const access =
   (permission: Permission, module?: ModuleId): CanMatchFn =>
@@ -11,8 +11,16 @@ const access =
 
 export const routes: Routes = [
   {
+    path: 'login',
+    title: 'Iniciar sesión · Corporate POS',
+    canMatch: [guestGuard],
+    loadComponent: () => import('@corporate-pos/access').then((m) => m.LoginComponent),
+  },
+  {
     path: '',
-    component: ShellComponent,
+    loadComponent: () => import('./shell/shell.component').then((m) => m.ShellComponent),
+    canMatch: [sessionMatchGuard],
+    canActivateChild: [sessionChildGuard],
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'inicio' },
       {

@@ -508,7 +508,7 @@ export class DocumentsComponent {
   readonly unknownPayments = computed(
     () => this.store.snapshot().sales.filter((item) => item.paymentStatus === 'unknown').length,
   );
-  readonly canReconcile = computed(() => ['admin', 'supervisor'].includes(this.store.snapshot().role));
+  readonly canReconcile = computed(() => ['admin', 'supervisor'].includes(this.store.role()));
   readonly saleEvents = computed(() =>
     this.store.snapshot().outbox.filter((item) => item.aggregateId === this.selectedId()),
   );

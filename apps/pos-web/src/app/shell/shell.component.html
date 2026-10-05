@@ -341,7 +341,7 @@
     [options]="roles"
     optionLabel="label"
     optionValue="value"
-    [ngModel]="store.snapshot().role"
+    [ngModel]="store.role()"
     (ngModelChange)="changeRole($event)"
     appendTo="body"
     styleClass="w-full"
@@ -377,4 +377,12 @@
     Todos los datos y proveedores son simulados. No se realizan cobros ni se emiten documentos tributarios
     reales.
   </p>
+  <ng-template #footer>
+    <div class="w-full border-t border-surface pt-4">
+      <p class="text-sm text-muted-color mb-4 text-left">
+        Cerrar sesión conserva el turno abierto y la venta en curso.
+      </p>
+      <p-button label="Cerrar sesión" severity="secondary" styleClass="w-full" (onClick)="logout()" />
+    </div>
+  </ng-template>
 </p-dialog>

@@ -4,7 +4,9 @@ Revisión: 3 de octubre de 2026. Corporate POS es una maqueta funcional con dato
 
 ## Qué se valida
 
-Las reglas de permisos y módulos se aplican tanto a las rutas como a los comandos del store. Sin embargo, el selector de perfil es una herramienta de demostración: no autentica personas. El almacenamiento local puede ser modificado por quien controla el navegador o equipo. Estos mecanismos permiten comprobar el comportamiento del producto, pero no sustituyen identidad real, autorización en servidor, aislamiento entre clientes ni una auditoría inmutable.
+Las reglas de permisos y módulos se aplican tanto a las rutas como a los comandos del store. El login verifica cuentas sintéticas activas con una contraseña pública de demostración; el selector de perfil sigue siendo una herramienta de prueba. Ninguno autentica personas contra un proveedor corporativo. El almacenamiento local puede ser modificado por quien controla el navegador o equipo. Estos mecanismos permiten comprobar el comportamiento del producto, pero no sustituyen identidad real, autorización en servidor, aislamiento entre clientes ni una auditoría inmutable.
+
+La sesión de acceso guarda únicamente la versión y el ID del usuario, sin contraseña, en una clave independiente de los datos de caja. Por defecto dura en la pestaña; recordar la sesión usa almacenamiento local. Cerrar sesión limpia ambas ubicaciones y revoca los comandos en memoria; no cierra el turno, elimina el borrador ni interrumpe una sincronización ya autorizada. Si el navegador impide borrar la sesión persistida, se informa del fallo y la pestaña queda sin sesión. Las rutas exigen una identidad activa y las autorizaciones usan el rol actual del usuario exacto, sin escoger otro usuario por rol. El login restaura solo destinos locales válidos.
 
 Los comandos persisten su resultado antes de publicar el nuevo estado. Un error de persistencia se muestra en la interfaz y evita confirmar el cambio. Los pagos con resultado desconocido requieren conciliación explícita; no se reintentan automáticamente. Los estados de pago, documento fiscal y ERP son independientes.
 

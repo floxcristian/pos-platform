@@ -1,4 +1,4 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test, type Page } from './fixtures';
 
 async function addGloves(page: Page): Promise<void> {
   await page.getByRole('button', { name: 'Agregar Guante de trabajo reforzado', exact: true }).click();

@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from './fixtures';
 
 test('todas las áreas de producto cargan con encabezado y sin excepciones', async ({ page }) => {
   const errors: string[] = [];

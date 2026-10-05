@@ -1,5 +1,6 @@
 import { InjectionToken } from '@angular/core';
 import { LocalSnapshotRepository, SnapshotRepository } from './persistence';
+import { AuthSessionRepository, LocalAuthSessionRepository } from './auth-session';
 
 /** Replace these ports with API / Tauri adapters; components never access host APIs. */
 export interface SimulationPort {
@@ -15,6 +16,19 @@ export const POS_REPOSITORY = new InjectionToken<SnapshotRepository>('POS_REPOSI
     } catch {
       return new LocalSnapshotRepository(null);
     }
+  },
+});
+export const POS_AUTH_SESSION = new InjectionToken<AuthSessionRepository>('POS_AUTH_SESSION', {
+  providedIn: 'root',
+  factory: () => {
+    const storage = (kind: 'sessionStorage' | 'localStorage') => {
+      try {
+        return typeof window === 'undefined' ? null : window[kind];
+      } catch {
+        return null;
+      }
+    };
+    return new LocalAuthSessionRepository(storage('sessionStorage'), storage('localStorage'));
   },
 });
 export const POS_SIMULATION = new InjectionToken<SimulationPort>('POS_SIMULATION', {

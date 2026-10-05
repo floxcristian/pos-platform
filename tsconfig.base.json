@@ -20,6 +20,7 @@
       "@corporate-pos/domain": ["libs/domain/src/index.ts"],
       "@corporate-pos/data-access": ["libs/data-access/src/index.ts"],
       "@corporate-pos/ui": ["libs/ui/src/index.ts"],
+      "@corporate-pos/access": ["libs/features/access/src/index.ts"],
       "@corporate-pos/checkout": ["libs/features/checkout/src/index.ts"],
       "@corporate-pos/insights": ["libs/features/insights/src/index.ts"],
       "@corporate-pos/administration": ["libs/features/administration/src/index.ts"]

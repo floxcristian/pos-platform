@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from './fixtures';
 
 test('deshabilitar un módulo bloquea el menú y el acceso por URL sin perder datos', async ({ page }) => {
   await page.goto('/#/configuracion');

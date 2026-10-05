@@ -1,4 +1,4 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test, type Page } from './fixtures';
 
 async function choose(page: Page, name: string, option: string): Promise<void> {
   const select = page.getByRole('combobox', { name, exact: true });
@@ -114,6 +114,8 @@ test('almacenamiento bloqueado mantiene aviso y no confirma ventas hasta recuper
     });
   });
   await page.goto('/#/venta');
+  // The authenticated fixture already opened the app; a hash change does not run init scripts.
+  await page.reload();
   const banner = page.getByRole('alert').filter({ hasText: 'No se pudo guardar en este equipo' });
   await expect(banner).toBeVisible();
   await page.getByRole('button', { name: 'Agregar Guante de trabajo reforzado', exact: true }).click();

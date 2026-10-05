@@ -17,6 +17,7 @@ import { DrawerModule } from 'primeng/drawer';
 import { InputTextModule } from 'primeng/inputtext';
 import { SelectModule } from 'primeng/select';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
+import { MessageService } from 'primeng/api';
 import { PosStore } from '@corporate-pos/data-access';
 import type { Role } from '@corporate-pos/domain';
 import {
@@ -66,6 +67,7 @@ export class ShellComponent {
   private readonly document = inject(DOCUMENT);
   private readonly destroyRef = inject(DestroyRef);
   private readonly theme = inject(ThemeService);
+  private readonly messages = inject(MessageService);
   readonly sidebarCollapsed = computed(() => this.store.snapshot().settings.sidebarCollapsed);
   readonly mobileOpen = signal(false);
   readonly searchOpen = signal(false);
@@ -104,7 +106,7 @@ export class ShellComponent {
     this.store.snapshot().branches.find((branch) => branch.id === this.store.snapshot().settings.branchId),
   );
   readonly roleLabel = computed(
-    () => this.roles.find((role) => role.value === this.store.snapshot().role)?.label ?? 'Usuario',
+    () => this.roles.find((role) => role.value === this.store.role())?.label ?? 'Usuario',
   );
   readonly userName = computed(() => this.store.currentUser()?.name.trim() || `${this.roleLabel()} Demo`);
   readonly userInitials = computed(() =>
@@ -186,9 +188,14 @@ export class ShellComponent {
       }
     });
     effect(() => {
-      this.theme.setMode(this.store.snapshot().settings.theme);
-    });
-    effect(() => {
+      if (!this.store.authenticated()) {
+        this.profileOpen.set(false);
+        this.searchOpen.set(false);
+        this.notificationsOpen.set(false);
+        this.mobileOpen.set(false);
+        void this.router.navigate(['/login'], { replaceUrl: true });
+        return;
+      }
       const item = this.activeItem();
       if (item && !this.isAllowed(item)) void this.router.navigate(['/inicio']);
     });
@@ -212,9 +219,23 @@ export class ShellComponent {
     void this.router.navigate([result.route], { queryParams: result.query ? { buscar: result.query } : {} });
   }
   changeRole(role: Role): void {
-    this.store.switchRole(role);
+    const result = this.store.switchRole(role);
+    if (!result.ok) {
+      this.messages.add({ severity: 'error', summary: 'No se pudo cambiar el perfil', detail: result.error });
+      return;
+    }
     this.profileOpen.set(false);
     if (this.activeItem() && !this.isAllowed(this.activeItem()!)) void this.router.navigate(['/inicio']);
+  }
+  logout(): void {
+    const result = this.store.logout();
+    if (!result.ok) {
+      this.messages.add({
+        severity: 'error',
+        summary: 'Sesión cerrada en esta pestaña',
+        detail: result.error,
+      });
+    }
   }
   toggleConnection(online: boolean): void {
     this.store.setOnline(online);

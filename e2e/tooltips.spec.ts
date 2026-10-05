@@ -1,4 +1,4 @@
-import { expect, test, type Locator, type Page } from '@playwright/test';
+import { expect, test, type Locator, type Page } from './fixtures';
 
 async function expectTooltip(page: Page, control: Locator, label: string): Promise<void> {
   // Scroll dismisses help by design. Finish the viewport update before entering the control.

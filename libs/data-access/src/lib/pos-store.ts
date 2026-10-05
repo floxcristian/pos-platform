@@ -41,7 +41,6 @@ import {
   SaleTotals,
   SyncJob,
   SyncRun,
-  ROLE_LABELS,
   canPerform,
   calculateTotals,
   failure,
@@ -53,7 +52,8 @@ import {
 } from '@corporate-pos/domain';
 import { createFixtures } from './fixtures';
 import { MockSyncEngine } from './sync-engine';
-import { POS_REPOSITORY, POS_SIMULATION } from './ports';
+import { POS_AUTH_SESSION, POS_REPOSITORY, POS_SIMULATION } from './ports';
+import { AuthSession, DEMO_PASSWORD } from './auth-session';
 import {
   TransactionContext,
   cashMovement,
@@ -89,16 +89,18 @@ function freeze<T>(value: T): T {
 export class PosStore {
   private readonly repository = inject(POS_REPOSITORY);
   private readonly simulation = inject(POS_SIMULATION);
+  private readonly authRepository = inject(POS_AUTH_SESSION);
   private readonly destroyRef = inject(DestroyRef);
   private initialPersistenceError: string | null = null;
   private readonly state = signal<PosSnapshot>(this.initialize());
   readonly snapshot = this.state.asReadonly();
+  private readonly authSession = signal<AuthSession | null>(this.initializeAuthentication());
   readonly clock = signal(this.simulation.now());
-  readonly currentUser = computed(
-    () =>
-      this.snapshot().users.find((user) => user.role === this.snapshot().role && user.active) ??
-      this.snapshot().users[0],
+  readonly currentUser = computed(() =>
+    this.snapshot().users.find((user) => user.id === this.authSession()?.userId && user.active),
   );
+  readonly authenticated = computed(() => !!this.currentUser());
+  readonly role = computed(() => this.currentUser()?.role ?? this.snapshot().role);
   readonly branch = computed(() =>
     this.snapshot().branches.find((branch) => branch.id === this.snapshot().settings.branchId),
   );
@@ -170,8 +172,35 @@ export class PosStore {
     if (!saved.ok) this.initialPersistenceError = saved.error;
     return freeze(state);
   }
+  private initializeAuthentication(): AuthSession | null {
+    const loaded = this.authRepository.read();
+    if (!loaded.ok || !loaded.value) return null;
+    if (!this.snapshot().users.some((user) => user.id === loaded.value?.userId && user.active)) {
+      this.authRepository.clear();
+      return null;
+    }
+    return loaded.value;
+  }
+  login(email: string, password: string, remember = false): Result<PosUser> {
+    if (typeof email !== 'string' || typeof password !== 'string' || typeof remember !== 'boolean')
+      return failure('Completa tu correo y contraseña de demostración.');
+    const user = this.snapshot().users.find(
+      (item) => item.email.toLowerCase() === email.trim().toLowerCase(),
+    );
+    if (!user?.active || password !== DEMO_PASSWORD)
+      return failure('Correo o contraseña incorrectos, o usuario inactivo.');
+    const saved = this.authRepository.write(user.id, remember);
+    if (!saved.ok) return saved;
+    this.authSession.set(saved.value);
+    return success(user);
+  }
+  logout(): Result<void> {
+    this.authSession.set(null);
+    return this.authRepository.clear();
+  }
   can(permission: Permission, module?: ModuleId): boolean {
-    return canPerform(this.snapshot().role, permission, this.snapshot().modules, module);
+    const user = this.currentUser();
+    return !!user && canPerform(user.role, permission, this.snapshot().modules, module);
   }
   isEnabled(id: ModuleId): boolean {
     return this.snapshot().modules.some((module) => module.id === id && module.enabled);
@@ -180,11 +209,11 @@ export class PosStore {
     return {
       now: this.simulation.now().toISOString(),
       id: (prefix) => this.simulation.id(prefix),
-      actor: this.currentUser()?.name ?? `${ROLE_LABELS[this.snapshot().role]} Demo`,
+      actor: this.currentUser()?.name ?? 'Preferencias locales',
     };
   }
   private auditIdentity(): AuditIdentity {
-    return { actor: this.context().actor, role: this.snapshot().role };
+    return { actor: this.context().actor, role: this.currentUser()?.role ?? 'system' };
   }
   private publish(draft: PosSnapshot): Result<void> {
     const saved = this.repository.save(draft);
@@ -257,18 +286,21 @@ export class PosStore {
   }
 
   switchRole(role: Role): Result<Role> {
+    if (!this.authenticated()) return failure('Inicia sesión para cambiar el perfil de demostración.');
     if (!['admin', 'supervisor', 'cashier', 'auditor'].includes(role)) return failure('El perfil no existe.');
-    const draft = structuredClone(this.snapshot());
-    draft.role = role;
-    return this.commit(
-      draft,
-      role,
-      'demo.role.changed',
-      'identity',
-      `Perfil de demostración: ${ROLE_LABELS[role]}`,
-    );
+    const user =
+      this.currentUser()?.role === role
+        ? this.currentUser()
+        : this.snapshot().users.find((item) => item.role === role && item.active);
+    if (!user) return failure('No hay un usuario activo con este perfil de demostración.');
+    // Demo profile selection changes authentication only; the business snapshot is a separate store.
+    const saved = this.authRepository.write(user.id, this.authSession()?.remember ?? false);
+    if (!saved.ok) return saved;
+    this.authSession.set(saved.value);
+    return success(role);
   }
   setOnline(online: boolean): Result<boolean> {
+    if (!this.authenticated()) return failure('Inicia sesión para cambiar la conexión simulada.');
     const draft = structuredClone(this.snapshot());
     draft.online = online;
     this.log(
@@ -286,6 +318,7 @@ export class PosStore {
     return this.commit(draft, draft.settings, 'preference.theme.changed', 'settings');
   }
   setSidebarCollapsed(collapsed: boolean): Result<PosSettings> {
+    if (!this.authenticated()) return failure('Inicia sesión para cambiar la navegación.');
     if (typeof collapsed !== 'boolean') return failure('La preferencia de navegación no es válida.');
     const draft = structuredClone(this.snapshot());
     draft.settings.sidebarCollapsed = collapsed;

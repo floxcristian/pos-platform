@@ -1,4 +1,4 @@
-import { expect, test, type Locator, type Page } from '@playwright/test';
+import { expect, test, type Locator, type Page } from './fixtures';
 
 type Rgb = [number, number, number];
 function contrast(a: Rgb, b: Rgb): number {

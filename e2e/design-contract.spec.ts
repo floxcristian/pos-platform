@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from './fixtures';
 
 test('alto contraste: los iconos conservan el color del control y su máscara carga bajo CSP', async ({
   page,

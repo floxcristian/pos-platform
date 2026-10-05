@@ -87,13 +87,13 @@ export class DashboardComponent {
     { label: 'Últimos 30 días', value: 30 },
   ];
   readonly branchOptions = computed(() => [
-    ...(this.store.snapshot().role === 'cashier' ? [] : [{ label: 'Todas las sucursales', value: 'all' }]),
+    ...(this.store.role() === 'cashier' ? [] : [{ label: 'Todas las sucursales', value: 'all' }]),
     ...this.store
       .snapshot()
       .branches.filter(
         (branch) =>
           branch.active &&
-          (this.store.snapshot().role !== 'cashier' || branch.id === this.store.snapshot().settings.branchId),
+          (this.store.role() !== 'cashier' || branch.id === this.store.snapshot().settings.branchId),
       )
       .map((branch) => ({ label: branch.name, value: branch.id })),
   ]);
@@ -260,8 +260,7 @@ export class DashboardComponent {
   readonly branchName = (id: string): string => branchName(this.store.snapshot().branches, id);
   constructor() {
     effect(() => {
-      if (this.store.snapshot().role === 'cashier')
-        this.branchId.set(this.store.snapshot().settings.branchId);
+      if (this.store.role() === 'cashier') this.branchId.set(this.store.snapshot().settings.branchId);
     });
     afterNextRender(() => {
       this.palette.set(chartPalette(this.theme.resolvedTheme()));

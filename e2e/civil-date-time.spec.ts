@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from './fixtures';
 
 test('calendario PrimeNG conserva el día civil elegido, limpia y admite teclado', async ({ page }) => {
   const errors: string[] = [];

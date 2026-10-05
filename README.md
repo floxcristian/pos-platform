@@ -17,7 +17,9 @@ npm ci
 npm start
 ```
 
-Abre **http://127.0.0.1:4300**. El perfil inicial es Administrador y hay una caja abierta con datos de ejemplo. El menú de usuario permite cambiar el perfil, simular desconexión y cambiar el tema. Los cambios se conservan en el navegador. Para comenzar de nuevo: **Módulos y configuración → Demostración → Restablecer**.
+Abre **http://127.0.0.1:4300**. La pantalla de acceso permite iniciar sesión con cuentas de demostración. Puedes completar el formulario desde **Accesos de demostración** o usar `admin@example.test` y la contraseña pública `Demo123!`. También están disponibles `supervisor@example.test`, `caja@example.test` y `auditor@example.test`, con la misma contraseña.
+
+Hay una caja abierta con datos de ejemplo. El menú de usuario permite cambiar el perfil de demostración, simular desconexión, cambiar el tema y **Cerrar sesión**. La sesión se conserva en la pestaña; **Mantener sesión en este equipo** permite restaurarla al volver a abrir el navegador. Cerrar sesión elimina ese acceso, sin cerrar el turno ni borrar la venta en curso. Para comenzar de nuevo con los datos de ejemplo: **Módulos y configuración → Demostración → Restablecer**.
 
 Todos los RUT, clientes, usuarios y operaciones son ejemplos sintéticos. No hay autenticación real, cargos bancarios, DTE válidos ni conexiones a sistemas corporativos. No ingreses información de producción.
 
@@ -58,12 +60,15 @@ libs/
   data-access/     Comandos, transacciones mock, puertos y persistencia versionada
   ui/              Preset, componentes visuales y formatos compartidos
   features/
+    access/        Login, validación y ayuda con cuentas de demostración
     checkout/      Venta, caja, documentos, cobranza y devolución
     insights/      Dashboard y reportes
     administration/ Maestros, políticas, módulos y operación técnica
 ```
 
 Las features consumen `PosStore`; no escriben en `localStorage`. Los permisos y módulos se validan en rutas **y comandos**. El estado se publica como snapshots inmutables. Las transacciones guardan primero el snapshot y publican el resultado solo si la persistencia tuvo éxito. Las ventas y eventos conservan identificadores para evitar duplicados. Pago, fiscalidad y ERP tienen ciclos separados.
+
+La identidad de acceso se guarda por ID de usuario en `corporate-pos:auth:v1`, separada de los datos de negocio y del turno de caja. Usa `sessionStorage` o `localStorage` según la opción de permanencia; nunca guarda la contraseña. Las rutas protegidas redirigen al login y la autorización consulta el rol del usuario activo. Son controles de demostración locales: el adaptador debe sustituirse por autenticación y autorización corporativas para producción.
 
 Los límites de importación se verifican con Nx/ESLint. Se usan Angular con detección de cambios OnPush y signals, TypeScript estricto, carga diferida por área y componentes PrimeNG. La tipografía y los iconos se sirven localmente. No se utilizan `patch-package`, dependencias privadas de fuentes, telemetría ni servicios del proyecto de referencia.
 

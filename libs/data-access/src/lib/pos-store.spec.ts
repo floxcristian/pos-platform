@@ -3,7 +3,8 @@ import { Injector, runInInjectionContext } from '@angular/core';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { CheckoutInput, PosSnapshot, success } from '@corporate-pos/domain';
 import { createFixtures } from './fixtures';
-import { POS_REPOSITORY, POS_SIMULATION, SimulationPort } from './ports';
+import { POS_AUTH_SESSION, POS_REPOSITORY, POS_SIMULATION, SimulationPort } from './ports';
+import { AuthSession, AuthSessionRepository, DEMO_PASSWORD } from './auth-session';
 import { SnapshotRepository } from './persistence';
 import { PosStore } from './pos-store';
 const cleanup: (() => void)[] = [];
@@ -21,7 +22,8 @@ const saleInput: CheckoutInput = {
 function createStore(
   initial = createFixtures(now),
   wait: (ms: number) => Promise<void> = () => Promise.resolve(),
-): { store: PosStore; repository: SnapshotRepository } {
+  options: { authenticate?: boolean; authRepository?: AuthSessionRepository } = {},
+): { store: PosStore; repository: SnapshotRepository; authRepository: AuthSessionRepository } {
   let count = 0;
   const repository: SnapshotRepository = {
     load: () => success(structuredClone(initial)),
@@ -29,15 +31,184 @@ function createStore(
     clear: () => success(undefined),
   };
   const simulation: SimulationPort = { now: () => now, id: (prefix) => `${prefix}-test-${++count}`, wait };
+  let session: AuthSession | null = null;
+  const authRepository: AuthSessionRepository = options.authRepository ?? {
+    read: () => success(session),
+    write: (userId, remember) => {
+      session = { userId, remember };
+      return success(session);
+    },
+    clear: () => {
+      session = null;
+      return success(undefined);
+    },
+  };
   const injector = Injector.create({
     providers: [
       { provide: POS_REPOSITORY, useValue: repository },
       { provide: POS_SIMULATION, useValue: simulation },
+      { provide: POS_AUTH_SESSION, useValue: authRepository },
     ],
   });
   cleanup.push(() => injector.destroy());
-  return { store: runInInjectionContext(injector, () => new PosStore()), repository };
+  const store = runInInjectionContext(injector, () => new PosStore());
+  if (options.authenticate !== false) {
+    const user = initial.users.find((item) => item.role === initial.role && item.active);
+    if (!user || !store.login(user.email, DEMO_PASSWORD).ok) throw new Error('Cannot sign in test fixture');
+  }
+  return { store, repository, authRepository };
 }
+describe('PosStore mock sign-in', () => {
+  it('starts logged out even with a persisted admin role, then validates credentials and active users', () => {
+    const fixture = createFixtures(now);
+    fixture.users.find((user) => user.role === 'auditor')!.active = false;
+    const { store } = createStore(fixture, undefined, { authenticate: false });
+    expect(store.authenticated()).toBe(false);
+    expect(store.currentUser()).toBeUndefined();
+    expect(store.can('configure')).toBe(false);
+    expect(store.login('missing@example.test', DEMO_PASSWORD).ok).toBe(false);
+    expect(store.login('admin@example.test', 'incorrect').ok).toBe(false);
+    expect(store.login('auditor@example.test', DEMO_PASSWORD).ok).toBe(false);
+    expect(store.authenticated()).toBe(false);
+    expect(store.login('  CAJA@EXAMPLE.TEST ', DEMO_PASSWORD).ok).toBe(true);
+    expect(store.currentUser()?.id).toBe('user-cashier');
+    expect(store.role()).toBe('cashier');
+    expect(store.can('sell', 'sales')).toBe(true);
+    expect(store.can('configure')).toBe(false);
+  });
+
+  it('keeps the selected identity when two users share a role and attributes operations to that user', () => {
+    const fixture = createFixtures(now);
+    const cashier = fixture.users.find((user) => user.role === 'cashier')!;
+    fixture.users.push({
+      ...cashier,
+      id: 'user-second-cashier',
+      name: 'Segunda cajera',
+      email: 'segunda@example.test',
+    });
+    const { store } = createStore(fixture, undefined, { authenticate: false });
+    expect(store.login('segunda@example.test', DEMO_PASSWORD).ok).toBe(true);
+    expect(store.currentUser()?.id).toBe('user-second-cashier');
+    expect(store.switchRole('cashier').ok).toBe(true);
+    expect(store.currentUser()?.id).toBe('user-second-cashier');
+    expect(store.checkout(saleInput).ok).toBe(true);
+    expect(store.snapshot().audit[0]).toMatchObject({ actor: 'Segunda cajera', role: 'cashier' });
+    expect(store.snapshot().sales[0].cashier).toBe('Segunda cajera');
+  });
+
+  it('restores only the selected active user and retains remember during a demo profile change', () => {
+    const { store, authRepository } = createStore();
+    expect(store.login('supervisor@example.test', DEMO_PASSWORD, true).ok).toBe(true);
+    const { store: restored } = createStore(createFixtures(now), undefined, {
+      authenticate: false,
+      authRepository,
+    });
+    expect(restored.currentUser()?.id).toBe('user-supervisor');
+    expect(restored.switchRole('cashier').ok).toBe(true);
+    expect(authRepository.read()).toEqual({ ok: true, value: { userId: 'user-cashier', remember: true } });
+  });
+
+  it.each(['disabled', 'deleted'] as const)('rejects a %s identity during session restoration', (state) => {
+    const { store, authRepository } = createStore();
+    store.login('caja@example.test', DEMO_PASSWORD, true);
+    const fixture = createFixtures(now);
+    if (state === 'disabled') fixture.users.find((user) => user.id === 'user-cashier')!.active = false;
+    else fixture.users = fixture.users.filter((user) => user.id !== 'user-cashier');
+    const { store: restored } = createStore(fixture, undefined, { authenticate: false, authRepository });
+    expect(restored.authenticated()).toBe(false);
+    expect(restored.can('sell')).toBe(false);
+    expect(authRepository.read()).toEqual({ ok: true, value: null });
+  });
+
+  it('retains the cash session and sale draft while logout blocks direct mutations and clears saved access', () => {
+    const { store, authRepository } = createStore();
+    store.saveActiveDraft({ lines: saleInput.lines, customerId: null, documentType: 'boleta', metadata: {} });
+    const before = store.snapshot();
+    expect(store.logout().ok).toBe(true);
+    expect(store.snapshot()).toBe(before);
+    expect(store.snapshot().session?.status).toBe('open');
+    expect(store.snapshot().activeDraft?.lines).toEqual(saleInput.lines);
+    expect(authRepository.read()).toEqual({ ok: true, value: null });
+    expect(store.authenticated()).toBe(false);
+    expect(store.currentUser()).toBeUndefined();
+    expect(store.checkout(saleInput).ok).toBe(false);
+    expect(store.moveCash('income', 1000, 'Después de salir').ok).toBe(false);
+    expect(store.clearActiveDraft().ok).toBe(false);
+    expect(store.switchRole('admin').ok).toBe(false);
+    expect(store.setOnline(false).ok).toBe(false);
+    expect(store.setSidebarCollapsed(true).ok).toBe(false);
+    expect(store.resetDemo().ok).toBe(false);
+    expect(store.snapshot()).toBe(before);
+    expect(store.setTheme('dark').ok).toBe(true);
+    expect(store.snapshot().audit[0]).toMatchObject({ actor: 'Preferencias locales', role: 'system' });
+  });
+
+  it('fails login closed on storage errors and always clears the in-memory identity on logout', () => {
+    const { store, authRepository } = createStore();
+    authRepository.clear = () => ({ ok: false, error: 'Almacenamiento bloqueado' });
+    expect(store.logout().ok).toBe(false);
+    expect(store.authenticated()).toBe(false);
+    expect(store.can('configure')).toBe(false);
+    authRepository.write = () => ({ ok: false, error: 'Almacenamiento bloqueado' });
+    expect(store.login('admin@example.test', DEMO_PASSWORD).ok).toBe(false);
+    expect(store.authenticated()).toBe(false);
+  });
+
+  it('does not publish an identity or business audit when persisting a demo role change fails', () => {
+    const { store, authRepository } = createStore();
+    const before = store.snapshot();
+    authRepository.write = () => ({ ok: false, error: 'Almacenamiento bloqueado' });
+    expect(store.switchRole('cashier').ok).toBe(false);
+    expect(store.currentUser()?.id).toBe('user-admin');
+    expect(store.role()).toBe('admin');
+    expect(store.snapshot()).toBe(before);
+  });
+
+  it('uses live account permissions and invalidates a user who becomes inactive', () => {
+    const fixture = createFixtures(now);
+    const admin = fixture.users.find((user) => user.role === 'admin')!;
+    fixture.users.push({ ...admin, id: 'backup-admin', email: 'backup@example.test' });
+    const { store } = createStore(fixture);
+    expect(store.saveUser({ ...admin, role: 'cashier' }).ok).toBe(true);
+    expect(store.currentUser()?.id).toBe(admin.id);
+    expect(store.role()).toBe('cashier');
+    expect(store.can('configure')).toBe(false);
+    expect(store.login('backup@example.test', DEMO_PASSWORD).ok).toBe(true);
+    const backup = store.currentUser()!;
+    expect(store.saveUser({ ...admin, role: 'admin' }).ok).toBe(true);
+    expect(store.saveUser({ ...backup, active: false }).ok).toBe(true);
+    expect(store.authenticated()).toBe(false);
+    expect(store.can('configure')).toBe(false);
+  });
+
+  it('rejects a demo role without an active account and preserves the current identity', () => {
+    const fixture = createFixtures(now);
+    fixture.users.find((user) => user.role === 'auditor')!.active = false;
+    const { store } = createStore(fixture);
+    expect(store.switchRole('auditor').ok).toBe(false);
+    expect(store.currentUser()?.id).toBe('user-admin');
+  });
+
+  it('allows an already authorized sync to finish with its original actor after logout', async () => {
+    let release: () => void = () => undefined,
+      first = true;
+    const { store } = createStore(createFixtures(now), () => {
+      if (!first) return Promise.resolve();
+      first = false;
+      return new Promise<void>((resolve) => {
+        release = resolve;
+      });
+    });
+    const actor = store.currentUser()?.name;
+    const pending = store.runSync('sync-products');
+    store.logout();
+    release();
+    expect((await pending).ok).toBe(true);
+    expect(store.snapshot().audit[0]).toMatchObject({ actor, role: 'admin', action: 'sync.completed' });
+    expect((await store.runSync('sync-products')).ok).toBe(false);
+  });
+});
+
 describe('PosStore command policy and event coordination', () => {
   it.each(['admin', 'supervisor', 'cashier', 'auditor'] as const)(
     'persists the sidebar preference for the %s profile',
@@ -424,7 +595,7 @@ describe('PosStore command policy and event coordination', () => {
           release = resolve;
         });
       });
-      const actor = store.currentUser().name;
+      const actor = store.currentUser()?.name;
       const pending =
         kind === 'sync' ? store.runSync('sync-products') : store.retryOutbox(store.snapshot().outbox[0].id);
       store.switchRole('auditor');

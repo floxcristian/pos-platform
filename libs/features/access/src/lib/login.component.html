@@ -1,0 +1,325 @@
+<aside class="login-brand" aria-label="Caja corporativa Implementos">
+  <div class="flex items-center justify-between gap-4 px-6 pt-5 pb-4">
+    <img src="images/implementos-logo.svg" alt="Implementos" width="142" height="48" class="h-12 w-auto" />
+    <button
+      pButton
+      type="button"
+      class="login-motion-toggle"
+      [icon]="paused() ? 'pos-icon pos-icon-play' : 'pos-icon pos-icon-pause'"
+      [attr.aria-label]="paused() ? 'Reanudar animación' : 'Pausar animación'"
+      [attr.aria-pressed]="paused()"
+      posTooltip
+      (click)="paused.set(!paused())"
+    ></button>
+  </div>
+  <div class="login-columns" [class.login-columns-paused]="paused()" aria-hidden="true">
+    @for (column of panels; track $index; let columnIndex = $index) {
+      <div class="login-column">
+        <div
+          class="login-track"
+          [class.login-track-reverse]="columnIndex === 1"
+          [style.--column-duration]="columnIndex === 0 ? '52s' : columnIndex === 1 ? '48s' : '45s'"
+        >
+          @for (duplicate of duplicates; track duplicate) {
+            <div class="login-tile-set">
+              @for (panel of column; track panel.title) {
+                <div
+                  class="login-tile"
+                  [class.login-tile-dark]="panel.kind === 'statement' || panel.kind === 'terminal'"
+                  [class.login-tile-hero]="panel.kind === 'terminal'"
+                >
+                  @switch (panel.kind) {
+                    @case ('terminal') {
+                      <span class="login-eyebrow">{{ panel.eyebrow }}</span>
+                      <svg class="login-terminal" viewBox="0 0 240 205" fill="none" focusable="false">
+                        <ellipse cx="120" cy="184" rx="103" ry="13" fill="currentColor" opacity=".06" />
+                        <path d="M108 138h29l8 40H99l9-40Z" fill="currentColor" opacity=".25" />
+                        <rect
+                          x="24"
+                          y="26"
+                          width="185"
+                          height="123"
+                          rx="12"
+                          fill="currentColor"
+                          opacity=".22"
+                        />
+                        <rect
+                          x="33"
+                          y="35"
+                          width="167"
+                          height="99"
+                          rx="5"
+                          fill="currentColor"
+                          opacity=".92"
+                        />
+                        <path
+                          d="M43 49h59M43 59h42"
+                          stroke="var(--p-primary-500)"
+                          stroke-width="5"
+                          stroke-linecap="round"
+                        />
+                        <rect x="43" y="76" width="34" height="40" rx="4" fill="var(--p-primary-100)" />
+                        <rect x="83" y="76" width="34" height="40" rx="4" fill="var(--p-primary-200)" />
+                        <rect x="123" y="76" width="34" height="40" rx="4" fill="var(--p-primary-300)" />
+                        <rect x="151" y="106" width="65" height="76" rx="8" fill="var(--p-primary-400)" />
+                        <rect x="159" y="115" width="49" height="17" rx="3" fill="var(--p-primary-950)" />
+                        <path
+                          d="M162 144h9m10 0h9m10 0h3m-41 11h9m10 0h9m10 0h3m-41 11h9m10 0h9"
+                          stroke="currentColor"
+                          stroke-width="5"
+                          stroke-linecap="round"
+                        />
+                        <path d="M99 178h46" stroke="currentColor" stroke-width="8" stroke-linecap="round" />
+                      </svg>
+                    }
+                    @case ('receipt') {
+                      <span class="login-eyebrow">{{ panel.eyebrow }}</span>
+                      <div class="login-receipt">
+                        <pos-duotone-icon name="receipt" [size]="32" />
+                        <span class="font-semibold">Venta de ejemplo</span>
+                        <div class="login-receipt-line"></div>
+                        <span class="login-receipt-row"><span>Productos</span><span>✓</span></span>
+                        <span class="login-receipt-row"><span>Pago</span><span>✓</span></span>
+                        <span class="login-receipt-row"><span>Documento</span><span>✓</span></span>
+                        <div class="login-receipt-line"></div>
+                        <pos-duotone-icon name="barcode" [size]="40" />
+                      </div>
+                    }
+                    @case ('catalog') {
+                      <div class="login-product-art">
+                        <div class="login-product-orbit">
+                          <pos-duotone-icon [name]="panel.icon" [size]="48" />
+                        </div>
+                        <div class="login-product-small"><pos-duotone-icon name="nut" [size]="32" /></div>
+                        <div class="login-product-small"><pos-duotone-icon name="drop" [size]="32" /></div>
+                      </div>
+                    }
+                    @case ('statement') {
+                      <div class="flex items-start justify-between gap-3">
+                        <span class="login-eyebrow">{{ panel.eyebrow }}</span>
+                        <pos-duotone-icon [name]="panel.icon" [size]="28" />
+                      </div>
+                    }
+                    @default {
+                      <div class="login-feature-icon">
+                        <pos-duotone-icon [name]="panel.icon" [size]="28" />
+                      </div>
+                    }
+                  }
+                  <div class="flex flex-col gap-2">
+                    <h2
+                      [class.login-statement]="panel.kind === 'statement' || panel.kind === 'terminal'"
+                      class="font-semibold leading-snug"
+                    >
+                      {{ panel.title }}
+                    </h2>
+                    <p class="login-tile-description">{{ panel.description }}</p>
+                  </div>
+                </div>
+              }
+            </div>
+          }
+        </div>
+      </div>
+    }
+  </div>
+</aside>
+
+<main id="main-content" class="login-main" aria-labelledby="login-heading">
+  <div class="login-mobile-brand">
+    <img src="images/implementos-logo.svg" alt="Implementos" width="236" height="80" class="h-20 w-auto" />
+  </div>
+  <div class="login-form-wrapper">
+    <div class="flex flex-col gap-6">
+      <header class="flex flex-col gap-2">
+        <p class="text-primary text-sm font-semibold">Caja corporativa</p>
+        <h1 id="login-heading" class="text-3xl font-bold leading-normal text-color">Bienvenido</h1>
+        <p class="text-muted-color leading-6">Ingresa tus credenciales para comenzar tu jornada.</p>
+      </header>
+
+      <form class="flex flex-col gap-4" novalidate (ngSubmit)="submit()" [attr.aria-busy]="submitting()">
+        <div>
+          <div class="flex flex-col gap-2">
+            <label for="login-email" class="font-semibold leading-6">Correo electrónico</label>
+            <input
+              pInputText
+              id="login-email"
+              name="email"
+              type="email"
+              inputmode="email"
+              enterkeyhint="next"
+              autocomplete="username"
+              autocapitalize="off"
+              autocorrect="off"
+              spellcheck="false"
+              required
+              class="w-full min-h-11"
+              [ngModel]="email()"
+              (ngModelChange)="email.set($event)"
+              (blur)="emailTouched.set(true)"
+              [invalid]="emailInvalid()"
+              [attr.aria-invalid]="emailInvalid()"
+              [attr.aria-describedby]="emailInvalid() ? 'login-email-error' : null"
+              [disabled]="submitting()"
+            />
+          </div>
+          <div class="min-h-6 mt-1">
+            @if (emailInvalid()) {
+              <p-message id="login-email-error" severity="error" variant="simple" size="small">{{
+                emailError()
+              }}</p-message>
+            }
+          </div>
+        </div>
+        <div>
+          <div class="flex flex-col gap-2">
+            <div class="flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
+              <label for="login-password" class="font-semibold leading-6">Contraseña</label>
+              <button
+                type="button"
+                class="pos-inline-action login-text-action"
+                (click)="helpVisible.set(true)"
+              >
+                Olvidé mi contraseña
+              </button>
+            </div>
+            <div class="relative">
+              <input
+                pInputText
+                id="login-password"
+                name="password"
+                [type]="passwordVisible() ? 'text' : 'password'"
+                autocomplete="current-password"
+                enterkeyhint="go"
+                required
+                class="w-full min-h-11 pr-12"
+                [ngModel]="password()"
+                (ngModelChange)="password.set($event)"
+                (blur)="passwordTouched.set(true)"
+                [invalid]="passwordInvalid()"
+                [attr.aria-invalid]="passwordInvalid()"
+                [attr.aria-describedby]="passwordInvalid() ? 'login-password-error' : null"
+                [disabled]="submitting()"
+              />
+              <button
+                pButton
+                type="button"
+                [text]="true"
+                severity="secondary"
+                class="login-password-toggle"
+                icon="pos-icon pos-icon-eye"
+                [attr.aria-label]="passwordVisible() ? 'Ocultar contraseña' : 'Mostrar contraseña'"
+                [attr.aria-pressed]="passwordVisible()"
+                aria-controls="login-password"
+                posTooltip
+                [disabled]="submitting()"
+                (click)="passwordVisible.set(!passwordVisible())"
+              ></button>
+            </div>
+          </div>
+          <div class="min-h-6 mt-1">
+            @if (passwordInvalid()) {
+              <p-message id="login-password-error" severity="error" variant="simple" size="small"
+                >Ingresa tu contraseña para continuar.</p-message
+              >
+            }
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <p-checkbox
+            inputId="login-remember"
+            name="remember"
+            [binary]="true"
+            [ngModel]="remember()"
+            (ngModelChange)="remember.set($event)"
+            [disabled]="submitting()"
+          />
+          <label for="login-remember" class="cursor-pointer leading-6">Mantener sesión en este equipo</label>
+        </div>
+        @if (submitError()) {
+          <p-message severity="error" role="alert">{{ submitError() }}</p-message>
+        }
+        <button
+          pButton
+          id="login-submit"
+          type="submit"
+          class="w-full min-h-11"
+          [loading]="submitting()"
+          [disabled]="submitting()"
+        >
+          <span pButtonLabel>Iniciar sesión</span>
+        </button>
+        <div class="sr-only" role="status" aria-live="polite" aria-atomic="true">
+          @if (submitting()) {
+            Iniciando sesión, por favor espera.
+          }
+        </div>
+      </form>
+    </div>
+
+    <details class="login-demo">
+      <summary class="pos-inline-action min-h-11 content-center">Accesos de demostración</summary>
+      <div class="flex flex-col gap-4 pt-3">
+        <p class="text-sm text-muted-color leading-6">
+          Elige un perfil para completar el formulario. Contraseña de prueba:
+          <code class="font-semibold text-color">{{ demoPassword }}</code>
+        </p>
+        <div class="flex flex-wrap gap-2">
+          @for (user of demoUsers(); track user.id) {
+            <p-button
+              [label]="roleLabels[user.role]"
+              [ariaLabel]="'Usar cuenta de ' + roleLabels[user.role]"
+              severity="secondary"
+              size="small"
+              [disabled]="submitting()"
+              (onClick)="fillDemo(user)"
+            />
+          } @empty {
+            <p class="text-sm text-muted-color">
+              No hay cuentas activas. Consulta con quien administra esta demostración.
+            </p>
+          }
+        </div>
+      </div>
+    </details>
+
+    <div class="text-center flex flex-col gap-1">
+      <p class="text-muted-color leading-6">¿Tienes problemas para ingresar?</p>
+      <button
+        type="button"
+        class="pos-inline-action login-text-action self-center"
+        (click)="helpVisible.set(true)"
+      >
+        Ayuda de acceso
+      </button>
+      <p class="text-xs text-muted-color leading-5 mt-4">Entorno de demostración · Datos sintéticos</p>
+    </div>
+  </div>
+</main>
+
+<p-dialog
+  header="Ayuda de acceso"
+  [visible]="helpVisible()"
+  (visibleChange)="helpVisible.set($event)"
+  [modal]="true"
+  [draggable]="false"
+  [resizable]="false"
+  [style]="{ width: '30rem', maxWidth: 'calc(100vw - 2rem)' }"
+  closeAriaLabel="Cerrar ayuda de acceso"
+>
+  <div class="flex flex-col gap-4 leading-6">
+    <p>
+      Esta caja es una demostración con cuentas de prueba. Usa <strong>Accesos de demostración</strong> para
+      elegir un perfil y completar el formulario.
+    </p>
+    <div class="rounded-xl bg-surface-100 dark:bg-surface-800 p-4">
+      <p class="text-sm text-muted-color">Contraseña de todas las cuentas de prueba</p>
+      <p class="font-semibold mt-1">{{ demoPassword }}</p>
+    </div>
+    <p class="text-muted-color">
+      Si una cuenta fue desactivada, quien administra la demostración puede reactivarla en Usuarios y
+      permisos. La recuperación por correo no está conectada en este entorno.
+    </p>
+  </div>
+  <ng-template #footer><p-button label="Entendido" (onClick)="helpVisible.set(false)" /></ng-template>
+</p-dialog>

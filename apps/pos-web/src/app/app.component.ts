@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { createToastTooltipPassThrough } from '@corporate-pos/ui';
+import { createToastTooltipPassThrough, ThemeService } from '@corporate-pos/ui';
+import { PosStore } from '@corporate-pos/data-access';
 
 @Component({
   selector: 'pos-root',
@@ -19,6 +20,12 @@ import { createToastTooltipPassThrough } from '@corporate-pos/ui';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
+  private readonly store = inject(PosStore);
+  private readonly theme = inject(ThemeService);
   // Local PT reaches each ToastItem; the closeButton section resolves its own owner.
   readonly toastTooltip = createToastTooltipPassThrough();
+
+  constructor() {
+    effect(() => this.theme.setMode(this.store.snapshot().settings.theme));
+  }
 }
