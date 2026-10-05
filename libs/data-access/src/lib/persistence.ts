@@ -1,4 +1,5 @@
 import { PosSnapshot, Result, failure, success } from '@corporate-pos/domain';
+import { DEMO_USER_NAMES } from './demo-user-names';
 
 export const STORAGE_KEY = 'corporate-pos:demo:v1';
 export interface SnapshotRepository {
@@ -499,6 +500,12 @@ export function decodeSnapshot(raw: string): Result<PosSnapshot> {
       return failure(
         'Los datos locales tienen un formato incompatible. Se ha iniciado una nueva demostración.',
       );
+    for (const user of parsed.users) {
+      const demoUser = Object.values(DEMO_USER_NAMES).find(
+        (candidate) => candidate.id === user.id && candidate.legacyName === user.name,
+      );
+      if (demoUser) user.name = demoUser.name;
+    }
     return success(parsed);
   } catch {
     return failure('No se pudieron leer los datos locales. Se ha iniciado una nueva demostración.');

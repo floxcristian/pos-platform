@@ -1,9 +1,65 @@
 import { describe, expect, it } from 'vitest';
+import { DEMO_USER_NAMES } from './demo-user-names';
 import { createFixtures } from './fixtures';
 import { LocalSnapshotRepository, STORAGE_KEY, StorageAdapter, decodeSnapshot } from './persistence';
 describe('versioned mock persistence', () => {
   it('round-trips a typed fixture', () => {
     expect(decodeSnapshot(JSON.stringify(createFixtures())).ok).toBe(true);
+  });
+  it('renames original demo accounts while preserving saved operations and historical names', () => {
+    const fixture = createFixtures();
+    fixture.users = fixture.users.map((user) => ({
+      ...user,
+      name: DEMO_USER_NAMES[user.role].legacyName,
+    }));
+    fixture.sales[0].cashier = DEMO_USER_NAMES.cashier.legacyName;
+    if (!fixture.session) throw new Error('Expected an open fixture session');
+    fixture.session.cashier = DEMO_USER_NAMES.cashier.legacyName;
+    fixture.sessions = [
+      {
+        ...fixture.session,
+        id: 'saved-closed-session',
+        status: 'closed',
+        closedAt: new Date().toISOString(),
+        countedAmount: fixture.session.expectedAmount,
+        difference: 0,
+      },
+    ];
+    fixture.cashMovements[0].actor = DEMO_USER_NAMES.cashier.legacyName;
+    fixture.audit[0].actor = DEMO_USER_NAMES.admin.legacyName;
+    fixture.settings.companyName = 'Empresa personalizada';
+    fixture.activeDraft = {
+      lines: [{ productId: fixture.products[0].id, quantity: 3, discount: 5 }],
+      customerId: fixture.customers[0].id,
+      documentType: 'factura',
+      metadata: { contact: 'Contacto conservado' },
+      updatedAt: new Date().toISOString(),
+    };
+    const expected = {
+      ...fixture,
+      users: fixture.users.map((user) => ({ ...user, name: DEMO_USER_NAMES[user.role].name })),
+    };
+
+    const loaded = decodeSnapshot(JSON.stringify(fixture));
+
+    expect(loaded).toEqual({ ok: true, value: expected });
+    if (!loaded.ok) throw new Error(loaded.error);
+    expect(decodeSnapshot(JSON.stringify(loaded.value))).toEqual(loaded);
+  });
+  it('preserves customized demo names and user-created accounts with legacy names', () => {
+    const fixture = createFixtures();
+    const customizedUsers = fixture.users.map((user) => ({
+      ...user,
+      name: `Nombre personalizado ${user.id}`,
+    }));
+    const addedUsers = fixture.users.map((user) => ({
+      ...user,
+      id: `custom-${user.id}`,
+      name: DEMO_USER_NAMES[user.role].legacyName,
+    }));
+    fixture.users = [...customizedUsers, ...addedUsers];
+
+    expect(decodeSnapshot(JSON.stringify(fixture))).toEqual({ ok: true, value: fixture });
   });
   it('adds the expanded sidebar preference to an earlier v1 snapshot without changing existing data', () => {
     const fixture = createFixtures();

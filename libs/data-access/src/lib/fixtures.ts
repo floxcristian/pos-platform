@@ -1,4 +1,5 @@
 import { ModuleId, PosSnapshot, Product, SyncSchedule, calculateTotals } from '@corporate-pos/domain';
+import { DEMO_USER_NAMES } from './demo-user-names';
 
 const iso = (base: Date, days = 0, hours = 0): string =>
   new Date(base.getTime() + days * 86400000 + hours * 3600000).toISOString();
@@ -127,7 +128,7 @@ export function createFixtures(now = new Date()): PosSnapshot {
       erpStatus: index < 4 ? ('pending' as const) : ('synced' as const),
       status: 'completed' as const,
       branchId: index % 5 === 0 && !current ? 'branch-2' : 'branch-1',
-      cashier: 'Cajero Demo',
+      cashier: DEMO_USER_NAMES.cashier.name,
       sessionId: current ? sessionId : `session-demo-${Math.floor(index / 3)}`,
       idempotencyKey: `fixture-${index + 1}`,
       metadata: {},
@@ -216,7 +217,7 @@ export function createFixtures(now = new Date()): PosSnapshot {
       id: sessionId,
       openedAt: iso(now, 0, -3),
       closedAt: null,
-      cashier: 'Cajero Demo',
+      cashier: DEMO_USER_NAMES.cashier.name,
       openingAmount,
       countedAmount: null,
       expectedAmount: openingAmount + cashSales.reduce((sum, sale) => sum + sale.total, 0),
@@ -279,7 +280,7 @@ export function createFixtures(now = new Date()): PosSnapshot {
         amount: openingAmount,
         reason: 'Fondo inicial de demostración',
         createdAt: iso(now, 0, -3),
-        actor: 'Cajero Demo',
+        actor: DEMO_USER_NAMES.cashier.name,
         reference: sessionId,
       },
       ...cashSales.map((sale) => ({
@@ -289,7 +290,7 @@ export function createFixtures(now = new Date()): PosSnapshot {
         amount: sale.total,
         reason: `Venta ${sale.number}`,
         createdAt: sale.createdAt,
-        actor: 'Cajero Demo',
+        actor: DEMO_USER_NAMES.cashier.name,
         reference: sale.id,
       })),
     ],
@@ -470,7 +471,7 @@ export function createFixtures(now = new Date()): PosSnapshot {
       {
         id: 'audit-demo-1',
         createdAt: iso(now, 0, -3),
-        actor: 'Administrador Demo',
+        actor: DEMO_USER_NAMES.admin.name,
         role: 'admin',
         action: 'demo.initialized',
         entity: 'workspace',
@@ -533,32 +534,32 @@ export function createFixtures(now = new Date()): PosSnapshot {
     })),
     users: [
       {
-        id: 'user-admin',
-        name: 'Administrador Demo',
+        id: DEMO_USER_NAMES.admin.id,
+        name: DEMO_USER_NAMES.admin.name,
         email: 'admin@example.test',
         role: 'admin',
         active: true,
         branchIds: ['branch-1', 'branch-2', 'branch-3'],
       },
       {
-        id: 'user-supervisor',
-        name: 'Supervisor Demo',
+        id: DEMO_USER_NAMES.supervisor.id,
+        name: DEMO_USER_NAMES.supervisor.name,
         email: 'supervisor@example.test',
         role: 'supervisor',
         active: true,
         branchIds: ['branch-1'],
       },
       {
-        id: 'user-cashier',
-        name: 'Cajero Demo',
+        id: DEMO_USER_NAMES.cashier.id,
+        name: DEMO_USER_NAMES.cashier.name,
         email: 'caja@example.test',
         role: 'cashier',
         active: true,
         branchIds: ['branch-1'],
       },
       {
-        id: 'user-auditor',
-        name: 'Auditor Demo',
+        id: DEMO_USER_NAMES.auditor.id,
+        name: DEMO_USER_NAMES.auditor.name,
         email: 'auditor@example.test',
         role: 'auditor',
         active: true,

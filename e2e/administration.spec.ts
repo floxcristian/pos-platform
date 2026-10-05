@@ -21,15 +21,15 @@ test('deshabilitar un módulo bloquea el menú y el acceso por URL sin perder da
 test('el perfil cajero conserva operación y bloquea configuración por URL', async ({ page }) => {
   await page.goto('/#/inicio');
   const profile = page.getByRole('button', { name: /^Perfil y entorno de demostración:/ });
-  await expect(profile.getByText('Administrador Demo', { exact: true })).toBeVisible();
+  await expect(profile.getByText('Cristian Flores', { exact: true })).toBeVisible();
   await profile.click();
   await page.getByRole('combobox', { name: 'Perfil de demostración' }).click();
   await page.getByRole('option', { name: 'Cajero', exact: true }).click();
-  await expect(profile.getByText('Cajero Demo', { exact: true })).toBeVisible();
-  await expect(profile.getByText('CD', { exact: true })).toBeVisible();
+  await expect(profile.getByText('Daniela Rojas', { exact: true })).toBeVisible();
+  await expect(profile.getByText('DR', { exact: true })).toBeVisible();
   await expect(profile).not.toContainText('CAJA-01');
   await page.reload();
-  await expect(profile.getByText('Cajero Demo', { exact: true })).toBeVisible();
+  await expect(profile.getByText('Daniela Rojas', { exact: true })).toBeVisible();
   await page.goto('/#/configuracion');
   await expect(page.getByRole('heading', { name: 'Acceso no disponible' })).toBeVisible();
   await page.goto('/#/venta');

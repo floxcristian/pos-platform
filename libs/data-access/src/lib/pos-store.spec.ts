@@ -531,7 +531,7 @@ describe('PosStore command policy and event coordination', () => {
     expect(store.snapshot().session?.status).toBe('closed');
     store.switchRole('cashier');
     expect(store.openSession(50000).ok).toBe(true);
-    expect(store.snapshot().session?.cashier).toBe('Cajero Demo');
+    expect(store.snapshot().session?.cashier).toBe('Daniela Rojas');
   });
   it('applies an advance once for the same customer without receiving cash twice', () => {
     const { store } = createStore();
