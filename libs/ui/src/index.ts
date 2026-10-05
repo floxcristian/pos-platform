@@ -6,6 +6,7 @@ export * from './lib/status-tag.component';
 export * from './lib/format';
 export * from './lib/civil-date-time';
 export * from './lib/civil-date-time.component';
+export * from './lib/civil-date-range.component';
 export * from './lib/theme.service';
 export * from './lib/tooltip.component';
 export * from './lib/tooltip.directive';

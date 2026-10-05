@@ -12,7 +12,8 @@ import { PosStore } from '@corporate-pos/data-access';
 import { PAYMENT_LABELS } from '@corporate-pos/domain';
 import {
   PosTooltipDirective,
-  CivilDateTimeComponent,
+  CivilDateRangeComponent,
+  type CivilDateRange,
   EmptyStateComponent,
   PageHeaderComponent,
   StatusTagComponent,
@@ -27,7 +28,7 @@ import {
   standalone: true,
   imports: [
     PosTooltipDirective,
-    CivilDateTimeComponent,
+    CivilDateRangeComponent,
     EmptyStateComponent,
     FormsModule,
     RouterLink,
@@ -87,43 +88,46 @@ import {
       />
     </div>
     <section class="rounded-2xl border border-surface bg-surface-0 dark:bg-surface-950 overflow-hidden">
-      <div class="p-5 flex flex-wrap gap-3 border-b border-surface">
-        <input
-          pInputText
-          class="flex-1 min-w-52"
-          aria-label="Buscar documento"
-          placeholder="Folio, cliente o referencia…"
-          [ngModel]="search()"
-          (ngModelChange)="search.set($event)"
-        /><p-select
-          [options]="types"
-          optionLabel="label"
-          optionValue="value"
-          [ngModel]="type()"
-          (ngModelChange)="type.set($event)"
-          ariaLabel="Tipo de documento"
-        /><p-select
-          [options]="states"
-          optionLabel="label"
-          optionValue="value"
-          [ngModel]="state()"
-          (ngModelChange)="state.set($event)"
-          ariaLabel="Estado de documento"
-        /><label class="flex items-center gap-2 text-sm" for="checkout-documents-1"
-          ><span class="text-muted-color">Desde</span
-          ><pos-civil-date-time
-            inputId="checkout-documents-1"
-            ariaLabel="Documentos desde"
-            [ngModel]="from()"
-            (ngModelChange)="from.set($event)" /></label
-        ><label class="flex items-center gap-2 text-sm" for="checkout-documents-2"
-          ><span class="text-muted-color">Hasta</span
-          ><pos-civil-date-time
-            inputId="checkout-documents-2"
-            ariaLabel="Documentos hasta"
-            [ngModel]="to()"
-            (ngModelChange)="to.set($event)"
-        /></label>
+      <div class="p-5 border-b border-surface">
+        <div
+          class="grid grid-cols-1 gap-3 sm:grid-cols-2 2xl:grid-cols-[minmax(16rem,1fr)_16rem_14rem_20rem]"
+        >
+          <input
+            pInputText
+            class="w-full min-w-0"
+            aria-label="Buscar documento"
+            placeholder="Folio, cliente o referencia…"
+            [ngModel]="search()"
+            (ngModelChange)="search.set($event)"
+          /><p-select
+            class="w-full min-w-0"
+            [options]="types"
+            optionLabel="label"
+            optionValue="value"
+            [ngModel]="type()"
+            (ngModelChange)="type.set($event)"
+            ariaLabel="Tipo de documento"
+          /><p-select
+            class="w-full min-w-0"
+            [options]="states"
+            optionLabel="label"
+            optionValue="value"
+            [ngModel]="state()"
+            (ngModelChange)="state.set($event)"
+            ariaLabel="Estado de documento"
+          /><pos-civil-date-range
+            inputId="checkout-documents-period"
+            ariaLabel="Período de documentos"
+            [ngModel]="dateRange()"
+            (ngModelChange)="changeDateRange($event)"
+            [describedBy]="dateRangePending() ? 'documents-period-hint' : undefined"
+          />
+        </div>
+        @if (dateRangePending()) {
+          <p id="documents-period-hint" class="mt-3 text-sm text-muted-color" role="status">
+            Selecciona la fecha final para aplicar el período.
+          </p>
+        }
       </div>
       <div class="overflow-x-auto">
         <table class="pos-table w-full">
@@ -465,8 +469,9 @@ export class DocumentsComponent {
   readonly search = signal('');
   readonly type = signal('all');
   readonly state = signal('all');
-  readonly from = signal('');
-  readonly to = signal('');
+  readonly dateRange = signal<CivilDateRange | null>(null);
+  private readonly appliedDateRange = signal<CivilDateRange | null>(null);
+  readonly dateRangePending = computed(() => !!this.dateRange()?.[0] && !this.dateRange()?.[1]);
   readonly error = signal('');
   readonly feedback = signal('');
   readonly detailError = signal('');
@@ -513,13 +518,13 @@ export class DocumentsComponent {
       .sales.filter((item) => {
         const term = this.search().toLowerCase();
         const day = this.dayFormatter.format(new Date(item.createdAt));
+        const range = this.appliedDateRange();
         return (
           `${item.number} ${item.customerName} ${item.id} ${item.payments.map((payment) => payment.reference).join(' ')}`
             .toLowerCase()
             .includes(term) &&
           (this.type() === 'all' || item.documentType === this.type()) &&
-          (!this.from() || day >= this.from()) &&
-          (!this.to() || day <= this.to()) &&
+          (!range || (day >= range[0] && day <= range[1])) &&
           (this.state() === 'all' ||
             (this.state() === 'fiscal' && item.fiscalStatus !== 'issued') ||
             (this.state() === 'erp' && item.erpStatus !== 'synced') ||
@@ -530,6 +535,10 @@ export class DocumentsComponent {
       .sort((a, b) => b.createdAt.localeCompare(a.createdAt)),
   );
   readonly filteredTotal = computed(() => this.filtered().reduce((sum, item) => sum + item.total, 0));
+  changeDateRange(range: CivilDateRange | null): void {
+    this.dateRange.set(range);
+    if (!range || range[1]) this.appliedDateRange.set(range);
+  }
   constructor() {
     this.route.queryParamMap.pipe(takeUntilDestroyed()).subscribe((params) => {
       const search = params.get('buscar');
