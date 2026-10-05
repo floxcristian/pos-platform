@@ -104,6 +104,15 @@ export class ShellComponent {
   readonly roleLabel = computed(
     () => this.roles.find((role) => role.value === this.store.snapshot().role)?.label ?? 'Usuario',
   );
+  readonly userName = computed(() => this.store.currentUser()?.name.trim() || `${this.roleLabel()} Demo`);
+  readonly userInitials = computed(() =>
+    this.userName()
+      .split(/\s+/)
+      .slice(0, 2)
+      .map((word) => Array.from(word)[0])
+      .join('')
+      .toLocaleUpperCase('es'),
+  );
   readonly notifications = computed(() =>
     this.store
       .snapshot()
