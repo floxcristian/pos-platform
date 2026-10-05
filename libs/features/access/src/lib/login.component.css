@@ -12,7 +12,10 @@
   flex-direction: column;
   color: var(--p-surface-0);
   background: var(--p-primary-500);
-  border-left: 6px solid var(--p-accent-500);
+  background-image: url('/images/tornado.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   overflow: hidden;
 }
 .login-motion-toggle {
@@ -70,7 +73,7 @@
   overflow: hidden;
   border: 1px solid color-mix(in srgb, var(--p-surface-0) 20%, transparent);
   border-radius: 16px;
-  background: color-mix(in srgb, var(--p-surface-0) 10%, transparent);
+  background: color-mix(in srgb, var(--p-surface-0) 10%, var(--p-primary-500));
 }
 .login-tile-dark {
   background: var(--p-primary-900);
