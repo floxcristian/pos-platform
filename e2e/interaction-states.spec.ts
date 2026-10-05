@@ -67,6 +67,7 @@ async function expectInlineAction(page: Page, control: Locator): Promise<void> {
   await page.mouse.move(0, 0);
   const normal = await colors(control);
   const box = await control.boundingBox();
+  await expect(control).toHaveCSS('font-weight', '600');
   await expect(control).toHaveCSS('text-decoration-line', 'underline');
   await expect(control).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
   await expect(control.locator('.pos-icon, svg')).toHaveCount(0);
@@ -74,12 +75,13 @@ async function expectInlineAction(page: Page, control: Locator): Promise<void> {
   await control.hover();
   await expect.poll(async () => (await colors(control)).foreground).not.toEqual(normal.foreground);
   const hover = await colors(control);
-  expect(hover.background).toEqual(normal.background);
+  // The containing table row may highlight; the link itself must stay transparent.
+  await expect(control).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
   expect(contrast(hover.foreground, hover.background)).toBeGreaterThanOrEqual(4.5);
   expect(await control.boundingBox()).toEqual(box);
   await page.mouse.down();
   const active = await colors(control);
-  expect(active.background).toEqual(normal.background);
+  await expect(control).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
   expect(contrast(active.foreground, active.background)).toBeGreaterThanOrEqual(4.5);
   await expect(control).toHaveCSS('text-decoration-line', 'underline');
   await page.mouse.move(0, 0);
@@ -174,6 +176,9 @@ for (const theme of ['light', 'dark'] as const) {
         .getByRole('navigation', { name: 'Navegación principal', exact: true })
         .getByRole('link', { name: 'Reportes', exact: true }),
     );
+
+    await page.goto('/#/documentos');
+    await expectInlineAction(page, page.locator('button.pos-inline-action').first());
 
     await page.goto('/#/configuracion');
     await page.getByRole('button', { name: 'Demostración', exact: true }).click();

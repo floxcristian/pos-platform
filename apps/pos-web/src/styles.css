@@ -208,6 +208,7 @@ p-button {
 .pos-inline-action {
   color: var(--p-primary-color);
   background: transparent;
+  font-weight: var(--font-weight-semibold);
   text-decoration: underline;
   text-underline-offset: 0.2em;
   border-radius: var(--p-button-border-radius);

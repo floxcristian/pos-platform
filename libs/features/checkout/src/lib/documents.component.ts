@@ -142,7 +142,7 @@ import {
             @for (sale of filtered(); track sale.id) {
               <tr class="border-t border-surface hover:bg-surface-50 dark:hover:bg-surface-900">
                 <td class="p-4">
-                  <button class="pos-inline-action font-semibold text-left" (click)="selectedId.set(sale.id)">
+                  <button class="pos-inline-action text-left" (click)="selectedId.set(sale.id)">
                     {{ sale.number }}
                   </button>
                   <p class="text-xs text-muted-color mt-1">

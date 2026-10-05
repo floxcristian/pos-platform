@@ -35,7 +35,7 @@
 @if (store.snapshot().session?.status !== 'open') {
   <p-message severity="warn" class="block mb-4"
     >No hay una caja abierta. Puedes preparar la venta y
-    <a routerLink="/caja" class="pos-inline-action font-semibold">abrir caja</a> antes de cobrar.</p-message
+    <a routerLink="/caja" class="pos-inline-action">abrir caja</a> antes de cobrar.</p-message
   >
 }
 <div class="grid gap-5 xl:grid-cols-[minmax(0,1fr)_380px]">
@@ -849,10 +849,7 @@
   @if (receipt()?.paymentStatus === 'unknown') {
     <p-message severity="warn" class="block mb-4"
       >No vuelvas a cobrar. Revisa esta operación en
-      <a
-        routerLink="/documentos"
-        [queryParams]="{ buscar: receipt()?.number }"
-        class="pos-inline-action font-semibold"
+      <a routerLink="/documentos" [queryParams]="{ buscar: receipt()?.number }" class="pos-inline-action"
         >Documentos y pagos</a
       >
       para conciliar el resultado.</p-message
