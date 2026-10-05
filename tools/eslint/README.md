@@ -4,7 +4,7 @@
 
 | Regla                                     | Contrato                                                                                            |
 | ----------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| `pos-ui/no-secondary-outlined-button`     | Las acciones secundarias usan relleno gris, sin variante outlined.                                  |
+| `pos-ui/no-secondary-outlined-button`     | Las acciones secundarias usan relleno tonal, sin variante outlined.                                 |
 | `pos-ui/no-labeled-secondary-text-button` | La variante text secundaria se reserva para botones sin etiqueta visible.                           |
 | `pos-ui/icon-button-tooltip`              | Los botones de solo icono declaran `posTooltip`; la etiqueta accesible continúa siendo obligatoria. |
 

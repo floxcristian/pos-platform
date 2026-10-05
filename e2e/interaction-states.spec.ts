@@ -93,6 +93,7 @@ for (const theme of ['light', 'dark'] as const) {
     await page.emulateMedia({ reducedMotion: 'reduce', colorScheme: 'light' });
     await page.goto('/#/venta');
     if (theme === 'dark') await page.getByRole('button', { name: 'Usar tema oscuro', exact: true }).click();
+    await expectHover(page, page.getByRole('button', { name: 'Cargar orden de venta', exact: true }));
     const themeButton = page.getByRole('button', {
       name: theme === 'light' ? 'Usar tema oscuro' : 'Usar tema claro',
       exact: true,

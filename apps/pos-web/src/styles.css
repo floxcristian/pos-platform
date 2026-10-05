@@ -259,29 +259,6 @@ p-button {
 .p-drawer-content {
   overscroll-behavior: contain;
 }
-/* Scoped component tokens: dialog secondary actions use the showcase tonal recipe. */
-.p-dialog {
-  --p-button-secondary-background: var(--p-primary-100);
-  --p-button-secondary-hover-background: var(--p-primary-200);
-  --p-button-secondary-active-background: var(--p-primary-300);
-  --p-button-secondary-border-color: var(--p-primary-100);
-  --p-button-secondary-hover-border-color: var(--p-primary-200);
-  --p-button-secondary-active-border-color: var(--p-primary-300);
-  --p-button-secondary-color: var(--p-primary-700);
-  --p-button-secondary-hover-color: var(--p-primary-700);
-  --p-button-secondary-active-color: var(--p-primary-700);
-}
-.p-dark .p-dialog {
-  --p-button-secondary-background: var(--p-primary-900);
-  --p-button-secondary-hover-background: var(--p-primary-800);
-  --p-button-secondary-active-background: var(--p-primary-700);
-  --p-button-secondary-border-color: var(--p-primary-900);
-  --p-button-secondary-hover-border-color: var(--p-primary-800);
-  --p-button-secondary-active-border-color: var(--p-primary-700);
-  --p-button-secondary-color: var(--p-primary-100);
-  --p-button-secondary-hover-color: var(--p-primary-100);
-  --p-button-secondary-active-color: var(--p-primary-100);
-}
 .p-dialog {
   max-width: calc(100vw - 2rem);
 }

@@ -88,8 +88,11 @@ for (const theme of ['light', 'dark'] as const) {
     const secondary = page.getByRole('button', { name: 'Cargar orden de venta', exact: true });
     await expect(secondary).toHaveCSS(
       'background-color',
-      theme === 'light' ? 'rgb(226, 228, 231)' : 'rgb(55, 57, 61)',
+      theme === 'light' ? 'rgb(217, 236, 255)' : 'rgb(0, 38, 70)',
     );
+    await expect(secondary).toHaveCSS('color', theme === 'light' ? 'rgb(0, 70, 120)' : 'rgb(217, 236, 255)');
+    await secondary.focus();
+    await expect(secondary).toHaveCSS('box-shadow', style.shadow);
     await expect(page.getByRole('button', { name: 'Pausar', exact: true })).toBeDisabled();
     const select = page.getByRole('combobox', { name: 'Categoría de productos', exact: true });
     await select.focus();

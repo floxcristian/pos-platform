@@ -99,11 +99,11 @@ module.exports = {
     },
     'no-secondary-outlined-button': rule(
       'outlined',
-      'Las acciones secundarias usan relleno gris; elimina outlined en este botón secondary.',
+      'Las acciones secundarias usan relleno tonal; elimina outlined en este botón secondary.',
     ),
     'no-labeled-secondary-text-button': rule(
       'text',
-      'Las acciones secundarias con etiqueta visible usan relleno gris; text se reserva para icon-only.',
+      'Las acciones secundarias con etiqueta visible usan relleno tonal; text se reserva para icon-only.',
     ),
   },
 };
