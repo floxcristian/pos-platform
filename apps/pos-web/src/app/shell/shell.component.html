@@ -29,23 +29,18 @@
       class="h-11 hidden lg:inline-flex"
       (click)="toggleSidebar()"
     >
-      <i
-        pButtonIcon
-        class="pos-icon text-2xl"
-        [class.pos-icon-list]="sidebarCollapsed()"
-        [class.pos-icon-x]="!sidebarCollapsed()"
-        aria-hidden="true"
-      ></i>
+      <pos-menu-toggle-icon pButtonIcon [expanded]="!sidebarCollapsed()" />
     </button>
     <p-button
       posTooltip
       posTooltipPosition="bottom"
-      icon="pos-icon pos-icon-list text-2xl"
       [text]="true"
       ariaLabel="Abrir navegación"
       styleClass="h-11 lg:!hidden"
       (onClick)="mobileOpen.set(true)"
-    />
+    >
+      <ng-template #icon><pos-menu-toggle-icon pButtonIcon /></ng-template>
+    </p-button>
     <button
       type="button"
       class="hidden md:flex items-center gap-3 h-11 rounded-md border border-surface-300 hover:border-surface-400 bg-surface-0 text-surface-600 px-3 text-base min-w-0 flex-1 max-w-xl cursor-pointer"

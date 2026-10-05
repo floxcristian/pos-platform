@@ -4,7 +4,9 @@
 @import '../../../libs/ui/src/lib/compact-icons.css';
 @import 'tailwindcss' source(none);
 @source './app';
-@source '../../../libs';
+/* Utilities come from templates and code; component CSS is compiled by Angular. */
+@source '../../../libs/**/*.ts';
+@source '../../../libs/**/*.html';
 @plugin 'tailwindcss-primeui';
 @custom-variant dark (&:where(.p-dark, .p-dark *));
 @theme inline {

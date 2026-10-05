@@ -18,6 +18,12 @@ Verificación de este ajuste: build, lint, 153 pruebas de lógica y 13 E2E de co
 
 En alto contraste de Windows, las máscaras conservan el color del sistema utilizado por el control padre mediante `forced-color-adjust: preserve-parent-color`; los navegadores que no soportan ese valor usan `CanvasText`. La regla se limita al dibujo para evitar que el navegador convierta su relleno en un fondo invisible. Los controles siguen recibiendo los colores forzados del sistema. Referencia: [CSS Color Adjustment](https://www.w3.org/TR/css-color-adjust-1/#forced-color-adjust-prop).
 
+## Control animado del menú
+
+`MenuToggleIconComponent` es un SVG propio de 24 px, creado para la referencia de menú con chevron izquierdo. Su estado cerrado reproduce las medidas de las tres barras Phosphor Bold: trazo de 2,25 px y extremos redondos. Al expandir la navegación, las barras se acortan y aparece el chevron. `vector-effect="non-scaling-stroke"` conserva el grosor y los extremos durante el cambio de longitud.
+
+La transición de 180 ms afecta solo transformaciones y opacidad, se puede invertir sin colas ni temporizadores y se desactiva con `prefers-reduced-motion: reduce`. El SVG usa `currentColor` y es decorativo; el botón conserva su etiqueta, tooltip, `aria-expanded` y área de 44 × 44 px. El componente recibe el estado real del menú y no administra navegación ni persistencia. El menú móvil reutiliza las barras y conserva el cierre nativo de su panel.
+
 ## Regenerar el catálogo
 
 Después de instalar las dependencias del repositorio, ejecutar desde su raíz:
