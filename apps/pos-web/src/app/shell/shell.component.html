@@ -8,7 +8,7 @@
   <header
     class="brand-header-bg shrink-0 bg-primary-500 text-white h-16 flex items-center gap-1 sm:gap-3 px-2 sm:px-4 lg:px-6"
   >
-    <a routerLink="/inicio" aria-label="Implementos, inicio" class="flex h-12 items-center lg:w-60 shrink-0">
+    <a routerLink="/inicio" aria-label="Implementos, inicio" class="flex h-12 items-center shrink-0">
       <img
         src="images/implementos-logo.svg"
         alt="Implementos"
@@ -22,25 +22,27 @@
       type="button"
       posTooltip
       posTooltipPosition="bottom"
-      [text]="true"
       [attr.aria-label]="sidebarCollapsed() ? 'Mostrar menú lateral' : 'Ocultar menú lateral'"
       [attr.aria-expanded]="!sidebarCollapsed()"
       aria-controls="desktop-navigation"
-      class="h-11 hidden lg:inline-flex"
+      class="brand-header-menu h-11 hidden lg:inline-flex shrink-0 gap-2 px-3"
       (click)="toggleSidebar()"
     >
       <pos-menu-toggle-icon pButtonIcon [expanded]="!sidebarCollapsed()" />
+      <span pButtonLabel>Menú</span>
     </button>
-    <p-button
+    <button
+      pButton
+      type="button"
       posTooltip
       posTooltipPosition="bottom"
-      [text]="true"
-      ariaLabel="Abrir navegación"
-      styleClass="h-11 lg:!hidden"
-      (onClick)="mobileOpen.set(true)"
+      aria-label="Abrir menú"
+      class="brand-header-menu h-11 w-11 shrink-0 gap-2 px-0 min-[375px]:w-auto min-[375px]:px-3 lg:hidden"
+      (click)="mobileOpen.set(true)"
     >
-      <ng-template #icon><pos-menu-toggle-icon pButtonIcon /></ng-template>
-    </p-button>
+      <pos-menu-toggle-icon pButtonIcon />
+      <span pButtonLabel class="hidden min-[375px]:inline">Menú</span>
+    </button>
     <button
       type="button"
       class="hidden md:flex items-center gap-3 h-11 rounded-md border border-surface-300 hover:border-surface-400 bg-surface-0 text-surface-600 px-3 text-base min-w-0 flex-1 max-w-xl cursor-pointer"

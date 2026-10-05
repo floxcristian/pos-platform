@@ -66,7 +66,7 @@ test('shell: el menú lateral conserva su estado sin interferir con la navegaci�
 
   await page.setViewportSize({ width: 375, height: 1000 });
   await expect(reopen).toBeHidden();
-  await page.getByRole('button', { name: 'Abrir navegación', exact: true }).click();
+  await page.getByRole('button', { name: 'Abrir menú', exact: true }).click();
   const mobileMenu = page.getByRole('navigation', { name: 'Navegación móvil' });
   await mobileMenu.getByRole('link', { name: 'Mi caja', exact: true }).click();
   await expect(page).toHaveURL(/#\/caja$/);
@@ -190,7 +190,7 @@ for (const { width, height } of [
 
     await page.screenshot({ path: testInfo.outputPath(`dashboard-${width}.png`), fullPage: true });
     if (width === 375) {
-      await page.getByRole('button', { name: 'Abrir navegación', exact: true }).click();
+      await page.getByRole('button', { name: 'Abrir menú', exact: true }).click();
       const menu = page.getByRole('navigation', { name: 'Navegación móvil' });
       await expect(menu).toBeVisible();
       await menu.getByRole('link', { name: 'Reportes', exact: true }).click();

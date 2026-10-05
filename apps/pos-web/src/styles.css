@@ -116,6 +116,17 @@ body {
   --p-button-text-primary-hover-background: var(--pos-header-theme-hover-background);
   --p-button-text-primary-active-background: var(--pos-header-theme-hover-background);
 }
+.brand-header-menu {
+  --p-button-primary-background: var(--pos-header-profile-background);
+  --p-button-primary-hover-background: var(--pos-header-profile-hover-background);
+  --p-button-primary-active-background: var(--pos-header-profile-hover-background);
+  --p-button-primary-border-color: transparent;
+  --p-button-primary-hover-border-color: transparent;
+  --p-button-primary-active-border-color: transparent;
+  --p-button-primary-color: var(--p-surface-0);
+  --p-button-primary-hover-color: var(--p-surface-0);
+  --p-button-primary-active-color: var(--p-surface-0);
+}
 .brand-header-profile {
   color: var(--p-surface-0);
   background-color: var(--pos-header-profile-background);
