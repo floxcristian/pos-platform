@@ -264,10 +264,11 @@
         ><i class="pos-icon pos-icon-arrow-up-right text-xs text-muted-color" aria-hidden="true"></i>
       </button>
     } @empty {
-      <div class="py-10 text-center text-muted-color">
-        <div class="mb-3"><pos-duotone-icon name="magnifying-glass" [size]="40" /></div>
-        No encontramos resultados. Prueba con otro nombre o código.
-      </div>
+      <pos-empty-state
+        icon="magnifying-glass"
+        heading="No encontramos resultados."
+        description="Prueba con otro nombre o código."
+      />
     }
   </div>
 </p-dialog>

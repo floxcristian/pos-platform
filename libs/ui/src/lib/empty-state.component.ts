@@ -12,9 +12,9 @@ import { DuotoneIconComponent, type DuotoneIconName } from './duotone-icon.compo
     <pos-duotone-icon [name]="icon()" [size]="40" class="text-primary" />
     <div class="min-w-0 max-w-sm space-y-1">
       @if (headingLevel() === 2) {
-        <h2 class="break-words text-balance text-base font-medium leading-6 text-color">{{ heading() }}</h2>
+        <h2 class="break-words text-balance text-base font-semibold leading-6 text-color">{{ heading() }}</h2>
       } @else {
-        <h3 class="break-words text-balance text-base font-medium leading-6 text-color">{{ heading() }}</h3>
+        <h3 class="break-words text-balance text-base font-semibold leading-6 text-color">{{ heading() }}</h3>
       }
       @if (description()) {
         <p class="break-words text-pretty text-base leading-6 text-muted-color">{{ description() }}</p>

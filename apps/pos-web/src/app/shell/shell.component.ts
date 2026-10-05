@@ -22,7 +22,6 @@ import type { Role } from '@corporate-pos/domain';
 import {
   PosTooltipDirective,
   dateTime,
-  DuotoneIconComponent,
   EmptyStateComponent,
   StatusTagComponent,
   ThemeService,
@@ -55,7 +54,6 @@ interface SearchResult {
     SelectModule,
     ToggleSwitchModule,
     StatusTagComponent,
-    DuotoneIconComponent,
     EmptyStateComponent,
   ],
   templateUrl: './shell.component.html',
