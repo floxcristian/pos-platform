@@ -32,7 +32,13 @@
       class="h-11 hidden lg:inline-flex"
       (click)="toggleSidebar()"
     >
-      <i pButtonIcon class="pos-icon pos-icon-list text-2xl" aria-hidden="true"></i>
+      <i
+        pButtonIcon
+        class="pos-icon text-2xl"
+        [class.pos-icon-list]="sidebarCollapsed()"
+        [class.pos-icon-x]="!sidebarCollapsed()"
+        aria-hidden="true"
+      ></i>
     </button>
     <p-button
       posTooltip
@@ -200,6 +206,7 @@
 
 <p-drawer
   header="Corporate POS"
+  ariaCloseLabel="Cerrar navegación"
   [visible]="mobileOpen()"
   (visibleChange)="mobileOpen.set($event)"
   styleClass="!w-80"

@@ -150,8 +150,9 @@ test('375px: ayudas del header sin desbordamiento y jerarquía consistente', asy
   const openNav = page.getByRole('button', { name: 'Abrir navegación', exact: true });
   await expectTooltip(page, openNav, 'Abrir navegación');
   await openNav.click();
-  await expectTooltip(page, page.locator('.p-drawer-close-button').getByRole('button'), 'Cerrar');
-  await page.locator('.p-drawer-close-button').getByRole('button').click();
+  const closeNav = page.getByRole('button', { name: 'Cerrar navegación', exact: true });
+  await expectTooltip(page, closeNav, 'Cerrar navegación');
+  await closeNav.click();
   await expect(page.locator('.p-drawer-mask')).toHaveCount(0);
   await expectTooltip(page, page.getByRole('button', { name: 'Buscar', exact: true }), 'Buscar');
   await page.mouse.move(0, 0);
