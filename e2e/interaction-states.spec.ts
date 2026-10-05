@@ -104,7 +104,7 @@ for (const theme of ['light', 'dark'] as const) {
     await expect(themeButton).toHaveCSS('color', 'rgb(255, 255, 255)');
     await expect(themeButton).toHaveCSS(
       'background-color',
-      theme === 'light' ? 'rgb(0, 74, 122)' : 'rgb(0, 55, 92)',
+      theme === 'light' ? 'rgb(3, 49, 133)' : 'rgb(3, 39, 107)',
     );
 
     const product = page.getByRole('button', { name: 'Agregar Guante de trabajo reforzado', exact: true });
@@ -167,7 +167,7 @@ for (const theme of ['light', 'dark'] as const) {
       .getByRole('navigation', { name: 'Navegación principal', exact: true })
       .locator('[aria-current="page"]');
     const currentColor = await colors(currentPage);
-    expect(currentColor.foreground).toEqual(theme === 'light' ? [0, 70, 120] : [217, 236, 255]);
+    expect(currentColor.foreground).toEqual(theme === 'light' ? [3, 49, 133] : [219, 230, 253]);
     await currentPage.hover();
     expect(await colors(currentPage)).toEqual(currentColor);
     await expectHover(

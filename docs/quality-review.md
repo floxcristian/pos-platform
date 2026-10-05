@@ -12,15 +12,15 @@ Los iconos decorativos de tarjetas usan un componente compartido con SVG duotono
 
 Se compararon el preset, `DESIGN.md`, las recetas PrimeNG, los estilos ejecutados y el formulario renderizado del Storybook original. Los presets de origen y de la primera entrega eran equivalentes: la divergencia venía de reglas CSS y variantes elegidas en los templates. El repositorio de referencia se mantuvo sin modificaciones.
 
-En la ampliación de esta revisión, la referencia pública accesible fue la pantalla de inicio de sesión. No se compararon los módulos autenticados de esa publicación. La comparación interna de tablas, formularios, cabeceras y estados vacíos se basa en el código y las recetas del repositorio local de prime-showcase; esa versión puede diferir de la publicada. Los ajustes previamente medidos contra la referencia pública —foco y encabezado SVG— se conservan.
+En la ampliación de esta revisión, la referencia pública accesible fue la pantalla de inicio de sesión. No se compararon los módulos autenticados de esa publicación. La comparación interna de tablas, formularios, cabeceras y estados vacíos se basa en el código y las recetas del repositorio local de prime-showcase; esa versión puede diferir de la publicada. Se conserva la geometría del foco y del encabezado SVG; sus colores se adaptaron a la marca solicitada el 5 de octubre de 2026.
 
-El encabezado usa el archivo exacto `images/tornado.svg` de [prime-showcase publicado](https://prime-showcase-mu.vercel.app/), comprobado el 3 de octubre de 2026. Esa versión conserva los tonos `#005DB9`, `#0089D6` y `#0073c8`; la revisión posterior del repositorio local tenía otra paleta. Se mantienen sus opacidades internas y el encuadre `cover` / `center`, como recurso local de la web y del paquete Tauri. Los botones del header usan los estados de la misma referencia: iconos blancos, hover oscuro al 40% en escritorio y 25% en móvil; el botón de tema y el perfil conservan sus variantes. Estos tokens se limitan al encabezado para no alterar los controles de las demás pantallas.
+El encabezado y el panel izquierdo del login comparten `images/tornado.svg`, basado en [prime-showcase publicado](https://prime-showcase-mu.vercel.app/), comprobado el 3 de octubre de 2026. La adaptación de marca usa `#0545BA` como base y mezclas con blanco del 10 % (`#1e58c1`) y 20 % (`#376ac8`) en los degradados. Se mantienen geometría, opacidades internas y encuadre `cover` / `center`, como recurso local de la web y del paquete Tauri. Los controles blancos usan superficies oscuras derivadas de primary.950; el botón de tema usa primary.700 en claro y primary.800 en oscuro para su hover.
 
 | Hallazgo                                | Corrección y criterio                                                                                                                                           |
 | --------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Header primary700 en vez de primary500  | Azul de marca `#006db6`, altura 64 px. Textos y avatar conservan contraste en claro y oscuro.                                                                   |
+| Header primary700 en vez de primary500  | Azul de marca `#0545BA`, altura 64 px. Textos y avatar conservan contraste en claro y oscuro.                                                                   |
 | Raíz 14 px en vez de 16 px              | Inter local a 16 px; navegación y formularios recuperan la escala de la referencia. Metadatos siguen teniendo tamaños subordinados.                             |
-| Outline separado en inputs              | Halo único de 3,2 px, sin separador blanco, medido en la versión publicada: #b2ddf9 sobre borde #0074c2. En oscuro, #27a0f1 al 55 %.                            |
+| Outline separado en inputs              | Halo único de 3,2 px sin separador blanco: primary.200 sobre borde primary.500. En oscuro, primary.400 con halo al 55 %.                                        |
 | Controles forzados a 44 px              | Inputs y selects conservan medidas Aura, aproximadamente 42 px a escala 16. Segmentos con mínimo 40 px; objetivos específicos suben a 44 px con puntero táctil. |
 | Secundarios outlined/text               | Secundarios rellenos tonales en vistas y diálogos mediante tokens comunes del preset. Dos reglas ESLint evitan reintroducir las variantes incompatibles.        |
 | SelectButton sin pista de la referencia | Tokens grises 200/700 y thumb nativo. Contenedores con desplazamiento horizontal para etiquetas largas, sin desbordar la página.                                |
@@ -28,6 +28,12 @@ El encabezado usa el archivo exacto `images/tornado.svg` de [prime-showcase publ
 | Paneles con radios arbitrarios          | Paneles de datos de 16 px y formularios de 24 px; títulos y etiquetas con jerarquía común.                                                                      |
 
 La iconografía propia utiliza Phosphor con licencia MIT. No se copian FontAwesome Pro, módulos ajenos, configuradores de marca, modificaciones a `node_modules` ni el paquete de parches del origen. Los estados se resuelven con tokens soportados de PrimeNG y recetas compartidas, no con excepciones por pantalla. La igualdad visual se comprueba en controles renderizados y accesibilidad; no implica que el POS reproduzca los módulos de otro producto.
+
+## Actualización de marca del 5 de octubre de 2026
+
+El primario solicitado `#0545BA` se define en AppPreset como primary.500. La escala 50–950 alimenta botones, enlaces, selección, foco, iconos y gráficos. En oscuro, primary.400 (`#5b8deb`) ofrece contraste sobre las superficies oscuras y los avatares tonales. Se actualizaron también el SVG compartido por header/login, el favicon, theme-color y los iconos PNG/ICO de Tauri, conservando el logo oficial, los neutros, el acento verde y los colores semánticos.
+
+Verificación local: generación de iconos, lint, 190 pruebas de lógica y build de producción aprobados; 27 recorridos E2E sobre ese build, incluidos los contratos visuales, interacciones, acceso, navegación, reportes y accesibilidad en claro/oscuro. Se inspeccionaron login, dashboard y venta renderizados, y el halo único de foco. Blanco sobre el primario alcanza 8,18:1. Los recursos de escritorio se regeneraron; este cambio no incluye ejecutar ni validar el instalador Tauri.
 
 ## Grosor de iconos
 

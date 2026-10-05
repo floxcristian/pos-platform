@@ -77,10 +77,9 @@ body {
   top: calc(50% - 4px);
   border-right-color: var(--p-surface-700);
 }
-/* Header contract measured from prime-showcase-mu.vercel.app (2026-10-03).
-   Keep its original artwork and header palette independent of the newer app surfaces. */
+/* Preserve the showcase artwork and white-on-blue controls with the current brand palette. */
 .brand-header-bg {
-  --pos-header-action-surface: var(--p-slate-950);
+  --pos-header-action-surface: var(--p-primary-950);
   --pos-header-action-hover-background: color-mix(in srgb, var(--pos-header-action-surface) 25%, transparent);
   --pos-header-profile-background: color-mix(in srgb, var(--pos-header-action-surface) 25%, transparent);
   --pos-header-profile-hover-background: color-mix(
@@ -88,7 +87,7 @@ body {
     var(--pos-header-action-surface) 40%,
     transparent
   );
-  --pos-header-theme-hover-background: #004a7a;
+  --pos-header-theme-hover-background: var(--p-primary-700);
   --p-button-text-primary-color: var(--p-surface-0);
   --p-button-text-primary-hover-background: var(--pos-header-action-hover-background);
   --p-button-text-primary-active-background: var(--pos-header-action-hover-background);
@@ -100,8 +99,7 @@ body {
   background-repeat: no-repeat;
 }
 .p-dark .brand-header-bg {
-  --pos-header-action-surface: var(--p-zinc-950);
-  --pos-header-theme-hover-background: #00375c;
+  --pos-header-theme-hover-background: var(--p-primary-800);
 }
 @media (min-width: 64rem) {
   .brand-header-bg {

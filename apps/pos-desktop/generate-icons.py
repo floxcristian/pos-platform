@@ -5,7 +5,7 @@ from PIL import Image, ImageDraw
 icon_dir = Path(__file__).resolve().parent / "src-tauri" / "icons"
 canvas = Image.new("RGBA", (1024, 1024), (0, 0, 0, 0))
 draw = ImageDraw.Draw(canvas)
-draw.rounded_rectangle((0, 0, 1023, 1023), radius=208, fill="#006db6")
+draw.rounded_rectangle((0, 0, 1023, 1023), radius=208, fill="#0545ba")
 for left, top, color in [(48, 48, "#ffffff"), (140, 48, "#ffffff"), (48, 140, "#ffffff"), (140, 140, "#00937f")]:
     draw.rounded_rectangle((left * 4, top * 4, (left + 68) * 4, (top + 68) * 4), radius=48, fill=color)
 for size, filename in [(32, "32x32.png"), (128, "128x128.png"), (256, "128x128@2x.png")]:

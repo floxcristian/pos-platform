@@ -33,7 +33,7 @@ test('alto contraste: los iconos conservan el color del control y su máscara ca
   }
 });
 
-// Focus measured in the published prime-showcase (2026-10-03); remaining values from its local Form Card.
+// Showcase focus geometry and Form Card sizing, recolored with the #0545BA brand palette.
 for (const theme of ['light', 'dark'] as const) {
   test(`contrato visual ${theme}: marca, foco, controles y secundarios`, async ({ page }) => {
     await page.goto('/#/venta');
@@ -50,7 +50,7 @@ for (const theme of ['light', 'dark'] as const) {
         context.fillRect(0, 0, 1, 1);
         return [...context.getImageData(0, 0, 1, 1).data];
       });
-    expect(brand).toEqual([0, 109, 182, 255]);
+    expect(brand).toEqual([5, 69, 186, 255]);
     await expect(page.locator('header').first()).toHaveCSS('height', '64px');
     const input = page.getByRole('textbox', { name: 'Buscar producto o código de barras', exact: true });
     await input.click();
@@ -63,8 +63,8 @@ for (const theme of ['light', 'dark'] as const) {
     expect(style.height).toBeGreaterThanOrEqual(40);
     expect(style.height).toBeLessThan(44);
     if (theme === 'light') {
-      expect(style.shadow).toBe('rgb(178, 221, 249) 0px 0px 0px 3.2px');
-      await expect(input).toHaveCSS('border-color', 'rgb(0, 116, 194)');
+      expect(style.shadow).toBe('rgb(182, 206, 250) 0px 0px 0px 3.2px');
+      await expect(input).toHaveCSS('border-color', 'rgb(5, 69, 186)');
     } else {
       expect(style.shadow).not.toBe('none');
       expect(style.shadow).toContain('3.2px');
@@ -88,9 +88,9 @@ for (const theme of ['light', 'dark'] as const) {
     const secondary = page.getByRole('button', { name: 'Cargar orden de venta', exact: true });
     await expect(secondary).toHaveCSS(
       'background-color',
-      theme === 'light' ? 'rgb(217, 236, 255)' : 'rgb(0, 38, 70)',
+      theme === 'light' ? 'rgb(219, 230, 253)' : 'rgb(2, 27, 71)',
     );
-    await expect(secondary).toHaveCSS('color', theme === 'light' ? 'rgb(0, 70, 120)' : 'rgb(217, 236, 255)');
+    await expect(secondary).toHaveCSS('color', theme === 'light' ? 'rgb(3, 49, 133)' : 'rgb(219, 230, 253)');
     await secondary.focus();
     await expect(secondary).toHaveCSS('box-shadow', style.shadow);
     await expect(page.getByRole('button', { name: 'Pausar', exact: true })).toBeDisabled();
@@ -111,7 +111,7 @@ for (const theme of ['light', 'dark'] as const) {
     const dialog = page.getByRole('dialog', { name: 'Crear cliente express', exact: true });
     await expect(dialog.getByRole('button', { name: 'Cancelar', exact: true })).toHaveCSS(
       'background-color',
-      theme === 'light' ? 'rgb(217, 236, 255)' : 'rgb(0, 38, 70)',
+      theme === 'light' ? 'rgb(219, 230, 253)' : 'rgb(2, 27, 71)',
     );
     await dialog.getByRole('button', { name: 'Cancelar', exact: true }).click();
     await expect(dialog).not.toBeVisible();

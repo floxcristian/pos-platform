@@ -231,18 +231,19 @@ export const AppPreset = definePreset(Aura, {
   },
   semantic: {
     transitionDuration: '0s',
+    // Brand anchor: #0545BA. Tonal surfaces and interaction states share this scale.
     primary: {
-      50: '#f0f7ff',
-      100: '#d9ecff',
-      200: '#b1d8ff',
-      300: '#7abbf8',
-      400: '#4496de',
-      500: '#006db6',
-      600: '#005996',
-      700: '#004678',
-      800: '#00355d',
-      900: '#002646',
-      950: '#001831',
+      50: '#eff4ff',
+      100: '#dbe6fd',
+      200: '#b6cefa',
+      300: '#85acf5',
+      400: '#5b8deb',
+      500: '#0545ba',
+      600: '#043ba0',
+      700: '#033185',
+      800: '#03276b',
+      900: '#021b47',
+      950: '#01102e',
     },
     accent: {
       50: '#ebfbf6',
@@ -260,16 +261,16 @@ export const AppPreset = definePreset(Aura, {
     colorScheme: {
       light: {
         surface: IMPLEMENTOS_NEUTRAL,
-        // Measured in prime-showcase-mu.vercel.app; its published focus palette differs from local main.
-        focusRing: { color: '#b2ddf9' },
-        formField: { focusBorderColor: '#0074c2', invalidBorderColor: '{rose.500}' },
+        // Preserve the showcase's single halo, with colors from the current brand palette.
+        focusRing: { color: '{primary.200}' },
+        formField: { focusBorderColor: '{primary.500}', invalidBorderColor: '{rose.500}' },
         content: { hoverBackground: '{surface.200}' },
         text: { muted: { color: '{surface.600}' } },
       },
       dark: {
         surface: IMPLEMENTOS_NEUTRAL,
-        focusRing: { color: '#27a0f1' },
-        formField: { focusBorderColor: '#27a0f1', invalidBorderColor: '{rose.400}' },
+        focusRing: { color: '{primary.400}' },
+        formField: { focusBorderColor: '{primary.400}', invalidBorderColor: '{rose.400}' },
         content: { hoverBackground: '{surface.700}' },
         text: { muted: { color: '{surface.300}' } },
       },
