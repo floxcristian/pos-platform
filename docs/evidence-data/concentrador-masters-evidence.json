@@ -1,0 +1,1337 @@
+{
+  "auditedAt": "2026-10-02",
+  "snapshot": {
+    "repo": "mountain-concentrador",
+    "branch": "Pablo",
+    "commit": "b2fd1ec266d131abb54b7076d41acce30f045119",
+    "committedAt": "2023-09-08T18:07:29-03:00",
+    "checkout": "detached",
+    "production": false,
+    "main": "No existe entre referencias informadas",
+    "masterCommit": "03ab8598b92b4f2dcad8c79861cc2e0036901b35",
+    "comparison": {
+      "repo": "mountain-sync-sucursal",
+      "commit": "540ab9a70e7befbca27a2f7eb88b87b25109e4d1",
+      "branch": "master",
+      "checkoutUsed": "git show por SHA; checkout de trabajo no utilizado"
+    }
+  },
+  "boundaries": [
+    "Lectura estática: fuente y CAR no confirman despliegue ni runtime efectivo.",
+    "No se ejecutaron aplicaciones, instaladores, consultas DB ni peticiones corporativas.",
+    "Hosts, IP, credenciales y valores de conexión omitidos.",
+    "AX→MPOS sigue sin productor/job identificado; MPOS.dbo sí aparece en Java.",
+    "No se infieren transacciones distribuidas, exactamente-una-vez ni incidentes productivos."
+  ],
+  "components": [
+    {
+      "id": "origin",
+      "app": "Productor AX→MPOS",
+      "repo": null,
+      "runtime": "Pendiente",
+      "zone": "unknown",
+      "certainty": "unknown"
+    },
+    {
+      "id": "dss",
+      "app": "DSConcentrador",
+      "repo": "mountain-concentrador",
+      "runtime": "WSO2 Data Services",
+      "zone": "central",
+      "certainty": "code",
+      "sourceIds": [
+        "dss",
+        "endpoint"
+      ]
+    },
+    {
+      "id": "orchestrator",
+      "app": "ESBImplementos",
+      "repo": "mountain-concentrador",
+      "runtime": "WSO2 Synapse tasks/sequences",
+      "zone": "central",
+      "certainty": "code",
+      "sourceIds": [
+        "task",
+        "trigger",
+        "queue-read"
+      ]
+    },
+    {
+      "id": "java",
+      "app": "ClassRegistraMensajeDetalle",
+      "repo": "mountain-concentrador",
+      "runtime": "Mediador Java / JDBC",
+      "zone": "central",
+      "certainty": "code",
+      "sourceIds": [
+        "java",
+        "client",
+        "build"
+      ]
+    },
+    {
+      "id": "read-api",
+      "app": "api-lectura",
+      "repo": "mountain-concentrador",
+      "runtime": "Node.js / AdonisJS",
+      "zone": "central",
+      "certainty": "code",
+      "sourceIds": [
+        "routes",
+        "api-get"
+      ]
+    },
+    {
+      "id": "mpos",
+      "app": "MPOS SQL",
+      "repo": "mountain-concentrador",
+      "runtime": "SQL Server, base/esquema nombrados en Java",
+      "zone": "unknown",
+      "certainty": "code",
+      "sourceIds": [
+        "mpos",
+        "client"
+      ]
+    },
+    {
+      "id": "central-pg",
+      "app": "Concentrador PostgreSQL",
+      "repo": "mountain-concentrador",
+      "runtime": "PostgreSQL / JNDI",
+      "zone": "central",
+      "certainty": "code",
+      "sourceIds": [
+        "connection",
+        "batch-output"
+      ]
+    },
+    {
+      "id": "sync",
+      "app": "Sincronizador de sucursal",
+      "repo": "mountain-sync-sucursal",
+      "runtime": "Node.js / AdonisJS",
+      "zone": "branch",
+      "certainty": "code",
+      "sourceIds": [
+        "sync-http",
+        "sync-apply"
+      ]
+    }
+  ],
+  "databaseObjects": [
+    {
+      "engine": "SQL Server",
+      "name": "MPOS.dbo.CustTableSync",
+      "operation": "Leer/cambiar Procesado",
+      "sourceIds": [
+        "mpos",
+        "mpos-page",
+        "client"
+      ],
+      "schemaEvidence": "Java construye base y dbo; DSS usa tabla sin calificar."
+    },
+    {
+      "engine": "SQL Server",
+      "name": "MPOS.dbo.LogisticsElectronicAddressSync",
+      "operation": "Maestro contactos; tabla configurada en adaptador",
+      "sourceIds": [
+        "mpos",
+        "contact"
+      ],
+      "schemaEvidence": "Java dbo explícito"
+    },
+    {
+      "engine": "SQL Server",
+      "name": "MPOS.dbo.LogisticsPostalAddressSync",
+      "operation": "Maestro direcciones; tabla configurada en adaptador",
+      "sourceIds": [
+        "mpos",
+        "address"
+      ],
+      "schemaEvidence": "Java dbo explícito"
+    },
+    {
+      "engine": "SQL Server",
+      "name": "MPOS.dbo.sp_caja_custTable",
+      "kind": "procedure",
+      "operation": "EXEC con lectura de resultado",
+      "sourceIds": [
+        "client"
+      ],
+      "definitionReceived": false
+    },
+    {
+      "engine": "PostgreSQL",
+      "name": "public.mensaje_entrada",
+      "operation": "INSERT payload de entrada",
+      "sourceIds": [
+        "input"
+      ],
+      "schemaEvidence": "SQL Java explícito"
+    },
+    {
+      "engine": "PostgreSQL",
+      "name": "public.mensaje_detalles",
+      "operation": "INSERT detalles JSON",
+      "sourceIds": [
+        "batch-detail"
+      ],
+      "schemaEvidence": "SQL Java explícito"
+    },
+    {
+      "engine": "PostgreSQL",
+      "name": "public.mensaje_cabeceras",
+      "operation": "INSERT por entidad; UPDATE contadores",
+      "sourceIds": [
+        "header",
+        "api-results"
+      ],
+      "schemaEvidence": "SQL Java explícito; API usa modelo"
+    },
+    {
+      "engine": "PostgreSQL",
+      "name": "public.mensaje_salida",
+      "operation": "INSERT lote por destino; enviado/recibido/procesado",
+      "sourceIds": [
+        "batch-output",
+        "api-service",
+        "api-recover",
+        "api-results"
+      ],
+      "schemaEvidence": "SQL Java explícito; API modelo no califica schema"
+    },
+    {
+      "engine": "PostgreSQL",
+      "name": "public.mensaje_detalle_sucursales",
+      "operation": "INSERT vínculos; UPDATE resultados por detalle/destino",
+      "sourceIds": [
+        "batch-delivery",
+        "api-results"
+      ],
+      "schemaEvidence": "SQL Java explícito; SQL API sin schema"
+    },
+    {
+      "engine": "PostgreSQL sucursal",
+      "name": "sincronizador.mensajes",
+      "operation": "INSERT mensaje entrante",
+      "sourceIds": [
+        "sync-message",
+        "sync-persist"
+      ],
+      "schemaEvidence": "Modelo explícito"
+    },
+    {
+      "engine": "PostgreSQL sucursal",
+      "name": "sincronizador.mensaje_detalles",
+      "operation": "INSERT detalles; UPDATE procesado/error",
+      "sourceIds": [
+        "sync-detail",
+        "sync-persist",
+        "sync-apply"
+      ],
+      "schemaEvidence": "Modelo explícito"
+    },
+    {
+      "engine": "PostgreSQL sucursal",
+      "name": "empresas",
+      "operation": "INSERT/UPDATE maestro cliente",
+      "sourceIds": [
+        "sync-client"
+      ],
+      "schemaEvidence": "Consulta sin calificar schema; no anteponer public"
+    }
+  ],
+  "routes": [
+    {
+      "method": "SOAP 1.1",
+      "path": "/services/DSS_AX_Clientes?wsdl",
+      "action": "urn:opGetCountClientesAX",
+      "caller": "TP_DSS_AX_Clientes",
+      "receiver": "DSS_AX_Clientes",
+      "sourceIds": [
+        "soap",
+        "endpoint",
+        "dss"
+      ],
+      "boundary": "Path literal del endpoint fuente; binding efectivo pendiente."
+    },
+    {
+      "method": "GET",
+      "path": "/mensajeSalidas/cambios",
+      "query": [
+        "nombreEntidad",
+        "tipoMensaje"
+      ],
+      "receiver": "MensajeSalidasController.cambios",
+      "effects": [
+        "Selecciona mensaje más antiguo no enviado",
+        "Inserta registro consulta",
+        "Marca enviado antes de respuesta"
+      ],
+      "sourceIds": [
+        "routes",
+        "api-get",
+        "api-service",
+        "sync-http"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/mensajeSalidas/sin-procesar",
+      "query": [
+        "nombreEntidad",
+        "tipoMensaje"
+      ],
+      "receiver": "MensajeSalidasController.sinProcesar",
+      "effects": [
+        "Devuelve más antiguo enviado=true/procesado=false"
+      ],
+      "sourceIds": [
+        "routes",
+        "api-recover",
+        "api-service",
+        "sync-http"
+      ],
+      "boundary": "recibido_sucursal no es filtro; reoferta posible después de ACK temprano. No demuestra recuperación completada."
+    },
+    {
+      "method": "POST",
+      "path": "/mensajeSalidas/recibido",
+      "query": [
+        "mensajeSalidaId"
+      ],
+      "body": "data:{} enviado por sync",
+      "receiver": "MensajeSalidasController.recibido",
+      "effects": [
+        "recibido_sucursal=true; fecha_recibido=NOW"
+      ],
+      "sourceIds": [
+        "routes",
+        "api-recover",
+        "sync-http"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/mensajeSalidas/procesados",
+      "body": "data[]: mensaje_id, mensaje_cabecera_id, mensaje_detalle_id, mensaje_detalle_sucursal_id, error, mensaje",
+      "receiver": "MensajeSalidasController.procesados",
+      "effects": [
+        "Detalle destino procesado=true, error y mensaje_error",
+        "Contadores acumulativos de cabecera",
+        "Mensaje salida procesado=true usando primer elemento"
+      ],
+      "sourceIds": [
+        "routes",
+        "api-results",
+        "sync-http",
+        "sync-apply"
+      ]
+    },
+    {
+      "method": "GET / POST PUT",
+      "path": "/api/mensajeSalidas/{cambios|sin-procesar|recibido|procesados}",
+      "variant": true,
+      "sourceIds": [
+        "legacy-api",
+        "legacy-limit"
+      ],
+      "boundary": "WSO2 API paralela: GET usa codigoEntidad y limitación Java diferente. No equiparar sin prueba al receptor Node que pide nombreEntidad."
+    }
+  ],
+  "schedules": {
+    "source": [
+      {
+        "task": "Task_SincronizaArticulos",
+        "intervalLiteral": "60",
+        "countLiteral": null,
+        "once": false,
+        "source": {
+          "id": "task-articulos",
+          "repo": "mountain-concentrador",
+          "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+          "path": "ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaArticulos.xml",
+          "start": 2,
+          "end": 3,
+          "label": "Trigger fuente Articulos",
+          "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaArticulos.xml#L2-L3"
+        }
+      },
+      {
+        "task": "Task_SincronizaAtributos",
+        "intervalLiteral": "90",
+        "countLiteral": "0",
+        "once": false,
+        "source": {
+          "id": "task-atributos",
+          "repo": "mountain-concentrador",
+          "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+          "path": "ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaAtributos.xml",
+          "start": 2,
+          "end": 3,
+          "label": "Trigger fuente Atributos",
+          "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaAtributos.xml#L2-L3"
+        }
+      },
+      {
+        "task": "Task_SincronizaBancos",
+        "intervalLiteral": "3600",
+        "countLiteral": null,
+        "once": false,
+        "source": {
+          "id": "task-bancos",
+          "repo": "mountain-concentrador",
+          "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+          "path": "ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaBancos.xml",
+          "start": 2,
+          "end": 3,
+          "label": "Trigger fuente Bancos",
+          "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaBancos.xml#L2-L3"
+        }
+      },
+      {
+        "task": "Task_SincronizaBodegas",
+        "intervalLiteral": null,
+        "countLiteral": null,
+        "once": true,
+        "source": {
+          "id": "task-bodegas",
+          "repo": "mountain-concentrador",
+          "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+          "path": "ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaBodegas.xml",
+          "start": 2,
+          "end": 3,
+          "label": "Trigger fuente Bodegas",
+          "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaBodegas.xml#L2-L3"
+        }
+      },
+      {
+        "task": "Task_SincronizaCajas",
+        "intervalLiteral": "300",
+        "countLiteral": null,
+        "once": false,
+        "source": {
+          "id": "task-cajas",
+          "repo": "mountain-concentrador",
+          "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+          "path": "ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaCajas.xml",
+          "start": 2,
+          "end": 3,
+          "label": "Trigger fuente Cajas",
+          "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaCajas.xml#L2-L3"
+        }
+      },
+      {
+        "task": "Task_SincronizaClientes",
+        "intervalLiteral": "10",
+        "countLiteral": null,
+        "once": false,
+        "source": {
+          "id": "task-clientes",
+          "repo": "mountain-concentrador",
+          "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+          "path": "ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaClientes.xml",
+          "start": 2,
+          "end": 3,
+          "label": "Trigger fuente Clientes",
+          "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaClientes.xml#L2-L3"
+        }
+      },
+      {
+        "task": "Task_SincronizaContactos",
+        "intervalLiteral": "20",
+        "countLiteral": null,
+        "once": false,
+        "source": {
+          "id": "task-contactos",
+          "repo": "mountain-concentrador",
+          "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+          "path": "ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaContactos.xml",
+          "start": 2,
+          "end": 3,
+          "label": "Trigger fuente Contactos",
+          "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaContactos.xml#L2-L3"
+        }
+      },
+      {
+        "task": "Task_SincronizaDirecciones",
+        "intervalLiteral": "25",
+        "countLiteral": null,
+        "once": false,
+        "source": {
+          "id": "task-direcciones",
+          "repo": "mountain-concentrador",
+          "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+          "path": "ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaDirecciones.xml",
+          "start": 2,
+          "end": 3,
+          "label": "Trigger fuente Direcciones",
+          "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaDirecciones.xml#L2-L3"
+        }
+      },
+      {
+        "task": "Task_SincronizaEmpleados",
+        "intervalLiteral": "320",
+        "countLiteral": null,
+        "once": false,
+        "source": {
+          "id": "task-empleados",
+          "repo": "mountain-concentrador",
+          "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+          "path": "ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaEmpleados.xml",
+          "start": 2,
+          "end": 3,
+          "label": "Trigger fuente Empleados",
+          "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaEmpleados.xml#L2-L3"
+        }
+      },
+      {
+        "task": "Task_SincronizaFacturas",
+        "intervalLiteral": "180",
+        "countLiteral": null,
+        "once": false,
+        "source": {
+          "id": "task-facturas",
+          "repo": "mountain-concentrador",
+          "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+          "path": "ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaFacturas.xml",
+          "start": 2,
+          "end": 3,
+          "label": "Trigger fuente Facturas",
+          "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaFacturas.xml#L2-L3"
+        }
+      },
+      {
+        "task": "Task_SincronizaMotivoDevolucionNC",
+        "intervalLiteral": "25",
+        "countLiteral": null,
+        "once": false,
+        "source": {
+          "id": "task-motivodevolucionnc",
+          "repo": "mountain-concentrador",
+          "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+          "path": "ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaMotivoDevolucionNC.xml",
+          "start": 2,
+          "end": 3,
+          "label": "Trigger fuente MotivoDevolucionNC",
+          "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaMotivoDevolucionNC.xml#L2-L3"
+        }
+      },
+      {
+        "task": "Task_SincronizaPlazaBancos",
+        "intervalLiteral": "600",
+        "countLiteral": null,
+        "once": false,
+        "source": {
+          "id": "task-plazabancos",
+          "repo": "mountain-concentrador",
+          "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+          "path": "ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaPlazaBancos.xml",
+          "start": 2,
+          "end": 3,
+          "label": "Trigger fuente PlazaBancos",
+          "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaPlazaBancos.xml#L2-L3"
+        }
+      },
+      {
+        "task": "Task_SincronizaPrecios",
+        "intervalLiteral": "60",
+        "countLiteral": "0",
+        "once": false,
+        "source": {
+          "id": "task-precios",
+          "repo": "mountain-concentrador",
+          "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+          "path": "ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaPrecios.xml",
+          "start": 2,
+          "end": 3,
+          "label": "Trigger fuente Precios",
+          "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaPrecios.xml#L2-L3"
+        }
+      },
+      {
+        "task": "Task_SincronizaSaldos",
+        "intervalLiteral": "20",
+        "countLiteral": null,
+        "once": false,
+        "source": {
+          "id": "task-saldos",
+          "repo": "mountain-concentrador",
+          "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+          "path": "ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaSaldos.xml",
+          "start": 2,
+          "end": 3,
+          "label": "Trigger fuente Saldos",
+          "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaSaldos.xml#L2-L3"
+        }
+      },
+      {
+        "task": "Task_SincronizaSucursales",
+        "intervalLiteral": null,
+        "countLiteral": null,
+        "once": true,
+        "source": {
+          "id": "task-sucursales",
+          "repo": "mountain-concentrador",
+          "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+          "path": "ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaSucursales.xml",
+          "start": 2,
+          "end": 3,
+          "label": "Trigger fuente Sucursales",
+          "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaSucursales.xml#L2-L3"
+        }
+      }
+    ],
+    "interpretation": "interval se documenta en segundos para Scheduled Tasks de WSO2; count=0/once se conservan literales. Estado activo y versión efectiva pendientes.",
+    "documentation": {
+      "url": "https://apim.docs.wso2.com/en/4.2.0/reference/synapse-properties/scheduled-task-properties/",
+      "consulted": "2026-10-02",
+      "boundary": "Referencia de sintaxis, no prueba de versión instalada."
+    },
+    "carDifferences": [
+      {
+        "car": "CAR/PROD_E_Task_1.0.0.car",
+        "observation": "12 tareas de maestros incluidas, todas count=0; clientes interval=10.",
+        "sourceIds": [
+          "prod-car"
+        ]
+      },
+      {
+        "car": "CAR/QA_E_Task_1.0.6.car",
+        "observation": "Clientes interval=10 sin count; artículos y atributos count=0; precios interval=60 sin count.",
+        "sourceIds": [
+          "qa-car"
+        ]
+      },
+      {
+        "car": "CAR/DESA_E_Task_1.0.3.car",
+        "observation": "Clientes interval=10 sin count; artículos y atributos count=0; precios interval=60 sin count.",
+        "sourceIds": [
+          "desa-car"
+        ]
+      }
+    ],
+    "branchPolling": {
+      "expression": "*/3 * * * *",
+      "conditions": [
+        "Ventana local isAllowedTimeDia",
+        "Lock 3001",
+        "Reenvíos previos completados",
+        "CRON_BUSCAR_CAMBIOS activo",
+        "Pausa tres segundos entre tipos"
+      ],
+      "sourceIds": [
+        "sync-cron"
+      ]
+    }
+  },
+  "states": [
+    {
+      "scope": "MPOS origen",
+      "field": "Procesado",
+      "values": {
+        "0": "pendiente a consultar/SP",
+        "1": "marcado por generación central; no aplicación sucursal",
+        "3": "error/no datos",
+        "8": "constante declarada; alternativa de UPDATE comentada",
+        "9": "esperando paginación"
+      },
+      "sourceIds": [
+        "mpos",
+        "mpos-page",
+        "build"
+      ]
+    },
+    {
+      "scope": "PG central mensaje_salida",
+      "field": "enviado",
+      "meaning": "Selección para HTTP, commit antes de respuesta; no acuse de recepción",
+      "sourceIds": [
+        "api-get",
+        "api-service"
+      ]
+    },
+    {
+      "scope": "PG central mensaje_salida",
+      "field": "recibido_sucursal",
+      "meaning": "Acuse del sync antes de su persistencia local; no excluye sin-procesar",
+      "sourceIds": [
+        "api-recover",
+        "api-service",
+        "sync-receive"
+      ]
+    },
+    {
+      "scope": "PG central mensaje_salida / detalle destino",
+      "field": "procesado",
+      "meaning": "Reporte de tratamiento; detalle puede incluir error; no éxito universal",
+      "sourceIds": [
+        "api-results",
+        "sync-apply"
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "id": "MC-F01",
+      "title": "Marca MPOS antes de completar salidas",
+      "condition": "Fallo después de actualizar origen y antes/durante cabeceras o salidas.",
+      "impact": "Origen puede dejar de entrar al count sin lote completo distribuible; necesita reconciliación.",
+      "sourceIds": [
+        "build",
+        "batch-detail",
+        "batch-output",
+        "mpos-page"
+      ],
+      "incidentProven": false
+    },
+    {
+      "id": "MC-F02",
+      "title": "Recibido temprano, recuperación central disponible",
+      "condition": "Sync acusa recibido y cae antes de crearMensaje.",
+      "impact": "No existe copia local durable en ese instante; sin-procesar aún puede reofertar el lote si sigue procesado=false. Probar recuperación, no afirmar pérdida definitiva.",
+      "sourceIds": [
+        "sync-receive",
+        "api-recover",
+        "api-service"
+      ],
+      "incidentProven": false
+    },
+    {
+      "id": "MC-F03",
+      "title": "Procesados no idempotente en contadores",
+      "condition": "Repetición del POST con el mismo data[].",
+      "impact": "Aumenta otra vez total_sincronizados/errores; error también cuenta como sincronizado. Primer elemento decide cabecera/lote del request; no se comprueba completitud ni homogeneidad.",
+      "sourceIds": [
+        "api-results"
+      ],
+      "incidentProven": false
+    },
+    {
+      "id": "MC-F04",
+      "title": "Selección sin claim exclusivo observado",
+      "condition": "Peticiones concurrentes GET cambios para entidad/tipo.",
+      "impact": "SELECT y UPDATE separados en una transacción, sin FOR UPDATE/SKIP LOCKED ni comparación de versión en código: probar duplicación/reentrega; no concluir exclusión.",
+      "sourceIds": [
+        "api-service",
+        "api-get"
+      ],
+      "incidentProven": false
+    },
+    {
+      "id": "MC-F05",
+      "title": "Estados 9 pueden requerir reconciliación",
+      "condition": "Caída tras 0→9 sin alcanzar la siguiente ventana 9→0.",
+      "impact": "DSS count solo mira 0; no se encontró recuperación general de 9 en el tramo revisado. Nuevos pendientes o intervención pueden cambiar el resultado; no afirmar bloqueo definitivo.",
+      "sourceIds": [
+        "dss",
+        "mpos-page",
+        "java"
+      ],
+      "incidentProven": false
+    }
+  ],
+  "pending": [
+    "Implementación AX/job/triggers que llenan MPOS y su calendario",
+    "DDL y cuerpos SP/funciones; claves, índices, defaults y permisos",
+    "Binding de datasource DSS hacia base real frente al MPOS explícito de Java",
+    "Hash/versiones CAR/JAR/API y configuración del runtime instalado",
+    "Topología y co-ubicación AX/MPOS; no demostradas",
+    "Retención y restauración del PG central y sucursal; políticas de replay",
+    "Contrato de autenticación y autorización en proxy/red/servicios; control por entidad",
+    "Pruebas de paginación concurrente, fallos entre bases, ACK perdido y POST repetido"
+  ],
+  "sources": {
+    "mpos": {
+      "id": "mpos",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "ClassRegistraMensajeDetalle/src/main/java/cl/implementos/BO/AX/BOAX.java",
+      "start": 45,
+      "end": 69,
+      "label": "MPOS, datasource y estados de origen",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ClassRegistraMensajeDetalle/src/main/java/cl/implementos/BO/AX/BOAX.java#L45-L69"
+    },
+    "mpos-page": {
+      "id": "mpos-page",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "ClassRegistraMensajeDetalle/src/main/java/cl/implementos/BO/AX/BOAX.java",
+      "start": 212,
+      "end": 310,
+      "label": "Actualización de origen y paginación 0/9",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ClassRegistraMensajeDetalle/src/main/java/cl/implementos/BO/AX/BOAX.java#L212-L310"
+    },
+    "client": {
+      "id": "client",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "ClassRegistraMensajeDetalle/src/main/java/cl/implementos/BO/AX/tables/BOCliente.java",
+      "start": 26,
+      "end": 83,
+      "label": "Tabla de clientes, SP y lectura JDBC",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ClassRegistraMensajeDetalle/src/main/java/cl/implementos/BO/AX/tables/BOCliente.java#L26-L83"
+    },
+    "contact": {
+      "id": "contact",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "ClassRegistraMensajeDetalle/src/main/java/cl/implementos/BO/AX/tables/BOContacto.java",
+      "start": 26,
+      "end": 33,
+      "label": "Tabla y SP de contactos",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ClassRegistraMensajeDetalle/src/main/java/cl/implementos/BO/AX/tables/BOContacto.java#L26-L33"
+    },
+    "address": {
+      "id": "address",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "ClassRegistraMensajeDetalle/src/main/java/cl/implementos/BO/AX/tables/BODireccion.java",
+      "start": 26,
+      "end": 33,
+      "label": "Tabla y SP de direcciones",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ClassRegistraMensajeDetalle/src/main/java/cl/implementos/BO/AX/tables/BODireccion.java#L26-L33"
+    },
+    "dss": {
+      "id": "dss",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "DSConcentrador/dataservice/DSS_AX_Clientes.dbs",
+      "start": 1,
+      "end": 83,
+      "label": "DSS: count, SP y actualización",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/DSConcentrador/dataservice/DSS_AX_Clientes.dbs#L1-L83"
+    },
+    "task": {
+      "id": "task",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaClientes.xml",
+      "start": 1,
+      "end": 9,
+      "label": "Task de clientes",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaClientes.xml#L1-L9"
+    },
+    "trigger": {
+      "id": "trigger",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "ESBImplementos/src/main/synapse-config/sequences/SEQ_DSS_AX_Clientes.xml",
+      "start": 1,
+      "end": 18,
+      "label": "Solo count > 0 dispara registro y cola",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ESBImplementos/src/main/synapse-config/sequences/SEQ_DSS_AX_Clientes.xml#L1-L18"
+    },
+    "soap": {
+      "id": "soap",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "ESBImplementos/src/main/synapse-config/templates/TP_DSS_AX_Clientes.xml",
+      "start": 9,
+      "end": 22,
+      "label": "SOAPAction opGetCountClientesAX",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ESBImplementos/src/main/synapse-config/templates/TP_DSS_AX_Clientes.xml#L9-L22"
+    },
+    "endpoint": {
+      "id": "endpoint",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "ESBImplementos/src/main/synapse-config/endpoints/EP_DSS_AX_Clientes.xml",
+      "start": 2,
+      "end": 7,
+      "label": "Endpoint DSS, path y timeout",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ESBImplementos/src/main/synapse-config/endpoints/EP_DSS_AX_Clientes.xml#L2-L7"
+    },
+    "queue": {
+      "id": "queue",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "ESBImplementos/src/main/synapse-config/sequences/SEQ_Q_CambioDesdeAx.xml",
+      "start": 27,
+      "end": 45,
+      "label": "Aviso de trabajo a MS_ProcesaRegistro",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ESBImplementos/src/main/synapse-config/sequences/SEQ_Q_CambioDesdeAx.xml#L27-L45"
+    },
+    "queue-read": {
+      "id": "queue-read",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "ESBImplementos/src/main/synapse-config/sequences/SEQ_Q_LeerColaBus.xml",
+      "start": 3,
+      "end": 55,
+      "label": "Página, límite, mediador y aviso",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ESBImplementos/src/main/synapse-config/sequences/SEQ_Q_LeerColaBus.xml#L3-L55"
+    },
+    "store": {
+      "id": "store",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "ESBImplementos/src/main/synapse-config/message-stores/MS_ProcesaRegistro.xml",
+      "start": 2,
+      "end": 8,
+      "label": "JMS / Andes y qlProcesaRegistro",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ESBImplementos/src/main/synapse-config/message-stores/MS_ProcesaRegistro.xml#L2-L8"
+    },
+    "processor": {
+      "id": "processor",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "ESBImplementos/src/main/synapse-config/message-processors/MP_ProcesaRegistro.xml",
+      "start": 2,
+      "end": 6,
+      "label": "SamplingProcessor y concurrencia declarada",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ESBImplementos/src/main/synapse-config/message-processors/MP_ProcesaRegistro.xml#L2-L6"
+    },
+    "java": {
+      "id": "java",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "ClassRegistraMensajeDetalle/src/main/java/cl/implementos/RegistraMensajeDetalle.java",
+      "start": 962,
+      "end": 1062,
+      "label": "Procesar cambios AX y seleccionar camino",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ClassRegistraMensajeDetalle/src/main/java/cl/implementos/RegistraMensajeDetalle.java#L962-L1062"
+    },
+    "build": {
+      "id": "build",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "ClassRegistraMensajeDetalle/src/main/java/cl/implementos/BO/BOGuardarData.java",
+      "start": 56,
+      "end": 208,
+      "label": "Generar detalles, marcar origen y guardar salidas",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ClassRegistraMensajeDetalle/src/main/java/cl/implementos/BO/BOGuardarData.java#L56-L208"
+    },
+    "batch-detail": {
+      "id": "batch-detail",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "ClassRegistraMensajeDetalle/src/main/java/cl/implementos/BO/BOMensajeDetalle.java",
+      "start": 133,
+      "end": 170,
+      "label": "Bulk PostgreSQL de detalles",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ClassRegistraMensajeDetalle/src/main/java/cl/implementos/BO/BOMensajeDetalle.java#L133-L170"
+    },
+    "batch-output": {
+      "id": "batch-output",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "ClassRegistraMensajeDetalle/src/main/java/cl/implementos/BO/BOMensajeSalida.java",
+      "start": 47,
+      "end": 96,
+      "label": "Bulk de salidas con conexión compartida",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ClassRegistraMensajeDetalle/src/main/java/cl/implementos/BO/BOMensajeSalida.java#L47-L96"
+    },
+    "batch-delivery": {
+      "id": "batch-delivery",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "ClassRegistraMensajeDetalle/src/main/java/cl/implementos/BO/BOMensajeDetalleSucursal.java",
+      "start": 59,
+      "end": 120,
+      "label": "Detalles de destino con conexión heredada",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ClassRegistraMensajeDetalle/src/main/java/cl/implementos/BO/BOMensajeDetalleSucursal.java#L59-L120"
+    },
+    "header": {
+      "id": "header",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "ClassRegistraMensajeDetalle/src/main/java/cl/implementos/BO/BOMensajeCabecera.java",
+      "start": 43,
+      "end": 65,
+      "label": "Tabla física public.mensaje_cabeceras",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ClassRegistraMensajeDetalle/src/main/java/cl/implementos/BO/BOMensajeCabecera.java#L43-L65"
+    },
+    "input": {
+      "id": "input",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "ClassRegistraMensajeDetalle/src/main/java/cl/implementos/BO/BOMensajeEntrada.java",
+      "start": 40,
+      "end": 65,
+      "label": "Tabla física public.mensaje_entrada",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ClassRegistraMensajeDetalle/src/main/java/cl/implementos/BO/BOMensajeEntrada.java#L40-L65"
+    },
+    "connection": {
+      "id": "connection",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "ClassRegistraMensajeDetalle/src/main/java/cl/implementos/BO/BOConexion.java",
+      "start": 19,
+      "end": 39,
+      "label": "JNDI PostgreSQL y autocommit inicial",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ClassRegistraMensajeDetalle/src/main/java/cl/implementos/BO/BOConexion.java#L19-L39"
+    },
+    "entities": {
+      "id": "entities",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "ClassRegistraMensajeDetalle/src/main/java/cl/implementos/BO/BOEntidades.java",
+      "start": 21,
+      "end": 51,
+      "label": "Función fn_get_entidades",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ClassRegistraMensajeDetalle/src/main/java/cl/implementos/BO/BOEntidades.java#L21-L51"
+    },
+    "notify": {
+      "id": "notify",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "ESBImplementos/src/main/synapse-config/sequences/SEQ_Q_CambiosASucursal.xml",
+      "start": 2,
+      "end": 8,
+      "label": "Aviso por entidad de destino",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ESBImplementos/src/main/synapse-config/sequences/SEQ_Q_CambiosASucursal.xml#L2-L8"
+    },
+    "routes": {
+      "id": "routes",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "api-lectura/start/routes.js",
+      "start": 19,
+      "end": 26,
+      "label": "Cuatro rutas API lectura",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/api-lectura/start/routes.js#L19-L26"
+    },
+    "api-service": {
+      "id": "api-service",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "api-lectura/app/Services/MensajeSalidaService.js",
+      "start": 9,
+      "end": 134,
+      "label": "Elegibilidad, selección, enviado y recuperación",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/api-lectura/app/Services/MensajeSalidaService.js#L9-L134"
+    },
+    "api-get": {
+      "id": "api-get",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "api-lectura/app/Controllers/Http/MensajeSalidasController.js",
+      "start": 19,
+      "end": 109,
+      "label": "GET cambios modifica estado y confirma trx",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/api-lectura/app/Controllers/Http/MensajeSalidasController.js#L19-L109"
+    },
+    "api-recover": {
+      "id": "api-recover",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "api-lectura/app/Controllers/Http/MensajeSalidasController.js",
+      "start": 112,
+      "end": 191,
+      "label": "Sin procesar y recibido",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/api-lectura/app/Controllers/Http/MensajeSalidasController.js#L112-L191"
+    },
+    "api-results": {
+      "id": "api-results",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "api-lectura/app/Controllers/Http/MensajeSalidasController.js",
+      "start": 194,
+      "end": 277,
+      "label": "Procesados, contadores y estado de lote",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/api-lectura/app/Controllers/Http/MensajeSalidasController.js#L194-L277"
+    },
+    "api-model": {
+      "id": "api-model",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "api-lectura/app/Models/MensajeSalida.js",
+      "start": 6,
+      "end": 33,
+      "label": "Modelo mensaje_salida",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/api-lectura/app/Models/MensajeSalida.js#L6-L33"
+    },
+    "legacy-api": {
+      "id": "legacy-api",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "ESBImplementos/src/main/synapse-config/api/API_mensajeSalidas.xml",
+      "start": 2,
+      "end": 101,
+      "label": "API WSO2 paralela: contrato diferente",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ESBImplementos/src/main/synapse-config/api/API_mensajeSalidas.xml#L2-L101"
+    },
+    "legacy-limit": {
+      "id": "legacy-limit",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "ClassRegistraMensajeDetalle/src/main/java/cl/implementos/BO/BOMensajeSalida.java",
+      "start": 145,
+      "end": 164,
+      "label": "Variante Java exige cero pendientes enviados",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ClassRegistraMensajeDetalle/src/main/java/cl/implementos/BO/BOMensajeSalida.java#L145-L164"
+    },
+    "sync-receive": {
+      "id": "sync-receive",
+      "repo": "mountain-sync-sucursal",
+      "sha": "540ab9a70e7befbca27a2f7eb88b87b25109e4d1",
+      "path": "app/Services/LlamadaApis/CambiosConcentradorService.js",
+      "start": 79,
+      "end": 111,
+      "label": "Sync acusa antes de guardar",
+      "url": "https://github.com/developer-implementos/mountain-sync-sucursal/blob/540ab9a70e7befbca27a2f7eb88b87b25109e4d1/app/Services/LlamadaApis/CambiosConcentradorService.js#L79-L111"
+    },
+    "sync-http": {
+      "id": "sync-http",
+      "repo": "mountain-sync-sucursal",
+      "sha": "540ab9a70e7befbca27a2f7eb88b87b25109e4d1",
+      "path": "app/Services/LlamadaApis/CambiosConcentradorService.js",
+      "start": 164,
+      "end": 287,
+      "label": "GET y POST hacia API lectura",
+      "url": "https://github.com/developer-implementos/mountain-sync-sucursal/blob/540ab9a70e7befbca27a2f7eb88b87b25109e4d1/app/Services/LlamadaApis/CambiosConcentradorService.js#L164-L287"
+    },
+    "sync-recover": {
+      "id": "sync-recover",
+      "repo": "mountain-sync-sucursal",
+      "sha": "540ab9a70e7befbca27a2f7eb88b87b25109e4d1",
+      "path": "app/Services/LlamadaApis/CambiosConcentradorService.js",
+      "start": 118,
+      "end": 164,
+      "label": "Relectura de pendientes",
+      "url": "https://github.com/developer-implementos/mountain-sync-sucursal/blob/540ab9a70e7befbca27a2f7eb88b87b25109e4d1/app/Services/LlamadaApis/CambiosConcentradorService.js#L118-L164"
+    },
+    "sync-persist": {
+      "id": "sync-persist",
+      "repo": "mountain-sync-sucursal",
+      "sha": "540ab9a70e7befbca27a2f7eb88b87b25109e4d1",
+      "path": "app/Services/MensajeService.js",
+      "start": 15,
+      "end": 74,
+      "label": "Persistir entrada y detalles en transacción local",
+      "url": "https://github.com/developer-implementos/mountain-sync-sucursal/blob/540ab9a70e7befbca27a2f7eb88b87b25109e4d1/app/Services/MensajeService.js#L15-L74"
+    },
+    "sync-message": {
+      "id": "sync-message",
+      "repo": "mountain-sync-sucursal",
+      "sha": "540ab9a70e7befbca27a2f7eb88b87b25109e4d1",
+      "path": "app/Models/Mensaje.js",
+      "start": 6,
+      "end": 14,
+      "label": "sincronizador.mensajes explícita",
+      "url": "https://github.com/developer-implementos/mountain-sync-sucursal/blob/540ab9a70e7befbca27a2f7eb88b87b25109e4d1/app/Models/Mensaje.js#L6-L14"
+    },
+    "sync-detail": {
+      "id": "sync-detail",
+      "repo": "mountain-sync-sucursal",
+      "sha": "540ab9a70e7befbca27a2f7eb88b87b25109e4d1",
+      "path": "app/Models/MensajeDetalle.js",
+      "start": 6,
+      "end": 14,
+      "label": "sincronizador.mensaje_detalles explícita",
+      "url": "https://github.com/developer-implementos/mountain-sync-sucursal/blob/540ab9a70e7befbca27a2f7eb88b87b25109e4d1/app/Models/MensajeDetalle.js#L6-L14"
+    },
+    "sync-apply": {
+      "id": "sync-apply",
+      "repo": "mountain-sync-sucursal",
+      "sha": "540ab9a70e7befbca27a2f7eb88b87b25109e4d1",
+      "path": "app/Services/MensajeDetalleService.js",
+      "start": 113,
+      "end": 335,
+      "label": "Transacción por detalle y resultados",
+      "url": "https://github.com/developer-implementos/mountain-sync-sucursal/blob/540ab9a70e7befbca27a2f7eb88b87b25109e4d1/app/Services/MensajeDetalleService.js#L113-L335"
+    },
+    "sync-client": {
+      "id": "sync-client",
+      "repo": "mountain-sync-sucursal",
+      "sha": "540ab9a70e7befbca27a2f7eb88b87b25109e4d1",
+      "path": "app/Services/Sync/ClientesSyncService.js",
+      "start": 14,
+      "end": 144,
+      "label": "Transformar cliente y guardar empresas",
+      "url": "https://github.com/developer-implementos/mountain-sync-sucursal/blob/540ab9a70e7befbca27a2f7eb88b87b25109e4d1/app/Services/Sync/ClientesSyncService.js#L14-L144"
+    },
+    "sync-cron": {
+      "id": "sync-cron",
+      "repo": "mountain-sync-sucursal",
+      "sha": "540ab9a70e7befbca27a2f7eb88b87b25109e4d1",
+      "path": "start/cronHooks.js",
+      "start": 117,
+      "end": 151,
+      "label": "Búsqueda cada tres minutos, condiciones",
+      "url": "https://github.com/developer-implementos/mountain-sync-sucursal/blob/540ab9a70e7befbca27a2f7eb88b87b25109e4d1/start/cronHooks.js#L117-L151"
+    },
+    "prod-car": {
+      "id": "prod-car",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "CAR/PROD_E_Task_1.0.0.car",
+      "start": null,
+      "end": null,
+      "label": "Archivo CAR etiquetado PROD, inspección ZIP estática",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/CAR/PROD_E_Task_1.0.0.car"
+    },
+    "qa-car": {
+      "id": "qa-car",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "CAR/QA_E_Task_1.0.6.car",
+      "start": null,
+      "end": null,
+      "label": "Archivo CAR etiquetado QA, inspección ZIP estática",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/CAR/QA_E_Task_1.0.6.car"
+    },
+    "desa-car": {
+      "id": "desa-car",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "CAR/DESA_E_Task_1.0.3.car",
+      "start": null,
+      "end": null,
+      "label": "Archivo CAR etiquetado DESA, inspección ZIP estática",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/CAR/DESA_E_Task_1.0.3.car"
+    },
+    "task-articulos": {
+      "id": "task-articulos",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaArticulos.xml",
+      "start": 2,
+      "end": 3,
+      "label": "Trigger fuente Articulos",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaArticulos.xml#L2-L3"
+    },
+    "task-atributos": {
+      "id": "task-atributos",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaAtributos.xml",
+      "start": 2,
+      "end": 3,
+      "label": "Trigger fuente Atributos",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaAtributos.xml#L2-L3"
+    },
+    "task-bancos": {
+      "id": "task-bancos",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaBancos.xml",
+      "start": 2,
+      "end": 3,
+      "label": "Trigger fuente Bancos",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaBancos.xml#L2-L3"
+    },
+    "task-bodegas": {
+      "id": "task-bodegas",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaBodegas.xml",
+      "start": 2,
+      "end": 3,
+      "label": "Trigger fuente Bodegas",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaBodegas.xml#L2-L3"
+    },
+    "task-cajas": {
+      "id": "task-cajas",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaCajas.xml",
+      "start": 2,
+      "end": 3,
+      "label": "Trigger fuente Cajas",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaCajas.xml#L2-L3"
+    },
+    "task-clientes": {
+      "id": "task-clientes",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaClientes.xml",
+      "start": 2,
+      "end": 3,
+      "label": "Trigger fuente Clientes",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaClientes.xml#L2-L3"
+    },
+    "task-contactos": {
+      "id": "task-contactos",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaContactos.xml",
+      "start": 2,
+      "end": 3,
+      "label": "Trigger fuente Contactos",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaContactos.xml#L2-L3"
+    },
+    "task-direcciones": {
+      "id": "task-direcciones",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaDirecciones.xml",
+      "start": 2,
+      "end": 3,
+      "label": "Trigger fuente Direcciones",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaDirecciones.xml#L2-L3"
+    },
+    "task-empleados": {
+      "id": "task-empleados",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaEmpleados.xml",
+      "start": 2,
+      "end": 3,
+      "label": "Trigger fuente Empleados",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaEmpleados.xml#L2-L3"
+    },
+    "task-facturas": {
+      "id": "task-facturas",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaFacturas.xml",
+      "start": 2,
+      "end": 3,
+      "label": "Trigger fuente Facturas",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaFacturas.xml#L2-L3"
+    },
+    "task-motivodevolucionnc": {
+      "id": "task-motivodevolucionnc",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaMotivoDevolucionNC.xml",
+      "start": 2,
+      "end": 3,
+      "label": "Trigger fuente MotivoDevolucionNC",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaMotivoDevolucionNC.xml#L2-L3"
+    },
+    "task-plazabancos": {
+      "id": "task-plazabancos",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaPlazaBancos.xml",
+      "start": 2,
+      "end": 3,
+      "label": "Trigger fuente PlazaBancos",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaPlazaBancos.xml#L2-L3"
+    },
+    "task-precios": {
+      "id": "task-precios",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaPrecios.xml",
+      "start": 2,
+      "end": 3,
+      "label": "Trigger fuente Precios",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaPrecios.xml#L2-L3"
+    },
+    "task-saldos": {
+      "id": "task-saldos",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaSaldos.xml",
+      "start": 2,
+      "end": 3,
+      "label": "Trigger fuente Saldos",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaSaldos.xml#L2-L3"
+    },
+    "task-sucursales": {
+      "id": "task-sucursales",
+      "repo": "mountain-concentrador",
+      "sha": "b2fd1ec266d131abb54b7076d41acce30f045119",
+      "path": "ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaSucursales.xml",
+      "start": 2,
+      "end": 3,
+      "label": "Trigger fuente Sucursales",
+      "url": "https://github.com/developer-implementos/mountain-concentrador/blob/b2fd1ec266d131abb54b7076d41acce30f045119/ESBImplementos/src/main/synapse-config/tasks/Task_SincronizaSucursales.xml#L2-L3"
+    }
+  }
+}

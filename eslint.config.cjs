@@ -5,7 +5,7 @@ const nx = require('@nx/eslint-plugin');
 const posUi = require('./tools/eslint/pos-ui-contracts.cjs');
 
 module.exports = tseslint.config(
-  { ignores: ['dist/**', 'node_modules/**', '.nx/**', 'coverage/**', '**/target/**'] },
+  { ignores: ['dist/**', 'node_modules/**', '.nx/**', 'coverage/**', '**/target/**', 'apps/pos-docs/.astro/**'] },
   {
     files: ['**/*.ts'],
     extends: [eslint.configs.recommended, ...tseslint.configs.recommended, ...angular.configs.tsRecommended],
@@ -26,6 +26,7 @@ module.exports = tseslint.config(
           enforceBuildableLibDependency: false,
           allow: [],
           depConstraints: [
+            { sourceTag: 'type:docs', onlyDependOnLibsWithTags: [] },
             {
               sourceTag: 'type:app',
               onlyDependOnLibsWithTags: ['type:feature', 'type:domain', 'type:data-access', 'type:ui'],

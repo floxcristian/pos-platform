@@ -1,0 +1,6909 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "https://excalidraw.com",
+  "elements": [
+    {
+      "id": "sheet",
+      "type": "rectangle",
+      "x": 0,
+      "y": 0,
+      "width": 3316.351953125,
+      "height": 350,
+      "angle": 0,
+      "strokeColor": "#fff",
+      "backgroundColor": "#fff",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "a0",
+      "roundness": {
+        "type": 3
+      },
+      "seed": 2062606013,
+      "version": 2,
+      "versionNonce": 1220011069,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "kicker",
+      "type": "text",
+      "x": 64,
+      "y": 40,
+      "width": 459.9521484375,
+      "height": 23.75,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "a1",
+      "roundness": null,
+      "seed": 270481299,
+      "version": 2,
+      "versionNonce": 710232595,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "POS CORPORATIVO  /  02  /  C2 · CONTENEDORES",
+      "fontSize": 19,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "POS CORPORATIVO  /  02  /  C2 · CONTENEDORES",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "title",
+      "type": "text",
+      "x": 64,
+      "y": 85,
+      "width": 604.09765625,
+      "height": 55,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "a2",
+      "roundness": null,
+      "seed": 1849687837,
+      "version": 2,
+      "versionNonce": 1208636573,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "Aplicaciones, procesos y datos",
+      "fontSize": 44,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Aplicaciones, procesos y datos",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "scope",
+      "type": "text",
+      "x": 64,
+      "y": 152,
+      "width": 1528.81640625,
+      "height": 30,
+      "angle": 0,
+      "strokeColor": "#4C607D",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "a3",
+      "roundness": null,
+      "seed": 353946931,
+      "version": 2,
+      "versionNonce": 1407750067,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "Interior del POS corporativo: cliente, sucursal y plataforma de país. Un contenedor C4 es una aplicación o almacén, no necesariamente Docker.",
+      "fontSize": 24,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Interior del POS corporativo: cliente, sucursal y plataforma de país. Un contenedor C4 es una aplicación o almacén, no necesariamente Docker.",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "status",
+      "type": "text",
+      "x": 64,
+      "y": 230,
+      "width": 1020.8046875,
+      "height": 23.75,
+      "angle": 0,
+      "strokeColor": "#4C607D",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "a4",
+      "roundness": null,
+      "seed": 2139886461,
+      "version": 2,
+      "versionNonce": 678410493,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "ARQUITECTURA PROPUESTA · 05 OCT 2026 · Chile / Perú / España · No representa una implementación homologada",
+      "fontSize": 19,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "ARQUITECTURA PROPUESTA · 05 OCT 2026 · Chile / Perú / España · No representa una implementación homologada",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "key-0",
+      "type": "rectangle",
+      "x": 64,
+      "y": 290,
+      "width": 18,
+      "height": 18,
+      "angle": 0,
+      "strokeColor": "#163A73",
+      "backgroundColor": "#163A73",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "a5",
+      "roundness": {
+        "type": 3
+      },
+      "seed": 495890131,
+      "version": 2,
+      "versionNonce": 574759251,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "key-text-0",
+      "type": "text",
+      "x": 92,
+      "y": 285,
+      "width": 74.4921875,
+      "height": 25,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "a6",
+      "roundness": null,
+      "seed": 1259772893,
+      "version": 2,
+      "versionNonce": 862556509,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "Persona",
+      "fontSize": 20,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Persona",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "key-1",
+      "type": "rectangle",
+      "x": 254,
+      "y": 290,
+      "width": 18,
+      "height": 18,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "#0545BA",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "a7",
+      "roundness": {
+        "type": 3
+      },
+      "seed": 202857587,
+      "version": 2,
+      "versionNonce": 1052278515,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "key-text-1",
+      "type": "text",
+      "x": 282,
+      "y": 285,
+      "width": 126.71875,
+      "height": 25,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "a8",
+      "roundness": null,
+      "seed": 1760630845,
+      "version": 2,
+      "versionNonce": 105471421,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "Software POS",
+      "fontSize": 20,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Software POS",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "key-2",
+      "type": "rectangle",
+      "x": 456.71875,
+      "y": 290,
+      "width": 18,
+      "height": 18,
+      "angle": 0,
+      "strokeColor": "#6545A4",
+      "backgroundColor": "#6545A4",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "a9",
+      "roundness": {
+        "type": 3
+      },
+      "seed": 746149395,
+      "version": 2,
+      "versionNonce": 1674717331,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "key-text-2",
+      "type": "text",
+      "x": 484.71875,
+      "y": 285,
+      "width": 160.09765625,
+      "height": 25,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "aA",
+      "roundness": null,
+      "seed": 1929185437,
+      "version": 2,
+      "versionNonce": 405839389,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "Almacén de datos",
+      "fontSize": 20,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Almacén de datos",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "key-3",
+      "type": "rectangle",
+      "x": 692.81640625,
+      "y": 290,
+      "width": 18,
+      "height": 18,
+      "angle": 0,
+      "strokeColor": "#64748B",
+      "backgroundColor": "#64748B",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "aB",
+      "roundness": {
+        "type": 3
+      },
+      "seed": 229317555,
+      "version": 2,
+      "versionNonce": 927309363,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "key-text-3",
+      "type": "text",
+      "x": 720.81640625,
+      "y": 285,
+      "width": 144.51171875,
+      "height": 25,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "aC",
+      "roundness": null,
+      "seed": 1256975613,
+      "version": 2,
+      "versionNonce": 1102461,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "Sistema externo",
+      "fontSize": 20,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Sistema externo",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "key-4",
+      "type": "rectangle",
+      "x": 952.81640625,
+      "y": 290,
+      "width": 18,
+      "height": 18,
+      "angle": 0,
+      "strokeColor": "#946019",
+      "backgroundColor": "#946019",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "aD",
+      "roundness": {
+        "type": 3
+      },
+      "seed": 466824531,
+      "version": 2,
+      "versionNonce": 1677287379,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "key-text-4",
+      "type": "text",
+      "x": 980.81640625,
+      "y": 285,
+      "width": 230.1171875,
+      "height": 25,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "aE",
+      "roundness": null,
+      "seed": 541017437,
+      "version": 2,
+      "versionNonce": 2058058461,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "Infraestructura / condición",
+      "fontSize": 20,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Infraestructura / condición",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "legend-desc",
+      "type": "text",
+      "x": 64,
+      "y": 330,
+      "width": 1039.2666015625,
+      "height": 23.75,
+      "angle": 0,
+      "strokeColor": "#4C607D",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "aF",
+      "roundness": null,
+      "seed": 2051541747,
+      "version": 2,
+      "versionNonce": 1946414451,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "Flecha: iniciador → destino; texto: propósito y protocolo. Borde discontinuo: límite nombrado. Todo el contenido es editable.",
+      "fontSize": 19,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Flecha: iniciador → destino; texto: propósito y protocolo. Borde discontinuo: límite nombrado. Todo el contenido es editable.",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "reading-title",
+      "type": "text",
+      "x": 64,
+      "y": 2613.4458984375,
+      "width": 496.3125,
+      "height": 40,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "aG",
+      "roundness": null,
+      "seed": 910725565,
+      "version": 2,
+      "versionNonce": 814880573,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "Contratos que gobiernan esta vista",
+      "fontSize": 32,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Contratos que gobiernan esta vista",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-2677-0-bg",
+      "type": "rectangle",
+      "x": 64,
+      "y": 2677.4458984375,
+      "width": 1046.783984375,
+      "height": 219.25,
+      "angle": 0,
+      "strokeColor": "#CCD7E8",
+      "backgroundColor": "#F7F9FD",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-2677-0"
+      ],
+      "frameId": null,
+      "index": "aH",
+      "roundness": {
+        "type": 3
+      },
+      "seed": 495989907,
+      "version": 2,
+      "versionNonce": 1789642515,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "notes-2677-0-title",
+      "type": "text",
+      "x": 86,
+      "y": 2699.4458984375,
+      "width": 510.009765625,
+      "height": 31.25,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-2677-0"
+      ],
+      "frameId": null,
+      "index": "aI",
+      "roundness": null,
+      "seed": 1781092893,
+      "version": 2,
+      "versionNonce": 1009133469,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "PostgreSQL, con responsabilidades explícitas",
+      "fontSize": 25,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "PostgreSQL, con responsabilidades explícitas",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-2677-0-body",
+      "type": "text",
+      "x": 86,
+      "y": 2751.6958984375,
+      "width": 989.3447265625,
+      "height": 110,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-2677-0"
+      ],
+      "frameId": null,
+      "index": "aJ",
+      "roundness": null,
+      "seed": 627190323,
+      "version": 2,
+      "versionNonce": 510094515,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "Relaciones, restricciones, transacciones y outbox/inbox comparten un commit local. JSONB admite\npayloads variables. PostgreSQL de país conserva integración y proyecciones; no cambia la autoridad\nde ventas. MongoDB también soporta transacciones; una segunda base requiere una necesidad\nprobada.",
+      "fontSize": 22,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Relaciones, restricciones, transacciones y outbox/inbox comparten un commit local. JSONB admite\npayloads variables. PostgreSQL de país conserva integración y proyecciones; no cambia la autoridad\nde ventas. MongoDB también soporta transacciones; una segunda base requiere una necesidad\nprobada.",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-2677-1-bg",
+      "type": "rectangle",
+      "x": 1134.783984375,
+      "y": 2677.4458984375,
+      "width": 1046.783984375,
+      "height": 219.25,
+      "angle": 0,
+      "strokeColor": "#CCD7E8",
+      "backgroundColor": "#F7F9FD",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-2677-1"
+      ],
+      "frameId": null,
+      "index": "aK",
+      "roundness": {
+        "type": 3
+      },
+      "seed": 2027095677,
+      "version": 2,
+      "versionNonce": 1872309245,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "notes-2677-1-title",
+      "type": "text",
+      "x": 1156.783984375,
+      "y": 2699.4458984375,
+      "width": 408.58154296875,
+      "height": 31.25,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-2677-1"
+      ],
+      "frameId": null,
+      "index": "aL",
+      "roundness": null,
+      "seed": 1990486995,
+      "version": 2,
+      "versionNonce": 1390239315,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "Entrega durable y ACK de aplicación",
+      "fontSize": 25,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Entrega durable y ACK de aplicación",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-2677-1-body",
+      "type": "text",
+      "x": 1156.783984375,
+      "y": 2751.6958984375,
+      "width": 990.12890625,
+      "height": 82.5,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-2677-1"
+      ],
+      "frameId": null,
+      "index": "aM",
+      "roundness": null,
+      "seed": 84356829,
+      "version": 2,
+      "versionNonce": 1525458013,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "País confirma inbox + efecto/proyección local + outbox antes de acusar aplicación. Workers procesan\ndespués la outbox confirmada. Un ACK no certifica contabilización ERP, aceptación fiscal ni\nliquidación del pago.",
+      "fontSize": 22,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "País confirma inbox + efecto/proyección local + outbox antes de acusar aplicación. Workers procesan\ndespués la outbox confirmada. Un ACK no certifica contabilización ERP, aceptación fiscal ni\nliquidación del pago.",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-2677-2-bg",
+      "type": "rectangle",
+      "x": 2205.56796875,
+      "y": 2677.4458984375,
+      "width": 1046.783984375,
+      "height": 219.25,
+      "angle": 0,
+      "strokeColor": "#CCD7E8",
+      "backgroundColor": "#F7F9FD",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-2677-2"
+      ],
+      "frameId": null,
+      "index": "aN",
+      "roundness": {
+        "type": 3
+      },
+      "seed": 359496051,
+      "version": 2,
+      "versionNonce": 316939251,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "notes-2677-2-title",
+      "type": "text",
+      "x": 2227.56796875,
+      "y": 2699.4458984375,
+      "width": 330.7373046875,
+      "height": 31.25,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-2677-2"
+      ],
+      "frameId": null,
+      "index": "aO",
+      "roundness": null,
+      "seed": 1566001981,
+      "version": 2,
+      "versionNonce": 301076669,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "Autonomía y efectos externos",
+      "fontSize": 25,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Autonomía y efectos externos",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-2677-2-body",
+      "type": "text",
+      "x": 2227.56796875,
+      "y": 2751.6958984375,
+      "width": 991.826171875,
+      "height": 82.5,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-2677-2"
+      ],
+      "frameId": null,
+      "index": "aP",
+      "roundness": null,
+      "seed": 1057215251,
+      "version": 2,
+      "versionNonce": 1250043283,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "No se sostiene SQL abierto esperando un proveedor. Un pago incierto se consulta o concilia con su\nidentidad original. El puente es condicional según SDK y transporta autorización emitida por backend;\nno incorpora otra base de ventas.",
+      "fontSize": 22,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "No se sostiene SQL abierto esperando un proveedor. Un pago incierto se consulta o concilia con su\nidentidad original. El puente es condicional según SDK y transporta autorización emitida por backend;\nno incorpora otra base de ventas.",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "details-title",
+      "type": "text",
+      "x": 64,
+      "y": 2955.6958984375,
+      "width": 848.515625,
+      "height": 40,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "aQ",
+      "roundness": null,
+      "seed": 35969949,
+      "version": 2,
+      "versionNonce": 843772189,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "Responsabilidades, propiedad y comportamiento ante fallos",
+      "fontSize": 32,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Responsabilidades, propiedad y comportamiento ante fallos",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3031-0-bg",
+      "type": "rectangle",
+      "x": 64,
+      "y": 3030.6958984375,
+      "width": 779.08798828125,
+      "height": 439.25,
+      "angle": 0,
+      "strokeColor": "#CCD7E8",
+      "backgroundColor": "#F7F9FD",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3031-0"
+      ],
+      "frameId": null,
+      "index": "aR",
+      "roundness": {
+        "type": 3
+      },
+      "seed": 1138620595,
+      "version": 2,
+      "versionNonce": 552467251,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "notes-3031-0-title",
+      "type": "text",
+      "x": 86,
+      "y": 3052.6958984375,
+      "width": 73.64501953125,
+      "height": 31.25,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3031-0"
+      ],
+      "frameId": null,
+      "index": "aS",
+      "roundness": null,
+      "seed": 1805737981,
+      "version": 2,
+      "versionNonce": 694732157,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "Cajero",
+      "fontSize": 25,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Cajero",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3031-0-body",
+      "type": "text",
+      "x": 86,
+      "y": 3104.9458984375,
+      "width": 712.46484375,
+      "height": 247.5,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3031-0"
+      ],
+      "frameId": null,
+      "index": "aT",
+      "roundness": null,
+      "seed": 564292179,
+      "version": 2,
+      "versionNonce": 311303379,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "Persona · Operación humana\n\nUsa el cliente del puesto. Abrir o cerrar sesión de usuario no equivale a\nabrir o cerrar el turno de caja.\n\nAUTORIDAD · Ejecuta operaciones con permisos; no administra la base.\n\nCONTINUIDAD · Acceso local y operaciones habilitadas según vigencia,\npermisos y política offline.",
+      "fontSize": 22,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Persona · Operación humana\n\nUsa el cliente del puesto. Abrir o cerrar sesión de usuario no equivale a\nabrir o cerrar el turno de caja.\n\nAUTORIDAD · Ejecuta operaciones con permisos; no administra la base.\n\nCONTINUIDAD · Acceso local y operaciones habilitadas según vigencia,\npermisos y política offline.",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3031-1-bg",
+      "type": "rectangle",
+      "x": 867.08798828125,
+      "y": 3030.6958984375,
+      "width": 779.08798828125,
+      "height": 439.25,
+      "angle": 0,
+      "strokeColor": "#CCD7E8",
+      "backgroundColor": "#F7F9FD",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3031-1"
+      ],
+      "frameId": null,
+      "index": "aU",
+      "roundness": {
+        "type": 3
+      },
+      "seed": 265181277,
+      "version": 2,
+      "versionNonce": 982322653,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "notes-3031-1-title",
+      "type": "text",
+      "x": 889.08798828125,
+      "y": 3052.6958984375,
+      "width": 165.380859375,
+      "height": 31.25,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3031-1"
+      ],
+      "frameId": null,
+      "index": "aV",
+      "roundness": null,
+      "seed": 1562879987,
+      "version": 2,
+      "versionNonce": 1257835123,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "Cliente de caja",
+      "fontSize": 25,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Cliente de caja",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3031-1-body",
+      "type": "text",
+      "x": 889.08798828125,
+      "y": 3104.9458984375,
+      "width": 704.4189453125,
+      "height": 275,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3031-1"
+      ],
+      "frameId": null,
+      "index": "aW",
+      "roundness": null,
+      "seed": 679298237,
+      "version": 2,
+      "versionNonce": 1154042429,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "Contenedor · Angular + Tauri\n\nCliente instalado en cada puesto. Capacidades nativas por permisos; su\nregistro técnico de periféricos no lo convierte en autoridad de ventas.\nHardware y SDK requieren homologación.\n\nAUTORIDAD · No posee otra base de ventas ni credenciales SQL.\n\nCONTINUIDAD · Sin WAN usa la API por LAN. Sin LAN o backend, se\ndetienen nuevos comandos dependientes.",
+      "fontSize": 22,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Contenedor · Angular + Tauri\n\nCliente instalado en cada puesto. Capacidades nativas por permisos; su\nregistro técnico de periféricos no lo convierte en autoridad de ventas.\nHardware y SDK requieren homologación.\n\nAUTORIDAD · No posee otra base de ventas ni credenciales SQL.\n\nCONTINUIDAD · Sin WAN usa la API por LAN. Sin LAN o backend, se\ndetienen nuevos comandos dependientes.",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3031-2-bg",
+      "type": "rectangle",
+      "x": 1670.1759765625,
+      "y": 3030.6958984375,
+      "width": 779.08798828125,
+      "height": 439.25,
+      "angle": 0,
+      "strokeColor": "#CCD7E8",
+      "backgroundColor": "#F7F9FD",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3031-2"
+      ],
+      "frameId": null,
+      "index": "aX",
+      "roundness": {
+        "type": 3
+      },
+      "seed": 477376915,
+      "version": 2,
+      "versionNonce": 1056261139,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "notes-3031-2-title",
+      "type": "text",
+      "x": 1692.1759765625,
+      "y": 3052.6958984375,
+      "width": 236.2548828125,
+      "height": 31.25,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3031-2"
+      ],
+      "frameId": null,
+      "index": "aY",
+      "roundness": null,
+      "seed": 961520925,
+      "version": 2,
+      "versionNonce": 1224669853,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "Puente de periféricos",
+      "fontSize": 25,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Puente de periféricos",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3031-2-body",
+      "type": "text",
+      "x": 1692.1759765625,
+      "y": 3104.9458984375,
+      "width": 683.6650390625,
+      "height": 330,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3031-2"
+      ],
+      "frameId": null,
+      "index": "aZ",
+      "roundness": null,
+      "seed": 12486451,
+      "version": 2,
+      "versionNonce": 108612019,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "Contenedor condicional · Proceso nativo según SDK\n\nEl cliente transporta el comando autorizado por backend al agente; no\ninventa importe, permiso ni otro intento. Puede requerir .NET u otro\nruntime por contrato del proveedor. Se representa como límite por\nhomologar, no como SDK aprobado.\n\nAUTORIDAD · Ejecuta identidad y autorización emitidas por backend;\nregistro técnico de evidencia, sin base de ventas.\n\nCONTINUIDAD · Una caída de LAN tras un cobro exige recuperar\nevidencia; no autoriza otro cobro.",
+      "fontSize": 22,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Contenedor condicional · Proceso nativo según SDK\n\nEl cliente transporta el comando autorizado por backend al agente; no\ninventa importe, permiso ni otro intento. Puede requerir .NET u otro\nruntime por contrato del proveedor. Se representa como límite por\nhomologar, no como SDK aprobado.\n\nAUTORIDAD · Ejecuta identidad y autorización emitidas por backend;\nregistro técnico de evidencia, sin base de ventas.\n\nCONTINUIDAD · Una caída de LAN tras un cobro exige recuperar\nevidencia; no autoriza otro cobro.",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3031-3-bg",
+      "type": "rectangle",
+      "x": 2473.26396484375,
+      "y": 3030.6958984375,
+      "width": 779.08798828125,
+      "height": 439.25,
+      "angle": 0,
+      "strokeColor": "#CCD7E8",
+      "backgroundColor": "#F7F9FD",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3031-3"
+      ],
+      "frameId": null,
+      "index": "aa",
+      "roundness": {
+        "type": 3
+      },
+      "seed": 1438054781,
+      "version": 2,
+      "versionNonce": 803184381,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "notes-3031-3-title",
+      "type": "text",
+      "x": 2495.26396484375,
+      "y": 3052.6958984375,
+      "width": 232.080078125,
+      "height": 31.25,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3031-3"
+      ],
+      "frameId": null,
+      "index": "ab",
+      "roundness": null,
+      "seed": 1080895699,
+      "version": 2,
+      "versionNonce": 1990957907,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "Backend de sucursal",
+      "fontSize": 25,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Backend de sucursal",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3031-3-body",
+      "type": "text",
+      "x": 2495.26396484375,
+      "y": 3104.9458984375,
+      "width": 732.48828125,
+      "height": 302.5,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3031-3"
+      ],
+      "frameId": null,
+      "index": "ac",
+      "roundness": null,
+      "seed": 653574621,
+      "version": 2,
+      "versionNonce": 1340913501,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "Contenedor · NestJS + Fastify / Node.js\n\nMonolito modular: acceso, ventas, caja, precios/ofertas, pagos y fiscalidad.\nConfirma negocio y outbox en una misma transacción PostgreSQL. No hay\nun microservicio por módulo.\n\nAUTORIDAD · Única autoridad de escritura del negocio de sucursal;\nmódulos internos, un proceso.\n\nCONTINUIDAD · Opera por LAN con datos vigentes. Su caída exige\nrecuperación del escritor autorizado.",
+      "fontSize": 22,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Contenedor · NestJS + Fastify / Node.js\n\nMonolito modular: acceso, ventas, caja, precios/ofertas, pagos y fiscalidad.\nConfirma negocio y outbox en una misma transacción PostgreSQL. No hay\nun microservicio por módulo.\n\nAUTORIDAD · Única autoridad de escritura del negocio de sucursal;\nmódulos internos, un proceso.\n\nCONTINUIDAD · Opera por LAN con datos vigentes. Su caída exige\nrecuperación del escritor autorizado.",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3031-4-bg",
+      "type": "rectangle",
+      "x": 64,
+      "y": 3493.9458984375,
+      "width": 779.08798828125,
+      "height": 466.75,
+      "angle": 0,
+      "strokeColor": "#CCD7E8",
+      "backgroundColor": "#F7F9FD",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3031-4"
+      ],
+      "frameId": null,
+      "index": "ad",
+      "roundness": {
+        "type": 3
+      },
+      "seed": 18257523,
+      "version": 2,
+      "versionNonce": 2078456051,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "notes-3031-4-title",
+      "type": "text",
+      "x": 86,
+      "y": 3515.9458984375,
+      "width": 200.09765625,
+      "height": 31.25,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3031-4"
+      ],
+      "frameId": null,
+      "index": "ae",
+      "roundness": null,
+      "seed": 840597053,
+      "version": 2,
+      "versionNonce": 863486909,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "Datos de sucursal",
+      "fontSize": 25,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Datos de sucursal",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3031-4-body",
+      "type": "text",
+      "x": 86,
+      "y": 3568.1958984375,
+      "width": 723.9375,
+      "height": 357.5,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3031-4"
+      ],
+      "frameId": null,
+      "index": "af",
+      "roundness": null,
+      "seed": 1904300051,
+      "version": 2,
+      "versionNonce": 866460307,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "Contenedor de datos · PostgreSQL\n\nVentas, caja, pagos y evidencia fiscal son locales. Inbox, outbox, cursores\ny staging tienen restricciones y transacciones. Catálogo, precios y\npromociones son réplicas de lectura autorizadas, no maestros\nindependientes.\n\nAUTORIDAD · Base compartida por la tienda, un primario autorizado. API\nescribe negocio; worker escribe su esquema técnico y publica espejos por\nun contrato acotado.\n\nCONTINUIDAD · Persistencia local disponible sin WAN. No implica\nrespaldo, alta disponibilidad ni recuperación automática.",
+      "fontSize": 22,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Contenedor de datos · PostgreSQL\n\nVentas, caja, pagos y evidencia fiscal son locales. Inbox, outbox, cursores\ny staging tienen restricciones y transacciones. Catálogo, precios y\npromociones son réplicas de lectura autorizadas, no maestros\nindependientes.\n\nAUTORIDAD · Base compartida por la tienda, un primario autorizado. API\nescribe negocio; worker escribe su esquema técnico y publica espejos por\nun contrato acotado.\n\nCONTINUIDAD · Persistencia local disponible sin WAN. No implica\nrespaldo, alta disponibilidad ni recuperación automática.",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3031-5-bg",
+      "type": "rectangle",
+      "x": 867.08798828125,
+      "y": 3493.9458984375,
+      "width": 779.08798828125,
+      "height": 466.75,
+      "angle": 0,
+      "strokeColor": "#CCD7E8",
+      "backgroundColor": "#F7F9FD",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3031-5"
+      ],
+      "frameId": null,
+      "index": "ag",
+      "roundness": {
+        "type": 3
+      },
+      "seed": 1577692829,
+      "version": 2,
+      "versionNonce": 513950749,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "notes-3031-5-title",
+      "type": "text",
+      "x": 889.08798828125,
+      "y": 3515.9458984375,
+      "width": 287.646484375,
+      "height": 31.25,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3031-5"
+      ],
+      "frameId": null,
+      "index": "ah",
+      "roundness": null,
+      "seed": 597939635,
+      "version": 2,
+      "versionNonce": 1185503283,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "Sincronizador de sucursal",
+      "fontSize": 25,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Sincronizador de sucursal",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3031-5-body",
+      "type": "text",
+      "x": 889.08798828125,
+      "y": 3568.1958984375,
+      "width": 712.9375,
+      "height": 302.5,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3031-5"
+      ],
+      "frameId": null,
+      "index": "ai",
+      "roundness": null,
+      "seed": 963891965,
+      "version": 2,
+      "versionNonce": 1432205437,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "Contenedor · Worker TypeScript / Node.js\n\nEnvía lotes HTTPS desde outbox con identidad y cursor; procesa acuses\nposteriores a commit. Recibe deltas o carga snapshot por staging,\nwatermark, checksum y activación atómica.\n\nAUTORIDAD · Proceso supervisado; modifica datos técnicos y versiones\nde maestros, nunca venta libremente.\n\nCONTINUIDAD · Retiene pendientes durables y reanuda al recuperar\nWAN; limita reintentos y trabajo en curso.",
+      "fontSize": 22,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Contenedor · Worker TypeScript / Node.js\n\nEnvía lotes HTTPS desde outbox con identidad y cursor; procesa acuses\nposteriores a commit. Recibe deltas o carga snapshot por staging,\nwatermark, checksum y activación atómica.\n\nAUTORIDAD · Proceso supervisado; modifica datos técnicos y versiones\nde maestros, nunca venta libremente.\n\nCONTINUIDAD · Retiene pendientes durables y reanuda al recuperar\nWAN; limita reintentos y trabajo en curso.",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3031-6-bg",
+      "type": "rectangle",
+      "x": 1670.1759765625,
+      "y": 3493.9458984375,
+      "width": 779.08798828125,
+      "height": 466.75,
+      "angle": 0,
+      "strokeColor": "#CCD7E8",
+      "backgroundColor": "#F7F9FD",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3031-6"
+      ],
+      "frameId": null,
+      "index": "aj",
+      "roundness": {
+        "type": 3
+      },
+      "seed": 648324947,
+      "version": 2,
+      "versionNonce": 47569363,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "notes-3031-6-title",
+      "type": "text",
+      "x": 1692.1759765625,
+      "y": 3515.9458984375,
+      "width": 129.248046875,
+      "height": 31.25,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3031-6"
+      ],
+      "frameId": null,
+      "index": "ak",
+      "roundness": null,
+      "seed": 14314333,
+      "version": 2,
+      "versionNonce": 560701661,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "API de país",
+      "fontSize": 25,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "API de país",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3031-6-body",
+      "type": "text",
+      "x": 1692.1759765625,
+      "y": 3568.1958984375,
+      "width": 734.6044921875,
+      "height": 302.5,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3031-6"
+      ],
+      "frameId": null,
+      "index": "al",
+      "roundness": null,
+      "seed": 1624917235,
+      "version": 2,
+      "versionNonce": 893462387,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "Contenedor · NestJS + Fastify / Node.js\n\nValida identidad y contrato; aplica el efecto/proyección local junto con inbox\ny outbox en un único commit antes de acusar aplicación. No basta guardar\nla recepción. El ACK no declara éxito de ERP, pago ni fiscalidad.\n\nAUTORIDAD · Autentica sucursal y país; confirma inbox, efecto local y\noutbox juntos antes del ACK de aplicación.\n\nCONTINUIDAD · No participa en la transacción local de sucursal. Su caída\ngenera atraso de sincronización.",
+      "fontSize": 22,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Contenedor · NestJS + Fastify / Node.js\n\nValida identidad y contrato; aplica el efecto/proyección local junto con inbox\ny outbox en un único commit antes de acusar aplicación. No basta guardar\nla recepción. El ACK no declara éxito de ERP, pago ni fiscalidad.\n\nAUTORIDAD · Autentica sucursal y país; confirma inbox, efecto local y\noutbox juntos antes del ACK de aplicación.\n\nCONTINUIDAD · No participa en la transacción local de sucursal. Su caída\ngenera atraso de sincronización.",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3031-7-bg",
+      "type": "rectangle",
+      "x": 2473.26396484375,
+      "y": 3493.9458984375,
+      "width": 779.08798828125,
+      "height": 466.75,
+      "angle": 0,
+      "strokeColor": "#CCD7E8",
+      "backgroundColor": "#F7F9FD",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3031-7"
+      ],
+      "frameId": null,
+      "index": "am",
+      "roundness": {
+        "type": 3
+      },
+      "seed": 1687091133,
+      "version": 2,
+      "versionNonce": 408780093,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "notes-3031-7-title",
+      "type": "text",
+      "x": 2495.26396484375,
+      "y": 3515.9458984375,
+      "width": 181.55517578125,
+      "height": 31.25,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3031-7"
+      ],
+      "frameId": null,
+      "index": "an",
+      "roundness": null,
+      "seed": 701181587,
+      "version": 2,
+      "versionNonce": 1144111379,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "Workers de país",
+      "fontSize": 25,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Workers de país",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3031-7-body",
+      "type": "text",
+      "x": 2495.26396484375,
+      "y": 3568.1958984375,
+      "width": 729.6630859375,
+      "height": 330,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3031-7"
+      ],
+      "frameId": null,
+      "index": "ao",
+      "roundness": null,
+      "seed": 246609949,
+      "version": 2,
+      "versionNonce": 563400093,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "Contenedor · Workers NestJS / Node.js\n\nProcesa trabajo ya confirmado localmente para integración y conciliación;\nno difiere el efecto local requerido por el ACK de aplicación. Ingiere\nmaestros autorizados, construye candidatas desde deltas o snapshots y\nvalida su publicación.\n\nAUTORIDAD · Consume outbox confirmada por país; publica maestros y\nmantiene proyecciones derivadas.\n\nCONTINUIDAD · Avanza independientemente de tiendas desconectadas y\nlimita fallos del ERP por país.",
+      "fontSize": 22,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Contenedor · Workers NestJS / Node.js\n\nProcesa trabajo ya confirmado localmente para integración y conciliación;\nno difiere el efecto local requerido por el ACK de aplicación. Ingiere\nmaestros autorizados, construye candidatas desde deltas o snapshots y\nvalida su publicación.\n\nAUTORIDAD · Consume outbox confirmada por país; publica maestros y\nmantiene proyecciones derivadas.\n\nCONTINUIDAD · Avanza independientemente de tiendas desconectadas y\nlimita fallos del ERP por país.",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3031-8-bg",
+      "type": "rectangle",
+      "x": 64,
+      "y": 3984.6958984375,
+      "width": 779.08798828125,
+      "height": 439.25,
+      "angle": 0,
+      "strokeColor": "#CCD7E8",
+      "backgroundColor": "#F7F9FD",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3031-8"
+      ],
+      "frameId": null,
+      "index": "ap",
+      "roundness": {
+        "type": 3
+      },
+      "seed": 606987315,
+      "version": 2,
+      "versionNonce": 152970931,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "notes-3031-8-title",
+      "type": "text",
+      "x": 86,
+      "y": 4006.6958984375,
+      "width": 276.55029296875,
+      "height": 31.25,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3031-8"
+      ],
+      "frameId": null,
+      "index": "aq",
+      "roundness": null,
+      "seed": 1765272701,
+      "version": 2,
+      "versionNonce": 1011028477,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "Datos operativos de país",
+      "fontSize": 25,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Datos operativos de país",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3031-8-body",
+      "type": "text",
+      "x": 86,
+      "y": 4058.9458984375,
+      "width": 723.9482421875,
+      "height": 302.5,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3031-8"
+      ],
+      "frameId": null,
+      "index": "ar",
+      "roundness": null,
+      "seed": 1474880979,
+      "version": 2,
+      "versionNonce": 1789712467,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "Contenedor de datos · PostgreSQL\n\nAislamiento lógico y recursos por país/entidad legal. Retención, backups y\ndeduplicación deben cubrir el horizonte de replay y restauración. ACK de\naplicación local no equivale a contabilización ERP.\n\nAUTORIDAD · Proyección de operaciones de sucursal; inbox, outbox,\nversiones y resultados de integración.\n\nCONTINUIDAD · No sustituye la autoridad local ni habilita consumo\nconcurrente offline de saldos globales.",
+      "fontSize": 22,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Contenedor de datos · PostgreSQL\n\nAislamiento lógico y recursos por país/entidad legal. Retención, backups y\ndeduplicación deben cubrir el horizonte de replay y restauración. ACK de\naplicación local no equivale a contabilización ERP.\n\nAUTORIDAD · Proyección de operaciones de sucursal; inbox, outbox,\nversiones y resultados de integración.\n\nCONTINUIDAD · No sustituye la autoridad local ni habilita consumo\nconcurrente offline de saldos globales.",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3031-9-bg",
+      "type": "rectangle",
+      "x": 867.08798828125,
+      "y": 3984.6958984375,
+      "width": 779.08798828125,
+      "height": 439.25,
+      "angle": 0,
+      "strokeColor": "#CCD7E8",
+      "backgroundColor": "#F7F9FD",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3031-9"
+      ],
+      "frameId": null,
+      "index": "as",
+      "roundness": {
+        "type": 3
+      },
+      "seed": 601838813,
+      "version": 2,
+      "versionNonce": 90819165,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "notes-3031-9-title",
+      "type": "text",
+      "x": 889.08798828125,
+      "y": 4006.6958984375,
+      "width": 243.1884765625,
+      "height": 31.25,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3031-9"
+      ],
+      "frameId": null,
+      "index": "at",
+      "roundness": null,
+      "seed": 202552179,
+      "version": 2,
+      "versionNonce": 917788147,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "Adaptador ERP / ACL",
+      "fontSize": 25,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Adaptador ERP / ACL",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3031-9-body",
+      "type": "text",
+      "x": 889.08798828125,
+      "y": 4058.9458984375,
+      "width": 732.123046875,
+      "height": 330,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3031-9"
+      ],
+      "frameId": null,
+      "index": "au",
+      "roundness": null,
+      "seed": 2050666813,
+      "version": 2,
+      "versionNonce": 2111469245,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "Contenedor · Proceso TypeScript / Node.js\n\nACL significa capa anticorrupción. Instancia/adaptador por país y ERP.\nTraduce identidades, documentos, moneda, impuestos, estados y errores;\npreserva destino y versión durante un cambio de ERP. El protocolo externo\nse valida por integración.\n\nAUTORIDAD · Dueño del mapeo y referencias técnicas; ERP conserva su\nautoridad de negocio.\n\nCONTINUIDAD · Desacoplado de la caja; conserva incertidumbre si no\npuede consultar un resultado.",
+      "fontSize": 22,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Contenedor · Proceso TypeScript / Node.js\n\nACL significa capa anticorrupción. Instancia/adaptador por país y ERP.\nTraduce identidades, documentos, moneda, impuestos, estados y errores;\npreserva destino y versión durante un cambio de ERP. El protocolo externo\nse valida por integración.\n\nAUTORIDAD · Dueño del mapeo y referencias técnicas; ERP conserva su\nautoridad de negocio.\n\nCONTINUIDAD · Desacoplado de la caja; conserva incertidumbre si no\npuede consultar un resultado.",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3031-10-bg",
+      "type": "rectangle",
+      "x": 1670.1759765625,
+      "y": 3984.6958984375,
+      "width": 779.08798828125,
+      "height": 439.25,
+      "angle": 0,
+      "strokeColor": "#CCD7E8",
+      "backgroundColor": "#F7F9FD",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3031-10"
+      ],
+      "frameId": null,
+      "index": "av",
+      "roundness": {
+        "type": 3
+      },
+      "seed": 1626459411,
+      "version": 2,
+      "versionNonce": 1010507667,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "notes-3031-10-title",
+      "type": "text",
+      "x": 1692.1759765625,
+      "y": 4006.6958984375,
+      "width": 145.91064453125,
+      "height": 31.25,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3031-10"
+      ],
+      "frameId": null,
+      "index": "aw",
+      "roundness": null,
+      "seed": 967541149,
+      "version": 2,
+      "versionNonce": 272013085,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "ERP del país",
+      "fontSize": 25,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "ERP del país",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3031-10-body",
+      "type": "text",
+      "x": 1692.1759765625,
+      "y": 4058.9458984375,
+      "width": 729.99609375,
+      "height": 302.5,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3031-10"
+      ],
+      "frameId": null,
+      "index": "ax",
+      "roundness": null,
+      "seed": 704426675,
+      "version": 2,
+      "versionNonce": 628602163,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "Sistema externo · CL: AX · ES: Gira · PE: custom\n\nChile usa Dynamics AX on-premise. Gira en España y custom en Perú son\nantecedentes; versión, interfaces y capacidades deben confirmarse. No se\nafirma que exista el adaptador objetivo en producción.\n\nAUTORIDAD · Autoridad financiera según contrato de cada país; no la\nbase de ventas del POS.\n\nCONTINUIDAD · Su indisponibilidad deja integración pendiente; no\nrevierte una venta local confirmada.",
+      "fontSize": 22,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Sistema externo · CL: AX · ES: Gira · PE: custom\n\nChile usa Dynamics AX on-premise. Gira en España y custom en Perú son\nantecedentes; versión, interfaces y capacidades deben confirmarse. No se\nafirma que exista el adaptador objetivo en producción.\n\nAUTORIDAD · Autoridad financiera según contrato de cada país; no la\nbase de ventas del POS.\n\nCONTINUIDAD · Su indisponibilidad deja integración pendiente; no\nrevierte una venta local confirmada.",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3031-11-bg",
+      "type": "rectangle",
+      "x": 2473.26396484375,
+      "y": 3984.6958984375,
+      "width": 779.08798828125,
+      "height": 439.25,
+      "angle": 0,
+      "strokeColor": "#CCD7E8",
+      "backgroundColor": "#F7F9FD",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3031-11"
+      ],
+      "frameId": null,
+      "index": "ay",
+      "roundness": {
+        "type": 3
+      },
+      "seed": 123946493,
+      "version": 2,
+      "versionNonce": 1458547581,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "notes-3031-11-title",
+      "type": "text",
+      "x": 2495.26396484375,
+      "y": 4006.6958984375,
+      "width": 341.8212890625,
+      "height": 31.25,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3031-11"
+      ],
+      "frameId": null,
+      "index": "az",
+      "roundness": null,
+      "seed": 131720275,
+      "version": 2,
+      "versionNonce": 298882771,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "Fuentes de maestros y precios",
+      "fontSize": 25,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Fuentes de maestros y precios",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3031-11-body",
+      "type": "text",
+      "x": 2495.26396484375,
+      "y": 4058.9458984375,
+      "width": 721.080078125,
+      "height": 302.5,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3031-11"
+      ],
+      "frameId": null,
+      "index": "b00",
+      "roundness": null,
+      "seed": 1717796445,
+      "version": 2,
+      "versionNonce": 575091677,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "Sistema externo · Interfaces por confirmar\n\nCatálogo, impuestos, precios y promociones deben tener responsable,\ncontrato, versión y vigencia. La fuente de precios no se sustituye por una\ntabla editada libremente en cada caja.\n\nAUTORIDAD · Propietario por dato y país pendiente: no se asigna al ERP\npor defecto.\n\nCONTINUIDAD · Sin WAN se usa la versión local vigente dentro de la\npolítica autorizada.",
+      "fontSize": 22,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Sistema externo · Interfaces por confirmar\n\nCatálogo, impuestos, precios y promociones deben tener responsable,\ncontrato, versión y vigencia. La fuente de precios no se sustituye por una\ntabla editada libremente en cada caja.\n\nAUTORIDAD · Propietario por dato y país pendiente: no se asigna al ERP\npor defecto.\n\nCONTINUIDAD · Sin WAN se usa la versión local vigente dentro de la\npolítica autorizada.",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3031-12-bg",
+      "type": "rectangle",
+      "x": 64,
+      "y": 4447.9458984375,
+      "width": 779.08798828125,
+      "height": 411.75,
+      "angle": 0,
+      "strokeColor": "#CCD7E8",
+      "backgroundColor": "#F7F9FD",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3031-12"
+      ],
+      "frameId": null,
+      "index": "b01",
+      "roundness": {
+        "type": 3
+      },
+      "seed": 1113580019,
+      "version": 2,
+      "versionNonce": 1876706419,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "notes-3031-12-title",
+      "type": "text",
+      "x": 86,
+      "y": 4469.9458984375,
+      "width": 225.15869140625,
+      "height": 31.25,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3031-12"
+      ],
+      "frameId": null,
+      "index": "b02",
+      "roundness": null,
+      "seed": 2105387709,
+      "version": 2,
+      "versionNonce": 1045344317,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "Proveedor de pagos",
+      "fontSize": 25,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Proveedor de pagos",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3031-12-body",
+      "type": "text",
+      "x": 86,
+      "y": 4522.1958984375,
+      "width": 720.3173828125,
+      "height": 302.5,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3031-12"
+      ],
+      "frameId": null,
+      "index": "b03",
+      "roundness": null,
+      "seed": 1653943187,
+      "version": 2,
+      "versionNonce": 392248851,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "Sistema externo · API / SDK según proveedor\n\nPago, venta, documento fiscal e integración ERP tienen estados distintos.\nNo repetir un cargo incierto ni cambiar de proveedor para resolverlo\nautomáticamente.\n\nAUTORIDAD · El proveedor mantiene el efecto financiero; POS registra\nintento, referencia y resultado.\n\nCONTINUIDAD · Disponibilidad y modo offline por homologar. Un timeout\npuede dejar resultado desconocido.",
+      "fontSize": 22,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Sistema externo · API / SDK según proveedor\n\nPago, venta, documento fiscal e integración ERP tienen estados distintos.\nNo repetir un cargo incierto ni cambiar de proveedor para resolverlo\nautomáticamente.\n\nAUTORIDAD · El proveedor mantiene el efecto financiero; POS registra\nintento, referencia y resultado.\n\nCONTINUIDAD · Disponibilidad y modo offline por homologar. Un timeout\npuede dejar resultado desconocido.",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3031-13-bg",
+      "type": "rectangle",
+      "x": 867.08798828125,
+      "y": 4447.9458984375,
+      "width": 779.08798828125,
+      "height": 411.75,
+      "angle": 0,
+      "strokeColor": "#CCD7E8",
+      "backgroundColor": "#F7F9FD",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3031-13"
+      ],
+      "frameId": null,
+      "index": "b04",
+      "roundness": {
+        "type": 3
+      },
+      "seed": 491997981,
+      "version": 2,
+      "versionNonce": 2028445853,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "notes-3031-13-title",
+      "type": "text",
+      "x": 889.08798828125,
+      "y": 4469.9458984375,
+      "width": 179.248046875,
+      "height": 31.25,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3031-13"
+      ],
+      "frameId": null,
+      "index": "b05",
+      "roundness": null,
+      "seed": 212877619,
+      "version": 2,
+      "versionNonce": 592839603,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "Proveedor fiscal",
+      "fontSize": 25,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Proveedor fiscal",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3031-13-body",
+      "type": "text",
+      "x": 889.08798828125,
+      "y": 4522.1958984375,
+      "width": 734.9482421875,
+      "height": 275,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3031-13"
+      ],
+      "frameId": null,
+      "index": "b06",
+      "roundness": null,
+      "seed": 106291069,
+      "version": 2,
+      "versionNonce": 1740866813,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "Sistema externo · Contrato por país y modalidad\n\nEmisión, aceptación y transmisión se modelan por separado. No se inventa\nun proveedor común ni una capacidad de consulta o idempotencia no\nacreditada.\n\nAUTORIDAD · Autoridad y validez tributaria según régimen y proveedor.\n\nCONTINUIDAD · Emitir offline exige modalidad y material fiscal válidos; no\nse promete universalmente.",
+      "fontSize": 22,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Sistema externo · Contrato por país y modalidad\n\nEmisión, aceptación y transmisión se modelan por separado. No se inventa\nun proveedor común ni una capacidad de consulta o idempotencia no\nacreditada.\n\nAUTORIDAD · Autoridad y validez tributaria según régimen y proveedor.\n\nCONTINUIDAD · Emitir offline exige modalidad y material fiscal válidos; no\nse promete universalmente.",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "footer",
+      "type": "text",
+      "x": 64,
+      "y": 4918.6958984375,
+      "width": 1424.169921875,
+      "height": 25,
+      "angle": 0,
+      "strokeColor": "#4C607D",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b07",
+      "roundness": null,
+      "seed": 437756627,
+      "version": 2,
+      "versionNonce": 199300435,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "C4: contenedor = aplicación o almacén; componente = módulo dentro de un proceso. Despliegue y dinámicas son vistas complementarias, no el nivel de código.",
+      "fontSize": 20,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "C4: contenedor = aplicación o almacén; componente = módulo dentro de un proceso. Despliegue y dinámicas son vistas complementarias, no el nivel de código.",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "glossary",
+      "type": "text",
+      "x": 64,
+      "y": 4984.6958984375,
+      "width": 1681.240234375,
+      "height": 25,
+      "angle": 0,
+      "strokeColor": "#4C607D",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b08",
+      "roundness": null,
+      "seed": 1858529245,
+      "version": 2,
+      "versionNonce": 1852038493,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "LAN: red de tienda · WAN: enlace a país · ACK: acuse de aplicación durable · ACL: capa anticorrupción · outbox/inbox: registros de envío/recepción · watermark: corte consistente del origen",
+      "fontSize": 20,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "LAN: red de tienda · WAN: enlace a país · ACK: acuse de aplicación durable · ACL: capa anticorrupción · outbox/inbox: registros de envío/recepción · watermark: corte consistente del origen",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "sources",
+      "type": "text",
+      "x": 64,
+      "y": 5053.6958984375,
+      "width": 1482.6708984375,
+      "height": 67.5,
+      "angle": 0,
+      "strokeColor": "#4C607D",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b09",
+      "roundness": null,
+      "seed": 1935790195,
+      "version": 2,
+      "versionNonce": 5829363,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745263,
+      "link": null,
+      "locked": false,
+      "text": "FUENTES DEL REPOSITORIO\ndocs/c4-arquitectura-propuesta.md  ·  docs/propuesta-arquitectura.md  ·  docs/opciones-tecnologicas.md  ·  docs/operacion-caja-y-evolucion.md  ·  docs/revision-resiliencia-datos-pos.md\nAngular + Tauri y Nx: dirección elegida. Backend, bases, integración y topología: diseño por implementar y validar. Nx organiza código y CI; no es un proceso runtime.",
+      "fontSize": 18,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "FUENTES DEL REPOSITORIO\ndocs/c4-arquitectura-propuesta.md  ·  docs/propuesta-arquitectura.md  ·  docs/opciones-tecnologicas.md  ·  docs/operacion-caja-y-evolucion.md  ·  docs/revision-resiliencia-datos-pos.md\nAngular + Tauri y Nx: dirección elegida. Backend, bases, integración y topología: diseño por implementar y validar. Nx organiza código y CI; no es un proceso runtime.",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "systemScope",
+      "type": "rectangle",
+      "x": 529.84375,
+      "y": 430,
+      "width": 2263.470703125,
+      "height": 1891.0458984375,
+      "angle": 0,
+      "strokeColor": "#CCD7E8",
+      "backgroundColor": "#ffffff",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "dashed",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b090V",
+      "roundness": null,
+      "seed": 751441085,
+      "version": 3,
+      "versionNonce": 68823485,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "systemScope-title",
+      "type": "text",
+      "x": 547.84375,
+      "y": 444.39985380172726,
+      "width": 364.3857421875,
+      "height": 27.5,
+      "angle": 0,
+      "strokeColor": "#4C607D",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b091",
+      "roundness": null,
+      "seed": 1813799315,
+      "version": 3,
+      "versionNonce": 21240979,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "text": "Sistema POS corporativo · propuesta",
+      "fontSize": 22,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Sistema POS corporativo · propuesta",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "cashier",
+      "type": "rectangle",
+      "x": 2829.314526367187,
+      "y": 675.4,
+      "width": 403.157080078125,
+      "height": 120,
+      "angle": 0,
+      "strokeColor": "#163A73",
+      "backgroundColor": "#163A73",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b092",
+      "roundness": {
+        "type": 3
+      },
+      "seed": 998405405,
+      "version": 4,
+      "versionNonce": 973597213,
+      "isDeleted": false,
+      "boundElements": [
+        {
+          "type": "text",
+          "id": "XWvRyOyAn-Nq3nxxLz9OA"
+        },
+        {
+          "id": "cashier_client",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "c4NodeId": "cashier",
+        "type": "Persona"
+      }
+    },
+    {
+      "id": "client",
+      "type": "rectangle",
+      "x": 2122.2238281249997,
+      "y": 992.1999999999999,
+      "width": 379.16249999999997,
+      "height": 160.79999999999998,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "#EDF3FF",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b093",
+      "roundness": null,
+      "seed": 199276339,
+      "version": 6,
+      "versionNonce": 978915891,
+      "isDeleted": false,
+      "boundElements": [
+        {
+          "type": "text",
+          "id": "pIRVVOLX0fbG_XZXV9Qpm"
+        },
+        {
+          "id": "cashier_client",
+          "type": "arrow"
+        },
+        {
+          "id": "client_device",
+          "type": "arrow"
+        },
+        {
+          "id": "client_branchApi",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "c4NodeId": "client",
+        "type": "Contenedor"
+      }
+    },
+    {
+      "id": "device",
+      "type": "rectangle",
+      "x": 2354.095703125,
+      "y": 1368.9999999999998,
+      "width": 403.21875,
+      "height": 134.4,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "#EDF3FF",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b094",
+      "roundness": null,
+      "seed": 688900477,
+      "version": 5,
+      "versionNonce": 18783869,
+      "isDeleted": false,
+      "boundElements": [
+        {
+          "type": "text",
+          "id": "srCyE6LM9bl0_-anjDtZg"
+        },
+        {
+          "id": "client_device",
+          "type": "arrow"
+        },
+        {
+          "id": "device_payments",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "c4NodeId": "device",
+        "type": "Contenedor condicional"
+      }
+    },
+    {
+      "id": "branchApi",
+      "type": "rectangle",
+      "x": 1847.273828125,
+      "y": 1368.9999999999998,
+      "width": 441.2625,
+      "height": 134.4,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "#EDF3FF",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b094V",
+      "roundness": null,
+      "seed": 130635987,
+      "version": 7,
+      "versionNonce": 478041043,
+      "isDeleted": false,
+      "boundElements": [
+        {
+          "type": "text",
+          "id": "yR13gAti1BWIzSaj16oD5"
+        },
+        {
+          "id": "client_branchApi",
+          "type": "arrow"
+        },
+        {
+          "id": "branchApi_branchDb",
+          "type": "arrow"
+        },
+        {
+          "id": "branchApi_payments",
+          "type": "arrow"
+        },
+        {
+          "id": "branchApi_fiscal",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "c4NodeId": "branchApi",
+        "type": "Contenedor"
+      }
+    },
+    {
+      "id": "branchDb",
+      "type": "rectangle",
+      "x": 2133.764453125,
+      "y": 1692.9999542236328,
+      "width": 366.675,
+      "height": 210.27138061523436,
+      "angle": 0,
+      "strokeColor": "#6545A4",
+      "backgroundColor": "#F2EEFA",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b095",
+      "roundness": null,
+      "seed": 917737949,
+      "version": 5,
+      "versionNonce": 807388893,
+      "isDeleted": false,
+      "boundElements": [
+        {
+          "type": "text",
+          "id": "LDAGGs0yAklvJGcBZinJH"
+        },
+        {
+          "id": "branchApi_branchDb",
+          "type": "arrow"
+        },
+        {
+          "id": "syncWorker_branchDb",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "c4NodeId": "branchDb",
+        "type": "Contenedor de datos"
+      }
+    },
+    {
+      "id": "syncWorker",
+      "type": "rectangle",
+      "x": 1371.356640625,
+      "y": 1355.7999999999997,
+      "width": 356.7375,
+      "height": 160.79999999999998,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "#EDF3FF",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b096",
+      "roundness": null,
+      "seed": 1835845235,
+      "version": 5,
+      "versionNonce": 936010099,
+      "isDeleted": false,
+      "boundElements": [
+        {
+          "type": "text",
+          "id": "XBR-kzcfdpxFj08ktB_Ow"
+        },
+        {
+          "id": "syncWorker_branchDb",
+          "type": "arrow"
+        },
+        {
+          "id": "syncWorker_countryApi",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "c4NodeId": "syncWorker",
+        "type": "Contenedor"
+      }
+    },
+    {
+      "id": "countryApi",
+      "type": "rectangle",
+      "x": 1246.809765625,
+      "y": 1730.93564453125,
+      "width": 416.3625,
+      "height": 134.4,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "#EDF3FF",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b097",
+      "roundness": null,
+      "seed": 25120317,
+      "version": 5,
+      "versionNonce": 1235018557,
+      "isDeleted": false,
+      "boundElements": [
+        {
+          "type": "text",
+          "id": "VAhrz4pakUyZk5nPK6UCs"
+        },
+        {
+          "id": "syncWorker_countryApi",
+          "type": "arrow"
+        },
+        {
+          "id": "countryApi_countryDb",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "c4NodeId": "countryApi",
+        "type": "Contenedor"
+      }
+    },
+    {
+      "id": "countryWorker",
+      "type": "rectangle",
+      "x": 849.4767578125,
+      "y": 655,
+      "width": 345.80625,
+      "height": 160.79999999999998,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "#EDF3FF",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b098",
+      "roundness": null,
+      "seed": 1402044435,
+      "version": 6,
+      "versionNonce": 1434696467,
+      "isDeleted": false,
+      "boundElements": [
+        {
+          "type": "text",
+          "id": "KWGab880QEGXixKbbrwBQ"
+        },
+        {
+          "id": "countryWorker_countryDb",
+          "type": "arrow"
+        },
+        {
+          "id": "countryWorker_masters",
+          "type": "arrow"
+        },
+        {
+          "id": "countryWorker_erpAdapter",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "c4NodeId": "countryWorker",
+        "type": "Contenedor"
+      }
+    },
+    {
+      "id": "countryDb",
+      "type": "rectangle",
+      "x": 979.7787109374999,
+      "y": 2079.6713271917774,
+      "width": 331.95,
+      "height": 208.3745361328125,
+      "angle": 0,
+      "strokeColor": "#6545A4",
+      "backgroundColor": "#F2EEFA",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b098V",
+      "roundness": null,
+      "seed": 139755165,
+      "version": 6,
+      "versionNonce": 32994205,
+      "isDeleted": false,
+      "boundElements": [
+        {
+          "type": "text",
+          "id": "7oyR3Br6fiW8WS_sYLyy8"
+        },
+        {
+          "id": "countryApi_countryDb",
+          "type": "arrow"
+        },
+        {
+          "id": "countryWorker_countryDb",
+          "type": "arrow"
+        },
+        {
+          "id": "erpAdapter_countryDb",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "c4NodeId": "countryDb",
+        "type": "Contenedor de datos"
+      }
+    },
+    {
+      "id": "erpAdapter",
+      "type": "rectangle",
+      "x": 589.31875,
+      "y": 992.1999999999999,
+      "width": 366.675,
+      "height": 160.79999999999998,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "#EDF3FF",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b099",
+      "roundness": null,
+      "seed": 875431347,
+      "version": 6,
+      "versionNonce": 1377886387,
+      "isDeleted": false,
+      "boundElements": [
+        {
+          "type": "text",
+          "id": "-oppeNGKeiYlzwf-i8_BP"
+        },
+        {
+          "id": "countryWorker_erpAdapter",
+          "type": "arrow"
+        },
+        {
+          "id": "erpAdapter_countryDb",
+          "type": "arrow"
+        },
+        {
+          "id": "erpAdapter_erp",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "c4NodeId": "erpAdapter",
+        "type": "Contenedor"
+      }
+    },
+    {
+      "id": "erp",
+      "type": "rectangle",
+      "x": 105.4375,
+      "y": 1355.7999999999997,
+      "width": 388.40625,
+      "height": 160.79999999999998,
+      "angle": 0,
+      "strokeColor": "#64748B",
+      "backgroundColor": "#F1F5F9",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b09A",
+      "roundness": null,
+      "seed": 1910809341,
+      "version": 4,
+      "versionNonce": 90241021,
+      "isDeleted": false,
+      "boundElements": [
+        {
+          "type": "text",
+          "id": "iaUhwOIYSIwBbZk4Q8ISz"
+        },
+        {
+          "id": "erpAdapter_erp",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "c4NodeId": "erp",
+        "type": "Sistema externo"
+      }
+    },
+    {
+      "id": "masters",
+      "type": "rectangle",
+      "x": 64,
+      "y": 1005.4,
+      "width": 429.84375,
+      "height": 134.4,
+      "angle": 0,
+      "strokeColor": "#64748B",
+      "backgroundColor": "#F1F5F9",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b09B",
+      "roundness": null,
+      "seed": 107534163,
+      "version": 4,
+      "versionNonce": 927486547,
+      "isDeleted": false,
+      "boundElements": [
+        {
+          "type": "text",
+          "id": "vJajZ7a-baWDO71K5El2F"
+        },
+        {
+          "id": "countryWorker_masters",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "c4NodeId": "masters",
+        "type": "Sistema externo"
+      }
+    },
+    {
+      "id": "payments",
+      "type": "rectangle",
+      "x": 2829.314453125,
+      "y": 1717.7356445312503,
+      "width": 423.03749999999997,
+      "height": 160.79999999999998,
+      "angle": 0,
+      "strokeColor": "#64748B",
+      "backgroundColor": "#F1F5F9",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b09C",
+      "roundness": null,
+      "seed": 313604957,
+      "version": 5,
+      "versionNonce": 2111500381,
+      "isDeleted": false,
+      "boundElements": [
+        {
+          "type": "text",
+          "id": "MDQLUFN4aUj0j-nrkajwY"
+        },
+        {
+          "id": "device_payments",
+          "type": "arrow"
+        },
+        {
+          "id": "branchApi_payments",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "c4NodeId": "payments",
+        "type": "Sistema externo"
+      }
+    },
+    {
+      "id": "fiscal",
+      "type": "rectangle",
+      "x": 1649.569140625,
+      "y": 2387.0458984375,
+      "width": 381.76875,
+      "height": 160.79999999999998,
+      "angle": 0,
+      "strokeColor": "#64748B",
+      "backgroundColor": "#F1F5F9",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b09D",
+      "roundness": null,
+      "seed": 412644595,
+      "version": 4,
+      "versionNonce": 365989875,
+      "isDeleted": false,
+      "boundElements": [
+        {
+          "type": "text",
+          "id": "semBuQuGG__n0IYxIGE63"
+        },
+        {
+          "id": "branchApi_fiscal",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "c4NodeId": "fiscal",
+        "type": "Sistema externo"
+      }
+    },
+    {
+      "id": "cashier_client",
+      "type": "arrow",
+      "x": 2847.553906250009,
+      "y": 779.5092041015625,
+      "width": 535.248681640625,
+      "height": 207.3907958984375,
+      "angle": 0,
+      "strokeColor": "#48638C",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-cashier_client"
+      ],
+      "frameId": null,
+      "index": "b09E",
+      "roundness": null,
+      "seed": 856410045,
+      "version": 5,
+      "versionNonce": 1496767677,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "from": "cashier",
+        "to": "client",
+        "label": "Opera caja · interfaz local"
+      },
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          -24.9548828125,
+          5.433184814453125
+        ],
+        [
+          -50.409765625,
+          11.36636962890625
+        ],
+        [
+          -75.8646484375,
+          17.2995361328125
+        ],
+        [
+          -101.31923828125,
+          23.235009765624998
+        ],
+        [
+          -126.76826171875,
+          29.193206787109375
+        ],
+        [
+          -152.20380859374998,
+          35.208038330078125
+        ],
+        [
+          -177.62236328125,
+          41.29609375
+        ],
+        [
+          -203.0189453125,
+          47.47330322265625
+        ],
+        [
+          -228.3900390625,
+          53.75565185546875
+        ],
+        [
+          -253.73037109375,
+          60.1603515625
+        ],
+        [
+          -279.034375,
+          66.707177734375
+        ],
+        [
+          -304.2947265625,
+          73.4203369140625
+        ],
+        [
+          -329.50087890624997,
+          80.33363037109375
+        ],
+        [
+          -354.63876953125,
+          87.49158935546875
+        ],
+        [
+          -379.68715820312497,
+          94.956103515625
+        ],
+        [
+          -404.61337890625,
+          102.8187255859375
+        ],
+        [
+          -429.35634765624997,
+          111.23857421875
+        ],
+        [
+          -453.79169921875,
+          120.50997314453124
+        ],
+        [
+          -477.67392578125,
+          131.11778564453124
+        ],
+        [
+          -500.53662109375,
+          143.7567138671875
+        ],
+        [
+          -521.091162109375,
+          159.81488037109375
+        ],
+        [
+          -534.555419921875,
+          181.847265625
+        ],
+        [
+          -535.248681640625,
+          207.3907958984375
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": {
+        "elementId": "cashier",
+        "focus": -0.009271358748169227,
+        "gap": 14.046278489619926
+      },
+      "endBinding": {
+        "elementId": "client",
+        "focus": -0.020197885582810233,
+        "gap": 4.7999999999999545
+      },
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "elbowed": false
+    },
+    {
+      "id": "client_device",
+      "type": "arrow",
+      "x": 2420.168408203134,
+      "y": 1153.5,
+      "width": 135.51411132812498,
+      "height": 210.2,
+      "angle": 0,
+      "strokeColor": "#48638C",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-client_device"
+      ],
+      "frameId": null,
+      "index": "b09F",
+      "roundness": null,
+      "seed": 709058195,
+      "version": 5,
+      "versionNonce": 532683155,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "from": "client",
+        "to": "device",
+        "label": "Transporta comando autorizado por backend / recoge evidencia · IPC o loopback"
+      },
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          18.920312499999998,
+          13.975292968749999
+        ],
+        [
+          38.266943359375,
+          28.548364257812498
+        ],
+        [
+          57.193310546875,
+          43.6614501953125
+        ],
+        [
+          75.415966796875,
+          59.6137451171875
+        ],
+        [
+          92.582763671875,
+          76.69287109375
+        ],
+        [
+          108.05795898437499,
+          95.30810546875
+        ],
+        [
+          120.580322265625,
+          116.00341796875
+        ],
+        [
+          129.215576171875,
+          138.60009765625
+        ],
+        [
+          134.01118164062498,
+          162.317529296875
+        ],
+        [
+          135.51411132812498,
+          186.47858886718748
+        ],
+        [
+          135.036669921875,
+          210.2
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": {
+        "elementId": "client",
+        "focus": 0.000009248696910796584,
+        "gap": 1
+      },
+      "endBinding": {
+        "elementId": "device",
+        "focus": 0.00033250605292912207,
+        "gap": 4.799999999999841
+      },
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "elbowed": false
+    },
+    {
+      "id": "device_payments",
+      "type": "arrow",
+      "x": 2556.2050781250086,
+      "y": 1503.9,
+      "width": 278.29052734375,
+      "height": 211.55842285156248,
+      "angle": 0,
+      "strokeColor": "#48638C",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-device_payments"
+      ],
+      "frameId": null,
+      "index": "b09G",
+      "roundness": null,
+      "seed": 353749021,
+      "version": 5,
+      "versionNonce": 1326857501,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "from": "device",
+        "to": "payments",
+        "label": "Ejecuta terminal bancario si requiere agente · SDK/API homologado"
+      },
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          -0.36494140625000004,
+          24.604272460937498
+        ],
+        [
+          4.11220703125,
+          49.2192138671875
+        ],
+        [
+          15.465625,
+          71.52182617187499
+        ],
+        [
+          31.83642578125,
+          90.4980712890625
+        ],
+        [
+          51.24033203125,
+          106.3954345703125
+        ],
+        [
+          72.29658203125,
+          120.0556884765625
+        ],
+        [
+          94.17929687499999,
+          132.3572998046875
+        ],
+        [
+          116.54892578124999,
+          143.7533447265625
+        ],
+        [
+          139.2408203125,
+          154.4940185546875
+        ],
+        [
+          162.164453125,
+          164.730859375
+        ],
+        [
+          185.257421875,
+          174.58112792968748
+        ],
+        [
+          208.47783203125,
+          184.12685546875
+        ],
+        [
+          231.78056640625,
+          193.4701416015625
+        ],
+        [
+          255.1029296875,
+          202.7642822265625
+        ],
+        [
+          277.9255859375,
+          211.55842285156248
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": {
+        "elementId": "device",
+        "focus": 0.0017900083058100637,
+        "gap": 1
+      },
+      "endBinding": {
+        "elementId": "payments",
+        "focus": 0.000030121514248125513,
+        "gap": 1.7772216796877274
+      },
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "elbowed": false
+    },
+    {
+      "id": "client_branchApi",
+      "type": "arrow",
+      "x": 2203.4420410156335,
+      "y": 1153.5,
+      "width": 135.514404296875,
+      "height": 210.2,
+      "angle": 0,
+      "strokeColor": "#48638C",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-client_branchApi"
+      ],
+      "frameId": null,
+      "index": "b09GV",
+      "roundness": null,
+      "seed": 1176507443,
+      "version": 5,
+      "versionNonce": 38629171,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "from": "client",
+        "to": "branchApi",
+        "label": "Envía comandos / consulta estado · HTTPS sobre LAN"
+      },
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          -18.920312499999998,
+          13.975292968749999
+        ],
+        [
+          -38.26708984375,
+          28.548291015624997
+        ],
+        [
+          -57.193310546875,
+          43.6614501953125
+        ],
+        [
+          -75.415966796875,
+          59.6137451171875
+        ],
+        [
+          -92.583203125,
+          76.6925048828125
+        ],
+        [
+          -108.057666015625,
+          95.30832519531249
+        ],
+        [
+          -120.58046875,
+          116.00341796875
+        ],
+        [
+          -129.21572265625,
+          138.60009765625
+        ],
+        [
+          -134.011474609375,
+          162.31745605468748
+        ],
+        [
+          -135.514404296875,
+          186.47858886718748
+        ],
+        [
+          -135.03681640624998,
+          210.2
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": {
+        "elementId": "client",
+        "focus": -0.000010233640249235852,
+        "gap": 1
+      },
+      "endBinding": {
+        "elementId": "branchApi",
+        "focus": -0.00030121072233675985,
+        "gap": 4.799999999999841
+      },
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "elbowed": false
+    },
+    {
+      "id": "branchApi_branchDb",
+      "type": "arrow",
+      "x": 2167.7292480468836,
+      "y": 1503.9,
+      "width": 149.093359375,
+      "height": 183.79999999999998,
+      "angle": 0,
+      "strokeColor": "#48638C",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-branchApi_branchDb"
+      ],
+      "frameId": null,
+      "index": "b09H",
+      "roundness": null,
+      "seed": 985709693,
+      "version": 5,
+      "versionNonce": 652906877,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "from": "branchApi",
+        "to": "branchDb",
+        "label": "Confirma negocio + outbox · SQL/transacción"
+      },
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          20.357177734375,
+          13.610986328125
+        ],
+        [
+          41.16865234375,
+          27.789208984374998
+        ],
+        [
+          61.6919921875,
+          42.380078125
+        ],
+        [
+          81.723583984375,
+          57.637451171875
+        ],
+        [
+          100.98422851562499,
+          73.854150390625
+        ],
+        [
+          118.91289062499999,
+          91.52177734375
+        ],
+        [
+          134.06962890625,
+          111.5831787109375
+        ],
+        [
+          144.53359375,
+          134.4222900390625
+        ],
+        [
+          149.093359375,
+          159.1234375
+        ],
+        [
+          148.872705078125,
+          183.79999999999998
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": {
+        "elementId": "branchApi",
+        "focus": 0.000008934791384628264,
+        "gap": 1
+      },
+      "endBinding": {
+        "elementId": "branchDb",
+        "focus": 0.006611168615372387,
+        "gap": 4.799954223632994
+      },
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "elbowed": false
+    },
+    {
+      "id": "branchApi_payments",
+      "type": "arrow",
+      "x": 2068.4052246093834,
+      "y": 1503.9,
+      "width": 755.735693359375,
+      "height": 250.76840820312498,
+      "angle": 0,
+      "strokeColor": "#48638C",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-branchApi_payments"
+      ],
+      "frameId": null,
+      "index": "b09I",
+      "roundness": null,
+      "seed": 1544885715,
+      "version": 5,
+      "versionNonce": 2145325267,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "from": "branchApi",
+        "to": "payments",
+        "label": "Pago remoto directo si aplica · API HTTPS validada"
+      },
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          -0.03505859375000003,
+          25.40634765625
+        ],
+        [
+          10.868798828125,
+          48.5376220703125
+        ],
+        [
+          30.205908203125,
+          65.69892578125
+        ],
+        [
+          52.386865234375,
+          79.088037109375
+        ],
+        [
+          75.7802734375,
+          90.250439453125
+        ],
+        [
+          99.820703125,
+          99.9501220703125
+        ],
+        [
+          124.25766601562499,
+          108.6063232421875
+        ],
+        [
+          148.95551757812498,
+          116.4895263671875
+        ],
+        [
+          173.820947265625,
+          123.82846679687499
+        ],
+        [
+          198.79829101562498,
+          130.7777587890625
+        ],
+        [
+          223.857666015625,
+          137.4255859375
+        ],
+        [
+          248.98090820312498,
+          143.8279052734375
+        ],
+        [
+          274.15395507812497,
+          150.03173828125
+        ],
+        [
+          299.36757812499997,
+          156.0679931640625
+        ],
+        [
+          324.615478515625,
+          161.9601806640625
+        ],
+        [
+          349.89370117187497,
+          167.72060546875
+        ],
+        [
+          375.19448242187497,
+          173.38068847656248
+        ],
+        [
+          400.51796874999997,
+          178.93867187499998
+        ],
+        [
+          425.86005859375,
+          184.411181640625
+        ],
+        [
+          451.218701171875,
+          189.8068603515625
+        ],
+        [
+          476.59272460937495,
+          195.12958984374998
+        ],
+        [
+          501.979345703125,
+          200.3921142578125
+        ],
+        [
+          527.377685546875,
+          205.596044921875
+        ],
+        [
+          552.786865234375,
+          210.74892578125
+        ],
+        [
+          578.203369140625,
+          215.864892578125
+        ],
+        [
+          603.627197265625,
+          220.9435791015625
+        ],
+        [
+          629.055419921875,
+          226.0017578125
+        ],
+        [
+          654.484521484375,
+          231.05524902343748
+        ],
+        [
+          679.9136230468749,
+          236.1085205078125
+        ],
+        [
+          705.342431640625,
+          241.1617919921875
+        ],
+        [
+          730.7715332031249,
+          246.21513671875
+        ],
+        [
+          755.700634765625,
+          250.76840820312498
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": {
+        "elementId": "branchApi",
+        "focus": 0.0054359318996140315,
+        "gap": 1
+      },
+      "endBinding": {
+        "elementId": "payments",
+        "focus": -0.000011965801908294332,
+        "gap": 4.708593749991451
+      },
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "elbowed": false
+    },
+    {
+      "id": "branchApi_fiscal",
+      "type": "arrow",
+      "x": 1977.2488281250087,
+      "y": 1503.9,
+      "width": 136.795166015625,
+      "height": 877.846337890625,
+      "angle": 0,
+      "strokeColor": "#48638C",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-branchApi_fiscal"
+      ],
+      "frameId": null,
+      "index": "b09J",
+      "roundness": null,
+      "seed": 1808671965,
+      "version": 5,
+      "versionNonce": 1039489501,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "from": "branchApi",
+        "to": "fiscal",
+        "label": "Emisión / estado fiscal · puerto por país"
+      },
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          -20.754638671875,
+          14.883496093749999
+        ],
+        [
+          -41.324853515625,
+          30.5102294921875
+        ],
+        [
+          -61.002099609374994,
+          47.2415283203125
+        ],
+        [
+          -79.29287109375,
+          65.47348632812499
+        ],
+        [
+          -95.677734375,
+          85.429931640625
+        ],
+        [
+          -109.490185546875,
+          107.237939453125
+        ],
+        [
+          -119.96748046875,
+          130.824853515625
+        ],
+        [
+          -127.15927734374999,
+          155.6220947265625
+        ],
+        [
+          -131.79814453125,
+          181.0281982421875
+        ],
+        [
+          -134.567431640625,
+          206.7093994140625
+        ],
+        [
+          -136.03315429687498,
+          232.5000244140625
+        ],
+        [
+          -136.647509765625,
+          258.326171875
+        ],
+        [
+          -136.790625,
+          284.15986328125
+        ],
+        [
+          -136.795166015625,
+          309.994140625
+        ],
+        [
+          -136.795166015625,
+          335.82827148437497
+        ],
+        [
+          -136.795166015625,
+          361.66240234375
+        ],
+        [
+          -136.795166015625,
+          387.4966796875
+        ],
+        [
+          -136.795166015625,
+          413.330810546875
+        ],
+        [
+          -136.795166015625,
+          439.165087890625
+        ],
+        [
+          -136.795166015625,
+          464.99921874999995
+        ],
+        [
+          -136.795166015625,
+          490.83349609375
+        ],
+        [
+          -136.795166015625,
+          516.667626953125
+        ],
+        [
+          -136.795166015625,
+          542.5017578124999
+        ],
+        [
+          -136.795166015625,
+          568.33603515625
+        ],
+        [
+          -136.795166015625,
+          594.1703125
+        ],
+        [
+          -136.795166015625,
+          620.004296875
+        ],
+        [
+          -136.795166015625,
+          645.83857421875
+        ],
+        [
+          -136.795166015625,
+          671.6728515625
+        ],
+        [
+          -136.795166015625,
+          697.506982421875
+        ],
+        [
+          -136.795166015625,
+          723.3411132812499
+        ],
+        [
+          -136.795166015625,
+          749.175390625
+        ],
+        [
+          -136.795166015625,
+          775.00966796875
+        ],
+        [
+          -136.795166015625,
+          800.84365234375
+        ],
+        [
+          -136.795166015625,
+          826.6779296875
+        ],
+        [
+          -136.795166015625,
+          852.51220703125
+        ],
+        [
+          -136.795166015625,
+          877.846337890625
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": {
+        "elementId": "branchApi",
+        "focus": -0.00002122685797763942,
+        "gap": 1
+      },
+      "endBinding": {
+        "elementId": "fiscal",
+        "focus": 7.673985014883631e-7,
+        "gap": 4.799560546875227
+      },
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "elbowed": false
+    },
+    {
+      "id": "syncWorker_branchDb",
+      "type": "arrow",
+      "x": 1624.7327636718837,
+      "y": 1517.1,
+      "width": 503.95522460937497,
+      "height": 221.08759765624998,
+      "angle": 0,
+      "strokeColor": "#48638C",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-syncWorker_branchDb"
+      ],
+      "frameId": null,
+      "index": "b09K",
+      "roundness": null,
+      "seed": 456713075,
+      "version": 5,
+      "versionNonce": 1242267251,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "from": "syncWorker",
+        "to": "branchDb",
+        "label": "Lee outbox / escribe inbox, cursores y espejo · SQL"
+      },
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          16.75,
+          18.08212890625
+        ],
+        [
+          35.174365234374996,
+          35.47890625
+        ],
+        [
+          55.387890625,
+          50.768798828125
+        ],
+        [
+          76.788232421875,
+          64.356396484375
+        ],
+        [
+          98.973876953125,
+          76.6245361328125
+        ],
+        [
+          121.70737304687499,
+          87.8477294921875
+        ],
+        [
+          144.841796875,
+          98.2205810546875
+        ],
+        [
+          168.258056640625,
+          107.94208984375
+        ],
+        [
+          191.8603515625,
+          117.20371093749999
+        ],
+        [
+          215.59287109375,
+          126.126953125
+        ],
+        [
+          239.423388671875,
+          134.7851318359375
+        ],
+        [
+          263.33154296875,
+          143.2265869140625
+        ],
+        [
+          287.300341796875,
+          151.4938720703125
+        ],
+        [
+          311.31953125,
+          159.61445312499998
+        ],
+        [
+          335.38295898437497,
+          167.602392578125
+        ],
+        [
+          359.481396484375,
+          175.48427734375
+        ],
+        [
+          383.61147460937497,
+          183.26874999999998
+        ],
+        [
+          407.7642578125,
+          190.98291015625
+        ],
+        [
+          431.93359375,
+          198.6451416015625
+        ],
+        [
+          456.10732421874997,
+          206.29279785156248
+        ],
+        [
+          480.28134765625,
+          213.940234375
+        ],
+        [
+          503.95522460937497,
+          221.08759765624998
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": {
+        "elementId": "syncWorker",
+        "focus": 0.0005092960166510999,
+        "gap": 1
+      },
+      "endBinding": {
+        "elementId": "branchDb",
+        "focus": 0.000011009138109861835,
+        "gap": 4.576464843741178
+      },
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "elbowed": false
+    },
+    {
+      "id": "syncWorker_countryApi",
+      "type": "arrow",
+      "x": 1504.0496093750087,
+      "y": 1517.1,
+      "width": 49.05654296875,
+      "height": 208.5355712890625,
+      "angle": 0,
+      "strokeColor": "#48638C",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-syncWorker_countryApi"
+      ],
+      "frameId": null,
+      "index": "b09L",
+      "roundness": null,
+      "seed": 2077196605,
+      "version": 5,
+      "versionNonce": 1296569917,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "from": "syncWorker",
+        "to": "countryApi",
+        "label": "Envía lotes / consulta deltas y acuses · HTTPS + cursor"
+      },
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          -11.41005859375,
+          20.7441162109375
+        ],
+        [
+          -22.546240234375,
+          42.3994873046875
+        ],
+        [
+          -32.063916015625,
+          64.8101318359375
+        ],
+        [
+          -39.4908203125,
+          87.99399414062499
+        ],
+        [
+          -44.406103515625,
+          111.8365966796875
+        ],
+        [
+          -47.264306640625,
+          136.0181640625
+        ],
+        [
+          -48.672021484375,
+          160.3298095703125
+        ],
+        [
+          -49.05654296875,
+          184.68056640625
+        ],
+        [
+          -48.558740234375,
+          208.5355712890625
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": {
+        "elementId": "syncWorker",
+        "focus": 0.0004531075380971562,
+        "gap": 1
+      },
+      "endBinding": {
+        "elementId": "countryApi",
+        "focus": -0.00003190494184874338,
+        "gap": 4.800073242187864
+      },
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "elbowed": false
+    },
+    {
+      "id": "countryApi_countryDb",
+      "type": "arrow",
+      "x": 1454.4908691406338,
+      "y": 1865.8356445312497,
+      "width": 138.94067382812497,
+      "height": 232.007568359375,
+      "angle": 0,
+      "strokeColor": "#48638C",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-countryApi_countryDb"
+      ],
+      "frameId": null,
+      "index": "b09M",
+      "roundness": null,
+      "seed": 198311187,
+      "version": 5,
+      "versionNonce": 463026195,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "from": "countryApi",
+        "to": "countryDb",
+        "label": "Commit inbox + efecto + outbox antes del ACK de aplicación · SQL"
+      },
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0.48857421875,
+          25.676025390625
+        ],
+        [
+          -0.73076171875,
+          51.813671875
+        ],
+        [
+          -4.930908203125,
+          77.63125
+        ],
+        [
+          -12.829785156249999,
+          102.558056640625
+        ],
+        [
+          -24.817626953125,
+          125.78828125
+        ],
+        [
+          -40.413232421875,
+          146.78623046875
+        ],
+        [
+          -58.218994140625,
+          165.961328125
+        ],
+        [
+          -77.403759765625,
+          183.76313476562498
+        ],
+        [
+          -97.50830078125,
+          200.52241210937498
+        ],
+        [
+          -118.17563476562499,
+          216.58515624999998
+        ],
+        [
+          -138.45209960937498,
+          232.007568359375
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": {
+        "elementId": "countryApi",
+        "focus": -0.00014017624396571937,
+        "gap": 1
+      },
+      "endBinding": {
+        "elementId": "countryDb",
+        "focus": 0.19276261497268718,
+        "gap": 3.8100585937588676
+      },
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "elbowed": false
+    },
+    {
+      "id": "countryWorker_countryDb",
+      "type": "arrow",
+      "x": 1092.5216064453211,
+      "y": 816.3,
+      "width": 77.994775390625,
+      "height": 1258.1779296875,
+      "angle": 0,
+      "strokeColor": "#48638C",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-countryWorker_countryDb"
+      ],
+      "frameId": null,
+      "index": "b09N",
+      "roundness": null,
+      "seed": 1344688541,
+      "version": 5,
+      "versionNonce": 1875134109,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "from": "countryWorker",
+        "to": "countryDb",
+        "label": "Consume outbox confirmada / publica versiones · SQL"
+      },
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          17.73447265625,
+          19.1468505859375
+        ],
+        [
+          34.0158447265625,
+          39.57958984375
+        ],
+        [
+          48.1177490234375,
+          61.56656494140625
+        ],
+        [
+          59.446191406249994,
+          85.09832763671875
+        ],
+        [
+          67.5179931640625,
+          109.933544921875
+        ],
+        [
+          72.550537109375,
+          135.56831054687498
+        ],
+        [
+          75.4947998046875,
+          161.5321533203125
+        ],
+        [
+          77.06613769531249,
+          187.61776123046874
+        ],
+        [
+          77.769482421875,
+          213.74237060546875
+        ],
+        [
+          77.9759521484375,
+          239.87617187499998
+        ],
+        [
+          77.994775390625,
+          266.01103515625
+        ],
+        [
+          77.994775390625,
+          292.14586181640624
+        ],
+        [
+          77.994775390625,
+          318.2806884765625
+        ],
+        [
+          77.994775390625,
+          344.41555175781247
+        ],
+        [
+          77.994775390625,
+          370.550341796875
+        ],
+        [
+          77.994775390625,
+          396.68520507812497
+        ],
+        [
+          77.994775390625,
+          422.820068359375
+        ],
+        [
+          77.994775390625,
+          448.954931640625
+        ],
+        [
+          77.994775390625,
+          475.0897216796875
+        ],
+        [
+          77.994775390625,
+          501.22451171874997
+        ],
+        [
+          77.994775390625,
+          527.359375
+        ],
+        [
+          77.994775390625,
+          553.49423828125
+        ],
+        [
+          77.994775390625,
+          579.6291015625
+        ],
+        [
+          77.994775390625,
+          605.7638916015625
+        ],
+        [
+          77.994775390625,
+          631.8987548828125
+        ],
+        [
+          77.994775390625,
+          658.033544921875
+        ],
+        [
+          77.994775390625,
+          684.168408203125
+        ],
+        [
+          77.994775390625,
+          710.3032714843749
+        ],
+        [
+          77.994775390625,
+          736.4380615234375
+        ],
+        [
+          77.994775390625,
+          762.5729248046874
+        ],
+        [
+          77.994775390625,
+          788.7077880859375
+        ],
+        [
+          77.994775390625,
+          814.8425781249999
+        ],
+        [
+          77.994775390625,
+          840.97744140625
+        ],
+        [
+          77.994775390625,
+          867.1123046875
+        ],
+        [
+          77.994775390625,
+          893.2470947265625
+        ],
+        [
+          77.994775390625,
+          919.3819580078125
+        ],
+        [
+          77.994775390625,
+          945.5167480468749
+        ],
+        [
+          77.994775390625,
+          971.651611328125
+        ],
+        [
+          77.9925048828125,
+          997.786474609375
+        ],
+        [
+          77.97294921875,
+          1023.921337890625
+        ],
+        [
+          77.9116455078125,
+          1050.0560546875
+        ],
+        [
+          77.7711669921875,
+          1076.190478515625
+        ],
+        [
+          77.5014892578125,
+          1102.323876953125
+        ],
+        [
+          77.04833984375,
+          1128.454638671875
+        ],
+        [
+          76.28940429687499,
+          1154.578076171875
+        ],
+        [
+          75.0456787109375,
+          1180.682763671875
+        ],
+        [
+          73.17177734375,
+          1206.74951171875
+        ],
+        [
+          70.53505859375,
+          1232.74990234375
+        ],
+        [
+          67.7547607421875,
+          1258.1779296875
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": {
+        "elementId": "countryWorker",
+        "focus": -0.0004674785244882426,
+        "gap": 1
+      },
+      "endBinding": {
+        "elementId": "countryDb",
+        "focus": 0.0013818228122937717,
+        "gap": 4.693397504277755
+      },
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "elbowed": false
+    },
+    {
+      "id": "countryWorker_masters",
+      "type": "arrow",
+      "x": 849.4767578125,
+      "y": 735.9,
+      "width": 570.5548828125,
+      "height": 269.5,
+      "angle": 0,
+      "strokeColor": "#48638C",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-countryWorker_masters"
+      ],
+      "frameId": null,
+      "index": "b09O",
+      "roundness": null,
+      "seed": 1767301811,
+      "version": 5,
+      "versionNonce": 310295987,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "from": "countryWorker",
+        "to": "masters",
+        "label": "Obtiene cambios o carga masiva · contrato de origen por validar"
+      },
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          -570.5548828125,
+          -0.5
+        ],
+        [
+          -570.5548828125,
+          269
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": {
+        "elementId": "countryWorker",
+        "focus": 0,
+        "gap": 1
+      },
+      "endBinding": {
+        "elementId": "masters",
+        "focus": 0,
+        "gap": 1
+      },
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "elbowed": false
+    },
+    {
+      "id": "countryWorker_erpAdapter",
+      "type": "arrow",
+      "x": 902.7943847656337,
+      "y": 816.3,
+      "width": 129.87702636718748,
+      "height": 170.6,
+      "angle": 0,
+      "strokeColor": "#48638C",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-countryWorker_erpAdapter"
+      ],
+      "frameId": null,
+      "index": "b09OV",
+      "roundness": null,
+      "seed": 637801981,
+      "version": 5,
+      "versionNonce": 1746627325,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "from": "countryWorker",
+        "to": "erpAdapter",
+        "label": "Entrega operación / consulta resultado · HTTPS interno"
+      },
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          -20.602685546874998,
+          13.7475830078125
+        ],
+        [
+          -41.59521484375,
+          28.156005859375
+        ],
+        [
+          -62.109033203124994,
+          43.235949707031246
+        ],
+        [
+          -81.808544921875,
+          59.361169433593744
+        ],
+        [
+          -100.09177246093749,
+          77.06446533203125
+        ],
+        [
+          -115.4187255859375,
+          97.33841552734374
+        ],
+        [
+          -125.614697265625,
+          120.5979736328125
+        ],
+        [
+          -129.87702636718748,
+          145.64273681640626
+        ],
+        [
+          -129.63798828125,
+          170.6
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": {
+        "elementId": "countryWorker",
+        "focus": 0.000005913424212832339,
+        "gap": 1
+      },
+      "endBinding": {
+        "elementId": "erpAdapter",
+        "focus": -0.004741687186816154,
+        "gap": 4.7999999999999545
+      },
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "elbowed": false
+    },
+    {
+      "id": "erpAdapter_countryDb",
+      "type": "arrow",
+      "x": 830.3819824218837,
+      "y": 1153.5,
+      "width": 179.26044921874998,
+      "height": 930.669189453125,
+      "angle": 0,
+      "strokeColor": "#48638C",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-erpAdapter_countryDb"
+      ],
+      "frameId": null,
+      "index": "b09P",
+      "roundness": null,
+      "seed": 1013847123,
+      "version": 5,
+      "versionNonce": 1239584595,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "from": "erpAdapter",
+        "to": "countryDb",
+        "label": "Guarda referencias y resultados de integración · SQL"
+      },
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          14.5079833984375,
+          20.602392578125
+        ],
+        [
+          28.7740966796875,
+          42.207080078124996
+        ],
+        [
+          41.25537109375,
+          64.8858642578125
+        ],
+        [
+          51.558203125,
+          88.631640625
+        ],
+        [
+          59.3859619140625,
+          113.3025390625
+        ],
+        [
+          64.6614501953125,
+          138.6452880859375
+        ],
+        [
+          68.00070800781249,
+          164.31982421875
+        ],
+        [
+          69.9986083984375,
+          190.13564453125
+        ],
+        [
+          71.0740234375,
+          216.007421875
+        ],
+        [
+          71.5443115234375,
+          241.89780273437498
+        ],
+        [
+          71.66538085937499,
+          267.792431640625
+        ],
+        [
+          71.67160644531249,
+          293.6875
+        ],
+        [
+          71.67160644531249,
+          319.5824951171875
+        ],
+        [
+          71.67160644531249,
+          345.477490234375
+        ],
+        [
+          71.67160644531249,
+          371.37255859375
+        ],
+        [
+          71.67160644531249,
+          397.267626953125
+        ],
+        [
+          71.67160644531249,
+          423.1626953125
+        ],
+        [
+          71.67160644531249,
+          449.0576904296875
+        ],
+        [
+          71.67160644531249,
+          474.952685546875
+        ],
+        [
+          71.67160644531249,
+          500.84775390625
+        ],
+        [
+          71.67160644531249,
+          526.742822265625
+        ],
+        [
+          71.67160644531249,
+          552.6378173828125
+        ],
+        [
+          71.67160644531249,
+          578.5328125
+        ],
+        [
+          71.67160644531249,
+          604.427880859375
+        ],
+        [
+          71.67160644531249,
+          630.32294921875
+        ],
+        [
+          71.6758544921875,
+          656.218017578125
+        ],
+        [
+          71.8059326171875,
+          682.1125
+        ],
+        [
+          72.324853515625,
+          708.00185546875
+        ],
+        [
+          73.548876953125,
+          733.8667480468749
+        ],
+        [
+          75.862451171875,
+          759.6553222656249
+        ],
+        [
+          79.77197265625,
+          785.2474609375
+        ],
+        [
+          85.9658447265625,
+          810.377880859375
+        ],
+        [
+          95.3077392578125,
+          834.504296875
+        ],
+        [
+          107.9817138671875,
+          857.062890625
+        ],
+        [
+          123.41765136718749,
+          877.835400390625
+        ],
+        [
+          141.0151123046875,
+          896.818017578125
+        ],
+        [
+          160.1506591796875,
+          914.257421875
+        ],
+        [
+          179.26044921874998,
+          930.669189453125
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": {
+        "elementId": "erpAdapter",
+        "focus": -0.0001887509742668364,
+        "gap": 1
+      },
+      "endBinding": {
+        "elementId": "countryDb",
+        "focus": -0.07182298985830847,
+        "gap": 4.997862261347336
+      },
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "elbowed": false
+    },
+    {
+      "id": "erpAdapter_erp",
+      "type": "arrow",
+      "x": 742.7156005859462,
+      "y": 1153.5,
+      "width": 258.44598388671875,
+      "height": 199.84040527343748,
+      "angle": 0,
+      "strokeColor": "#48638C",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-erpAdapter_erp"
+      ],
+      "frameId": null,
+      "index": "b09Q",
+      "roundness": null,
+      "seed": 409620061,
+      "version": 5,
+      "versionNonce": 651101021,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "from": "erpAdapter",
+        "to": "erp",
+        "label": "Traduce y concilia · protocolo disponible por confirmar"
+      },
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          -8.568115234375,
+          24.058984374999998
+        ],
+        [
+          -19.889672851562498,
+          47.6348388671875
+        ],
+        [
+          -34.8227294921875,
+          69.105126953125
+        ],
+        [
+          -52.777026367187496,
+          88.1297119140625
+        ],
+        [
+          -73.01010742187499,
+          104.7200927734375
+        ],
+        [
+          -94.73037109375,
+          119.32561035156249
+        ],
+        [
+          -117.26864013671874,
+          132.6408935546875
+        ],
+        [
+          -140.31334228515624,
+          145.0615234375
+        ],
+        [
+          -163.70264892578123,
+          156.8215087890625
+        ],
+        [
+          -187.34064941406248,
+          168.074072265625
+        ],
+        [
+          -211.15325927734375,
+          178.9526611328125
+        ],
+        [
+          -235.04764404296873,
+          189.650927734375
+        ],
+        [
+          -258.44598388671875,
+          199.84040527343748
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": {
+        "elementId": "erpAdapter",
+        "focus": -0.0011552770527783745,
+        "gap": 1
+      },
+      "endBinding": {
+        "elementId": "erp",
+        "focus": -0.000003718234766297929,
+        "gap": 1.9595947265623863
+      },
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "elbowed": false
+    },
+    {
+      "id": "label-bg-cashier_client",
+      "type": "rectangle",
+      "x": 2195.673828125,
+      "y": 872.5998698234558,
+      "width": 205.62006835937498,
+      "height": 62.8,
+      "angle": 0,
+      "strokeColor": "#fff",
+      "backgroundColor": "#fff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-cashier_client"
+      ],
+      "frameId": null,
+      "index": "b09R",
+      "roundness": null,
+      "seed": 888017395,
+      "version": 3,
+      "versionNonce": 874196211,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "label-cashier_client",
+      "type": "text",
+      "x": 2200.673828125,
+      "y": 877.5998698234558,
+      "width": 195.68650817871094,
+      "height": 52.8,
+      "angle": 0,
+      "strokeColor": "#4C607D",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-cashier_client"
+      ],
+      "frameId": null,
+      "index": "b09S",
+      "roundness": null,
+      "seed": 1714059965,
+      "version": 3,
+      "versionNonce": 271617981,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "relationshipIndex": 0
+      },
+      "text": "Opera caja · interfaz\nlocal",
+      "fontSize": 21.6,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Opera caja · interfaz\nlocal",
+      "autoResize": true,
+      "lineHeight": 1.222222222222222
+    },
+    {
+      "id": "label-bg-client_device",
+      "type": "rectangle",
+      "x": 2438.017578125,
+      "y": 1183.3998698234557,
+      "width": 208.41385498046876,
+      "height": 142,
+      "angle": 0,
+      "strokeColor": "#fff",
+      "backgroundColor": "#fff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-client_device"
+      ],
+      "frameId": null,
+      "index": "b09T",
+      "roundness": null,
+      "seed": 1138580371,
+      "version": 3,
+      "versionNonce": 883889811,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "label-client_device",
+      "type": "text",
+      "x": 2443.017578125,
+      "y": 1188.3998698234557,
+      "width": 198.50254821777344,
+      "height": 132,
+      "angle": 0,
+      "strokeColor": "#4C607D",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-client_device"
+      ],
+      "frameId": null,
+      "index": "b09U",
+      "roundness": null,
+      "seed": 2011568925,
+      "version": 3,
+      "versionNonce": 39948317,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "relationshipIndex": 1
+      },
+      "text": "Transporta comando\nautorizado por\nbackend / recoge\nevidencia · IPC o\nloopback",
+      "fontSize": 21.6,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Transporta comando\nautorizado por\nbackend / recoge\nevidencia · IPC o\nloopback",
+      "autoResize": true,
+      "lineHeight": 1.222222222222222
+    },
+    {
+      "id": "label-bg-device_payments",
+      "type": "rectangle",
+      "x": 2442.9113281249997,
+      "y": 1546.9998698234558,
+      "width": 199.63878173828124,
+      "height": 115.6,
+      "angle": 0,
+      "strokeColor": "#fff",
+      "backgroundColor": "#fff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-device_payments"
+      ],
+      "frameId": null,
+      "index": "b09UV",
+      "roundness": null,
+      "seed": 1970434355,
+      "version": 3,
+      "versionNonce": 2052377651,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "label-device_payments",
+      "type": "text",
+      "x": 2447.9113281249997,
+      "y": 1551.9998698234558,
+      "width": 189.70645141601562,
+      "height": 105.6,
+      "angle": 0,
+      "strokeColor": "#4C607D",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-device_payments"
+      ],
+      "frameId": null,
+      "index": "b09V",
+      "roundness": null,
+      "seed": 638496637,
+      "version": 3,
+      "versionNonce": 458458237,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "relationshipIndex": 2
+      },
+      "text": "Ejecuta terminal\nbancario si requiere\nagente · SDK/API\nhomologado",
+      "fontSize": 21.6,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Ejecuta terminal\nbancario si requiere\nagente · SDK/API\nhomologado",
+      "autoResize": true,
+      "lineHeight": 1.222222222222222
+    },
+    {
+      "id": "label-bg-client_branchApi",
+      "type": "rectangle",
+      "x": 1961.130078125,
+      "y": 1209.7998698234558,
+      "width": 188.76370849609376,
+      "height": 89.2,
+      "angle": 0,
+      "strokeColor": "#fff",
+      "backgroundColor": "#fff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-client_branchApi"
+      ],
+      "frameId": null,
+      "index": "b09VV",
+      "roundness": null,
+      "seed": 185848531,
+      "version": 3,
+      "versionNonce": 418565587,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "label-client_branchApi",
+      "type": "text",
+      "x": 1966.130078125,
+      "y": 1214.7998698234558,
+      "width": 178.85377502441406,
+      "height": 79.19999999999999,
+      "angle": 0,
+      "strokeColor": "#4C607D",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-client_branchApi"
+      ],
+      "frameId": null,
+      "index": "b09W",
+      "roundness": null,
+      "seed": 1055242205,
+      "version": 3,
+      "versionNonce": 1053289693,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "relationshipIndex": 3
+      },
+      "text": "Envía comandos /\nconsulta estado ·\nHTTPS sobre LAN",
+      "fontSize": 21.6,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Envía comandos /\nconsulta estado ·\nHTTPS sobre LAN",
+      "autoResize": true,
+      "lineHeight": 1.222222222222222
+    },
+    {
+      "id": "label-bg-branchApi_branchDb",
+      "type": "rectangle",
+      "x": 2205.292578125,
+      "y": 1560.1998698234556,
+      "width": 197.83878173828126,
+      "height": 89.2,
+      "angle": 0,
+      "strokeColor": "#fff",
+      "backgroundColor": "#fff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-branchApi_branchDb"
+      ],
+      "frameId": null,
+      "index": "b09X",
+      "roundness": null,
+      "seed": 1431830643,
+      "version": 3,
+      "versionNonce": 1671404403,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "label-branchApi_branchDb",
+      "type": "text",
+      "x": 2210.292578125,
+      "y": 1565.1998698234556,
+      "width": 187.9029541015625,
+      "height": 79.19999999999999,
+      "angle": 0,
+      "strokeColor": "#4C607D",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-branchApi_branchDb"
+      ],
+      "frameId": null,
+      "index": "b09Y",
+      "roundness": null,
+      "seed": 1283241021,
+      "version": 3,
+      "versionNonce": 1548765501,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "relationshipIndex": 4
+      },
+      "text": "Confirma negocio +\noutbox ·\nSQL/transacción",
+      "fontSize": 21.6,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Confirma negocio +\noutbox ·\nSQL/transacción",
+      "autoResize": true,
+      "lineHeight": 1.222222222222222
+    },
+    {
+      "id": "label-bg-branchApi_payments",
+      "type": "rectangle",
+      "x": 1943.3175699710846,
+      "y": 1560.1998698234556,
+      "width": 218.80140991210936,
+      "height": 89.2,
+      "angle": 0,
+      "strokeColor": "#fff",
+      "backgroundColor": "#fff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-branchApi_payments"
+      ],
+      "frameId": null,
+      "index": "b09Z",
+      "roundness": null,
+      "seed": 1308981779,
+      "version": 3,
+      "versionNonce": 111260947,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "label-branchApi_payments",
+      "type": "text",
+      "x": 1948.3175699710846,
+      "y": 1565.1998698234556,
+      "width": 208.84906005859375,
+      "height": 79.19999999999999,
+      "angle": 0,
+      "strokeColor": "#4C607D",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-branchApi_payments"
+      ],
+      "frameId": null,
+      "index": "b09a",
+      "roundness": null,
+      "seed": 448079005,
+      "version": 3,
+      "versionNonce": 1968052637,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "relationshipIndex": 5
+      },
+      "text": "Pago remoto directo\nsi aplica · API HTTPS\nvalidada",
+      "fontSize": 21.6,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Pago remoto directo\nsi aplica · API HTTPS\nvalidada",
+      "autoResize": true,
+      "lineHeight": 1.222222222222222
+    },
+    {
+      "id": "label-bg-branchApi_fiscal",
+      "type": "rectangle",
+      "x": 1713.653515625,
+      "y": 1960.0713053703312,
+      "width": 224.80146484374998,
+      "height": 62.8,
+      "angle": 0,
+      "strokeColor": "#fff",
+      "backgroundColor": "#fff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-branchApi_fiscal"
+      ],
+      "frameId": null,
+      "index": "b09b",
+      "roundness": null,
+      "seed": 1913831347,
+      "version": 3,
+      "versionNonce": 1634704051,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "label-branchApi_fiscal",
+      "type": "text",
+      "x": 1718.653515625,
+      "y": 1965.0713053703312,
+      "width": 214.89236450195312,
+      "height": 52.8,
+      "angle": 0,
+      "strokeColor": "#4C607D",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-branchApi_fiscal"
+      ],
+      "frameId": null,
+      "index": "b09c",
+      "roundness": null,
+      "seed": 2101381373,
+      "version": 3,
+      "versionNonce": 1660083709,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "relationshipIndex": 6
+      },
+      "text": "Emisión / estado fiscal\n· puerto por país",
+      "fontSize": 21.6,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Emisión / estado fiscal\n· puerto por país",
+      "autoResize": true,
+      "lineHeight": 1.222222222222222
+    },
+    {
+      "id": "label-bg-syncWorker_branchDb",
+      "type": "rectangle",
+      "x": 1747.057666015625,
+      "y": 1705.7326823234557,
+      "width": 204.438818359375,
+      "height": 89.2,
+      "angle": 0,
+      "strokeColor": "#fff",
+      "backgroundColor": "#fff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-syncWorker_branchDb"
+      ],
+      "frameId": null,
+      "index": "b09d",
+      "roundness": null,
+      "seed": 1537626451,
+      "version": 3,
+      "versionNonce": 548392019,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "label-syncWorker_branchDb",
+      "type": "text",
+      "x": 1752.057666015625,
+      "y": 1710.7326823234557,
+      "width": 194.52633666992188,
+      "height": 79.19999999999999,
+      "angle": 0,
+      "strokeColor": "#4C607D",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-syncWorker_branchDb"
+      ],
+      "frameId": null,
+      "index": "b09dV",
+      "roundness": null,
+      "seed": 1436574045,
+      "version": 3,
+      "versionNonce": 1547703901,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "relationshipIndex": 7
+      },
+      "text": "Lee outbox / escribe\ninbox, cursores y\nespejo · SQL",
+      "fontSize": 21.6,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Lee outbox / escribe\ninbox, cursores y\nespejo · SQL",
+      "autoResize": true,
+      "lineHeight": 1.222222222222222
+    },
+    {
+      "id": "label-bg-syncWorker_countryApi",
+      "type": "rectangle",
+      "x": 1333.497265625,
+      "y": 1560.1998698234556,
+      "width": 215.2388916015625,
+      "height": 89.2,
+      "angle": 0,
+      "strokeColor": "#fff",
+      "backgroundColor": "#fff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-syncWorker_countryApi"
+      ],
+      "frameId": null,
+      "index": "b09e",
+      "roundness": null,
+      "seed": 471248627,
+      "version": 3,
+      "versionNonce": 406374899,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "label-syncWorker_countryApi",
+      "type": "text",
+      "x": 1338.497265625,
+      "y": 1565.1998698234556,
+      "width": 205.31578063964844,
+      "height": 79.19999999999999,
+      "angle": 0,
+      "strokeColor": "#4C607D",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-syncWorker_countryApi"
+      ],
+      "frameId": null,
+      "index": "b09f",
+      "roundness": null,
+      "seed": 1495674301,
+      "version": 3,
+      "versionNonce": 1007108797,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "relationshipIndex": 8
+      },
+      "text": "Envía lotes / consulta\ndeltas y acuses ·\nHTTPS + cursor",
+      "fontSize": 21.6,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Envía lotes / consulta\ndeltas y acuses ·\nHTTPS + cursor",
+      "autoResize": true,
+      "lineHeight": 1.222222222222222
+    },
+    {
+      "id": "label-bg-countryApi_countryDb",
+      "type": "rectangle",
+      "x": 1326.0535074710933,
+      "y": 1933.6713053703306,
+      "width": 226.62021484375,
+      "height": 115.6,
+      "angle": 0,
+      "strokeColor": "#fff",
+      "backgroundColor": "#fff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-countryApi_countryDb"
+      ],
+      "frameId": null,
+      "index": "b09g",
+      "roundness": null,
+      "seed": 1441421459,
+      "version": 3,
+      "versionNonce": 1561400211,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "label-countryApi_countryDb",
+      "type": "text",
+      "x": 1331.0535074710933,
+      "y": 1938.6713053703306,
+      "width": 215.49354553222656,
+      "height": 105.6,
+      "angle": 0,
+      "strokeColor": "#4C607D",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-countryApi_countryDb"
+      ],
+      "frameId": null,
+      "index": "b09h",
+      "roundness": null,
+      "seed": 385052189,
+      "version": 3,
+      "versionNonce": 115991325,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "relationshipIndex": 9
+      },
+      "text": "Commit inbox + efecto\n+ outbox antes del\nACK de aplicación ·\nSQL",
+      "fontSize": 21.6,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Commit inbox + efecto\n+ outbox antes del\nACK de aplicación ·\nSQL",
+      "autoResize": true,
+      "lineHeight": 1.222222222222222
+    },
+    {
+      "id": "label-bg-countryWorker_countryDb",
+      "type": "rectangle",
+      "x": 1053.9160074710844,
+      "y": 1391.5998698234557,
+      "width": 204.420068359375,
+      "height": 89.2,
+      "angle": 0,
+      "strokeColor": "#fff",
+      "backgroundColor": "#fff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-countryWorker_countryDb"
+      ],
+      "frameId": null,
+      "index": "b09i",
+      "roundness": null,
+      "seed": 383241779,
+      "version": 3,
+      "versionNonce": 527378739,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "label-countryWorker_countryDb",
+      "type": "text",
+      "x": 1058.9160074710844,
+      "y": 1396.5998698234557,
+      "width": 193.3029327392578,
+      "height": 79.19999999999999,
+      "angle": 0,
+      "strokeColor": "#4C607D",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-countryWorker_countryDb"
+      ],
+      "frameId": null,
+      "index": "b09j",
+      "roundness": null,
+      "seed": 1039770237,
+      "version": 3,
+      "versionNonce": 827946877,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "relationshipIndex": 10
+      },
+      "text": "Consume outbox\nconfirmada / publica\nversiones · SQL",
+      "fontSize": 21.6,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Consume outbox\nconfirmada / publica\nversiones · SQL",
+      "autoResize": true,
+      "lineHeight": 1.222222222222222
+    },
+    {
+      "id": "label-bg-countryWorker_masters",
+      "type": "rectangle",
+      "x": 453.19931640625,
+      "y": 602.4,
+      "width": 223.66793212890624,
+      "height": 115.6,
+      "angle": 0,
+      "strokeColor": "#fff",
+      "backgroundColor": "#fff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-countryWorker_masters"
+      ],
+      "frameId": null,
+      "index": "b09k",
+      "roundness": null,
+      "seed": 1908772819,
+      "version": 3,
+      "versionNonce": 1153010387,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "label-countryWorker_masters",
+      "type": "text",
+      "x": 458.19931640625,
+      "y": 607.4,
+      "width": 211.33804321289062,
+      "height": 105.6,
+      "angle": 0,
+      "strokeColor": "#4C607D",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-countryWorker_masters"
+      ],
+      "frameId": null,
+      "index": "b09l",
+      "roundness": null,
+      "seed": 586828509,
+      "version": 3,
+      "versionNonce": 630685661,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "relationshipIndex": 11
+      },
+      "text": "Obtiene cambios o\ncarga masiva ·\ncontrato de origen por\nvalidar",
+      "fontSize": 21.6,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Obtiene cambios o\ncarga masiva ·\ncontrato de origen por\nvalidar",
+      "autoResize": true,
+      "lineHeight": 1.222222222222222
+    },
+    {
+      "id": "label-bg-countryWorker_erpAdapter",
+      "type": "rectangle",
+      "x": 660.2410156249999,
+      "y": 859.3998698234558,
+      "width": 199.63660278320313,
+      "height": 89.2,
+      "angle": 0,
+      "strokeColor": "#fff",
+      "backgroundColor": "#fff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-countryWorker_erpAdapter"
+      ],
+      "frameId": null,
+      "index": "b09lV",
+      "roundness": null,
+      "seed": 1489640819,
+      "version": 3,
+      "versionNonce": 1099348083,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "label-countryWorker_erpAdapter",
+      "type": "text",
+      "x": 665.2410156249999,
+      "y": 864.3998698234558,
+      "width": 188.5251922607422,
+      "height": 79.19999999999999,
+      "angle": 0,
+      "strokeColor": "#4C607D",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-countryWorker_erpAdapter"
+      ],
+      "frameId": null,
+      "index": "b09m",
+      "roundness": null,
+      "seed": 109504317,
+      "version": 3,
+      "versionNonce": 162888765,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "relationshipIndex": 12
+      },
+      "text": "Entrega operación /\nconsulta resultado ·\nHTTPS interno",
+      "fontSize": 21.6,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Entrega operación /\nconsulta resultado ·\nHTTPS interno",
+      "autoResize": true,
+      "lineHeight": 1.222222222222222
+    },
+    {
+      "id": "label-bg-erpAdapter_countryDb",
+      "type": "rectangle",
+      "x": 781.98828125,
+      "y": 1560.1998698234556,
+      "width": 212.81796264648438,
+      "height": 89.2,
+      "angle": 0,
+      "strokeColor": "#fff",
+      "backgroundColor": "#fff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-erpAdapter_countryDb"
+      ],
+      "frameId": null,
+      "index": "b09n",
+      "roundness": null,
+      "seed": 925628179,
+      "version": 3,
+      "versionNonce": 865939987,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "label-erpAdapter_countryDb",
+      "type": "text",
+      "x": 786.98828125,
+      "y": 1565.1998698234556,
+      "width": 201.69822692871094,
+      "height": 79.19999999999999,
+      "angle": 0,
+      "strokeColor": "#4C607D",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-erpAdapter_countryDb"
+      ],
+      "frameId": null,
+      "index": "b09o",
+      "roundness": null,
+      "seed": 453048221,
+      "version": 3,
+      "versionNonce": 1167387805,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "relationshipIndex": 13
+      },
+      "text": "Guarda referencias y\nresultados de\nintegración · SQL",
+      "fontSize": 21.6,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Guarda referencias y\nresultados de\nintegración · SQL",
+      "autoResize": true,
+      "lineHeight": 1.222222222222222
+    },
+    {
+      "id": "label-bg-erpAdapter_erp",
+      "type": "rectangle",
+      "x": 591.940625,
+      "y": 1209.7998698234558,
+      "width": 202.038818359375,
+      "height": 89.2,
+      "angle": 0,
+      "strokeColor": "#fff",
+      "backgroundColor": "#fff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-erpAdapter_erp"
+      ],
+      "frameId": null,
+      "index": "b09p",
+      "roundness": null,
+      "seed": 1264688307,
+      "version": 3,
+      "versionNonce": 1005811635,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "label-erpAdapter_erp",
+      "type": "text",
+      "x": 596.940625,
+      "y": 1214.7998698234558,
+      "width": 192.13223266601562,
+      "height": 79.19999999999999,
+      "angle": 0,
+      "strokeColor": "#4C607D",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-erpAdapter_erp"
+      ],
+      "frameId": null,
+      "index": "b09q",
+      "roundness": null,
+      "seed": 1251605501,
+      "version": 3,
+      "versionNonce": 1223119101,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "relationshipIndex": 14
+      },
+      "text": "Traduce y concilia ·\nprotocolo disponible\npor confirmar",
+      "fontSize": 21.6,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Traduce y concilia ·\nprotocolo disponible\npor confirmar",
+      "autoResize": true,
+      "lineHeight": 1.222222222222222
+    },
+    {
+      "id": "XWvRyOyAn-Nq3nxxLz9OA",
+      "type": "text",
+      "x": 2852.1059570312495,
+      "y": 682.5999999999999,
+      "width": 357.57421875,
+      "height": 105.60000000000001,
+      "angle": 0,
+      "strokeColor": "#fff",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b09r",
+      "roundness": null,
+      "seed": 831669149,
+      "version": 4,
+      "versionNonce": 414189907,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "text": "Cajero\n«Persona»\nOperación humana\nVende, cobra y gestiona su turno.",
+      "fontSize": 24,
+      "fontFamily": 2,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "containerId": "cashier",
+      "originalText": "Cajero\n«Persona»\nOperación humana\nVende, cobra y gestiona su turno.",
+      "autoResize": true,
+      "lineHeight": 1.1
+    },
+    {
+      "id": "pIRVVOLX0fbG_XZXV9Qpm",
+      "type": "text",
+      "x": 2151.047265625,
+      "y": 1006.5999999999999,
+      "width": 321.515625,
+      "height": 132,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b09s",
+      "roundness": null,
+      "seed": 421644285,
+      "version": 4,
+      "versionNonce": 288237917,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "text": "Cliente de caja\n«Contenedor»\nAngular + Tauri\nPresenta caja y comandos del\noperador.",
+      "fontSize": 24,
+      "fontFamily": 2,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "containerId": "client",
+      "originalText": "Cliente de caja\n«Contenedor»\nAngular + Tauri\nPresenta caja y comandos del\noperador.",
+      "autoResize": true,
+      "lineHeight": 1.1
+    },
+    {
+      "id": "srCyE6LM9bl0_-anjDtZg",
+      "type": "text",
+      "x": 2382.91796875,
+      "y": 1383.3999999999996,
+      "width": 345.57421875,
+      "height": 105.60000000000001,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b09t",
+      "roundness": null,
+      "seed": 16891997,
+      "version": 4,
+      "versionNonce": 2133419763,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "text": "Puente de periféricos\n«Contenedor condicional»\nProceso nativo según SDK\nEjecuta capacidades del puesto.",
+      "fontSize": 24,
+      "fontFamily": 2,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "containerId": "device",
+      "originalText": "Puente de periféricos\n«Contenedor condicional»\nProceso nativo según SDK\nEjecuta capacidades del puesto.",
+      "autoResize": true,
+      "lineHeight": 1.1
+    },
+    {
+      "id": "yR13gAti1BWIzSaj16oD5",
+      "type": "text",
+      "x": 1876.6960937499998,
+      "y": 1383.3999999999996,
+      "width": 382.41796875,
+      "height": 105.60000000000001,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b09tV",
+      "roundness": null,
+      "seed": 1862511805,
+      "version": 4,
+      "versionNonce": 1874523581,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "text": "Backend de sucursal\n«Contenedor»\nNestJS + Fastify / Node.js\nValida y confirma la operación local.",
+      "fontSize": 24,
+      "fontFamily": 2,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "containerId": "branchApi",
+      "originalText": "Backend de sucursal\n«Contenedor»\nNestJS + Fastify / Node.js\nValida y confirma la operación local.",
+      "autoResize": true,
+      "lineHeight": 1.1
+    },
+    {
+      "id": "LDAGGs0yAklvJGcBZinJH",
+      "type": "text",
+      "x": 2140.980859375,
+      "y": 1732.13564453125,
+      "width": 352.2421875,
+      "height": 132,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b09u",
+      "roundness": null,
+      "seed": 852036893,
+      "version": 4,
+      "versionNonce": 904269971,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "text": "Datos de sucursal\n«Contenedor de datos»\nPostgreSQL\nGuarda negocio, outbox y espejo\nlocal.",
+      "fontSize": 24,
+      "fontFamily": 2,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "containerId": "branchDb",
+      "originalText": "Datos de sucursal\n«Contenedor de datos»\nPostgreSQL\nGuarda negocio, outbox y espejo\nlocal.",
+      "autoResize": true,
+      "lineHeight": 1.1
+    },
+    {
+      "id": "XBR-kzcfdpxFj08ktB_Ow",
+      "type": "text",
+      "x": 1400.56328125,
+      "y": 1370.1999999999998,
+      "width": 298.32421875,
+      "height": 132,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b09v",
+      "roundness": null,
+      "seed": 734224765,
+      "version": 4,
+      "versionNonce": 263140893,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "text": "Sincronizador de sucursal\n«Contenedor»\nWorker TypeScript / Node.js\nEntrega eventos y actualiza\nespejos.",
+      "fontSize": 24,
+      "fontFamily": 2,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "containerId": "syncWorker",
+      "originalText": "Sincronizador de sucursal\n«Contenedor»\nWorker TypeScript / Node.js\nEntrega eventos y actualiza\nespejos.",
+      "autoResize": true,
+      "lineHeight": 1.1
+    },
+    {
+      "id": "VAhrz4pakUyZk5nPK6UCs",
+      "type": "text",
+      "x": 1276.2390625,
+      "y": 1745.3356445312502,
+      "width": 357.50390625,
+      "height": 105.60000000000001,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b09w",
+      "roundness": null,
+      "seed": 1328818653,
+      "version": 4,
+      "versionNonce": 1855751731,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "text": "API de país\n«Contenedor»\nNestJS + Fastify / Node.js\nAplica lotes y sirve publicaciones.",
+      "fontSize": 24,
+      "fontFamily": 2,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "containerId": "countryApi",
+      "originalText": "API de país\n«Contenedor»\nNestJS + Fastify / Node.js\nAplica lotes y sirve publicaciones.",
+      "autoResize": true,
+      "lineHeight": 1.1
+    },
+    {
+      "id": "KWGab880QEGXixKbbrwBQ",
+      "type": "text",
+      "x": 878.2978515625,
+      "y": 669.4,
+      "width": 288.1640625,
+      "height": 132,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b09x",
+      "roundness": null,
+      "seed": 1848436285,
+      "version": 4,
+      "versionNonce": 1006398077,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "text": "Workers de país\n«Contenedor»\nWorkers NestJS / Node.js\nPublica versiones e integra\npendientes.",
+      "fontSize": 24,
+      "fontFamily": 2,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "containerId": "countryWorker",
+      "originalText": "Workers de país\n«Contenedor»\nWorkers NestJS / Node.js\nPublica versiones e integra\npendientes.",
+      "autoResize": true,
+      "lineHeight": 1.1
+    },
+    {
+      "id": "7oyR3Br6fiW8WS_sYLyy8",
+      "type": "text",
+      "x": 986.9939453124999,
+      "y": 2117.858595258184,
+      "width": 317.51953125,
+      "height": 132,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b09y",
+      "roundness": null,
+      "seed": 999233181,
+      "version": 4,
+      "versionNonce": 1613973459,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "text": "Datos operativos de país\n«Contenedor de datos»\nPostgreSQL\nConsolida y conserva entrega\ndurable.",
+      "fontSize": 24,
+      "fontFamily": 2,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "containerId": "countryDb",
+      "originalText": "Datos operativos de país\n«Contenedor de datos»\nPostgreSQL\nConsolida y conserva entrega\ndurable.",
+      "autoResize": true,
+      "lineHeight": 1.1
+    },
+    {
+      "id": "-oppeNGKeiYlzwf-i8_BP",
+      "type": "text",
+      "x": 617.921875,
+      "y": 1006.5999999999999,
+      "width": 309.46875,
+      "height": 132,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b09z",
+      "roundness": null,
+      "seed": 302791421,
+      "version": 4,
+      "versionNonce": 1701057245,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "text": "Adaptador ERP / ACL\n«Contenedor»\nProceso TypeScript / Node.js\nTraduce contratos y concilia\nresultados.",
+      "fontSize": 24,
+      "fontFamily": 2,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "containerId": "erpAdapter",
+      "originalText": "Adaptador ERP / ACL\n«Contenedor»\nProceso TypeScript / Node.js\nTraduce contratos y concilia\nresultados.",
+      "autoResize": true,
+      "lineHeight": 1.1
+    },
+    {
+      "id": "iaUhwOIYSIwBbZk4Q8ISz",
+      "type": "text",
+      "x": 133.59765625,
+      "y": 1370.1999999999998,
+      "width": 332.0859375,
+      "height": 132,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b09zV",
+      "roundness": null,
+      "seed": 2049299293,
+      "version": 4,
+      "versionNonce": 549508467,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745265,
+      "link": null,
+      "locked": false,
+      "text": "ERP del país\n«Sistema externo»\nCL: AX · ES: Gira · PE: custom\nRecibe y concilia documentos\nfinancieros.",
+      "fontSize": 24,
+      "fontFamily": 2,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "containerId": "erp",
+      "originalText": "ERP del país\n«Sistema externo»\nCL: AX · ES: Gira · PE: custom\nRecibe y concilia documentos\nfinancieros.",
+      "autoResize": true,
+      "lineHeight": 1.1
+    },
+    {
+      "id": "vJajZ7a-baWDO71K5El2F",
+      "type": "text",
+      "x": 92.81640625,
+      "y": 1019.8,
+      "width": 372.2109375,
+      "height": 105.60000000000001,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b0A",
+      "roundness": null,
+      "seed": 1882021821,
+      "version": 3,
+      "versionNonce": 943124563,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745229,
+      "link": null,
+      "locked": false,
+      "text": "Fuentes de maestros y precios\n«Sistema externo»\nInterfaces por confirmar\nPublica datos y reglas autorizados.",
+      "fontSize": 24,
+      "fontFamily": 2,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "containerId": "masters",
+      "originalText": "Fuentes de maestros y precios\n«Sistema externo»\nInterfaces por confirmar\nPublica datos y reglas autorizados.",
+      "autoResize": true,
+      "lineHeight": 1.1
+    },
+    {
+      "id": "MDQLUFN4aUj0j-nrkajwY",
+      "type": "text",
+      "x": 2858.735546875,
+      "y": 1732.1356445312504,
+      "width": 364.1953125,
+      "height": 132,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b0B",
+      "roundness": null,
+      "seed": 1782865949,
+      "version": 3,
+      "versionNonce": 1059926621,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745229,
+      "link": null,
+      "locked": false,
+      "text": "Proveedor de pagos\n«Sistema externo»\nAPI / SDK según proveedor\nAutoriza o informa el resultado del\npago.",
+      "fontSize": 24,
+      "fontFamily": 2,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "containerId": "payments",
+      "originalText": "Proveedor de pagos\n«Sistema externo»\nAPI / SDK según proveedor\nAutoriza o informa el resultado del\npago.",
+      "autoResize": true,
+      "lineHeight": 1.1
+    },
+    {
+      "id": "semBuQuGG__n0IYxIGE63",
+      "type": "text",
+      "x": 1678.3832031250001,
+      "y": 2401.4458984375,
+      "width": 324.140625,
+      "height": 132,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b0C",
+      "roundness": null,
+      "seed": 509367421,
+      "version": 3,
+      "versionNonce": 2067492339,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745229,
+      "link": null,
+      "locked": false,
+      "text": "Proveedor fiscal\n«Sistema externo»\nContrato por país y modalidad\nEmite o transmite documentos\nfiscales.",
+      "fontSize": 24,
+      "fontFamily": 2,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "containerId": "fiscal",
+      "originalText": "Proveedor fiscal\n«Sistema externo»\nContrato por país y modalidad\nEmite o transmite documentos\nfiscales.",
+      "autoResize": true,
+      "lineHeight": 1.1
+    }
+  ],
+  "appState": {
+    "viewBackgroundColor": "#ffffff",
+    "gridSize": null
+  },
+  "files": {}
+}

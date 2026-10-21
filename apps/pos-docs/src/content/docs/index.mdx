@@ -1,0 +1,55 @@
+---
+title: POS Platform
+description: Propuesta de arquitectura, estructura del producto y evidencia para una plataforma POS corporativa multipaís.
+editUrl: false
+tableOfContents: false
+---
+
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+Una plataforma POS corporativa para **Chile, Perú y España**, con módulos de negocio compartidos y adaptadores para las diferencias de cada país. Esta guía reúne la arquitectura propuesta, la implementación del monorepo y la evidencia del sistema actual. Las fuentes técnicas se mantienen junto al código en `pos-platform`.
+
+<CardGrid>
+  <LinkCard title="Visión general de la solución" description="Producto compartido, responsabilidades por zona y recorrido completo de una venta." href="/guide/overview/" />
+  <LinkCard title="Estructura del código" description="Apps, bibliotecas y correspondencia con el legacy; qué existe y qué falta implementar." href="/guide/architecture/monorepo/" />
+  <LinkCard title="Diagramas C4" description="Contexto, contenedores, componentes, despliegue y recorridos editables." href="/guide/diagrams/" />
+  <LinkCard title="Decisiones y validación" description="Estado de las decisiones, alternativas y evidencia que requiere el piloto." href="/guide/proposal/decisions/" />
+</CardGrid>
+
+## Trabajar en el monorepo
+
+El diseño objetivo y el estado del código se consultan por separado. Las guías de implementación indican los procesos disponibles, los límites del scaffolding y sus comandos de desarrollo.
+
+- [Estructura actual y reglas de dependencias](/guide/implementation/monorepo/) · [Arquitectura implementada](/guide/implementation/architecture/).
+- [API NestJS](/guide/implementation/api/) · [API simulada](/guide/implementation/mock-api/) · [Cliente de escritorio](/guide/implementation/desktop/).
+- [Seguridad y controles](/guide/implementation/security/) · [Publicación en Vercel](/guide/implementation/deployment/).
+
+## Recorridos de la propuesta
+
+| Tema | Diseño y detalle | Ejemplo visual |
+| --- | --- | --- |
+| Venta y continuidad | [Confirmación local y condiciones de operación](/guide/proposal/continuity/) | [Venta, pago y commit](https://presentation-gamma-rust.vercel.app/presentation/pos-corporativo-reveal.html?lectura=0#/laboratorio-venta) |
+| Precios y ofertas | [Evaluación local y versiones de reglas](/guide/proposal/pricing-promotions/) | [Eventos](https://presentation-gamma-rust.vercel.app/presentation/pos-corporativo-reveal.html?lectura=0#/laboratorio-eventos-precios) · [Carga masiva](https://presentation-gamma-rust.vercel.app/presentation/pos-corporativo-reveal.html?lectura=0#/laboratorio-snapshot-precios) |
+| Sincronización | [Entrega, acuses y propiedad de datos](/guide/proposal/synchronization/) | [Custodia durable](https://presentation-gamma-rust.vercel.app/presentation/pos-corporativo-reveal.html?lectura=0#/laboratorio-entrega) |
+| Integración ERP | [Contratos, fachada y ACL](/guide/proposal/contracts/) | [Frontera ERP](https://presentation-gamma-rust.vercel.app/presentation/pos-corporativo-reveal.html?lectura=0#/laboratorio-frontera-erp) |
+| Procesamiento central | [Criterios de mensajería](/guide/architecture/messaging/) | [BullMQ](https://presentation-gamma-rust.vercel.app/presentation/pos-corporativo-reveal.html?lectura=0#/laboratorio-bullmq) · [RabbitMQ](https://presentation-gamma-rust.vercel.app/presentation/pos-corporativo-reveal.html?lectura=0#/laboratorio-rabbitmq) |
+| Organización del código | [Monorepo y límites de módulos](/guide/architecture/monorepo/) | [Estructura propuesta](https://presentation-gamma-rust.vercel.app/presentation/pos-corporativo-reveal.html?lectura=0#/arbol-nx) |
+
+## Estado del material
+
+| Categoría | Qué representa |
+| --- | --- |
+| **Propuesta** | Diseño objetivo y recomendaciones con su estado de decisión. No acredita una implementación productiva. |
+| **Sistema actual y evidencia** | Comportamientos observados en fuentes y snapshots de repositorios. Su correspondencia con producción debe confirmarse. |
+| **Operación y validación** | Escenarios de recuperación, condiciones de aceptación y datos pendientes para cerrar el diseño. |
+| **Implementación y desarrollo** | Estructura, comandos y controles documentados en el repositorio; cada guía declara las capacidades disponibles y sus límites. |
+
+Cada página identifica su alcance. El [estado de implementación y las decisiones pendientes](/guide/overview/#estado-de-la-propuesta) distinguen la maqueta, el scaffolding local y el producto objetivo. IA y RFID se consultan como **extensiones opcionales**.
+
+## Fuentes y presentación
+
+La [propuesta y sus decisiones](/guide/proposal/decisions/) gobiernan el diseño. Las páginas se generan por tema desde esas fuentes; la evidencia y las revisiones conservan sus límites y enlaces al código. El [mapa de contenidos](/guide/contents/) reúne todos los temas y el [glosario del POS](/guide/glossary/) conecta los términos con su aplicación en la propuesta.
+
+La [auditoría de consistencia documental](/guide/reference/documentation-audit/) registra las correcciones, los controles de calidad y la validación pendiente con el equipo.
+
+[Abrir presentación con narrador](https://presentation-gamma-rust.vercel.app/presentation/pos-corporativo-reveal.html?lectura=0) · [Consultar el visor de aplicaciones y recorridos](https://presentation-gamma-rust.vercel.app/presentation/index.html#mapa?vista=general)

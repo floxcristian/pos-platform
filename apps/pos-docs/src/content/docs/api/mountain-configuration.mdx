@@ -1,0 +1,42 @@
+---
+title: Configuración de Mountain
+description: "Variables leídas por backend y backend-concentrador: propósito, condiciones, defaults y fuentes, sin copiar credenciales ni valores de entornos."
+editUrl: false
+tableOfContents:
+  minHeadingLevel: 2
+  maxHeadingLevel: 2
+---
+
+import LegacyConfiguration from '../../../components/LegacyConfiguration.astro';
+
+Este inventario corresponde a `mountain-implementos`, commit `711f97fd7948c696bf45c992c5b121683bdbacd7`, revisado estáticamente el **21 de octubre de 2026**. Documenta los nombres que el código consulta, para qué los usa y en qué condiciones. No contiene valores de despliegue ni constituye una plantilla lista para arrancar producción.
+
+## Alcance y lectura
+
+- **Backend de sucursal:** 48 nombres consultados explícitamente mediante `Env.get` o `process.env`. `URL_API_PAGO` aparece solo en código comentado y se registra aparte.
+- **Monitor concentrador:** 14 nombres consultados explícitamente. Es `backend-concentrador` dentro de Mountain, no el repositorio independiente `mountain-concentrador`.
+- **Valor predeterminado:** indica si la lectura declara una alternativa. No demuestra que esa alternativa sea válida, segura o utilizada en producción. Cuando un nombre tiene lecturas diferentes, se conserva esa diferencia.
+- **Obligatoriedad:** depende de la función y del proveedor habilitados. Por ejemplo, las credenciales S3 no son un requisito de cada venta; solo corresponden a operaciones que seleccionen ese almacenamiento. No se encontró en esta revisión un contrato único que valide todas las variables al arrancar.
+- **Cobertura:** código propio de ambas aplicaciones, sin dependencias instaladas. Se contrastaron los nombres de las plantillas `.env.example*`, sin copiar sus valores. Lecturas internas de Adonis y configuración del proceso pueden añadir requisitos.
+
+Los archivos `environment*.ts` de Angular son **configuración de compilación del frontend**. El código del navegador es visible para sus usuarios: no es un lugar para conservar credenciales. El inventario siguiente se limita a las aplicaciones de servidor; tampoco cubre las variables del sincronizador, que vive en otro repositorio.
+
+## Backend de sucursal
+
+La selección de base usa `DB_CONNECTION`; el archivo declara SQLite por defecto y ramas para MySQL y PostgreSQL. La dependencia `pg` y los antecedentes operativos respaldan PostgreSQL en el sistema analizado, pero el archivo de configuración por sí solo no prueba qué conexión está desplegada.
+
+Las direcciones de precios, clientes, promociones, pagos y fiscalidad muestran dependencias remotas. Configurarlas no equivale a hacer disponible la operación sin Internet. El [análisis de Mountain](/guide/evidence/mountain/) explica los efectos de esos fallos en el código revisado.
+
+<LegacyConfiguration app="backend" />
+
+## Monitor concentrador
+
+El monitor consulta su base y llama al bus para ciertos reintentos. `ESB_HOST` y `ESB_PORT` aparecen en el controlador, aunque no en su plantilla `.env.example`; no son los parámetros de conexión al backend de caja.
+
+<LegacyConfiguration app="backend-concentrador" />
+
+## Relación con POS Platform
+
+Este inventario sirve para identificar dependencias que habrá que conservar o reemplazar durante la migración. No propone copiar el `.env` legacy al producto nuevo: cada aplicación objetivo tendrá configuración validada según su responsabilidad, con identidad, secretos y versiones administrados.
+
+La [correspondencia del legacy con POS Platform](/guide/architecture/monorepo/#correspondencia-del-legacy-con-pos-platform) relaciona estas aplicaciones con las unidades del monorepo. Las operaciones expuestas se describen en el catálogo del [backend de sucursal](/guide/api/mountain/) y del [monitor](/guide/api/mountain-concentrator/).

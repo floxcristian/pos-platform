@@ -1,0 +1,25 @@
+flowchart TB
+    accTitle: C1 · Contexto — El POS y su entorno
+    accDescr: Un sistema POS corporativo; personas y sistemas externos. Representación lógica aplicable a cada país. La integración financiera, el precio autorizado, el pago y la fiscalidad tienen propietarios distintos. Los sistemas externos no se dan por homologados.
+    cashier(["Cajero<br/>«Persona»<br/>Operación humana<br/>Vende, cobra y gestiona su turno."]):::person
+    supervisor(["Supervisor de sucursal<br/>«Persona»<br/>Operación humana<br/>Autoriza excepciones y revisa cierres."]):::person
+    support(["Operación de plataforma<br/>«Persona»<br/>Soporte autorizado<br/>Supervisa sincronización y recuperación."]):::person
+    pos["POS corporativo<br/>«Sistema de software»<br/>Plataforma de caja<br/>Opera sucursales e integra cada país."]:::pos
+    erp["ERP del país<br/>«Sistema externo»<br/>CL: AX · ES: Gira · PE: custom<br/>Recibe y concilia documentos financieros."]:::external
+    masters["Fuentes de maestros y precios<br/>«Sistema externo»<br/>Interfaces por confirmar<br/>Publica datos y reglas autorizados."]:::external
+    payments["Proveedor de pagos<br/>«Sistema externo»<br/>API / SDK según proveedor<br/>Autoriza o informa el resultado del pago."]:::external
+    fiscal["Proveedor fiscal<br/>«Sistema externo»<br/>Contrato por país y modalidad<br/>Emite o transmite documentos fiscales."]:::external
+    legend["Leyenda · notación C4<br/>Verde: POS · Azul/cilindro: datos<br/>Gris: externo · Persona: rol humano<br/>Borde discontinuo: límite indicado<br/>Flecha: propósito y protocolo<br/>Contenedor: aplicación o almacén<br/>Componente: módulo de UN proceso"]:::key
+    cashier -->|"Opera ventas y turnos · interfaz de caja"| pos
+    supervisor -->|"Autoriza y revisa · interfaz de operación"| pos
+    support -->|"Supervisa y recupera · herramientas autorizadas"| pos
+    masters -->|"Entrega datos y reglas · contrato por confirmar"| pos
+    pos -->|"Integra y concilia documentos · adaptador por país"| erp
+    pos -->|"Solicita pago y consulta resultado · API/SDK por validar"| payments
+    pos -->|"Solicita emisión/transmisión · contrato fiscal por validar"| fiscal
+    classDef pos fill:#e8f4ef,stroke:#087f70,color:#17302d,stroke-width:2px
+    classDef store fill:#edf3f9,stroke:#365f87,color:#17302d,stroke-width:2px
+    classDef external fill:#f4f6f5,stroke:#74827d,color:#17302d
+    classDef person fill:#152d2b,stroke:#152d2b,color:#ffffff
+    classDef infra fill:#fbf1e2,stroke:#a86516,color:#17302d
+    classDef key fill:#ffffff,stroke:#b9cbc3,color:#566762,font-size:14px

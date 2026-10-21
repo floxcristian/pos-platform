@@ -1,6 +1,6 @@
-# Frontend en Vercel
+# POS y documentación en Vercel
 
-Vercel publica la aplicación Angular como archivos estáticos. Nx compila `pos-web` y sus librerías; no se ejecuta Rust ni se genera el instalador Tauri en este despliegue.
+Vercel publica la aplicación Angular como archivos estáticos. Nx compila `pos-web` y `pos-docs`, y el ensamblador conserva la web en `/` y Starlight en `/guide/`; no se ejecuta Rust ni se genera el instalador Tauri en este despliegue.
 
 ## Primer despliegue
 
@@ -13,18 +13,18 @@ Vercel publica la aplicación Angular como archivos estáticos. Nx compila `pos-
 | Production Branch    | `main`                      |
 | Root Directory       | Raíz del repositorio (`./`) |
 | Framework Preset     | `Other`                     |
-| Install Command      | `npx --yes npm@11.6.0 ci`   |
-| Build Command        | `npm run build`             |
-| Output Directory     | `dist/apps/pos-web/browser` |
+| Install Command      | `npx --yes npm@11.6.0 ci && npx --yes npm@11.6.0 ci --prefix apps/pos-docs`   |
+| Build Command        | `npm run build:vercel`             |
+| Output Directory     | `dist/vercel` |
 | Node.js              | `24.x`                      |
 | Variables de entorno | Ninguna para esta demo      |
 
 4. Pulsa **Deploy**. Si Node.js no aparece durante la importación, comprueba **Settings → Build and Deployment → Node.js Version**. El rango `engines.node` de este repositorio admite Node 24; Vercel resuelve ese rango a la versión compatible más alta disponible.
 5. Abre la URL que asigne Vercel y comprueba `/#/inicio`, `/#/venta` y `/#/sincronizacion`. Recarga una ruta interna y verifica que cargan el fondo SVG del header, fuentes, gráficos y selectores.
 
-El framework `null` en `vercel.json` equivale a **Other**: el comando explícito de Nx genera el sitio y Vercel sirve únicamente `dist/apps/pos-web/browser`. No utilices `dist/apps/pos-web` ni la carpeta de código fuente como salida. Los campos versionados evitan depender de ajustes manuales diferentes en cada entorno.
+El framework `null` en `vercel.json` equivale a **Other**: el comando explícito de Nx genera el sitio y Vercel sirve únicamente `dist/vercel`. No utilices `dist/apps/pos-web` ni la carpeta de código fuente como salida. Los campos versionados evitan depender de ajustes manuales diferentes en cada entorno.
 
-El archivo también incluye la política CSP de la web y `X-Content-Type-Options: nosniff`. La CSP conserva las restricciones verificadas para la aplicación y omite los destinos IPC que utiliza el contenedor de escritorio.
+El archivo también incluye la política CSP de la web y `X-Content-Type-Options: nosniff`. Únicamente `/guide/` permite `wasm-unsafe-eval` para el índice de búsqueda Pagefind; no se habilita evaluación JavaScript arbitraria. `npm run build` sigue compilando solo el POS y `npm run docs:build` solo documentación. La CSP conserva las restricciones verificadas para la aplicación y omite los destinos IPC que utiliza el contenedor de escritorio.
 
 ## Actualizaciones y datos
 

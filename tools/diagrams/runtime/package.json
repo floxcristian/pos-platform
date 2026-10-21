@@ -1,0 +1,13 @@
+{
+  "name": "pos-c4-artifact-tools",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@excalidraw/excalidraw": "0.18.1",
+    "@excalidraw/mermaid-to-excalidraw": "2.2.2",
+    "esbuild": "0.25.10",
+    "mermaid": "11.12.1",
+    "react": "19.1.1",
+    "react-dom": "19.1.1"
+  }
+}

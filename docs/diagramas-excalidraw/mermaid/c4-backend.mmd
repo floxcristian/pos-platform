@@ -1,0 +1,42 @@
+flowchart TB
+    accTitle: C3 · Backend de sucursal — Dentro del monolito modular
+    accDescr: Un solo contenedor: backend de sucursal NestJS + Fastify. Los bloques interiores son componentes del mismo proceso. Las llamadas internas son TypeScript; no se propone HTTP ni una base independiente entre módulos. Efectos externos tienen estados y recuperación separados.
+    subgraph backendScope["Backend de sucursal · UN proceso<br/>Contenedor NestJS + Fastify"]
+        direction TB
+        entry["API de comandos<br/>«Componente»<br/>Controllers NestJS / Fastify<br/>Valida entrada e identidad del comando."]:::pos
+        access["Acceso y permisos<br/>«Componente»<br/>Guards + servicios TypeScript<br/>Autoriza usuario, perfil y sucursal."]:::pos
+        sales["Ventas y devoluciones<br/>«Componente»<br/>Módulo NestJS / TypeScript<br/>Coordina el ciclo de la operación."]:::pos
+        pricing["Precios y ofertas<br/>«Componente»<br/>Motor TypeScript local<br/>Cotiza sobre una versión vigente."]:::pos
+        cash["Turnos y caja<br/>«Componente»<br/>Módulo NestJS / TypeScript<br/>Controla apertura, movimientos y cierre."]:::pos
+        payPort["Pagos y adaptadores<br/>«Componente»<br/>Puertos + TypeScript<br/>Gestiona intentos y evidencia de pago."]:::pos
+        fiscalPort["Fiscalidad y adaptadores<br/>«Componente»<br/>Puertos + TypeScript<br/>Aplica modalidad fiscal por país."]:::pos
+        unitOfWork["Persistencia transaccional<br/>«Componente»<br/>Repositorios TypeScript / SQL<br/>Confirma negocio, auditoría y outbox."]:::pos
+    end
+    client["Cliente de caja<br/>«Contenedor»<br/>Angular + Tauri<br/>Presenta caja y comandos del operador."]:::pos
+    branchDb[("Datos de sucursal<br/>«Contenedor de datos»<br/>PostgreSQL<br/>Guarda negocio, outbox y espejo local.")]:::store
+    payments["Proveedor de pagos<br/>«Sistema externo»<br/>API / SDK según proveedor<br/>Autoriza o informa el resultado del pago."]:::external
+    fiscal["Proveedor fiscal<br/>«Sistema externo»<br/>Contrato por país y modalidad<br/>Emite o transmite documentos fiscales."]:::external
+    legend["Leyenda · notación C4<br/>Verde: POS · Azul/cilindro: datos<br/>Gris: externo · Persona: rol humano<br/>Borde discontinuo: límite indicado<br/>Flecha: propósito y protocolo<br/>Contenedor: aplicación o almacén<br/>Componente: módulo de UN proceso"]:::key
+    client -->|"Comando con identidad estable · HTTPS/LAN"| entry
+    entry -->|"Comprueba permiso y contexto · llamada TypeScript"| access
+    entry -->|"Ejecuta venta/devolución · llamada TypeScript"| sales
+    entry -->|"Abre, mueve o cierra caja · llamada TypeScript"| cash
+    sales -->|"Cotiza y fija versión · llamada TypeScript"| pricing
+    sales --->|"Valida turno · TypeScript"| cash
+    sales -->|"Coordina intento y resultado · llamada TypeScript"| payPort
+    sales -->|"Coordina documento y estado · llamada TypeScript"| fiscalPort
+    sales -->|"Persiste operación y outbox · llamada TypeScript"| unitOfWork
+    cash -->|"Persiste movimientos y auditoría · llamada TypeScript"| unitOfWork
+    pricing -->|"Lee versión local autorizada · repositorio TypeScript"| unitOfWork
+    payPort -->|"Registra intención y resultado por separado · TypeScript"| unitOfWork
+    fiscalPort ---->|"Registra referencia y resultado · TypeScript"| unitOfWork
+    unitOfWork -->|"Commit local atómico · SQL"| branchDb
+    payPort -->|"Invoca capacidad homologada · API/SDK"| payments
+    fiscalPort -->|"Emite/consulta · API/SDK"| fiscal
+    classDef pos fill:#e8f4ef,stroke:#087f70,color:#17302d,stroke-width:2px
+    classDef store fill:#edf3f9,stroke:#365f87,color:#17302d,stroke-width:2px
+    classDef external fill:#f4f6f5,stroke:#74827d,color:#17302d
+    classDef person fill:#152d2b,stroke:#152d2b,color:#ffffff
+    classDef infra fill:#fbf1e2,stroke:#a86516,color:#17302d
+    classDef key fill:#ffffff,stroke:#b9cbc3,color:#566762,font-size:14px
+    style backendScope fill:#ffffff,stroke:#b9cbc3,stroke-dasharray:6 4

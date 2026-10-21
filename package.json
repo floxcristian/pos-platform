@@ -4,7 +4,7 @@
   "private": true,
   "description": "Caja corporativa Chile — prototipo funcional Nx, Angular y Tauri con datos sintéticos",
   "engines": {
-    "node": ">=22.13 <23 || >=24 <25"
+    "node": ">=22.19 <23 || >=24 <25"
   },
   "scripts": {
     "start": "nx serve pos-web --host 127.0.0.1 --port 4300",
@@ -20,7 +20,14 @@
     "desktop:build": "nx run pos-desktop:build",
     "desktop:info": "nx run pos-desktop:info",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "docs:install": "npm --prefix apps/pos-docs ci",
+    "docs:dev": "nx serve pos-docs",
+    "docs:build": "nx build pos-docs",
+    "docs:validate": "nx run pos-docs:validate",
+    "docs:typecheck": "nx run pos-docs:typecheck",
+    "docs:check": "nx run pos-docs:check",
+    "build:vercel": "npm run build && npm run docs:build && node tools/assemble-vercel.mjs"
   },
   "dependencies": {
     "@angular/animations": "21.2.25",

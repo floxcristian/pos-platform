@@ -1,0 +1,6922 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "https://excalidraw.com",
+  "elements": [
+    {
+      "id": "sheet",
+      "type": "rectangle",
+      "x": 0,
+      "y": 0,
+      "width": 2508.0734374999997,
+      "height": 350,
+      "angle": 0,
+      "strokeColor": "#fff",
+      "backgroundColor": "#fff",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "a0",
+      "roundness": {
+        "type": 3
+      },
+      "seed": 1715173693,
+      "version": 2,
+      "versionNonce": 689739165,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "kicker",
+      "type": "text",
+      "x": 64,
+      "y": 40,
+      "width": 531.76806640625,
+      "height": 23.75,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "a1",
+      "roundness": null,
+      "seed": 1212253459,
+      "version": 2,
+      "versionNonce": 1960238771,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false,
+      "text": "POS CORPORATIVO  /  03  /  C3 · BACKEND DE SUCURSAL",
+      "fontSize": 19,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "POS CORPORATIVO  /  03  /  C3 · BACKEND DE SUCURSAL",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "title",
+      "type": "text",
+      "x": 64,
+      "y": 85,
+      "width": 552.728515625,
+      "height": 55,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "a2",
+      "roundness": null,
+      "seed": 2052278685,
+      "version": 2,
+      "versionNonce": 261216765,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false,
+      "text": "Dentro del monolito modular",
+      "fontSize": 44,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Dentro del monolito modular",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "scope",
+      "type": "text",
+      "x": 64,
+      "y": 152,
+      "width": 1280.89453125,
+      "height": 30,
+      "angle": 0,
+      "strokeColor": "#4C607D",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "a3",
+      "roundness": null,
+      "seed": 2123721395,
+      "version": 2,
+      "versionNonce": 1317965907,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false,
+      "text": "Un solo contenedor: backend de sucursal NestJS + Fastify. Los bloques interiores son componentes del mismo proceso.",
+      "fontSize": 24,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Un solo contenedor: backend de sucursal NestJS + Fastify. Los bloques interiores son componentes del mismo proceso.",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "status",
+      "type": "text",
+      "x": 64,
+      "y": 230,
+      "width": 1020.8046875,
+      "height": 23.75,
+      "angle": 0,
+      "strokeColor": "#4C607D",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "a4",
+      "roundness": null,
+      "seed": 1876037117,
+      "version": 2,
+      "versionNonce": 329224797,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false,
+      "text": "ARQUITECTURA PROPUESTA · 05 OCT 2026 · Chile / Perú / España · No representa una implementación homologada",
+      "fontSize": 19,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "ARQUITECTURA PROPUESTA · 05 OCT 2026 · Chile / Perú / España · No representa una implementación homologada",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "key-0",
+      "type": "rectangle",
+      "x": 64,
+      "y": 290,
+      "width": 18,
+      "height": 18,
+      "angle": 0,
+      "strokeColor": "#163A73",
+      "backgroundColor": "#163A73",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "a5",
+      "roundness": {
+        "type": 3
+      },
+      "seed": 949722195,
+      "version": 2,
+      "versionNonce": 631180787,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "key-text-0",
+      "type": "text",
+      "x": 92,
+      "y": 285,
+      "width": 74.4921875,
+      "height": 25,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "a6",
+      "roundness": null,
+      "seed": 1706640989,
+      "version": 2,
+      "versionNonce": 1377255101,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false,
+      "text": "Persona",
+      "fontSize": 20,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Persona",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "key-1",
+      "type": "rectangle",
+      "x": 254,
+      "y": 290,
+      "width": 18,
+      "height": 18,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "#0545BA",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "a7",
+      "roundness": {
+        "type": 3
+      },
+      "seed": 1646959091,
+      "version": 2,
+      "versionNonce": 1829689235,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "key-text-1",
+      "type": "text",
+      "x": 282,
+      "y": 285,
+      "width": 126.71875,
+      "height": 25,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "a8",
+      "roundness": null,
+      "seed": 517632701,
+      "version": 2,
+      "versionNonce": 1369071389,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false,
+      "text": "Software POS",
+      "fontSize": 20,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Software POS",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "key-2",
+      "type": "rectangle",
+      "x": 456.71875,
+      "y": 290,
+      "width": 18,
+      "height": 18,
+      "angle": 0,
+      "strokeColor": "#6545A4",
+      "backgroundColor": "#6545A4",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "a9",
+      "roundness": {
+        "type": 3
+      },
+      "seed": 675865491,
+      "version": 2,
+      "versionNonce": 1930718515,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "key-text-2",
+      "type": "text",
+      "x": 484.71875,
+      "y": 285,
+      "width": 160.09765625,
+      "height": 25,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "aA",
+      "roundness": null,
+      "seed": 131535645,
+      "version": 2,
+      "versionNonce": 1218081661,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false,
+      "text": "Almacén de datos",
+      "fontSize": 20,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Almacén de datos",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "key-3",
+      "type": "rectangle",
+      "x": 692.81640625,
+      "y": 290,
+      "width": 18,
+      "height": 18,
+      "angle": 0,
+      "strokeColor": "#64748B",
+      "backgroundColor": "#64748B",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "aB",
+      "roundness": {
+        "type": 3
+      },
+      "seed": 1395456307,
+      "version": 2,
+      "versionNonce": 2065059539,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "key-text-3",
+      "type": "text",
+      "x": 720.81640625,
+      "y": 285,
+      "width": 144.51171875,
+      "height": 25,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "aC",
+      "roundness": null,
+      "seed": 2099292029,
+      "version": 2,
+      "versionNonce": 593034205,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false,
+      "text": "Sistema externo",
+      "fontSize": 20,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Sistema externo",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "key-4",
+      "type": "rectangle",
+      "x": 952.81640625,
+      "y": 290,
+      "width": 18,
+      "height": 18,
+      "angle": 0,
+      "strokeColor": "#946019",
+      "backgroundColor": "#946019",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "aD",
+      "roundness": {
+        "type": 3
+      },
+      "seed": 1614633683,
+      "version": 2,
+      "versionNonce": 397081715,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "key-text-4",
+      "type": "text",
+      "x": 980.81640625,
+      "y": 285,
+      "width": 230.1171875,
+      "height": 25,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "aE",
+      "roundness": null,
+      "seed": 1358475229,
+      "version": 2,
+      "versionNonce": 1239906365,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false,
+      "text": "Infraestructura / condición",
+      "fontSize": 20,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Infraestructura / condición",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "legend-desc",
+      "type": "text",
+      "x": 64,
+      "y": 330,
+      "width": 1039.2666015625,
+      "height": 23.75,
+      "angle": 0,
+      "strokeColor": "#4C607D",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "aF",
+      "roundness": null,
+      "seed": 1544587379,
+      "version": 2,
+      "versionNonce": 1150875155,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false,
+      "text": "Flecha: iniciador → destino; texto: propósito y protocolo. Borde discontinuo: límite nombrado. Todo el contenido es editable.",
+      "fontSize": 19,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Flecha: iniciador → destino; texto: propósito y protocolo. Borde discontinuo: límite nombrado. Todo el contenido es editable.",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "reading-title",
+      "type": "text",
+      "x": 64,
+      "y": 2817.1356445312504,
+      "width": 496.3125,
+      "height": 40,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "aG",
+      "roundness": null,
+      "seed": 292596797,
+      "version": 2,
+      "versionNonce": 640116893,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false,
+      "text": "Contratos que gobiernan esta vista",
+      "fontSize": 32,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Contratos que gobiernan esta vista",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-2881-0-bg",
+      "type": "rectangle",
+      "x": 64,
+      "y": 2881.1356445312504,
+      "width": 777.3578124999999,
+      "height": 219.25,
+      "angle": 0,
+      "strokeColor": "#CCD7E8",
+      "backgroundColor": "#F7F9FD",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-2881-0"
+      ],
+      "frameId": null,
+      "index": "aH",
+      "roundness": {
+        "type": 3
+      },
+      "seed": 2087518739,
+      "version": 2,
+      "versionNonce": 1087814579,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "notes-2881-0-title",
+      "type": "text",
+      "x": 86,
+      "y": 2903.1356445312504,
+      "width": 366.8701171875,
+      "height": 31.25,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-2881-0"
+      ],
+      "frameId": null,
+      "index": "aI",
+      "roundness": null,
+      "seed": 241835165,
+      "version": 2,
+      "versionNonce": 1774865661,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false,
+      "text": "Un monolito modular, un proceso",
+      "fontSize": 25,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Un monolito modular, un proceso",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-2881-0-body",
+      "type": "text",
+      "x": 86,
+      "y": 2955.3856445312504,
+      "width": 700.6806640625,
+      "height": 82.5,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-2881-0"
+      ],
+      "frameId": null,
+      "index": "aJ",
+      "roundness": null,
+      "seed": 2051622835,
+      "version": 2,
+      "versionNonce": 680185171,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false,
+      "text": "Los bloques interiores llaman código TypeScript. No hay HTTP ni bases\nseparadas entre módulos. UI valida experiencia; el backend valida\npermisos, integridad, turno y capacidades antes de mutar negocio.",
+      "fontSize": 22,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Los bloques interiores llaman código TypeScript. No hay HTTP ni bases\nseparadas entre módulos. UI valida experiencia; el backend valida\npermisos, integridad, turno y capacidades antes de mutar negocio.",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-2881-1-bg",
+      "type": "rectangle",
+      "x": 865.3578124999999,
+      "y": 2881.1356445312504,
+      "width": 777.3578124999999,
+      "height": 219.25,
+      "angle": 0,
+      "strokeColor": "#CCD7E8",
+      "backgroundColor": "#F7F9FD",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-2881-1"
+      ],
+      "frameId": null,
+      "index": "aK",
+      "roundness": {
+        "type": 3
+      },
+      "seed": 529957117,
+      "version": 2,
+      "versionNonce": 340895069,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "notes-2881-1-title",
+      "type": "text",
+      "x": 887.3578124999999,
+      "y": 2903.1356445312504,
+      "width": 345.068359375,
+      "height": 31.25,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-2881-1"
+      ],
+      "frameId": null,
+      "index": "aL",
+      "roundness": null,
+      "seed": 734779731,
+      "version": 2,
+      "versionNonce": 1326164723,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false,
+      "text": "Transacción y efectos externos",
+      "fontSize": 25,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Transacción y efectos externos",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-2881-1-body",
+      "type": "text",
+      "x": 887.3578124999999,
+      "y": 2955.3856445312504,
+      "width": 677.5205078125,
+      "height": 110,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-2881-1"
+      ],
+      "frameId": null,
+      "index": "aM",
+      "roundness": null,
+      "seed": 712464733,
+      "version": 2,
+      "versionNonce": 957280701,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false,
+      "text": "Intención de pago durable antes de invocar el proveedor; resultado y\nconfirmación local después. Venta + auditoría + outbox se confirman\njuntas. Venta, pago, fiscalidad y ERP conservan estados separados y\nrecuperación explícita.",
+      "fontSize": 22,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Intención de pago durable antes de invocar el proveedor; resultado y\nconfirmación local después. Venta + auditoría + outbox se confirman\njuntas. Venta, pago, fiscalidad y ERP conservan estados separados y\nrecuperación explícita.",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-2881-2-bg",
+      "type": "rectangle",
+      "x": 1666.7156249999998,
+      "y": 2881.1356445312504,
+      "width": 777.3578124999999,
+      "height": 219.25,
+      "angle": 0,
+      "strokeColor": "#CCD7E8",
+      "backgroundColor": "#F7F9FD",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-2881-2"
+      ],
+      "frameId": null,
+      "index": "aN",
+      "roundness": {
+        "type": 3
+      },
+      "seed": 1581987571,
+      "version": 2,
+      "versionNonce": 1491063955,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "notes-2881-2-title",
+      "type": "text",
+      "x": 1688.7156249999998,
+      "y": 2903.1356445312504,
+      "width": 426.59912109375,
+      "height": 31.25,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-2881-2"
+      ],
+      "frameId": null,
+      "index": "aO",
+      "roundness": null,
+      "seed": 1751000509,
+      "version": 2,
+      "versionNonce": 86225437,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false,
+      "text": "Precios y caja son dominios diferentes",
+      "fontSize": 25,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Precios y caja son dominios diferentes",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-2881-2-body",
+      "type": "text",
+      "x": 1688.7156249999998,
+      "y": 2955.3856445312504,
+      "width": 693.4296875,
+      "height": 110,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-2881-2"
+      ],
+      "frameId": null,
+      "index": "aP",
+      "roundness": null,
+      "seed": 1884151955,
+      "version": 2,
+      "versionNonce": 364759603,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false,
+      "text": "La cotización fija versión inmutable y revalida vigencia antes de cobrar.\nTurno de caja no equivale a sesión de acceso. Devoluciones y\ncompensaciones son nuevas operaciones auditables; no reescritura de\nhistoria.",
+      "fontSize": 22,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "La cotización fija versión inmutable y revalida vigencia antes de cobrar.\nTurno de caja no equivale a sesión de acceso. Devoluciones y\ncompensaciones son nuevas operaciones auditables; no reescritura de\nhistoria.",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "details-title",
+      "type": "text",
+      "x": 64,
+      "y": 3159.3856445312504,
+      "width": 848.515625,
+      "height": 40,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "aQ",
+      "roundness": null,
+      "seed": 1819043357,
+      "version": 2,
+      "versionNonce": 92366461,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false,
+      "text": "Responsabilidades, propiedad y comportamiento ante fallos",
+      "fontSize": 32,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Responsabilidades, propiedad y comportamiento ante fallos",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3234-0-bg",
+      "type": "rectangle",
+      "x": 64,
+      "y": 3234.3856445312504,
+      "width": 777.3578124999999,
+      "height": 411.75,
+      "angle": 0,
+      "strokeColor": "#CCD7E8",
+      "backgroundColor": "#F7F9FD",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3234-0"
+      ],
+      "frameId": null,
+      "index": "aR",
+      "roundness": {
+        "type": 3
+      },
+      "seed": 730486323,
+      "version": 2,
+      "versionNonce": 445385683,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "notes-3234-0-title",
+      "type": "text",
+      "x": 86,
+      "y": 3256.3856445312504,
+      "width": 165.380859375,
+      "height": 31.25,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3234-0"
+      ],
+      "frameId": null,
+      "index": "aS",
+      "roundness": null,
+      "seed": 1771281021,
+      "version": 2,
+      "versionNonce": 753503965,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false,
+      "text": "Cliente de caja",
+      "fontSize": 25,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Cliente de caja",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3234-0-body",
+      "type": "text",
+      "x": 86,
+      "y": 3308.6356445312504,
+      "width": 704.4189453125,
+      "height": 275,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3234-0"
+      ],
+      "frameId": null,
+      "index": "aT",
+      "roundness": null,
+      "seed": 1592203219,
+      "version": 2,
+      "versionNonce": 459348339,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false,
+      "text": "Contenedor · Angular + Tauri\n\nCliente instalado en cada puesto. Capacidades nativas por permisos; su\nregistro técnico de periféricos no lo convierte en autoridad de ventas.\nHardware y SDK requieren homologación.\n\nAUTORIDAD · No posee otra base de ventas ni credenciales SQL.\n\nCONTINUIDAD · Sin WAN usa la API por LAN. Sin LAN o backend, se\ndetienen nuevos comandos dependientes.",
+      "fontSize": 22,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Contenedor · Angular + Tauri\n\nCliente instalado en cada puesto. Capacidades nativas por permisos; su\nregistro técnico de periféricos no lo convierte en autoridad de ventas.\nHardware y SDK requieren homologación.\n\nAUTORIDAD · No posee otra base de ventas ni credenciales SQL.\n\nCONTINUIDAD · Sin WAN usa la API por LAN. Sin LAN o backend, se\ndetienen nuevos comandos dependientes.",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3234-1-bg",
+      "type": "rectangle",
+      "x": 865.3578124999999,
+      "y": 3234.3856445312504,
+      "width": 777.3578124999999,
+      "height": 411.75,
+      "angle": 0,
+      "strokeColor": "#CCD7E8",
+      "backgroundColor": "#F7F9FD",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3234-1"
+      ],
+      "frameId": null,
+      "index": "aU",
+      "roundness": {
+        "type": 3
+      },
+      "seed": 949306077,
+      "version": 2,
+      "versionNonce": 435006269,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "notes-3234-1-title",
+      "type": "text",
+      "x": 887.3578124999999,
+      "y": 3256.3856445312504,
+      "width": 197.3388671875,
+      "height": 31.25,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3234-1"
+      ],
+      "frameId": null,
+      "index": "aV",
+      "roundness": null,
+      "seed": 947561843,
+      "version": 2,
+      "versionNonce": 92500755,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false,
+      "text": "API de comandos",
+      "fontSize": 25,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "API de comandos",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3234-1-body",
+      "type": "text",
+      "x": 887.3578124999999,
+      "y": 3308.6356445312504,
+      "width": 712.873046875,
+      "height": 302.5,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3234-1"
+      ],
+      "frameId": null,
+      "index": "aW",
+      "roundness": null,
+      "seed": 503504701,
+      "version": 2,
+      "versionNonce": 485440413,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false,
+      "text": "Componente · Controllers NestJS / Fastify\n\nAutentica el puesto, valida esquema, propaga commandId y contexto de\nusuario/sucursal, aplica límites y entrega un resultado inequívoco o\npendiente.\n\nAUTORIDAD · Contrato del backend; no escribe tablas por fuera de los\ncasos de uso.\n\nCONTINUIDAD · API local por LAN; rechaza comandos cuando falta una\ncapacidad requerida.",
+      "fontSize": 22,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Componente · Controllers NestJS / Fastify\n\nAutentica el puesto, valida esquema, propaga commandId y contexto de\nusuario/sucursal, aplica límites y entrega un resultado inequívoco o\npendiente.\n\nAUTORIDAD · Contrato del backend; no escribe tablas por fuera de los\ncasos de uso.\n\nCONTINUIDAD · API local por LAN; rechaza comandos cuando falta una\ncapacidad requerida.",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3234-2-bg",
+      "type": "rectangle",
+      "x": 1666.7156249999998,
+      "y": 3234.3856445312504,
+      "width": 777.3578124999999,
+      "height": 411.75,
+      "angle": 0,
+      "strokeColor": "#CCD7E8",
+      "backgroundColor": "#F7F9FD",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3234-2"
+      ],
+      "frameId": null,
+      "index": "aX",
+      "roundness": {
+        "type": 3
+      },
+      "seed": 1602977555,
+      "version": 2,
+      "versionNonce": 1500092595,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "notes-3234-2-title",
+      "type": "text",
+      "x": 1688.7156249999998,
+      "y": 3256.3856445312504,
+      "width": 209.7900390625,
+      "height": 31.25,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3234-2"
+      ],
+      "frameId": null,
+      "index": "aY",
+      "roundness": null,
+      "seed": 1346236317,
+      "version": 2,
+      "versionNonce": 2116009981,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false,
+      "text": "Acceso y permisos",
+      "fontSize": 25,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Acceso y permisos",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3234-2-body",
+      "type": "text",
+      "x": 1688.7156249999998,
+      "y": 3308.6356445312504,
+      "width": 727.67578125,
+      "height": 275,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3234-2"
+      ],
+      "frameId": null,
+      "index": "aZ",
+      "roundness": null,
+      "seed": 1318069427,
+      "version": 2,
+      "versionNonce": 1153043027,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false,
+      "text": "Componente · Guards + servicios TypeScript\n\nLa identidad del usuario y la del puesto se verifican en comandos; el menú\nno constituye la frontera de autorización.\n\nAUTORIDAD · Permisos y evidencia de sesión según política local\nautorizada.\n\nCONTINUIDAD · La vigencia offline y revocación requieren política\nexpresa; no acceso indefinido.",
+      "fontSize": 22,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Componente · Guards + servicios TypeScript\n\nLa identidad del usuario y la del puesto se verifican en comandos; el menú\nno constituye la frontera de autorización.\n\nAUTORIDAD · Permisos y evidencia de sesión según política local\nautorizada.\n\nCONTINUIDAD · La vigencia offline y revocación requieren política\nexpresa; no acceso indefinido.",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3234-3-bg",
+      "type": "rectangle",
+      "x": 64,
+      "y": 3670.1356445312504,
+      "width": 777.3578124999999,
+      "height": 439.25,
+      "angle": 0,
+      "strokeColor": "#CCD7E8",
+      "backgroundColor": "#F7F9FD",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3234-3"
+      ],
+      "frameId": null,
+      "index": "aa",
+      "roundness": {
+        "type": 3
+      },
+      "seed": 1031271421,
+      "version": 2,
+      "versionNonce": 58767453,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "notes-3234-3-title",
+      "type": "text",
+      "x": 86,
+      "y": 3692.1356445312504,
+      "width": 248.779296875,
+      "height": 31.25,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3234-3"
+      ],
+      "frameId": null,
+      "index": "ab",
+      "roundness": null,
+      "seed": 1831802451,
+      "version": 2,
+      "versionNonce": 2085308403,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false,
+      "text": "Ventas y devoluciones",
+      "fontSize": 25,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Ventas y devoluciones",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3234-3-body",
+      "type": "text",
+      "x": 86,
+      "y": 3744.3856445312504,
+      "width": 726.2685546875,
+      "height": 302.5,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3234-3"
+      ],
+      "frameId": null,
+      "index": "ac",
+      "roundness": null,
+      "seed": 296905821,
+      "version": 2,
+      "versionNonce": 920888509,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false,
+      "text": "Componente · Módulo NestJS / TypeScript\n\nFija versión de precios al preparar la venta, registra intención y resultado\nde pagos y documentos; compensaciones y devoluciones son nuevas\noperaciones auditables.\n\nAUTORIDAD · Escritor de ventas y devoluciones; conserva referencias,\nversiones y estados.\n\nCONTINUIDAD · Permite solo operaciones soportadas por datos, límites y\npolítica vigentes.",
+      "fontSize": 22,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Componente · Módulo NestJS / TypeScript\n\nFija versión de precios al preparar la venta, registra intención y resultado\nde pagos y documentos; compensaciones y devoluciones son nuevas\noperaciones auditables.\n\nAUTORIDAD · Escritor de ventas y devoluciones; conserva referencias,\nversiones y estados.\n\nCONTINUIDAD · Permite solo operaciones soportadas por datos, límites y\npolítica vigentes.",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3234-4-bg",
+      "type": "rectangle",
+      "x": 865.3578124999999,
+      "y": 3670.1356445312504,
+      "width": 777.3578124999999,
+      "height": 439.25,
+      "angle": 0,
+      "strokeColor": "#CCD7E8",
+      "backgroundColor": "#F7F9FD",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3234-4"
+      ],
+      "frameId": null,
+      "index": "ad",
+      "roundness": {
+        "type": 3
+      },
+      "seed": 1782502387,
+      "version": 2,
+      "versionNonce": 1445187987,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "notes-3234-4-title",
+      "type": "text",
+      "x": 887.3578124999999,
+      "y": 3692.1356445312504,
+      "width": 186.181640625,
+      "height": 31.25,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3234-4"
+      ],
+      "frameId": null,
+      "index": "ae",
+      "roundness": null,
+      "seed": 2092882109,
+      "version": 2,
+      "versionNonce": 1810498845,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false,
+      "text": "Precios y ofertas",
+      "fontSize": 25,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Precios y ofertas",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3234-4-body",
+      "type": "text",
+      "x": 887.3578124999999,
+      "y": 3744.3856445312504,
+      "width": 728.9111328125,
+      "height": 330,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3234-4"
+      ],
+      "frameId": null,
+      "index": "af",
+      "roundness": null,
+      "seed": 1439030675,
+      "version": 2,
+      "versionNonce": 595207987,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false,
+      "text": "Componente · Motor TypeScript local\n\nLee una versión completa validada e inmutable. Los deltas construyen una\nnueva candidata aislada a partir de la versión base; nunca parchean la\nactiva. La cotización conserva versión, origen y reglas; la venta en curso\nno cambia de versión.\n\nAUTORIDAD · Lector del espejo PostgreSQL; no redefine el maestro\ncorporativo.\n\nCONTINUIDAD · No depende de una consulta de precio remoto para las\nventas offline autorizadas.",
+      "fontSize": 22,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Componente · Motor TypeScript local\n\nLee una versión completa validada e inmutable. Los deltas construyen una\nnueva candidata aislada a partir de la versión base; nunca parchean la\nactiva. La cotización conserva versión, origen y reglas; la venta en curso\nno cambia de versión.\n\nAUTORIDAD · Lector del espejo PostgreSQL; no redefine el maestro\ncorporativo.\n\nCONTINUIDAD · No depende de una consulta de precio remoto para las\nventas offline autorizadas.",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3234-5-bg",
+      "type": "rectangle",
+      "x": 1666.7156249999998,
+      "y": 3670.1356445312504,
+      "width": 777.3578124999999,
+      "height": 439.25,
+      "angle": 0,
+      "strokeColor": "#CCD7E8",
+      "backgroundColor": "#F7F9FD",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3234-5"
+      ],
+      "frameId": null,
+      "index": "ag",
+      "roundness": {
+        "type": 3
+      },
+      "seed": 943634717,
+      "version": 2,
+      "versionNonce": 101013885,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "notes-3234-5-title",
+      "type": "text",
+      "x": 1688.7156249999998,
+      "y": 3692.1356445312504,
+      "width": 149.13330078125,
+      "height": 31.25,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3234-5"
+      ],
+      "frameId": null,
+      "index": "ah",
+      "roundness": null,
+      "seed": 2063250227,
+      "version": 2,
+      "versionNonce": 1253361875,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false,
+      "text": "Turnos y caja",
+      "fontSize": 25,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Turnos y caja",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3234-5-body",
+      "type": "text",
+      "x": 1688.7156249999998,
+      "y": 3744.3856445312504,
+      "width": 733.2294921875,
+      "height": 302.5,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3234-5"
+      ],
+      "frameId": null,
+      "index": "ai",
+      "roundness": null,
+      "seed": 1302564221,
+      "version": 2,
+      "versionNonce": 2121736669,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false,
+      "text": "Componente · Módulo NestJS / TypeScript\n\nTurno, saldo de efectivo, depósito y cierre son conceptos distintos de\nsesión de acceso. Los movimientos monetarios requieren identidad y\ntransición validada.\n\nAUTORIDAD · Libro de movimientos y turnos de sucursal, con autorización\ny auditoría.\n\nCONTINUIDAD · Opera localmente; excepciones y límites requieren una\npolítica aprobada.",
+      "fontSize": 22,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Componente · Módulo NestJS / TypeScript\n\nTurno, saldo de efectivo, depósito y cierre son conceptos distintos de\nsesión de acceso. Los movimientos monetarios requieren identidad y\ntransición validada.\n\nAUTORIDAD · Libro de movimientos y turnos de sucursal, con autorización\ny auditoría.\n\nCONTINUIDAD · Opera localmente; excepciones y límites requieren una\npolítica aprobada.",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3234-6-bg",
+      "type": "rectangle",
+      "x": 64,
+      "y": 4133.38564453125,
+      "width": 777.3578124999999,
+      "height": 411.75,
+      "angle": 0,
+      "strokeColor": "#CCD7E8",
+      "backgroundColor": "#F7F9FD",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3234-6"
+      ],
+      "frameId": null,
+      "index": "aj",
+      "roundness": {
+        "type": 3
+      },
+      "seed": 2051265747,
+      "version": 2,
+      "versionNonce": 560608883,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "notes-3234-6-title",
+      "type": "text",
+      "x": 86,
+      "y": 4155.38564453125,
+      "width": 236.279296875,
+      "height": 31.25,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3234-6"
+      ],
+      "frameId": null,
+      "index": "ak",
+      "roundness": null,
+      "seed": 472831453,
+      "version": 2,
+      "versionNonce": 709942845,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false,
+      "text": "Pagos y adaptadores",
+      "fontSize": 25,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Pagos y adaptadores",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3234-6-body",
+      "type": "text",
+      "x": 86,
+      "y": 4207.63564453125,
+      "width": 710.4990234375,
+      "height": 302.5,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3234-6"
+      ],
+      "frameId": null,
+      "index": "al",
+      "roundness": null,
+      "seed": 590856819,
+      "version": 2,
+      "versionNonce": 107016211,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false,
+      "text": "Componente · Puertos + TypeScript\n\nNo sostiene una transacción SQL abierta mientras espera el proveedor.\nPersiste intención antes de llamar y resultado después; procesos nativos\nauxiliares quedan sujetos al contrato de cada SDK.\n\nAUTORIDAD · Conserva identidad de intento y referencia del proveedor;\nno inventa resultado.\n\nCONTINUIDAD · Si el proveedor no responde: pendiente/desconocido,\nconsulta o resolución operativa.",
+      "fontSize": 22,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Componente · Puertos + TypeScript\n\nNo sostiene una transacción SQL abierta mientras espera el proveedor.\nPersiste intención antes de llamar y resultado después; procesos nativos\nauxiliares quedan sujetos al contrato de cada SDK.\n\nAUTORIDAD · Conserva identidad de intento y referencia del proveedor;\nno inventa resultado.\n\nCONTINUIDAD · Si el proveedor no responde: pendiente/desconocido,\nconsulta o resolución operativa.",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3234-7-bg",
+      "type": "rectangle",
+      "x": 865.3578124999999,
+      "y": 4133.38564453125,
+      "width": 777.3578124999999,
+      "height": 411.75,
+      "angle": 0,
+      "strokeColor": "#CCD7E8",
+      "backgroundColor": "#F7F9FD",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3234-7"
+      ],
+      "frameId": null,
+      "index": "am",
+      "roundness": {
+        "type": 3
+      },
+      "seed": 519180861,
+      "version": 2,
+      "versionNonce": 1081347741,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "notes-3234-7-title",
+      "type": "text",
+      "x": 887.3578124999999,
+      "y": 4155.38564453125,
+      "width": 277.94189453125,
+      "height": 31.25,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3234-7"
+      ],
+      "frameId": null,
+      "index": "an",
+      "roundness": null,
+      "seed": 245169171,
+      "version": 2,
+      "versionNonce": 999257523,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false,
+      "text": "Fiscalidad y adaptadores",
+      "fontSize": 25,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Fiscalidad y adaptadores",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3234-7-body",
+      "type": "text",
+      "x": 887.3578124999999,
+      "y": 4207.63564453125,
+      "width": 725.1513671875,
+      "height": 275,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3234-7"
+      ],
+      "frameId": null,
+      "index": "ao",
+      "roundness": null,
+      "seed": 1926152861,
+      "version": 2,
+      "versionNonce": 529675005,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false,
+      "text": "Componente · Puertos + TypeScript\n\nSepara confirmación de venta de validez fiscal. Un timeout fiscal mantiene\nla referencia original y la incertidumbre hasta consultar o conciliar.\n\nAUTORIDAD · Conserva identidad del documento y estados de\nemisión/aceptación/transmisión.\n\nCONTINUIDAD · Solo modalidades legal y técnicamente habilitadas; falta\nde capacidad bloquea esa acción.",
+      "fontSize": 22,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Componente · Puertos + TypeScript\n\nSepara confirmación de venta de validez fiscal. Un timeout fiscal mantiene\nla referencia original y la incertidumbre hasta consultar o conciliar.\n\nAUTORIDAD · Conserva identidad del documento y estados de\nemisión/aceptación/transmisión.\n\nCONTINUIDAD · Solo modalidades legal y técnicamente habilitadas; falta\nde capacidad bloquea esa acción.",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3234-8-bg",
+      "type": "rectangle",
+      "x": 1666.7156249999998,
+      "y": 4133.38564453125,
+      "width": 777.3578124999999,
+      "height": 411.75,
+      "angle": 0,
+      "strokeColor": "#CCD7E8",
+      "backgroundColor": "#F7F9FD",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3234-8"
+      ],
+      "frameId": null,
+      "index": "ap",
+      "roundness": {
+        "type": 3
+      },
+      "seed": 2020213171,
+      "version": 2,
+      "versionNonce": 1853267,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "notes-3234-8-title",
+      "type": "text",
+      "x": 1688.7156249999998,
+      "y": 4155.38564453125,
+      "width": 290.41748046875,
+      "height": 31.25,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3234-8"
+      ],
+      "frameId": null,
+      "index": "aq",
+      "roundness": null,
+      "seed": 477521661,
+      "version": 2,
+      "versionNonce": 1412221789,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false,
+      "text": "Persistencia transaccional",
+      "fontSize": 25,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Persistencia transaccional",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3234-8-body",
+      "type": "text",
+      "x": 1688.7156249999998,
+      "y": 4207.63564453125,
+      "width": 713.603515625,
+      "height": 302.5,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3234-8"
+      ],
+      "frameId": null,
+      "index": "ar",
+      "roundness": null,
+      "seed": 1506104147,
+      "version": 2,
+      "versionNonce": 1784538355,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false,
+      "text": "Componente · Repositorios TypeScript / SQL\n\nCoordina cambios locales y outbox en la misma transacción. La\ntransacción no engloba al proveedor externo ni al ERP; esos efectos\ntienen recuperación propia.\n\nAUTORIDAD · Un commit sobre PostgreSQL de sucursal; restricciones e\nidempotencia de comandos.\n\nCONTINUIDAD · La operación no se confirma si el commit falla. Falta de\ndisco exige política de bloqueo.",
+      "fontSize": 22,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Componente · Repositorios TypeScript / SQL\n\nCoordina cambios locales y outbox en la misma transacción. La\ntransacción no engloba al proveedor externo ni al ERP; esos efectos\ntienen recuperación propia.\n\nAUTORIDAD · Un commit sobre PostgreSQL de sucursal; restricciones e\nidempotencia de comandos.\n\nCONTINUIDAD · La operación no se confirma si el commit falla. Falta de\ndisco exige política de bloqueo.",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3234-9-bg",
+      "type": "rectangle",
+      "x": 64,
+      "y": 4569.13564453125,
+      "width": 777.3578124999999,
+      "height": 466.75,
+      "angle": 0,
+      "strokeColor": "#CCD7E8",
+      "backgroundColor": "#F7F9FD",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3234-9"
+      ],
+      "frameId": null,
+      "index": "as",
+      "roundness": {
+        "type": 3
+      },
+      "seed": 241860445,
+      "version": 2,
+      "versionNonce": 1586845629,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "notes-3234-9-title",
+      "type": "text",
+      "x": 86,
+      "y": 4591.13564453125,
+      "width": 200.09765625,
+      "height": 31.25,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3234-9"
+      ],
+      "frameId": null,
+      "index": "at",
+      "roundness": null,
+      "seed": 1124430067,
+      "version": 2,
+      "versionNonce": 31116947,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false,
+      "text": "Datos de sucursal",
+      "fontSize": 25,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Datos de sucursal",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3234-9-body",
+      "type": "text",
+      "x": 86,
+      "y": 4643.38564453125,
+      "width": 723.9375,
+      "height": 357.5,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3234-9"
+      ],
+      "frameId": null,
+      "index": "au",
+      "roundness": null,
+      "seed": 1862044605,
+      "version": 2,
+      "versionNonce": 955078685,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false,
+      "text": "Contenedor de datos · PostgreSQL\n\nVentas, caja, pagos y evidencia fiscal son locales. Inbox, outbox, cursores\ny staging tienen restricciones y transacciones. Catálogo, precios y\npromociones son réplicas de lectura autorizadas, no maestros\nindependientes.\n\nAUTORIDAD · Base compartida por la tienda, un primario autorizado. API\nescribe negocio; worker escribe su esquema técnico y publica espejos por\nun contrato acotado.\n\nCONTINUIDAD · Persistencia local disponible sin WAN. No implica\nrespaldo, alta disponibilidad ni recuperación automática.",
+      "fontSize": 22,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Contenedor de datos · PostgreSQL\n\nVentas, caja, pagos y evidencia fiscal son locales. Inbox, outbox, cursores\ny staging tienen restricciones y transacciones. Catálogo, precios y\npromociones son réplicas de lectura autorizadas, no maestros\nindependientes.\n\nAUTORIDAD · Base compartida por la tienda, un primario autorizado. API\nescribe negocio; worker escribe su esquema técnico y publica espejos por\nun contrato acotado.\n\nCONTINUIDAD · Persistencia local disponible sin WAN. No implica\nrespaldo, alta disponibilidad ni recuperación automática.",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3234-10-bg",
+      "type": "rectangle",
+      "x": 865.3578124999999,
+      "y": 4569.13564453125,
+      "width": 777.3578124999999,
+      "height": 466.75,
+      "angle": 0,
+      "strokeColor": "#CCD7E8",
+      "backgroundColor": "#F7F9FD",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3234-10"
+      ],
+      "frameId": null,
+      "index": "av",
+      "roundness": {
+        "type": 3
+      },
+      "seed": 1974524563,
+      "version": 2,
+      "versionNonce": 424248371,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "notes-3234-10-title",
+      "type": "text",
+      "x": 887.3578124999999,
+      "y": 4591.13564453125,
+      "width": 225.15869140625,
+      "height": 31.25,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3234-10"
+      ],
+      "frameId": null,
+      "index": "aw",
+      "roundness": null,
+      "seed": 508431389,
+      "version": 2,
+      "versionNonce": 489049213,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false,
+      "text": "Proveedor de pagos",
+      "fontSize": 25,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Proveedor de pagos",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3234-10-body",
+      "type": "text",
+      "x": 887.3578124999999,
+      "y": 4643.38564453125,
+      "width": 720.3173828125,
+      "height": 302.5,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3234-10"
+      ],
+      "frameId": null,
+      "index": "ax",
+      "roundness": null,
+      "seed": 1048449075,
+      "version": 2,
+      "versionNonce": 1754301907,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false,
+      "text": "Sistema externo · API / SDK según proveedor\n\nPago, venta, documento fiscal e integración ERP tienen estados distintos.\nNo repetir un cargo incierto ni cambiar de proveedor para resolverlo\nautomáticamente.\n\nAUTORIDAD · El proveedor mantiene el efecto financiero; POS registra\nintento, referencia y resultado.\n\nCONTINUIDAD · Disponibilidad y modo offline por homologar. Un timeout\npuede dejar resultado desconocido.",
+      "fontSize": 22,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Sistema externo · API / SDK según proveedor\n\nPago, venta, documento fiscal e integración ERP tienen estados distintos.\nNo repetir un cargo incierto ni cambiar de proveedor para resolverlo\nautomáticamente.\n\nAUTORIDAD · El proveedor mantiene el efecto financiero; POS registra\nintento, referencia y resultado.\n\nCONTINUIDAD · Disponibilidad y modo offline por homologar. Un timeout\npuede dejar resultado desconocido.",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3234-11-bg",
+      "type": "rectangle",
+      "x": 1666.7156249999998,
+      "y": 4569.13564453125,
+      "width": 777.3578124999999,
+      "height": 466.75,
+      "angle": 0,
+      "strokeColor": "#CCD7E8",
+      "backgroundColor": "#F7F9FD",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3234-11"
+      ],
+      "frameId": null,
+      "index": "ay",
+      "roundness": {
+        "type": 3
+      },
+      "seed": 2085650557,
+      "version": 2,
+      "versionNonce": 184661213,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "notes-3234-11-title",
+      "type": "text",
+      "x": 1688.7156249999998,
+      "y": 4591.13564453125,
+      "width": 179.248046875,
+      "height": 31.25,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3234-11"
+      ],
+      "frameId": null,
+      "index": "az",
+      "roundness": null,
+      "seed": 257135059,
+      "version": 2,
+      "versionNonce": 1724273523,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false,
+      "text": "Proveedor fiscal",
+      "fontSize": 25,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Proveedor fiscal",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "notes-3234-11-body",
+      "type": "text",
+      "x": 1688.7156249999998,
+      "y": 4643.38564453125,
+      "width": 728.2880859375,
+      "height": 275,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "notes-3234-11"
+      ],
+      "frameId": null,
+      "index": "b00",
+      "roundness": null,
+      "seed": 1858431197,
+      "version": 2,
+      "versionNonce": 235999549,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false,
+      "text": "Sistema externo · Contrato por país y modalidad\n\nEmisión, aceptación y transmisión se modelan por separado. No se\ninventa un proveedor común ni una capacidad de consulta o idempotencia\nno acreditada.\n\nAUTORIDAD · Autoridad y validez tributaria según régimen y proveedor.\n\nCONTINUIDAD · Emitir offline exige modalidad y material fiscal válidos; no\nse promete universalmente.",
+      "fontSize": 22,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Sistema externo · Contrato por país y modalidad\n\nEmisión, aceptación y transmisión se modelan por separado. No se\ninventa un proveedor común ni una capacidad de consulta o idempotencia\nno acreditada.\n\nAUTORIDAD · Autoridad y validez tributaria según régimen y proveedor.\n\nCONTINUIDAD · Emitir offline exige modalidad y material fiscal válidos; no\nse promete universalmente.",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "footer",
+      "type": "text",
+      "x": 64,
+      "y": 5094.88564453125,
+      "width": 1424.169921875,
+      "height": 25,
+      "angle": 0,
+      "strokeColor": "#4C607D",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b01",
+      "roundness": null,
+      "seed": 1497882483,
+      "version": 2,
+      "versionNonce": 1680960787,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false,
+      "text": "C4: contenedor = aplicación o almacén; componente = módulo dentro de un proceso. Despliegue y dinámicas son vistas complementarias, no el nivel de código.",
+      "fontSize": 20,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "C4: contenedor = aplicación o almacén; componente = módulo dentro de un proceso. Despliegue y dinámicas son vistas complementarias, no el nivel de código.",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "glossary",
+      "type": "text",
+      "x": 64,
+      "y": 5160.88564453125,
+      "width": 1681.240234375,
+      "height": 25,
+      "angle": 0,
+      "strokeColor": "#4C607D",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b02",
+      "roundness": null,
+      "seed": 658392381,
+      "version": 2,
+      "versionNonce": 1135993245,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false,
+      "text": "LAN: red de tienda · WAN: enlace a país · ACK: acuse de aplicación durable · ACL: capa anticorrupción · outbox/inbox: registros de envío/recepción · watermark: corte consistente del origen",
+      "fontSize": 20,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "LAN: red de tienda · WAN: enlace a país · ACK: acuse de aplicación durable · ACL: capa anticorrupción · outbox/inbox: registros de envío/recepción · watermark: corte consistente del origen",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "sources",
+      "type": "text",
+      "x": 64,
+      "y": 5229.88564453125,
+      "width": 1482.6708984375,
+      "height": 67.5,
+      "angle": 0,
+      "strokeColor": "#4C607D",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b03",
+      "roundness": null,
+      "seed": 648116499,
+      "version": 2,
+      "versionNonce": 1682461363,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745550,
+      "link": null,
+      "locked": false,
+      "text": "FUENTES DEL REPOSITORIO\ndocs/c4-arquitectura-propuesta.md  ·  docs/propuesta-arquitectura.md  ·  docs/opciones-tecnologicas.md  ·  docs/operacion-caja-y-evolucion.md  ·  docs/revision-resiliencia-datos-pos.md\nAngular + Tauri y Nx: dirección elegida. Backend, bases, integración y topología: diseño por implementar y validar. Nx organiza código y CI; no es un proceso runtime.",
+      "fontSize": 18,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "FUENTES DEL REPOSITORIO\ndocs/c4-arquitectura-propuesta.md  ·  docs/propuesta-arquitectura.md  ·  docs/opciones-tecnologicas.md  ·  docs/operacion-caja-y-evolucion.md  ·  docs/revision-resiliencia-datos-pos.md\nAngular + Tauri y Nx: dirección elegida. Backend, bases, integración y topología: diseño por implementar y validar. Nx organiza código y CI; no es un proceso runtime.",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "backendScope",
+      "type": "rectangle",
+      "x": 64,
+      "y": 622.8,
+      "width": 1921.0359375000005,
+      "height": 1819.6000000000004,
+      "angle": 0,
+      "strokeColor": "#CCD7E8",
+      "backgroundColor": "#ffffff",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "dashed",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b030V",
+      "roundness": null,
+      "seed": 1752674109,
+      "version": 3,
+      "versionNonce": 555853309,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "backendScope-title",
+      "type": "text",
+      "x": 82,
+      "y": 637.1999198913575,
+      "width": 339.9365234375,
+      "height": 55,
+      "angle": 0,
+      "strokeColor": "#4C607D",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b031",
+      "roundness": null,
+      "seed": 1066118931,
+      "version": 3,
+      "versionNonce": 934380627,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "text": "Backend de sucursal · UN proceso\nContenedor NestJS + Fastify",
+      "fontSize": 22,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Backend de sucursal · UN proceso\nContenedor NestJS + Fastify",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "client",
+      "type": "rectangle",
+      "x": 409.521484375,
+      "y": 430,
+      "width": 379.16249999999997,
+      "height": 160.79999999999998,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "#EDF3FF",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b032",
+      "roundness": null,
+      "seed": 328777629,
+      "version": 4,
+      "versionNonce": 2035670621,
+      "isDeleted": false,
+      "boundElements": [
+        {
+          "type": "text",
+          "id": "S7o-43ApQZ_qYNenTP2pm"
+        },
+        {
+          "id": "client_entry",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "c4NodeId": "client",
+        "type": "Contenedor"
+      }
+    },
+    {
+      "id": "entry",
+      "type": "rectangle",
+      "x": 411.780859375,
+      "y": 773.8000000000001,
+      "width": 374.64375,
+      "height": 160.79999999999998,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "#EDF3FF",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b033",
+      "roundness": null,
+      "seed": 520770739,
+      "version": 7,
+      "versionNonce": 1447264755,
+      "isDeleted": false,
+      "boundElements": [
+        {
+          "type": "text",
+          "id": "U3mToFK9lMMjE25FFP6qR"
+        },
+        {
+          "id": "client_entry",
+          "type": "arrow"
+        },
+        {
+          "id": "entry_access",
+          "type": "arrow"
+        },
+        {
+          "id": "entry_sales",
+          "type": "arrow"
+        },
+        {
+          "id": "entry_cash",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "c4NodeId": "entry",
+        "type": "Componente"
+      }
+    },
+    {
+      "id": "access",
+      "type": "rectangle",
+      "x": 99.99999999999997,
+      "y": 1084.6000000000001,
+      "width": 418.9875,
+      "height": 134.4,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "#EDF3FF",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b034",
+      "roundness": null,
+      "seed": 1828242429,
+      "version": 4,
+      "versionNonce": 1126435517,
+      "isDeleted": false,
+      "boundElements": [
+        {
+          "type": "text",
+          "id": "-o8-IL8NuGzt5XXZVYBNb"
+        },
+        {
+          "id": "entry_access",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "c4NodeId": "access",
+        "type": "Componente"
+      }
+    },
+    {
+      "id": "sales",
+      "type": "rectangle",
+      "x": 821.398046875,
+      "y": 1084.6000000000001,
+      "width": 412.53749999999997,
+      "height": 134.4,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "#EDF3FF",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b035",
+      "roundness": null,
+      "seed": 249775699,
+      "version": 9,
+      "versionNonce": 2030357395,
+      "isDeleted": false,
+      "boundElements": [
+        {
+          "type": "text",
+          "id": "6RNB8_cjpkt8p0vEvfy0l"
+        },
+        {
+          "id": "entry_sales",
+          "type": "arrow"
+        },
+        {
+          "id": "sales_pricing",
+          "type": "arrow"
+        },
+        {
+          "id": "sales_cash",
+          "type": "arrow"
+        },
+        {
+          "id": "sales_payPort",
+          "type": "arrow"
+        },
+        {
+          "id": "sales_fiscalPort",
+          "type": "arrow"
+        },
+        {
+          "id": "sales_unitOfWork",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "c4NodeId": "sales",
+        "type": "Componente"
+      }
+    },
+    {
+      "id": "pricing",
+      "type": "rectangle",
+      "x": 786.9718750000087,
+      "y": 1951,
+      "width": 413.84999999999997,
+      "height": 134.4,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "#EDF3FF",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b036",
+      "roundness": null,
+      "seed": 949566557,
+      "version": 5,
+      "versionNonce": 523086621,
+      "isDeleted": false,
+      "boundElements": [
+        {
+          "type": "text",
+          "id": "rnRyFxrJogJXF0TjsU9Nu"
+        },
+        {
+          "id": "sales_pricing",
+          "type": "arrow"
+        },
+        {
+          "id": "pricing_unitOfWork",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "c4NodeId": "pricing",
+        "type": "Componente"
+      }
+    },
+    {
+      "id": "cash",
+      "type": "rectangle",
+      "x": 418.036328125,
+      "y": 1653.4000000000003,
+      "width": 412.30546875,
+      "height": 160.79999999999998,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "#EDF3FF",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b037",
+      "roundness": null,
+      "seed": 636290035,
+      "version": 6,
+      "versionNonce": 1949032755,
+      "isDeleted": false,
+      "boundElements": [
+        {
+          "type": "text",
+          "id": "peUpnaI1K0KBxz_KbO2xu"
+        },
+        {
+          "id": "entry_cash",
+          "type": "arrow"
+        },
+        {
+          "id": "sales_cash",
+          "type": "arrow"
+        },
+        {
+          "id": "cash_unitOfWork",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "c4NodeId": "cash",
+        "type": "Componente"
+      }
+    },
+    {
+      "id": "payPort",
+      "type": "rectangle",
+      "x": 1248.8218749999999,
+      "y": 1937.8,
+      "width": 404.53125,
+      "height": 160.79999999999998,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "#EDF3FF",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b038",
+      "roundness": null,
+      "seed": 1045145789,
+      "version": 6,
+      "versionNonce": 501497725,
+      "isDeleted": false,
+      "boundElements": [
+        {
+          "type": "text",
+          "id": "Cd_UAI_q6sdEtWbzfOqgI"
+        },
+        {
+          "id": "sales_payPort",
+          "type": "arrow"
+        },
+        {
+          "id": "payPort_unitOfWork",
+          "type": "arrow"
+        },
+        {
+          "id": "payPort_payments",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "c4NodeId": "payPort",
+        "type": "Componente"
+      }
+    },
+    {
+      "id": "fiscalPort",
+      "type": "rectangle",
+      "x": 1544.3640625,
+      "y": 1369.0000000000002,
+      "width": 403.0125,
+      "height": 134.4,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "#EDF3FF",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b039",
+      "roundness": null,
+      "seed": 1546522003,
+      "version": 6,
+      "versionNonce": 1361003219,
+      "isDeleted": false,
+      "boundElements": [
+        {
+          "type": "text",
+          "id": "paW5X_CE5nYsPwKVzQAKe"
+        },
+        {
+          "id": "sales_fiscalPort",
+          "type": "arrow"
+        },
+        {
+          "id": "fiscalPort_unitOfWork",
+          "type": "arrow"
+        },
+        {
+          "id": "fiscalPort_fiscal",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "c4NodeId": "fiscalPort",
+        "type": "Componente"
+      }
+    },
+    {
+      "id": "unitOfWork",
+      "type": "rectangle",
+      "x": 802.178125,
+      "y": 2248.6000000000004,
+      "width": 378.675,
+      "height": 160.79999999999998,
+      "angle": 0,
+      "strokeColor": "#0545BA",
+      "backgroundColor": "#EDF3FF",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b03A",
+      "roundness": null,
+      "seed": 1337035037,
+      "version": 9,
+      "versionNonce": 1166624733,
+      "isDeleted": false,
+      "boundElements": [
+        {
+          "type": "text",
+          "id": "9gcO4uE7Gi_kvrNRDwf_P"
+        },
+        {
+          "id": "sales_unitOfWork",
+          "type": "arrow"
+        },
+        {
+          "id": "cash_unitOfWork",
+          "type": "arrow"
+        },
+        {
+          "id": "pricing_unitOfWork",
+          "type": "arrow"
+        },
+        {
+          "id": "payPort_unitOfWork",
+          "type": "arrow"
+        },
+        {
+          "id": "fiscalPort_unitOfWork",
+          "type": "arrow"
+        },
+        {
+          "id": "unitOfWork_branchDb",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "c4NodeId": "unitOfWork",
+        "type": "Componente"
+      }
+    },
+    {
+      "id": "branchDb",
+      "type": "rectangle",
+      "x": 808.178125,
+      "y": 2565.9999542236333,
+      "width": 366.675,
+      "height": 210.27138061523436,
+      "angle": 0,
+      "strokeColor": "#6545A4",
+      "backgroundColor": "#F2EEFA",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b03B",
+      "roundness": null,
+      "seed": 1692197683,
+      "version": 4,
+      "versionNonce": 678785139,
+      "isDeleted": false,
+      "boundElements": [
+        {
+          "type": "text",
+          "id": "a1yDfFwpqgf2S2QKdtaRm"
+        },
+        {
+          "id": "unitOfWork_branchDb",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "c4NodeId": "branchDb",
+        "type": "Contenedor de datos"
+      }
+    },
+    {
+      "id": "payments",
+      "type": "rectangle",
+      "x": 2021.0359374999998,
+      "y": 2248.6000000000004,
+      "width": 423.03749999999997,
+      "height": 160.79999999999998,
+      "angle": 0,
+      "strokeColor": "#64748B",
+      "backgroundColor": "#F1F5F9",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b03C",
+      "roundness": null,
+      "seed": 238837117,
+      "version": 4,
+      "versionNonce": 1479427133,
+      "isDeleted": false,
+      "boundElements": [
+        {
+          "type": "text",
+          "id": "kDGLXYm7WBVb5J7tWduTk"
+        },
+        {
+          "id": "payPort_payments",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "c4NodeId": "payments",
+        "type": "Sistema externo"
+      }
+    },
+    {
+      "id": "fiscal",
+      "type": "rectangle",
+      "x": 2021.0359374999998,
+      "y": 1653.4000000000003,
+      "width": 381.76875,
+      "height": 160.79999999999998,
+      "angle": 0,
+      "strokeColor": "#64748B",
+      "backgroundColor": "#F1F5F9",
+      "fillStyle": "solid",
+      "strokeWidth": 1.5,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b03D",
+      "roundness": null,
+      "seed": 1214252243,
+      "version": 4,
+      "versionNonce": 1005906451,
+      "isDeleted": false,
+      "boundElements": [
+        {
+          "type": "text",
+          "id": "q0F3YjHJVwSqSwRAOzB0w"
+        },
+        {
+          "id": "fiscalPort_fiscal",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "c4NodeId": "fiscal",
+        "type": "Sistema externo"
+      }
+    },
+    {
+      "id": "client_entry",
+      "type": "arrow",
+      "x": 599.1028076171962,
+      "y": 591.3,
+      "width": 0,
+      "height": 177.2,
+      "angle": 0,
+      "strokeColor": "#48638C",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-client_entry"
+      ],
+      "frameId": null,
+      "index": "b03E",
+      "roundness": null,
+      "seed": 1898816989,
+      "version": 5,
+      "versionNonce": 1505014941,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "from": "client",
+        "to": "entry",
+        "label": "Comando con identidad estable · HTTPS/LAN"
+      },
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          24.9571533203125
+        ],
+        [
+          0,
+          50.41427001953125
+        ],
+        [
+          0,
+          75.87142333984374
+        ],
+        [
+          0,
+          101.32857666015624
+        ],
+        [
+          0,
+          126.78569335937499
+        ],
+        [
+          0,
+          152.2428466796875
+        ],
+        [
+          0,
+          177.2
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": {
+        "elementId": "client",
+        "focus": -3.863367090064478e-7,
+        "gap": 1
+      },
+      "endBinding": {
+        "elementId": "entry",
+        "focus": 3.9099649298299833e-7,
+        "gap": 4.800000000000068
+      },
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "elbowed": false
+    },
+    {
+      "id": "entry_access",
+      "type": "arrow",
+      "x": 448.7659912109462,
+      "y": 935.0999999999999,
+      "width": 138.7723876953125,
+      "height": 144.2,
+      "angle": 0,
+      "strokeColor": "#48638C",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-entry_access"
+      ],
+      "frameId": null,
+      "index": "b03F",
+      "roundness": null,
+      "seed": 1045295731,
+      "version": 5,
+      "versionNonce": 1351888819,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "from": "entry",
+        "to": "access",
+        "label": "Comprueba permiso y contexto · llamada TypeScript"
+      },
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          -20.632861328125,
+          10.8398681640625
+        ],
+        [
+          -41.70819091796875,
+          22.285791015624998
+        ],
+        [
+          -62.488793945312494,
+          34.2567138671875
+        ],
+        [
+          -82.7541015625,
+          47.07783203125
+        ],
+        [
+          -102.1238037109375,
+          61.20771484375
+        ],
+        [
+          -119.56240234375,
+          77.625244140625
+        ],
+        [
+          -132.57243041992186,
+          97.67368164062499
+        ],
+        [
+          -138.76849975585938,
+          120.7334716796875
+        ],
+        [
+          -138.7723876953125,
+          144.2
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": {
+        "elementId": "entry",
+        "focus": 0.000012257208653528188,
+        "gap": 1
+      },
+      "endBinding": {
+        "elementId": "access",
+        "focus": -0.00717816059881303,
+        "gap": 4.800000000000296
+      },
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "elbowed": false
+    },
+    {
+      "id": "entry_sales",
+      "type": "arrow",
+      "x": 786.9251953125087,
+      "y": 922.6235961914062,
+      "width": 240.24204101562498,
+      "height": 156.67640380859373,
+      "angle": 0,
+      "strokeColor": "#48638C",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-entry_sales"
+      ],
+      "frameId": null,
+      "index": "b03G",
+      "roundness": null,
+      "seed": 194437693,
+      "version": 5,
+      "versionNonce": 1439570173,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "from": "entry",
+        "to": "sales",
+        "label": "Ejecuta venta/devolución · llamada TypeScript"
+      },
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          23.568115234375,
+          8.22786865234375
+        ],
+        [
+          47.6353515625,
+          16.95804443359375
+        ],
+        [
+          71.66259765625,
+          25.79749755859375
+        ],
+        [
+          95.5894287109375,
+          34.90487060546875
+        ],
+        [
+          119.36787109375,
+          44.39259033203125
+        ],
+        [
+          142.93391113281248,
+          54.39527587890625
+        ],
+        [
+          166.17578125,
+          65.12774658203125
+        ],
+        [
+          188.85383300781248,
+          76.99884033203125
+        ],
+        [
+          210.27241210937498,
+          90.98612060546874
+        ],
+        [
+          228.586474609375,
+          108.77540283203125
+        ],
+        [
+          239.579248046875,
+          131.65179443359375
+        ],
+        [
+          240.24204101562498,
+          156.67640380859373
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": {
+        "elementId": "entry",
+        "focus": -0.00003722535944492571,
+        "gap": 1
+      },
+      "endBinding": {
+        "elementId": "sales",
+        "focus": 0.015671201566982366,
+        "gap": 4.800000000000182
+      },
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "elbowed": false
+    },
+    {
+      "id": "entry_cash",
+      "type": "arrow",
+      "x": 576.7787841796962,
+      "y": 935.0999999999999,
+      "width": 30.94598388671875,
+      "height": 713.41513671875,
+      "angle": 0,
+      "strokeColor": "#48638C",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-entry_cash"
+      ],
+      "frameId": null,
+      "index": "b03GV",
+      "roundness": null,
+      "seed": 1198337043,
+      "version": 5,
+      "versionNonce": 1215938899,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "from": "entry",
+        "to": "cash",
+        "label": "Abre, mueve o cierra caja · llamada TypeScript"
+      },
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          -7.42138671875,
+          24.305078124999998
+        ],
+        [
+          -13.06319580078125,
+          49.427661132812496
+        ],
+        [
+          -17.040246582031248,
+          74.8674560546875
+        ],
+        [
+          -19.46405029296875,
+          100.5029541015625
+        ],
+        [
+          -20.7767333984375,
+          126.2215087890625
+        ],
+        [
+          -21.43851318359375,
+          151.96577148437498
+        ],
+        [
+          -21.716760253906248,
+          177.71728515625
+        ],
+        [
+          -21.78641357421875,
+          203.47041015624998
+        ],
+        [
+          -21.7915771484375,
+          229.22353515625
+        ],
+        [
+          -21.7915771484375,
+          254.9767333984375
+        ],
+        [
+          -21.7915771484375,
+          280.729931640625
+        ],
+        [
+          -21.7915771484375,
+          306.4831298828125
+        ],
+        [
+          -21.7915771484375,
+          332.236328125
+        ],
+        [
+          -21.7915771484375,
+          357.98952636718747
+        ],
+        [
+          -21.7915771484375,
+          383.742724609375
+        ],
+        [
+          -21.7915771484375,
+          409.4959228515625
+        ],
+        [
+          -21.7915771484375,
+          435.24912109375
+        ],
+        [
+          -21.7915771484375,
+          461.00224609375
+        ],
+        [
+          -21.7915771484375,
+          486.75551757812497
+        ],
+        [
+          -21.7849853515625,
+          512.5087158203124
+        ],
+        [
+          -21.69537353515625,
+          538.26162109375
+        ],
+        [
+          -21.31195068359375,
+          564.011669921875
+        ],
+        [
+          -20.377783203125,
+          589.7469970703124
+        ],
+        [
+          -18.49454345703125,
+          615.4287841796875
+        ],
+        [
+          -14.964636230468749,
+          640.9312011718749
+        ],
+        [
+          -9.069921875,
+          665.98984375
+        ],
+        [
+          -0.657470703125,
+          690.31796875
+        ],
+        [
+          9.15440673828125,
+          713.41513671875
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": {
+        "elementId": "entry",
+        "focus": 0.001858610595309469,
+        "gap": 1
+      },
+      "endBinding": {
+        "elementId": "cash",
+        "focus": -0.002922622759959,
+        "gap": 4.384863281250318
+      },
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "elbowed": false
+    },
+    {
+      "id": "sales_pricing",
+      "type": "arrow",
+      "x": 1011.7084228515712,
+      "y": 1219.5,
+      "width": 17.81162109375,
+      "height": 726.1999999999999,
+      "angle": 0,
+      "strokeColor": "#48638C",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-sales_pricing"
+      ],
+      "frameId": null,
+      "index": "b03H",
+      "roundness": null,
+      "seed": 307860125,
+      "version": 5,
+      "versionNonce": 1711010141,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "from": "sales",
+        "to": "pricing",
+        "label": "Cotiza y fija versión · llamada TypeScript"
+      },
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          -5.9070556640625,
+          24.8431884765625
+        ],
+        [
+          -10.6664794921875,
+          50.42353515625
+        ],
+        [
+          -13.9763671875,
+          76.231884765625
+        ],
+        [
+          -15.958813476562499,
+          102.176904296875
+        ],
+        [
+          -17.019067382812498,
+          128.1775146484375
+        ],
+        [
+          -17.546411132812498,
+          154.19489746093748
+        ],
+        [
+          -17.759619140625,
+          180.2169677734375
+        ],
+        [
+          -17.8081787109375,
+          206.2399169921875
+        ],
+        [
+          -17.81162109375,
+          232.2628662109375
+        ],
+        [
+          -17.81162109375,
+          258.285888671875
+        ],
+        [
+          -17.81162109375,
+          284.3089111328125
+        ],
+        [
+          -17.81162109375,
+          310.33193359374997
+        ],
+        [
+          -17.81162109375,
+          336.35488281249997
+        ],
+        [
+          -17.81162109375,
+          362.37783203124997
+        ],
+        [
+          -17.81162109375,
+          388.400927734375
+        ],
+        [
+          -17.81162109375,
+          414.423876953125
+        ],
+        [
+          -17.81162109375,
+          440.44697265625
+        ],
+        [
+          -17.81162109375,
+          466.46992187499995
+        ],
+        [
+          -17.81162109375,
+          492.49287109374995
+        ],
+        [
+          -17.81162109375,
+          518.515966796875
+        ],
+        [
+          -17.81162109375,
+          544.538916015625
+        ],
+        [
+          -17.81162109375,
+          570.56201171875
+        ],
+        [
+          -17.81162109375,
+          596.5849609375
+        ],
+        [
+          -17.81162109375,
+          622.60791015625
+        ],
+        [
+          -17.81162109375,
+          648.631005859375
+        ],
+        [
+          -17.81162109375,
+          674.653955078125
+        ],
+        [
+          -17.81162109375,
+          700.6770507812499
+        ],
+        [
+          -17.81162109375,
+          726.1999999999999
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": {
+        "elementId": "sales",
+        "focus": 0.0013302499151892975,
+        "gap": 1
+      },
+      "endBinding": {
+        "elementId": "pricing",
+        "focus": -3.53955236781442e-7,
+        "gap": 4.7999999999999545
+      },
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "elbowed": false
+    },
+    {
+      "id": "sales_cash",
+      "type": "arrow",
+      "x": 893.7392333984462,
+      "y": 1219.5,
+      "width": 203.4272216796875,
+      "height": 429.61396484375,
+      "angle": 0,
+      "strokeColor": "#48638C",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-sales_cash"
+      ],
+      "frameId": null,
+      "index": "b03I",
+      "roundness": null,
+      "seed": 129249715,
+      "version": 5,
+      "versionNonce": 2096897779,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "from": "sales",
+        "to": "cash",
+        "label": "Valida turno · TypeScript"
+      },
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          -22.5010498046875,
+          11.084423828124999
+        ],
+        [
+          -45.374804687499996,
+          22.915673828124998
+        ],
+        [
+          -67.62534179687499,
+          35.8743408203125
+        ],
+        [
+          -88.8015625,
+          50.5150146484375
+        ],
+        [
+          -108.22238769531249,
+          67.3999755859375
+        ],
+        [
+          -124.61252441406249,
+          87.20883789062499
+        ],
+        [
+          -136.2669677734375,
+          110.115771484375
+        ],
+        [
+          -143.270751953125,
+          134.867529296875
+        ],
+        [
+          -146.8112060546875,
+          160.363427734375
+        ],
+        [
+          -148.16413574218748,
+          186.0771484375
+        ],
+        [
+          -148.4118408203125,
+          211.8288818359375
+        ],
+        [
+          -148.445458984375,
+          237.5824462890625
+        ],
+        [
+          -148.7529296875,
+          263.3338134765625
+        ],
+        [
+          -149.721923828125,
+          289.0677490234375
+        ],
+        [
+          -151.8759765625,
+          314.7272705078125
+        ],
+        [
+          -156.010791015625,
+          340.1359375
+        ],
+        [
+          -163.3314208984375,
+          364.802001953125
+        ],
+        [
+          -174.21513671875,
+          388.117919921875
+        ],
+        [
+          -188.1863037109375,
+          409.73183593749997
+        ],
+        [
+          -203.4272216796875,
+          429.61396484375
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": {
+        "elementId": "sales",
+        "focus": 0.000002769582288029372,
+        "gap": 1
+      },
+      "endBinding": {
+        "elementId": "cash",
+        "focus": 0.002262489205769829,
+        "gap": 3.7860351562501364
+      },
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "elbowed": false
+    },
+    {
+      "id": "sales_payPort",
+      "type": "arrow",
+      "x": 1227.7648193359462,
+      "y": 1219.5,
+      "width": 223.3223876953125,
+      "height": 713,
+      "angle": 0,
+      "strokeColor": "#48638C",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-sales_payPort"
+      ],
+      "frameId": null,
+      "index": "b03J",
+      "roundness": null,
+      "seed": 572995325,
+      "version": 5,
+      "versionNonce": 2005908925,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "from": "sales",
+        "to": "payPort",
+        "label": "Coordina intento y resultado · llamada TypeScript"
+      },
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          24.9996826171875,
+          7.8961181640625
+        ],
+        [
+          49.9907958984375,
+          16.3173583984375
+        ],
+        [
+          74.84567871093749,
+          25.1306640625
+        ],
+        [
+          99.4078857421875,
+          34.727221679687496
+        ],
+        [
+          123.52243652343749,
+          45.395312499999996
+        ],
+        [
+          146.9388427734375,
+          57.513085937499994
+        ],
+        [
+          169.1802978515625,
+          71.65878906249999
+        ],
+        [
+          189.1732177734375,
+          88.7997314453125
+        ],
+        [
+          204.9520751953125,
+          109.850634765625
+        ],
+        [
+          215.35114746093748,
+          134.0248779296875
+        ],
+        [
+          220.8409423828125,
+          159.78840332031248
+        ],
+        [
+          222.9453369140625,
+          186.0659423828125
+        ],
+        [
+          223.3212158203125,
+          212.433642578125
+        ],
+        [
+          223.3223876953125,
+          238.80551757812498
+        ],
+        [
+          223.3223876953125,
+          265.17739257812497
+        ],
+        [
+          223.3223876953125,
+          291.54934082031247
+        ],
+        [
+          223.3223876953125,
+          317.92128906249997
+        ],
+        [
+          223.3223876953125,
+          344.2931640625
+        ],
+        [
+          223.3223876953125,
+          370.6650390625
+        ],
+        [
+          223.3223876953125,
+          397.0369140625
+        ],
+        [
+          223.3223876953125,
+          423.408935546875
+        ],
+        [
+          223.3223876953125,
+          449.780810546875
+        ],
+        [
+          223.3223876953125,
+          476.15283203125
+        ],
+        [
+          223.3223876953125,
+          502.52470703125
+        ],
+        [
+          223.3223876953125,
+          528.89658203125
+        ],
+        [
+          223.3223876953125,
+          555.26845703125
+        ],
+        [
+          223.3223876953125,
+          581.64033203125
+        ],
+        [
+          223.3223876953125,
+          608.012353515625
+        ],
+        [
+          223.3223876953125,
+          634.384228515625
+        ],
+        [
+          223.3223876953125,
+          660.75625
+        ],
+        [
+          223.3223876953125,
+          687.128125
+        ],
+        [
+          223.3223876953125,
+          713
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": {
+        "elementId": "sales",
+        "focus": -0.00001992156507162666,
+        "gap": 1
+      },
+      "endBinding": {
+        "elementId": "payPort",
+        "focus": -0.0000014484356458255732,
+        "gap": 4.7999999999999545
+      },
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "elbowed": false
+    },
+    {
+      "id": "sales_fiscalPort",
+      "type": "arrow",
+      "x": 1234.4351806640711,
+      "y": 1193.1396240234376,
+      "width": 510.93557128906247,
+      "height": 170.56037597656248,
+      "angle": 0,
+      "strokeColor": "#48638C",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-sales_fiscalPort"
+      ],
+      "frameId": null,
+      "index": "b03K",
+      "roundness": null,
+      "seed": 1615430483,
+      "version": 5,
+      "versionNonce": 1486997651,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "from": "sales",
+        "to": "fiscalPort",
+        "label": "Coordina documento y estado · llamada TypeScript"
+      },
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          24.570947265624998,
+          4.4639892578125
+        ],
+        [
+          49.6418212890625,
+          9.427978515625
+        ],
+        [
+          74.7127685546875,
+          14.3919677734375
+        ],
+        [
+          99.7832763671875,
+          19.3583740234375
+        ],
+        [
+          124.84807128906249,
+          24.353051757812498
+        ],
+        [
+          149.9033447265625,
+          29.395849609375
+        ],
+        [
+          174.94367675781248,
+          34.5117431640625
+        ],
+        [
+          199.9662841796875,
+          39.7132568359375
+        ],
+        [
+          224.9682373046875,
+          45.0139404296875
+        ],
+        [
+          249.94514160156248,
+          50.430712890624996
+        ],
+        [
+          274.8928955078125,
+          55.980639648437496
+        ],
+        [
+          299.80300292968747,
+          61.696679687499994
+        ],
+        [
+          324.6671142578125,
+          67.6094482421875
+        ],
+        [
+          349.4717529296875,
+          73.7675048828125
+        ],
+        [
+          374.1947998046875,
+          80.244384765625
+        ],
+        [
+          398.8005126953125,
+          87.152587890625
+        ],
+        [
+          423.21535644531247,
+          94.70546875
+        ],
+        [
+          447.2771728515625,
+          103.31113281249999
+        ],
+        [
+          470.67219238281245,
+          113.57858886718749
+        ],
+        [
+          492.54890136718745,
+          126.7254150390625
+        ],
+        [
+          509.1149658203125,
+          145.80939941406248
+        ],
+        [
+          510.93557128906247,
+          170.56037597656248
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": {
+        "elementId": "sales",
+        "focus": -0.000009591787156262832,
+        "gap": 1
+      },
+      "endBinding": {
+        "elementId": "fiscalPort",
+        "focus": 0.03186291708461892,
+        "gap": 4.800000000000182
+      },
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "elbowed": false
+    },
+    {
+      "id": "sales_unitOfWork",
+      "type": "arrow",
+      "x": 821.8979736328212,
+      "y": 1187.756396484375,
+      "width": 621.4807739257812,
+      "height": 1102.6255859374999,
+      "angle": 0,
+      "strokeColor": "#48638C",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-sales_unitOfWork"
+      ],
+      "frameId": null,
+      "index": "b03L",
+      "roundness": null,
+      "seed": 1166102365,
+      "version": 5,
+      "versionNonce": 1370160669,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "from": "sales",
+        "to": "unitOfWork",
+        "label": "Persiste operación y outbox · llamada TypeScript"
+      },
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          -26.1817138671875,
+          3.91474609375
+        ],
+        [
+          -51.863427734375,
+          8.3294921875
+        ],
+        [
+          -77.54514160156249,
+          12.7441650390625
+        ],
+        [
+          -103.22685546875,
+          17.1589111328125
+        ],
+        [
+          -128.90673828125,
+          21.5842041015625
+        ],
+        [
+          -154.57808837890624,
+          26.058862304687498
+        ],
+        [
+          -180.23544921875,
+          30.612841796875
+        ],
+        [
+          -205.87530517578125,
+          35.2643798828125
+        ],
+        [
+          -231.49311523437498,
+          40.0359619140625
+        ],
+        [
+          -257.0849243164062,
+          44.9447998046875
+        ],
+        [
+          -282.64696044921874,
+          50.006274414062496
+        ],
+        [
+          -308.17310791015626,
+          55.246020507812496
+        ],
+        [
+          -333.657470703125,
+          60.684912109375
+        ],
+        [
+          -359.0904907226562,
+          66.359130859375
+        ],
+        [
+          -384.4619506835937,
+          72.3021484375
+        ],
+        [
+          -409.7549682617187,
+          78.570361328125
+        ],
+        [
+          -434.9473510742187,
+          85.23129882812499
+        ],
+        [
+          -460.00474853515624,
+          92.38251953125
+        ],
+        [
+          -484.87074584960936,
+          100.171826171875
+        ],
+        [
+          -509.44598999023435,
+          108.8316162109375
+        ],
+        [
+          -533.5278381347656,
+          118.77475585937499
+        ],
+        [
+          -556.7675659179687,
+          130.54243164062498
+        ],
+        [
+          -578.5342651367188,
+          144.832421875
+        ],
+        [
+          -597.5728027343749,
+          162.557763671875
+        ],
+        [
+          -611.7433349609374,
+          184.325341796875
+        ],
+        [
+          -619.2822082519531,
+          209.18732910156248
+        ],
+        [
+          -621.3958129882812,
+          235.13535156249998
+        ],
+        [
+          -621.4807647705078,
+          261.193310546875
+        ],
+        [
+          -621.4807647705078,
+          287.251708984375
+        ],
+        [
+          -621.4807739257812,
+          313.310107421875
+        ],
+        [
+          -621.4807739257812,
+          339.368505859375
+        ],
+        [
+          -621.4807739257812,
+          365.42690429687497
+        ],
+        [
+          -621.4807739257812,
+          391.485302734375
+        ],
+        [
+          -621.4807647705078,
+          417.543701171875
+        ],
+        [
+          -621.4807739257812,
+          443.602099609375
+        ],
+        [
+          -621.4807739257812,
+          469.660498046875
+        ],
+        [
+          -621.4807739257812,
+          495.71889648437497
+        ],
+        [
+          -621.4807739257812,
+          521.777294921875
+        ],
+        [
+          -621.4807647705078,
+          547.835693359375
+        ],
+        [
+          -621.4807647705078,
+          573.8940917968749
+        ],
+        [
+          -621.4807739257812,
+          599.952490234375
+        ],
+        [
+          -621.4807739257812,
+          626.010888671875
+        ],
+        [
+          -621.4807739257812,
+          652.069287109375
+        ],
+        [
+          -621.4807739257812,
+          678.127685546875
+        ],
+        [
+          -621.4807647705078,
+          704.18623046875
+        ],
+        [
+          -621.4807739257812,
+          730.24462890625
+        ],
+        [
+          -621.4807739257812,
+          756.3030273437499
+        ],
+        [
+          -621.4807739257812,
+          782.36142578125
+        ],
+        [
+          -621.4807739257812,
+          808.41982421875
+        ],
+        [
+          -621.4795745849609,
+          834.47822265625
+        ],
+        [
+          -620.8379455566406,
+          860.523291015625
+        ],
+        [
+          -616.9436584472656,
+          886.2529785156249
+        ],
+        [
+          -607.5507690429687,
+          910.4873535156249
+        ],
+        [
+          -592.4991149902344,
+          931.6849609374999
+        ],
+        [
+          -573.3871520996094,
+          949.3481933593749
+        ],
+        [
+          -551.8387878417968,
+          963.9709960937499
+        ],
+        [
+          -528.8671447753906,
+          976.255322265625
+        ],
+        [
+          -505.035693359375,
+          986.7853515625
+        ],
+        [
+          -480.6988891601562,
+          996.09443359375
+        ],
+        [
+          -456.05054931640626,
+          1004.5470214843749
+        ],
+        [
+          -431.1914916992187,
+          1012.3597656249999
+        ],
+        [
+          -406.17983398437497,
+          1019.669775390625
+        ],
+        [
+          -381.05186767578124,
+          1026.57021484375
+        ],
+        [
+          -355.834326171875,
+          1033.1353515624999
+        ],
+        [
+          -330.5439086914062,
+          1039.4151367187499
+        ],
+        [
+          -305.19306640625,
+          1045.44560546875
+        ],
+        [
+          -279.79271240234374,
+          1051.26455078125
+        ],
+        [
+          -254.35009765625,
+          1056.8958496093749
+        ],
+        [
+          -228.87130126953124,
+          1062.360888671875
+        ],
+        [
+          -203.3627685546875,
+          1067.685595703125
+        ],
+        [
+          -177.82926025390626,
+          1072.889453125
+        ],
+        [
+          -152.27473144531248,
+          1077.9888671874999
+        ],
+        [
+          -126.7092529296875,
+          1083.033642578125
+        ],
+        [
+          -101.139599609375,
+          1088.057177734375
+        ],
+        [
+          -75.56979980468749,
+          1093.07998046875
+        ],
+        [
+          -50.0000732421875,
+          1098.102783203125
+        ],
+        [
+          -24.9303466796875,
+          1102.6255859374999
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": {
+        "elementId": "sales",
+        "focus": 0.000016481495695537985,
+        "gap": 1
+      },
+      "endBinding": {
+        "elementId": "unitOfWork",
+        "focus": 8.219297886406478e-7,
+        "gap": 4.710498046866405
+      },
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "elbowed": false
+    },
+    {
+      "id": "cash_unitOfWork",
+      "type": "arrow",
+      "x": 624.6888061523524,
+      "y": 1814.7,
+      "width": 173.06922607421873,
+      "height": 431.82924804687497,
+      "angle": 0,
+      "strokeColor": "#48638C",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-cash_unitOfWork"
+      ],
+      "frameId": null,
+      "index": "b03M",
+      "roundness": null,
+      "seed": 1233363187,
+      "version": 5,
+      "versionNonce": 824262195,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "from": "cash",
+        "to": "unitOfWork",
+        "label": "Persiste movimientos y auditoría · llamada TypeScript"
+      },
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          -0.5,
+          25.604833984375
+        ],
+        [
+          -0.5,
+          51.70966796875
+        ],
+        [
+          -0.5,
+          77.81435546875
+        ],
+        [
+          -0.5,
+          103.919189453125
+        ],
+        [
+          -0.5,
+          130.0240234375
+        ],
+        [
+          -0.5,
+          156.1287109375
+        ],
+        [
+          -0.5,
+          182.233544921875
+        ],
+        [
+          -0.49798583984375,
+          208.33837890625
+        ],
+        [
+          -0.29349365234375,
+          234.44174804687498
+        ],
+        [
+          0.93983154296875,
+          260.513623046875
+        ],
+        [
+          4.2215942382812495,
+          286.40004882812497
+        ],
+        [
+          10.747326660156249,
+          311.649267578125
+        ],
+        [
+          21.70172119140625,
+          335.292578125
+        ],
+        [
+          37.5934814453125,
+          355.932666015625
+        ],
+        [
+          57.11732177734375,
+          373.221923828125
+        ],
+        [
+          78.69454345703124,
+          387.893505859375
+        ],
+        [
+          101.49227294921874,
+          400.59780273437497
+        ],
+        [
+          125.04893798828124,
+          411.8400390625
+        ],
+        [
+          149.02718505859374,
+          422.15869140625
+        ],
+        [
+          172.56922607421873,
+          431.82924804687497
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": {
+        "elementId": "cash",
+        "focus": 0.0000012434841003631041,
+        "gap": 1
+      },
+      "endBinding": {
+        "elementId": "unitOfWork",
+        "focus": 0.00003151588058849503,
+        "gap": 4.690893499533508
+      },
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "elbowed": false
+    },
+    {
+      "id": "pricing_unitOfWork",
+      "type": "arrow",
+      "x": 993.3968017578212,
+      "y": 2085.9,
+      "width": 0.7272216796875,
+      "height": 157.4,
+      "angle": 0,
+      "strokeColor": "#48638C",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-pricing_unitOfWork"
+      ],
+      "frameId": null,
+      "index": "b03N",
+      "roundness": null,
+      "seed": 985226173,
+      "version": 5,
+      "versionNonce": 1530868349,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "from": "pricing",
+        "to": "unitOfWork",
+        "label": "Lee versión local autorizada · repositorio TypeScript"
+      },
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0.494287109375,
+          22.1294921875
+        ],
+        [
+          0.477880859375,
+          44.758837890624996
+        ],
+        [
+          0.4123291015625,
+          67.38818359375
+        ],
+        [
+          0.2802001953125,
+          90.017236328125
+        ],
+        [
+          0.05710449218750002,
+          112.645556640625
+        ],
+        [
+          -0.23293457031249998,
+          135.27314453124998
+        ],
+        [
+          -0.0751953125,
+          157.4
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": {
+        "elementId": "pricing",
+        "focus": -0.00008162492077692514,
+        "gap": 1
+      },
+      "endBinding": {
+        "elementId": "unitOfWork",
+        "focus": 0.0000903691116314777,
+        "gap": 4.800000000000182
+      },
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "elbowed": false
+    },
+    {
+      "id": "payPort_unitOfWork",
+      "type": "arrow",
+      "x": 1450.5872070312587,
+      "y": 2099.1,
+      "width": 264.68720703125,
+      "height": 163.83916015625,
+      "angle": 0,
+      "strokeColor": "#48638C",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-payPort_unitOfWork"
+      ],
+      "frameId": null,
+      "index": "b03O",
+      "roundness": null,
+      "seed": 1827211923,
+      "version": 5,
+      "versionNonce": 1633746899,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "from": "payPort",
+        "to": "unitOfWork",
+        "label": "Registra intención y resultado por separado · TypeScript"
+      },
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          -0.45258789062499993,
+          25.111767578125
+        ],
+        [
+          -10.82412109375,
+          48.34580078125
+        ],
+        [
+          -28.824121093749998,
+          66.5359375
+        ],
+        [
+          -50.15283203125,
+          80.771435546875
+        ],
+        [
+          -72.90683593749999,
+          92.635205078125
+        ],
+        [
+          -96.283251953125,
+          103.229541015625
+        ],
+        [
+          -120.00537109375,
+          113.02802734375
+        ],
+        [
+          -143.951318359375,
+          122.267236328125
+        ],
+        [
+          -168.0537109375,
+          131.09072265625
+        ],
+        [
+          -192.26787109375,
+          139.602783203125
+        ],
+        [
+          -216.558349609375,
+          147.8951171875
+        ],
+        [
+          -240.87255859375,
+          156.11787109374998
+        ],
+        [
+          -264.68720703125,
+          163.83916015625
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": {
+        "elementId": "payPort",
+        "focus": -0.014567438763137748,
+        "gap": 1
+      },
+      "endBinding": {
+        "elementId": "unitOfWork",
+        "focus": -0.000031120778483977436,
+        "gap": 4.54687500000864
+      },
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "elbowed": false
+    },
+    {
+      "id": "fiscalPort_unitOfWork",
+      "type": "arrow",
+      "x": 1718.6612304687587,
+      "y": 1503.9,
+      "width": 532.6232421875,
+      "height": 781.393994140625,
+      "angle": 0,
+      "strokeColor": "#48638C",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-fiscalPort_unitOfWork"
+      ],
+      "frameId": null,
+      "index": "b03P",
+      "roundness": null,
+      "seed": 2045828125,
+      "version": 5,
+      "versionNonce": 554556125,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "from": "fiscalPort",
+        "to": "unitOfWork",
+        "label": "Registra referencia y resultado · TypeScript"
+      },
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          -8.92392578125,
+          23.6065673828125
+        ],
+        [
+          -16.656689453125,
+          48.2991455078125
+        ],
+        [
+          -22.168017578125,
+          73.58154296875
+        ],
+        [
+          -25.6287109375,
+          99.22714843749999
+        ],
+        [
+          -27.569921875,
+          125.03623046874999
+        ],
+        [
+          -28.612158203125,
+          150.898486328125
+        ],
+        [
+          -29.110498046874998,
+          176.777587890625
+        ],
+        [
+          -29.282617187499998,
+          202.6609375
+        ],
+        [
+          -29.307958984375,
+          228.54501953125
+        ],
+        [
+          -29.307958984375,
+          254.429248046875
+        ],
+        [
+          -29.307958984375,
+          280.313330078125
+        ],
+        [
+          -29.307958984375,
+          306.19741210937497
+        ],
+        [
+          -29.307958984375,
+          332.081494140625
+        ],
+        [
+          -29.307958984375,
+          357.96572265624997
+        ],
+        [
+          -29.307958984375,
+          383.8498046875
+        ],
+        [
+          -29.307958984375,
+          409.73388671875
+        ],
+        [
+          -29.307958984375,
+          435.61796875
+        ],
+        [
+          -29.307958984375,
+          461.50205078125
+        ],
+        [
+          -29.307958984375,
+          487.38613281249997
+        ],
+        [
+          -29.307958984375,
+          513.270361328125
+        ],
+        [
+          -29.600048828124997,
+          539.15107421875
+        ],
+        [
+          -32.131152343749996,
+          564.8911621093749
+        ],
+        [
+          -39.133544921875,
+          589.7587890625
+        ],
+        [
+          -51.60537109375,
+          612.3712890625
+        ],
+        [
+          -68.730712890625,
+          631.722900390625
+        ],
+        [
+          -88.952880859375,
+          647.842041015625
+        ],
+        [
+          -111.047998046875,
+          661.301611328125
+        ],
+        [
+          -134.259326171875,
+          672.743798828125
+        ],
+        [
+          -158.10126953124998,
+          682.8150390625
+        ],
+        [
+          -182.327001953125,
+          691.927099609375
+        ],
+        [
+          -206.810400390625,
+          700.32431640625
+        ],
+        [
+          -231.47968749999998,
+          708.159326171875
+        ],
+        [
+          -256.28740234375,
+          715.544921875
+        ],
+        [
+          -281.203662109375,
+          722.55625
+        ],
+        [
+          -306.20766601562497,
+          729.24765625
+        ],
+        [
+          -331.282275390625,
+          735.670263671875
+        ],
+        [
+          -356.415771484375,
+          741.8574707031249
+        ],
+        [
+          -381.59599609375,
+          747.8523437499999
+        ],
+        [
+          -406.815478515625,
+          753.680078125
+        ],
+        [
+          -432.063818359375,
+          759.3818359375
+        ],
+        [
+          -457.3276123046875,
+          765.01474609375
+        ],
+        [
+          -482.59279785156247,
+          770.6412109375
+        ],
+        [
+          -507.85805664062497,
+          776.267529296875
+        ],
+        [
+          -532.6232421875,
+          781.393994140625
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": {
+        "elementId": "fiscalPort",
+        "focus": 0.0019261779450305953,
+        "gap": 1
+      },
+      "endBinding": {
+        "elementId": "unitOfWork",
+        "focus": 0.0000168735905680336,
+        "gap": 4.684863281258686
+      },
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "elbowed": false
+    },
+    {
+      "id": "unitOfWork_branchDb",
+      "type": "arrow",
+      "x": 991.5159912109461,
+      "y": 2409.9,
+      "width": 0,
+      "height": 150.79999999999998,
+      "angle": 0,
+      "strokeColor": "#48638C",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-unitOfWork_branchDb"
+      ],
+      "frameId": null,
+      "index": "b03Q",
+      "roundness": null,
+      "seed": 2133868595,
+      "version": 5,
+      "versionNonce": 595037555,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "from": "unitOfWork",
+        "to": "branchDb",
+        "label": "Commit local atómico · SQL"
+      },
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          24.800048828125
+        ],
+        [
+          0,
+          50.099951171875
+        ],
+        [
+          0,
+          75.39999999999999
+        ],
+        [
+          0,
+          100.70004882812499
+        ],
+        [
+          0,
+          125.999951171875
+        ],
+        [
+          0,
+          150.79999999999998
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": {
+        "elementId": "unitOfWork",
+        "focus": -0.000001934170178533031,
+        "gap": 1
+      },
+      "endBinding": {
+        "elementId": "branchDb",
+        "focus": 0.0000019974688538986722,
+        "gap": 4.799954223632994
+      },
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "elbowed": false
+    },
+    {
+      "id": "payPort_payments",
+      "type": "arrow",
+      "x": 1637.1587402343837,
+      "y": 2099.1,
+      "width": 378.8720703125,
+      "height": 149.9984375,
+      "angle": 0,
+      "strokeColor": "#48638C",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-payPort_payments"
+      ],
+      "frameId": null,
+      "index": "b03R",
+      "roundness": null,
+      "seed": 2065256573,
+      "version": 5,
+      "versionNonce": 464025405,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "from": "payPort",
+        "to": "payments",
+        "label": "Invoca capacidad homologada · API/SDK"
+      },
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          22.948046875,
+          9.6595703125
+        ],
+        [
+          46.4025390625,
+          19.80419921875
+        ],
+        [
+          69.883984375,
+          29.886279296875
+        ],
+        [
+          93.40849609375,
+          39.86728515625
+        ],
+        [
+          116.98002929687499,
+          49.73681640625
+        ],
+        [
+          140.602685546875,
+          59.48359375
+        ],
+        [
+          164.28173828125,
+          69.092236328125
+        ],
+        [
+          188.023046875,
+          78.54575195312499
+        ],
+        [
+          211.82368164062498,
+          87.849267578125
+        ],
+        [
+          235.67236328125,
+          97.028857421875
+        ],
+        [
+          259.56044921874997,
+          106.10576171875
+        ],
+        [
+          283.481201171875,
+          115.095654296875
+        ],
+        [
+          307.431982421875,
+          124.006005859375
+        ],
+        [
+          331.402099609375,
+          132.863623046875
+        ],
+        [
+          355.38642578125,
+          141.68271484375
+        ],
+        [
+          378.8720703125,
+          149.9984375
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": {
+        "elementId": "payPort",
+        "focus": -0.000025657466256716333,
+        "gap": 1
+      },
+      "endBinding": {
+        "elementId": "payments",
+        "focus": 0.000024008364940477527,
+        "gap": 4.505126953116132
+      },
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "elbowed": false
+    },
+    {
+      "id": "fiscalPort_fiscal",
+      "type": "arrow",
+      "x": 1776.5651367187586,
+      "y": 1503.9,
+      "width": 239.493212890625,
+      "height": 153.90913085937498,
+      "angle": 0,
+      "strokeColor": "#48638C",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-fiscalPort_fiscal"
+      ],
+      "frameId": null,
+      "index": "b03S",
+      "roundness": null,
+      "seed": 1514127827,
+      "version": 5,
+      "versionNonce": 715876115,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "from": "fiscalPort",
+        "to": "fiscal",
+        "label": "Emite/consulta · API/SDK"
+      },
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          9.826416015625,
+          21.8256103515625
+        ],
+        [
+          23.507177734375,
+          42.217919921875
+        ],
+        [
+          40.833789062499996,
+          59.641943359375
+        ],
+        [
+          60.542529296874996,
+          74.339013671875
+        ],
+        [
+          81.701611328125,
+          86.877490234375
+        ],
+        [
+          103.59326171875,
+          98.097900390625
+        ],
+        [
+          125.89638671875,
+          108.4796875
+        ],
+        [
+          148.465966796875,
+          118.269677734375
+        ],
+        [
+          171.218798828125,
+          127.6263671875
+        ],
+        [
+          194.101416015625,
+          136.66181640624998
+        ],
+        [
+          217.04511718749998,
+          145.54096679687498
+        ],
+        [
+          239.493212890625,
+          153.90913085937498
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": {
+        "elementId": "fiscalPort",
+        "focus": 0.0038163831297258763,
+        "gap": 1
+      },
+      "endBinding": {
+        "elementId": "fiscal",
+        "focus": -0.000036816091153575086,
+        "gap": 4.477587890616178
+      },
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "elbowed": false
+    },
+    {
+      "id": "label-bg-client_entry",
+      "type": "rectangle",
+      "x": 493.62148437499997,
+      "y": 621.1999290466309,
+      "width": 186.45692749023436,
+      "height": 89.2,
+      "angle": 0,
+      "strokeColor": "#fff",
+      "backgroundColor": "#fff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-client_entry"
+      ],
+      "frameId": null,
+      "index": "b03T",
+      "roundness": null,
+      "seed": 1005861085,
+      "version": 3,
+      "versionNonce": 896567197,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "label-client_entry",
+      "type": "text",
+      "x": 498.62148437499997,
+      "y": 626.1999290466309,
+      "width": 176.52285766601562,
+      "height": 79.19999999999999,
+      "angle": 0,
+      "strokeColor": "#4C607D",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-client_entry"
+      ],
+      "frameId": null,
+      "index": "b03U",
+      "roundness": null,
+      "seed": 1462636403,
+      "version": 3,
+      "versionNonce": 2104691891,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "relationshipIndex": 0
+      },
+      "text": "Comando con\nidentidad estable ·\nHTTPS/LAN",
+      "fontSize": 21.6,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Comando con\nidentidad estable ·\nHTTPS/LAN",
+      "autoResize": true,
+      "lineHeight": 1.222222222222222
+    },
+    {
+      "id": "label-bg-entry_access",
+      "type": "rectangle",
+      "x": 183.4285156250087,
+      "y": 964.9999290466308,
+      "width": 223.57989501953125,
+      "height": 89.2,
+      "angle": 0,
+      "strokeColor": "#fff",
+      "backgroundColor": "#fff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-entry_access"
+      ],
+      "frameId": null,
+      "index": "b03UV",
+      "roundness": null,
+      "seed": 101913917,
+      "version": 3,
+      "versionNonce": 278367229,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "label-entry_access",
+      "type": "text",
+      "x": 188.4285156250087,
+      "y": 969.9999290466308,
+      "width": 212.48770141601562,
+      "height": 79.19999999999999,
+      "angle": 0,
+      "strokeColor": "#4C607D",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-entry_access"
+      ],
+      "frameId": null,
+      "index": "b03V",
+      "roundness": null,
+      "seed": 1749133587,
+      "version": 3,
+      "versionNonce": 259325523,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "relationshipIndex": 1
+      },
+      "text": "Comprueba permiso y\ncontexto · llamada\nTypeScript",
+      "fontSize": 21.6,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Comprueba permiso y\ncontexto · llamada\nTypeScript",
+      "autoResize": true,
+      "lineHeight": 1.222222222222222
+    },
+    {
+      "id": "label-bg-entry_sales",
+      "type": "rectangle",
+      "x": 916.3660110473633,
+      "y": 964.9999290466308,
+      "width": 195.6136474609375,
+      "height": 89.2,
+      "angle": 0,
+      "strokeColor": "#fff",
+      "backgroundColor": "#fff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-entry_sales"
+      ],
+      "frameId": null,
+      "index": "b03VV",
+      "roundness": null,
+      "seed": 1960273309,
+      "version": 3,
+      "versionNonce": 220136541,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "label-entry_sales",
+      "type": "text",
+      "x": 921.3660110473633,
+      "y": 969.9999290466308,
+      "width": 183.68421936035156,
+      "height": 79.19999999999999,
+      "angle": 0,
+      "strokeColor": "#4C607D",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-entry_sales"
+      ],
+      "frameId": null,
+      "index": "b03W",
+      "roundness": null,
+      "seed": 1928400563,
+      "version": 3,
+      "versionNonce": 461880307,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "relationshipIndex": 2
+      },
+      "text": "Ejecuta\nventa/devolución ·\nllamada TypeScript",
+      "fontSize": 21.6,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Ejecuta\nventa/devolución ·\nllamada TypeScript",
+      "autoResize": true,
+      "lineHeight": 1.222222222222222
+    },
+    {
+      "id": "label-bg-entry_cash",
+      "type": "rectangle",
+      "x": 434.38437042236325,
+      "y": 1249.399929046631,
+      "width": 211.60076904296875,
+      "height": 89.2,
+      "angle": 0,
+      "strokeColor": "#fff",
+      "backgroundColor": "#fff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-entry_cash"
+      ],
+      "frameId": null,
+      "index": "b03X",
+      "roundness": null,
+      "seed": 997370365,
+      "version": 3,
+      "versionNonce": 249065661,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "label-entry_cash",
+      "type": "text",
+      "x": 439.38437042236325,
+      "y": 1254.399929046631,
+      "width": 200.4853515625,
+      "height": 79.19999999999999,
+      "angle": 0,
+      "strokeColor": "#4C607D",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-entry_cash"
+      ],
+      "frameId": null,
+      "index": "b03Y",
+      "roundness": null,
+      "seed": 1776468051,
+      "version": 3,
+      "versionNonce": 1035060627,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "relationshipIndex": 3
+      },
+      "text": "Abre, mueve o cierra\ncaja · llamada\nTypeScript",
+      "fontSize": 21.6,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Abre, mueve o cierra\ncaja · llamada\nTypeScript",
+      "autoResize": true,
+      "lineHeight": 1.222222222222222
+    },
+    {
+      "id": "label-bg-sales_pricing",
+      "type": "rectangle",
+      "x": 875.1125000000087,
+      "y": 1546.9999290466312,
+      "width": 210.40076904296873,
+      "height": 62.8,
+      "angle": 0,
+      "strokeColor": "#fff",
+      "backgroundColor": "#fff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-sales_pricing"
+      ],
+      "frameId": null,
+      "index": "b03Z",
+      "roundness": null,
+      "seed": 719741533,
+      "version": 3,
+      "versionNonce": 56971549,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "label-sales_pricing",
+      "type": "text",
+      "x": 880.1125000000087,
+      "y": 1551.9999290466312,
+      "width": 200.4642333984375,
+      "height": 52.8,
+      "angle": 0,
+      "strokeColor": "#4C607D",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-sales_pricing"
+      ],
+      "frameId": null,
+      "index": "b03a",
+      "roundness": null,
+      "seed": 653082099,
+      "version": 3,
+      "versionNonce": 1294572339,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "relationshipIndex": 4
+      },
+      "text": "Cotiza y fija versión ·\nllamada TypeScript",
+      "fontSize": 21.6,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Cotiza y fija versión ·\nllamada TypeScript",
+      "autoResize": true,
+      "lineHeight": 1.222222222222222
+    },
+    {
+      "id": "label-bg-sales_cash",
+      "type": "rectangle",
+      "x": 665.6234329223632,
+      "y": 1404.799929046631,
+      "width": 138.04422607421876,
+      "height": 62.8,
+      "angle": 0,
+      "strokeColor": "#fff",
+      "backgroundColor": "#fff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-sales_cash"
+      ],
+      "frameId": null,
+      "index": "b03b",
+      "roundness": null,
+      "seed": 2013531837,
+      "version": 3,
+      "versionNonce": 674702717,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "label-sales_cash",
+      "type": "text",
+      "x": 670.6234329223632,
+      "y": 1409.799929046631,
+      "width": 126.86824035644531,
+      "height": 52.8,
+      "angle": 0,
+      "strokeColor": "#4C607D",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-sales_cash"
+      ],
+      "frameId": null,
+      "index": "b03c",
+      "roundness": null,
+      "seed": 85395347,
+      "version": 3,
+      "versionNonce": 1985330387,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "relationshipIndex": 5
+      },
+      "text": "Valida turno ·\nTypeScript",
+      "fontSize": 21.6,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Valida turno ·\nTypeScript",
+      "autoResize": true,
+      "lineHeight": 1.222222222222222
+    },
+    {
+      "id": "label-bg-sales_payPort",
+      "type": "rectangle",
+      "x": 1341.621875,
+      "y": 1533.799929046631,
+      "width": 193.61944580078125,
+      "height": 89.2,
+      "angle": 0,
+      "strokeColor": "#fff",
+      "backgroundColor": "#fff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-sales_payPort"
+      ],
+      "frameId": null,
+      "index": "b03d",
+      "roundness": null,
+      "seed": 1097674525,
+      "version": 3,
+      "versionNonce": 277835229,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "label-sales_payPort",
+      "type": "text",
+      "x": 1346.621875,
+      "y": 1538.799929046631,
+      "width": 183.6947479248047,
+      "height": 79.19999999999999,
+      "angle": 0,
+      "strokeColor": "#4C607D",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-sales_payPort"
+      ],
+      "frameId": null,
+      "index": "b03e",
+      "roundness": null,
+      "seed": 982949171,
+      "version": 3,
+      "versionNonce": 348957299,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "relationshipIndex": 6
+      },
+      "text": "Coordina intento y\nresultado · llamada\nTypeScript",
+      "fontSize": 21.6,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Coordina intento y\nresultado · llamada\nTypeScript",
+      "autoResize": true,
+      "lineHeight": 1.222222222222222
+    },
+    {
+      "id": "label-bg-sales_fiscalPort",
+      "type": "rectangle",
+      "x": 1627.0578125,
+      "y": 1249.399929046631,
+      "width": 210.43826904296876,
+      "height": 89.2,
+      "angle": 0,
+      "strokeColor": "#fff",
+      "backgroundColor": "#fff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-sales_fiscalPort"
+      ],
+      "frameId": null,
+      "index": "b03f",
+      "roundness": null,
+      "seed": 1435714429,
+      "version": 3,
+      "versionNonce": 1803528765,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "label-sales_fiscalPort",
+      "type": "text",
+      "x": 1632.0578125,
+      "y": 1254.399929046631,
+      "width": 200.5275421142578,
+      "height": 79.19999999999999,
+      "angle": 0,
+      "strokeColor": "#4C607D",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-sales_fiscalPort"
+      ],
+      "frameId": null,
+      "index": "b03g",
+      "roundness": null,
+      "seed": 1926397651,
+      "version": 3,
+      "versionNonce": 1297409043,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "relationshipIndex": 7
+      },
+      "text": "Coordina documento\ny estado · llamada\nTypeScript",
+      "fontSize": 21.6,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Coordina documento\ny estado · llamada\nTypeScript",
+      "autoResize": true,
+      "lineHeight": 1.222222222222222
+    },
+    {
+      "id": "label-bg-sales_unitOfWork",
+      "type": "rectangle",
+      "x": 83.68964843750874,
+      "y": 1689.1999290466313,
+      "width": 206.81732177734378,
+      "height": 89.2,
+      "angle": 0,
+      "strokeColor": "#fff",
+      "backgroundColor": "#fff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-sales_unitOfWork"
+      ],
+      "frameId": null,
+      "index": "b03h",
+      "roundness": null,
+      "seed": 951569373,
+      "version": 3,
+      "versionNonce": 166288029,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "label-sales_unitOfWork",
+      "type": "text",
+      "x": 88.68964843750874,
+      "y": 1694.1999290466313,
+      "width": 195.6970672607422,
+      "height": 79.19999999999999,
+      "angle": 0,
+      "strokeColor": "#4C607D",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-sales_unitOfWork"
+      ],
+      "frameId": null,
+      "index": "b03i",
+      "roundness": null,
+      "seed": 677457011,
+      "version": 3,
+      "versionNonce": 1743055283,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "relationshipIndex": 8
+      },
+      "text": "Persiste operación y\noutbox · llamada\nTypeScript",
+      "fontSize": 21.6,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Persiste operación y\noutbox · llamada\nTypeScript",
+      "autoResize": true,
+      "lineHeight": 1.222222222222222
+    },
+    {
+      "id": "label-bg-cash_unitOfWork",
+      "type": "rectangle",
+      "x": 502.7515625,
+      "y": 1973.599929046631,
+      "width": 215.18201904296873,
+      "height": 89.2,
+      "angle": 0,
+      "strokeColor": "#fff",
+      "backgroundColor": "#fff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-cash_unitOfWork"
+      ],
+      "frameId": null,
+      "index": "b03j",
+      "roundness": null,
+      "seed": 1793869885,
+      "version": 3,
+      "versionNonce": 612237053,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "label-cash_unitOfWork",
+      "type": "text",
+      "x": 507.7515625,
+      "y": 1978.599929046631,
+      "width": 205.2631072998047,
+      "height": 79.19999999999999,
+      "angle": 0,
+      "strokeColor": "#4C607D",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-cash_unitOfWork"
+      ],
+      "frameId": null,
+      "index": "b03k",
+      "roundness": null,
+      "seed": 1057564179,
+      "version": 3,
+      "versionNonce": 1772305235,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "relationshipIndex": 9
+      },
+      "text": "Persiste movimientos\ny auditoría · llamada\nTypeScript",
+      "fontSize": 21.6,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Persiste movimientos\ny auditoría · llamada\nTypeScript",
+      "autoResize": true,
+      "lineHeight": 1.222222222222222
+    },
+    {
+      "id": "label-bg-pricing_unitOfWork",
+      "type": "rectangle",
+      "x": 870.38984375,
+      "y": 2128.999929046631,
+      "width": 219.59500732421876,
+      "height": 89.2,
+      "angle": 0,
+      "strokeColor": "#fff",
+      "backgroundColor": "#fff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-pricing_unitOfWork"
+      ],
+      "frameId": null,
+      "index": "b03l",
+      "roundness": null,
+      "seed": 1846687901,
+      "version": 3,
+      "versionNonce": 1639913309,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "label-pricing_unitOfWork",
+      "type": "text",
+      "x": 875.38984375,
+      "y": 2133.999929046631,
+      "width": 208.89120483398438,
+      "height": 79.19999999999999,
+      "angle": 0,
+      "strokeColor": "#4C607D",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-pricing_unitOfWork"
+      ],
+      "frameId": null,
+      "index": "b03m",
+      "roundness": null,
+      "seed": 1572924339,
+      "version": 3,
+      "versionNonce": 1860589811,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "relationshipIndex": 10
+      },
+      "text": "Lee versión local\nautorizada ·\nrepositorio TypeScript",
+      "fontSize": 21.6,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Lee versión local\nautorizada ·\nrepositorio TypeScript",
+      "autoResize": true,
+      "lineHeight": 1.222222222222222
+    },
+    {
+      "id": "label-bg-payPort_unitOfWork",
+      "type": "rectangle",
+      "x": 1326.2398437499999,
+      "y": 2128.999929046631,
+      "width": 222.03250732421876,
+      "height": 89.2,
+      "angle": 0,
+      "strokeColor": "#fff",
+      "backgroundColor": "#fff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-payPort_unitOfWork"
+      ],
+      "frameId": null,
+      "index": "b03n",
+      "roundness": null,
+      "seed": 198909181,
+      "version": 3,
+      "versionNonce": 469640125,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "label-payPort_unitOfWork",
+      "type": "text",
+      "x": 1331.2398437499999,
+      "y": 2133.999929046631,
+      "width": 211.30642700195312,
+      "height": 79.19999999999999,
+      "angle": 0,
+      "strokeColor": "#4C607D",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-payPort_unitOfWork"
+      ],
+      "frameId": null,
+      "index": "b03o",
+      "roundness": null,
+      "seed": 145685843,
+      "version": 3,
+      "versionNonce": 1161085587,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "relationshipIndex": 11
+      },
+      "text": "Registra intención y\nresultado por\nseparado · TypeScript",
+      "fontSize": 21.6,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Registra intención y\nresultado por\nseparado · TypeScript",
+      "autoResize": true,
+      "lineHeight": 1.222222222222222
+    },
+    {
+      "id": "label-bg-fiscalPort_unitOfWork",
+      "type": "rectangle",
+      "x": 1565.18046875,
+      "y": 1844.599929046631,
+      "width": 220.81375732421876,
+      "height": 62.8,
+      "angle": 0,
+      "strokeColor": "#fff",
+      "backgroundColor": "#fff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-fiscalPort_unitOfWork"
+      ],
+      "frameId": null,
+      "index": "b03p",
+      "roundness": null,
+      "seed": 1539863901,
+      "version": 3,
+      "versionNonce": 1734124573,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "label-fiscalPort_unitOfWork",
+      "type": "text",
+      "x": 1570.18046875,
+      "y": 1849.599929046631,
+      "width": 210.09353637695312,
+      "height": 52.8,
+      "angle": 0,
+      "strokeColor": "#4C607D",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-fiscalPort_unitOfWork"
+      ],
+      "frameId": null,
+      "index": "b03q",
+      "roundness": null,
+      "seed": 2066340595,
+      "version": 3,
+      "versionNonce": 1162147891,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "relationshipIndex": 12
+      },
+      "text": "Registra referencia y\nresultado · TypeScript",
+      "fontSize": 21.6,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Registra referencia y\nresultado · TypeScript",
+      "autoResize": true,
+      "lineHeight": 1.222222222222222
+    },
+    {
+      "id": "label-bg-unitOfWork_branchDb",
+      "type": "rectangle",
+      "x": 869.4031249999999,
+      "y": 2472.799929046631,
+      "width": 216.36328735351563,
+      "height": 62.8,
+      "angle": 0,
+      "strokeColor": "#fff",
+      "backgroundColor": "#fff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-unitOfWork_branchDb"
+      ],
+      "frameId": null,
+      "index": "b03r",
+      "roundness": null,
+      "seed": 153862589,
+      "version": 3,
+      "versionNonce": 1472993405,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "label-unitOfWork_branchDb",
+      "type": "text",
+      "x": 874.4031249999999,
+      "y": 2477.799929046631,
+      "width": 206.4549102783203,
+      "height": 52.8,
+      "angle": 0,
+      "strokeColor": "#4C607D",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-unitOfWork_branchDb"
+      ],
+      "frameId": null,
+      "index": "b03s",
+      "roundness": null,
+      "seed": 1102578835,
+      "version": 3,
+      "versionNonce": 1828551123,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "relationshipIndex": 13
+      },
+      "text": "Commit local atómico\n· SQL",
+      "fontSize": 21.6,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Commit local atómico\n· SQL",
+      "autoResize": true,
+      "lineHeight": 1.222222222222222
+    },
+    {
+      "id": "label-bg-payPort_payments",
+      "type": "rectangle",
+      "x": 1707.1531204223631,
+      "y": 2128.999929046631,
+      "width": 179.25689086914062,
+      "height": 89.2,
+      "angle": 0,
+      "strokeColor": "#fff",
+      "backgroundColor": "#fff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-payPort_payments"
+      ],
+      "frameId": null,
+      "index": "b03t",
+      "roundness": null,
+      "seed": 1495695901,
+      "version": 3,
+      "versionNonce": 118358237,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "label-payPort_payments",
+      "type": "text",
+      "x": 1712.1531204223631,
+      "y": 2133.999929046631,
+      "width": 168.11700439453125,
+      "height": 79.19999999999999,
+      "angle": 0,
+      "strokeColor": "#4C607D",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-payPort_payments"
+      ],
+      "frameId": null,
+      "index": "b03u",
+      "roundness": null,
+      "seed": 336591411,
+      "version": 3,
+      "versionNonce": 963954547,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "relationshipIndex": 14
+      },
+      "text": "Invoca capacidad\nhomologada ·\nAPI/SDK",
+      "fontSize": 21.6,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Invoca capacidad\nhomologada ·\nAPI/SDK",
+      "autoResize": true,
+      "lineHeight": 1.222222222222222
+    },
+    {
+      "id": "label-bg-fiscalPort_fiscal",
+      "type": "rectangle",
+      "x": 1781.8181106567383,
+      "y": 1669.0009056091312,
+      "width": 166.0005859375,
+      "height": 62.8,
+      "angle": 0,
+      "strokeColor": "#fff",
+      "backgroundColor": "#fff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-fiscalPort_fiscal"
+      ],
+      "frameId": null,
+      "index": "b03v",
+      "roundness": null,
+      "seed": 1890203261,
+      "version": 3,
+      "versionNonce": 1521737021,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "label-fiscalPort_fiscal",
+      "type": "text",
+      "x": 1786.8181106567383,
+      "y": 1674.0009056091312,
+      "width": 154.859619140625,
+      "height": 52.8,
+      "angle": 0,
+      "strokeColor": "#4C607D",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "relation-fiscalPort_fiscal"
+      ],
+      "frameId": null,
+      "index": "b03w",
+      "roundness": null,
+      "seed": 1863859155,
+      "version": 3,
+      "versionNonce": 1089560851,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "relationshipIndex": 15
+      },
+      "text": "Emite/consulta ·\nAPI/SDK",
+      "fontSize": 21.6,
+      "fontFamily": 2,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Emite/consulta ·\nAPI/SDK",
+      "autoResize": true,
+      "lineHeight": 1.222222222222222
+    },
+    {
+      "id": "S7o-43ApQZ_qYNenTP2pm",
+      "type": "text",
+      "x": 438.34492187499995,
+      "y": 444.4,
+      "width": 321.515625,
+      "height": 132,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b03x",
+      "roundness": null,
+      "seed": 1596457597,
+      "version": 4,
+      "versionNonce": 169815453,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "text": "Cliente de caja\n«Contenedor»\nAngular + Tauri\nPresenta caja y comandos del\noperador.",
+      "fontSize": 24,
+      "fontFamily": 2,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "containerId": "client",
+      "originalText": "Cliente de caja\n«Contenedor»\nAngular + Tauri\nPresenta caja y comandos del\noperador.",
+      "autoResize": true,
+      "lineHeight": 1.1
+    },
+    {
+      "id": "U3mToFK9lMMjE25FFP6qR",
+      "type": "text",
+      "x": 441.20429687499995,
+      "y": 788.2,
+      "width": 315.796875,
+      "height": 132,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b03y",
+      "roundness": null,
+      "seed": 1331473117,
+      "version": 4,
+      "versionNonce": 216647347,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "text": "API de comandos\n«Componente»\nControllers NestJS / Fastify\nValida entrada e identidad del\ncomando.",
+      "fontSize": 24,
+      "fontFamily": 2,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "containerId": "entry",
+      "originalText": "API de comandos\n«Componente»\nControllers NestJS / Fastify\nValida entrada e identidad del\ncomando.",
+      "autoResize": true,
+      "lineHeight": 1.1
+    },
+    {
+      "id": "-o8-IL8NuGzt5XXZVYBNb",
+      "type": "text",
+      "x": 129.41757812499998,
+      "y": 1099.0000000000002,
+      "width": 360.15234375,
+      "height": 105.60000000000001,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b03z",
+      "roundness": null,
+      "seed": 933054269,
+      "version": 4,
+      "versionNonce": 1686204925,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "text": "Acceso y permisos\n«Componente»\nGuards + servicios TypeScript\nAutoriza usuario, perfil y sucursal.",
+      "fontSize": 24,
+      "fontFamily": 2,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "containerId": "access",
+      "originalText": "Acceso y permisos\n«Componente»\nGuards + servicios TypeScript\nAutoriza usuario, perfil y sucursal.",
+      "autoResize": true,
+      "lineHeight": 1.1
+    },
+    {
+      "id": "6RNB8_cjpkt8p0vEvfy0l",
+      "type": "text",
+      "x": 850.2273437499999,
+      "y": 1099.0000000000002,
+      "width": 354.87890625,
+      "height": 105.60000000000001,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b03zV",
+      "roundness": null,
+      "seed": 441145245,
+      "version": 4,
+      "versionNonce": 872708179,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745552,
+      "link": null,
+      "locked": false,
+      "text": "Ventas y devoluciones\n«Componente»\nMódulo NestJS / TypeScript\nCoordina el ciclo de la operación.",
+      "fontSize": 24,
+      "fontFamily": 2,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "containerId": "sales",
+      "originalText": "Ventas y devoluciones\n«Componente»\nMódulo NestJS / TypeScript\nCoordina el ciclo de la operación.",
+      "autoResize": true,
+      "lineHeight": 1.1
+    },
+    {
+      "id": "rnRyFxrJogJXF0TjsU9Nu",
+      "type": "text",
+      "x": 815.7953125000087,
+      "y": 1965.4,
+      "width": 356.203125,
+      "height": 105.60000000000001,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b04",
+      "roundness": null,
+      "seed": 832068605,
+      "version": 3,
+      "versionNonce": 221495229,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745527,
+      "link": null,
+      "locked": false,
+      "text": "Precios y ofertas\n«Componente»\nMotor TypeScript local\nCotiza sobre una versión vigente.",
+      "fontSize": 24,
+      "fontFamily": 2,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "containerId": "pricing",
+      "originalText": "Precios y ofertas\n«Componente»\nMotor TypeScript local\nCotiza sobre una versión vigente.",
+      "autoResize": true,
+      "lineHeight": 1.1
+    },
+    {
+      "id": "peUpnaI1K0KBxz_KbO2xu",
+      "type": "text",
+      "x": 447.446875,
+      "y": 1667.8000000000004,
+      "width": 353.484375,
+      "height": 132,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b05",
+      "roundness": null,
+      "seed": 1971704925,
+      "version": 3,
+      "versionNonce": 1622599315,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745527,
+      "link": null,
+      "locked": false,
+      "text": "Turnos y caja\n«Componente»\nMódulo NestJS / TypeScript\nControla apertura, movimientos y\ncierre.",
+      "fontSize": 24,
+      "fontFamily": 2,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "containerId": "cash",
+      "originalText": "Turnos y caja\n«Componente»\nMódulo NestJS / TypeScript\nControla apertura, movimientos y\ncierre.",
+      "autoResize": true,
+      "lineHeight": 1.1
+    },
+    {
+      "id": "Cd_UAI_q6sdEtWbzfOqgI",
+      "type": "text",
+      "x": 1277.6441406249999,
+      "y": 1952.2,
+      "width": 346.88671875,
+      "height": 132,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b06",
+      "roundness": null,
+      "seed": 1642414269,
+      "version": 3,
+      "versionNonce": 1467924509,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745527,
+      "link": null,
+      "locked": false,
+      "text": "Pagos y adaptadores\n«Componente»\nPuertos + TypeScript\nGestiona intentos y evidencia de\npago.",
+      "fontSize": 24,
+      "fontFamily": 2,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "containerId": "payPort",
+      "originalText": "Pagos y adaptadores\n«Componente»\nPuertos + TypeScript\nGestiona intentos y evidencia de\npago.",
+      "autoResize": true,
+      "lineHeight": 1.1
+    },
+    {
+      "id": "paW5X_CE5nYsPwKVzQAKe",
+      "type": "text",
+      "x": 1573.78046875,
+      "y": 1383.4000000000003,
+      "width": 344.1796875,
+      "height": 105.60000000000001,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b07",
+      "roundness": null,
+      "seed": 2086150429,
+      "version": 3,
+      "versionNonce": 1961008179,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745527,
+      "link": null,
+      "locked": false,
+      "text": "Fiscalidad y adaptadores\n«Componente»\nPuertos + TypeScript\nAplica modalidad fiscal por país.",
+      "fontSize": 24,
+      "fontFamily": 2,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "containerId": "fiscalPort",
+      "originalText": "Fiscalidad y adaptadores\n«Componente»\nPuertos + TypeScript\nAplica modalidad fiscal por país.",
+      "autoResize": true,
+      "lineHeight": 1.1
+    },
+    {
+      "id": "9gcO4uE7Gi_kvrNRDwf_P",
+      "type": "text",
+      "x": 830.78125,
+      "y": 2263.0000000000005,
+      "width": 321.46875,
+      "height": 132,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b08",
+      "roundness": null,
+      "seed": 441447805,
+      "version": 3,
+      "versionNonce": 894088317,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745527,
+      "link": null,
+      "locked": false,
+      "text": "Persistencia transaccional\n«Componente»\nRepositorios TypeScript / SQL\nConfirma negocio, auditoría y\noutbox.",
+      "fontSize": 24,
+      "fontFamily": 2,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "containerId": "unitOfWork",
+      "originalText": "Persistencia transaccional\n«Componente»\nRepositorios TypeScript / SQL\nConfirma negocio, auditoría y\noutbox.",
+      "autoResize": true,
+      "lineHeight": 1.1
+    },
+    {
+      "id": "a1yDfFwpqgf2S2QKdtaRm",
+      "type": "text",
+      "x": 815.39453125,
+      "y": 2605.1356445312504,
+      "width": 352.2421875,
+      "height": 132,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b09",
+      "roundness": null,
+      "seed": 1728986589,
+      "version": 3,
+      "versionNonce": 558276051,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745527,
+      "link": null,
+      "locked": false,
+      "text": "Datos de sucursal\n«Contenedor de datos»\nPostgreSQL\nGuarda negocio, outbox y espejo\nlocal.",
+      "fontSize": 24,
+      "fontFamily": 2,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "containerId": "branchDb",
+      "originalText": "Datos de sucursal\n«Contenedor de datos»\nPostgreSQL\nGuarda negocio, outbox y espejo\nlocal.",
+      "autoResize": true,
+      "lineHeight": 1.1
+    },
+    {
+      "id": "kDGLXYm7WBVb5J7tWduTk",
+      "type": "text",
+      "x": 2050.45703125,
+      "y": 2263.0000000000005,
+      "width": 364.1953125,
+      "height": 132,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b0A",
+      "roundness": null,
+      "seed": 698645053,
+      "version": 3,
+      "versionNonce": 1918442717,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745527,
+      "link": null,
+      "locked": false,
+      "text": "Proveedor de pagos\n«Sistema externo»\nAPI / SDK según proveedor\nAutoriza o informa el resultado del\npago.",
+      "fontSize": 24,
+      "fontFamily": 2,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "containerId": "payments",
+      "originalText": "Proveedor de pagos\n«Sistema externo»\nAPI / SDK según proveedor\nAutoriza o informa el resultado del\npago.",
+      "autoResize": true,
+      "lineHeight": 1.1
+    },
+    {
+      "id": "q0F3YjHJVwSqSwRAOzB0w",
+      "type": "text",
+      "x": 2049.85,
+      "y": 1667.8000000000004,
+      "width": 324.140625,
+      "height": 132,
+      "angle": 0,
+      "strokeColor": "#182842",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b0B",
+      "roundness": null,
+      "seed": 1257515677,
+      "version": 3,
+      "versionNonce": 1358523251,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791237745527,
+      "link": null,
+      "locked": false,
+      "text": "Proveedor fiscal\n«Sistema externo»\nContrato por país y modalidad\nEmite o transmite documentos\nfiscales.",
+      "fontSize": 24,
+      "fontFamily": 2,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "containerId": "fiscal",
+      "originalText": "Proveedor fiscal\n«Sistema externo»\nContrato por país y modalidad\nEmite o transmite documentos\nfiscales.",
+      "autoResize": true,
+      "lineHeight": 1.1
+    }
+  ],
+  "appState": {
+    "viewBackgroundColor": "#ffffff",
+    "gridSize": null
+  },
+  "files": {}
+}

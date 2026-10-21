@@ -1,0 +1,73 @@
+---
+title: Mapa de contenidos
+description: Acceso por tema a la propuesta POS Platform, la arquitectura, los flujos, la validación y la evidencia del legacy.
+editUrl: false
+---
+
+import ReadingPath from '../../components/ReadingPath.astro';
+
+La navegación separa **el diseño objetivo**, **la implementación del monorepo**, **las condiciones para validarlo** y **la evidencia del sistema actual**. Cada decisión tiene una página de referencia; los ejemplos y diagramas enlazan ese detalle.
+
+## Recorrido principal
+
+Esta secuencia conecta el objetivo del producto con las aplicaciones, los flujos y la validación. El detalle del legacy y las extensiones opcionales se consultan por tema, sin interrumpir ese recorrido.
+
+<ReadingPath />
+
+## Producto y arquitectura
+
+| Tema | Página de referencia | Complemento |
+| --- | --- | --- |
+| Plataforma corporativa | [Producto, alcance y países](/guide/proposal/product/) | [Evolución desde Chile](/guide/proposal/evolution/) |
+| Aplicaciones y datos | [Responsabilidades de los contenedores](/guide/proposal/architecture/) | [Galería C4](/guide/diagrams/) · [Contratos del modelo](/guide/architecture/c4-model/) |
+| Backend y persistencia | [Tecnología y despliegue](/guide/proposal/technology/) | [Evaluación de NestJS, PostgreSQL y Tauri](/guide/architecture/technologies/) |
+| Organización del código | [Monorepo y límites de módulos](/guide/architecture/monorepo/) | [Estructura propuesta](https://presentation-gamma-rust.vercel.app/presentation/pos-corporativo-reveal.html?lectura=0#/arbol-nx) |
+| Módulos compartidos | [Reutilización corporativa](/guide/proposal/corporate-reuse/) | [Inventario de candidatos de core y DevOps](/guide/evidence/corporate-reuse/) |
+| Decisiones | [Registro de decisiones](/guide/proposal/decisions/) | [Revisión y alternativas corporativas](/guide/reference/corporate-review/) |
+
+## Operación y datos
+
+| Tema | Página de referencia | Complemento |
+| --- | --- | --- |
+| Venta y desconexión | [Venta y continuidad operativa](/guide/proposal/continuity/) | [Operación de caja](/guide/operations/cash-management/) |
+| Entrega de información | [Sincronización y propiedad de datos](/guide/proposal/synchronization/) | [Mensajería y alternativas](/guide/architecture/messaging/) |
+| Precios y promociones | [Precios y ofertas locales](/guide/proposal/pricing-promotions/) | [Diagrama de publicación y activación](/guide/diagrams/#precios-y-ofertas) |
+| Identidad y autorización | [Acceso, permisos y operación](/guide/proposal/access-operations/) | [Login y perfiles existentes en Mountain](/guide/evidence/mountain/#login-perfiles-y-alcance-de-los-permisos) |
+| Recuperación | [Resiliencia y casos adversos](/guide/operations/resilience/) | [Criterios del piloto](/guide/operations/validation/) |
+
+## Implementación y desarrollo
+
+Estas páginas se generan desde los documentos del producto. Explican el código y los controles que existen en el monorepo, incluyendo sus capacidades pendientes; no sustituyen la arquitectura objetivo.
+
+| Tema | Guía de implementación |
+| --- | --- |
+| Aplicaciones y dependencias | [Entrada al repositorio](/guide/implementation/repository/) · [Arquitectura del código](/guide/implementation/architecture/) · [Monorepo](/guide/implementation/monorepo/) |
+| Backend | [API NestJS](/guide/implementation/api/) · [API simulada de desarrollo](/guide/implementation/mock-api/) |
+| Cliente | [Escritorio](/guide/implementation/desktop/) · [Iconografía](/guide/implementation/iconography/) |
+| Controles técnicos | [Seguridad](/guide/implementation/security/) · [Revisión de calidad](/guide/implementation/quality-review/) |
+| Entrega y estado | [Publicación](/guide/implementation/deployment/) · [Plan de implementación](/guide/implementation/plan/) · [Revisión funcional de Chile](/guide/implementation/product-review/) |
+
+## Países y extensiones
+
+| Tema | Página de referencia | Complemento |
+| --- | --- | --- |
+| Integración de sistemas actuales | [Integración por país](/guide/proposal/integration/) | [Catálogo de integraciones verificadas](/guide/evidence/integration-catalog/) |
+| Fronteras ERP | [Contratos, fachada y ACL](/guide/proposal/contracts/) | [Coexistencia y cambio de ERP](/guide/proposal/erp-migration/) |
+| Documentos fiscales | [Fiscalidad por país](/guide/proposal/fiscal-compliance/) | [Proveedores y capacidades](/guide/architecture/providers/) |
+| Inteligencia artificial | [Servicios propuestos](/guide/proposal/ai/) | [Diseño y controles de IA](/guide/architecture/ai/) |
+| Evolución opcional | [RFID y autoservicio](/guide/architecture/rfid/) | [Información y decisiones pendientes](/guide/operations/open-items/) |
+
+## Sistema actual y evidencia
+
+- [Alcance, método y snapshots de la revisión](/guide/evidence/audit/).
+- [Mapa de repositorios](/guide/evidence/repositories/), [vistas y recorridos](/guide/evidence/current-state/), [lecturas y escrituras por tabla](/guide/evidence/data-flows/).
+- [Mountain: cliente y backend](/guide/evidence/mountain/) y [sincronizador de sucursal](/guide/evidence/branch-synchronizer/). El catálogo de endpoints explica cada operación del [backend de sucursal](/guide/api/mountain/) y del [monitor concentrador](/guide/api/mountain-concentrator/).
+- [Configuración de Mountain](/guide/api/mountain-configuration/): variables de entorno, propósito, condiciones de uso y fuentes, sin valores de despliegue.
+- [Concentrador central](/guide/evidence/central-hub/): [ingreso y procesamiento](/guide/evidence/central-ingestion/) y [distribución de maestros](/guide/evidence/master-data-distribution/).
+- [APIs compartidas](/guide/evidence/apis/), [pagos](/guide/evidence/payments/) e [impresión](/guide/evidence/printing/).
+- [Core corporativo](/guide/evidence/core/) y [DevOps Platform](/guide/evidence/devops/).
+- [Antecedentes de Chile](/guide/evidence/background/), [contraste de operación](/guide/evidence/chile-operations/) e [inventario público de sucursales](/guide/evidence/branches/).
+
+## Referencias y mantenimiento
+
+[Presentación y publicación](/guide/reference/presentation/) · [Visor de interacciones](/guide/reference/explorer/) · [Edición de diagramas](/guide/reference/editable-diagrams/) · [Cobertura de fuentes](/guide/reference/coverage/) · [Notas editoriales](/guide/reference/editorial-notes/) · [Referencia de Integration Platform](/guide/reference/integration-presentations/) · [Repositorio y antecedentes](/guide/reference/repository/) · [Mantenimiento de esta guía](/guide/reference/maintenance/).

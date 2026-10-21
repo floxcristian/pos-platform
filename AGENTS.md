@@ -38,3 +38,9 @@ Los controles internos de PrimeNG usan `createTooltipPassThrough`: slots PT púb
 ## Entrega
 
 Ejecutar build, lint, pruebas de dominio y recorridos de UI. Documentar límites reales del mock y de Tauri. No llamar listo para producción a una maqueta. No copiar secretos, el historial ni features irrelevantes de prime-showcase.
+
+## Documentación del producto
+
+Starlight vive en `apps/pos-docs`, con fuentes canónicas en `docs/` y herramientas de diagramas en `tools/diagrams`. Es una aplicación documental independiente de las seis aplicaciones operativas; usar tags `type:docs`, `env:docs`, `scope:docs`, sin importar bibliotecas de negocio. Su paquete y lockfile propios separan el compilador Astro de Angular/Nest y permiten comprobar la documentación sin instalar el runtime del POS. Instalar con `npm run docs:install`.
+
+Mantener rutas públicas en inglés, los estados de evidencia/propuesta/implementación y los enlaces permanentes. Ejecutar validación editorial, Astro Check, build y navegador desde la app documental. El build normal del POS continúa separado; `build:vercel` ensambla ambos artefactos y limita la excepción CSP de Pagefind a `/guide/`. Actualizar documentación y contratos en el mismo cambio que el código. Los archivos de `src/content/docs` generados desde `docs/` no se editan ni se versionan. La presentación y sus medios se mantienen en su repositorio, consumiendo un snapshot derivado con revisión y hashes; los cambios documentales no regeneran voz automáticamente.

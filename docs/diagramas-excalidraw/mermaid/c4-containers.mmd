@@ -1,0 +1,43 @@
+flowchart TB
+    accTitle: C2 · Contenedores — Aplicaciones, procesos y datos
+    accDescr: Interior del POS corporativo: cliente, sucursal y plataforma de país. Un contenedor C4 es una aplicación o almacén, no necesariamente Docker. Una base y autoridad de negocio por sucursal; país mantiene proyecciones e integración. HTTPS con outbox/inbox durable es la base; RabbitMQ y Kafka no son requisitos.
+    subgraph systemScope["Sistema POS corporativo · propuesta"]
+        direction TB
+        client["Cliente de caja<br/>«Contenedor»<br/>Angular + Tauri<br/>Presenta caja y comandos del operador."]:::pos
+        device["Puente de periféricos<br/>«Contenedor condicional»<br/>Proceso nativo según SDK<br/>Ejecuta capacidades del puesto."]:::pos
+        branchApi["Backend de sucursal<br/>«Contenedor»<br/>NestJS + Fastify / Node.js<br/>Valida y confirma la operación local."]:::pos
+        branchDb[("Datos de sucursal<br/>«Contenedor de datos»<br/>PostgreSQL<br/>Guarda negocio, outbox y espejo local.")]:::store
+        syncWorker["Sincronizador de sucursal<br/>«Contenedor»<br/>Worker TypeScript / Node.js<br/>Entrega eventos y actualiza espejos."]:::pos
+        countryApi["API de país<br/>«Contenedor»<br/>NestJS + Fastify / Node.js<br/>Aplica lotes y sirve publicaciones."]:::pos
+        countryWorker["Workers de país<br/>«Contenedor»<br/>Workers NestJS / Node.js<br/>Publica versiones e integra pendientes."]:::pos
+        countryDb[("Datos operativos de país<br/>«Contenedor de datos»<br/>PostgreSQL<br/>Consolida y conserva entrega durable.")]:::store
+        erpAdapter["Adaptador ERP / ACL<br/>«Contenedor»<br/>Proceso TypeScript / Node.js<br/>Traduce contratos y concilia resultados."]:::pos
+    end
+    cashier(["Cajero<br/>«Persona»<br/>Operación humana<br/>Vende, cobra y gestiona su turno."]):::person
+    erp["ERP del país<br/>«Sistema externo»<br/>CL: AX · ES: Gira · PE: custom<br/>Recibe y concilia documentos financieros."]:::external
+    masters["Fuentes de maestros y precios<br/>«Sistema externo»<br/>Interfaces por confirmar<br/>Publica datos y reglas autorizados."]:::external
+    payments["Proveedor de pagos<br/>«Sistema externo»<br/>API / SDK según proveedor<br/>Autoriza o informa el resultado del pago."]:::external
+    fiscal["Proveedor fiscal<br/>«Sistema externo»<br/>Contrato por país y modalidad<br/>Emite o transmite documentos fiscales."]:::external
+    legend["Leyenda · notación C4<br/>Verde: POS · Azul/cilindro: datos<br/>Gris: externo · Persona: rol humano<br/>Borde discontinuo: límite indicado<br/>Flecha: propósito y protocolo<br/>Contenedor: aplicación o almacén<br/>Componente: módulo de UN proceso"]:::key
+    cashier -->|"Opera caja · interfaz local"| client
+    client -->|"Transporta comando autorizado por backend / recoge evidencia · IPC o loopback"| device
+    device -->|"Ejecuta terminal bancario si requiere agente · SDK/API homologado"| payments
+    client -->|"Envía comandos / consulta estado · HTTPS sobre LAN"| branchApi
+    branchApi -->|"Confirma negocio + outbox · SQL/transacción"| branchDb
+    branchApi -->|"Pago remoto directo si aplica · API HTTPS validada"| payments
+    branchApi ---->|"Emisión / estado fiscal · puerto por país"| fiscal
+    syncWorker -->|"Lee outbox / escribe inbox, cursores y espejo · SQL"| branchDb
+    syncWorker -->|"Envía lotes / consulta deltas y acuses · HTTPS + cursor"| countryApi
+    countryApi -->|"Commit inbox + efecto + outbox antes del ACK de aplicación · SQL"| countryDb
+    countryWorker -->|"Consume outbox confirmada / publica versiones · SQL"| countryDb
+    countryWorker -->|"Obtiene cambios o carga masiva · contrato de origen por validar"| masters
+    countryWorker -->|"Entrega operación / consulta resultado · HTTPS interno"| erpAdapter
+    erpAdapter ---->|"Guarda referencias y resultados de integración · SQL"| countryDb
+    erpAdapter -->|"Traduce y concilia · protocolo disponible por confirmar"| erp
+    classDef pos fill:#e8f4ef,stroke:#087f70,color:#17302d,stroke-width:2px
+    classDef store fill:#edf3f9,stroke:#365f87,color:#17302d,stroke-width:2px
+    classDef external fill:#f4f6f5,stroke:#74827d,color:#17302d
+    classDef person fill:#152d2b,stroke:#152d2b,color:#ffffff
+    classDef infra fill:#fbf1e2,stroke:#a86516,color:#17302d
+    classDef key fill:#ffffff,stroke:#b9cbc3,color:#566762,font-size:14px
+    style systemScope fill:#ffffff,stroke:#b9cbc3,stroke-dasharray:6 4

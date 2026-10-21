@@ -1,0 +1,51 @@
+flowchart TB
+    accTitle: Complemento · Despliegue — Dónde corre cada pieza
+    accDescr: Entorno objetivo de referencia: una tienda y una plataforma por país. No describe servidores o proveedores cloud ya contratados. Varias cajas comparten servidor y PostgreSQL de sucursal. Sin WAN puede continuar la operación autorizada; sin LAN o escritor, no se crea otra autoridad en cada puesto.
+    subgraph terminalNode["Puestos POS x N · Nodo<br/>Sistema operativo por inventariar"]
+        direction TB
+        client["Cliente de caja<br/>«Instancia de contenedor»<br/>Angular + Tauri<br/>Presenta caja y comandos del operador."]:::pos
+        device["Puente de periféricos<br/>«Instancia de contenedor condicional»<br/>Proceso nativo según SDK<br/>Ejecuta capacidades del puesto."]:::pos
+    end
+    subgraph serverNode["Servidor de sucursal · Nodo<br/>Entorno de ejecución por homologar"]
+        direction TB
+        branchApi["Backend de sucursal<br/>«Instancia de contenedor»<br/>NestJS + Fastify / Node.js<br/>Valida y confirma la operación local."]:::pos
+        syncWorker["Sincronizador de sucursal<br/>«Instancia de contenedor»<br/>Worker TypeScript / Node.js<br/>Entrega eventos y actualiza espejos."]:::pos
+        branchDb[("Datos de sucursal<br/>«Instancia de contenedor de datos»<br/>PostgreSQL<br/>Guarda negocio, outbox y espejo local.")]:::store
+    end
+    subgraph countryNode["Plataforma de país · Nodo<br/>Alojamiento por decidir"]
+        direction TB
+        countryApi["API de país<br/>«Instancia de contenedor»<br/>NestJS + Fastify / Node.js<br/>Aplica lotes y sirve publicaciones."]:::pos
+        countryWorker["Workers de país<br/>«Instancia de contenedor»<br/>Workers NestJS / Node.js<br/>Publica versiones e integra pendientes."]:::pos
+        erpAdapter["Adaptador ERP / ACL<br/>«Instancia de contenedor»<br/>Proceso TypeScript / Node.js<br/>Traduce contratos y concilia resultados."]:::pos
+        countryDb[("Datos operativos de país<br/>«Instancia de contenedor de datos»<br/>PostgreSQL<br/>Consolida y conserva entrega durable.")]:::store
+    end
+    erp["ERP del país<br/>«Sistema externo»<br/>CL: AX · ES: Gira · PE: custom<br/>Recibe y concilia documentos financieros."]:::external
+    payments["Proveedor de pagos<br/>«Sistema externo»<br/>API / SDK según proveedor<br/>Autoriza o informa el resultado del pago."]:::external
+    fiscal["Proveedor fiscal<br/>«Sistema externo»<br/>Contrato por país y modalidad<br/>Emite o transmite documentos fiscales."]:::external
+    backup["Respaldo y recuperación<br/>«Infraestructura»<br/>Backups PostgreSQL / herramienta por definir<br/>Conserva y ensaya restauraciones."]:::infra
+    legend["Leyenda · notación C4<br/>Verde: POS · Azul/cilindro: datos<br/>Gris: externo · Persona: rol humano<br/>Borde discontinuo: límite indicado<br/>Flecha: propósito y protocolo<br/>Contenedor: aplicación o almacén<br/>Componente: módulo de UN proceso"]:::key
+    client -->|"Comandos autenticados · HTTPS/LAN"| branchApi
+    client -->|"Comando autorizado por backend · IPC/loopback por homologar"| device
+    branchApi -->|"Negocio + outbox · SQL local"| branchDb
+    syncWorker -->|"Pendientes, cursores y espejo · SQL local"| branchDb
+    syncWorker -->|"Lotes, deltas y snapshots · HTTPS/WAN"| countryApi
+    countryApi -->|"Commit inbox + efecto + outbox antes de ACK · SQL"| countryDb
+    countryWorker -->|"Outbox confirmada / publicaciones · SQL"| countryDb
+    countryWorker -->|"Contrato canónico · HTTPS interno"| erpAdapter
+    erpAdapter -->|"Traducción por país · interfaz ERP por validar"| erp
+    erpAdapter -->|"Resultados y referencias · SQL"| countryDb
+    device -->|"Terminal/pago · SDK o API homologado"| payments
+    branchApi -->|"Emisión/transmisión · modalidad por homologar"| fiscal
+    branchDb -->|"Copia y evidencia de restore · mecanismo por definir"| backup
+    countryDb -->|"Copia y retención por país · mecanismo por definir"| backup
+    %% Keep the reading key outside the deployment nodes; this is a layout constraint.
+    backup ~~~ legend
+    classDef pos fill:#e8f4ef,stroke:#087f70,color:#17302d,stroke-width:2px
+    classDef store fill:#edf3f9,stroke:#365f87,color:#17302d,stroke-width:2px
+    classDef external fill:#f4f6f5,stroke:#74827d,color:#17302d
+    classDef person fill:#152d2b,stroke:#152d2b,color:#ffffff
+    classDef infra fill:#fbf1e2,stroke:#a86516,color:#17302d
+    classDef key fill:#ffffff,stroke:#b9cbc3,color:#566762,font-size:14px
+    style terminalNode fill:#ffffff,stroke:#b9cbc3,stroke-dasharray:6 4
+    style serverNode fill:#ffffff,stroke:#b9cbc3,stroke-dasharray:6 4
+    style countryNode fill:#ffffff,stroke:#b9cbc3,stroke-dasharray:6 4

@@ -1,0 +1,46 @@
+---
+import inventory from '../data/legacy-configuration.json';
+interface Props { app: 'backend' | 'backend-concentrador' }
+const {app} = Astro.props;
+const application = inventory.applications[app];
+const groups = [...new Set(application.variables.map(variable => variable.group))];
+const sourceBase = `${inventory.repository}/blob/${inventory.commit}/`;
+---
+
+<p><strong>{application.variables.length} nombres consultados explícitamente</strong> en el código de esta aplicación. Las lecturas pueden tener condiciones distintas: no son una lista de requisitos obligatorios para cualquier despliegue.</p>
+{groups.map(group => <section class="configuration-group">
+  <h3>{group}</h3>
+  {application.variables.filter(variable => variable.group === group).map(variable => <article class="configuration-entry" id={`${app}-${variable.name.toLowerCase().replaceAll('_','-')}`}>
+    <h4><code>{variable.name}</code></h4>
+    <p>{variable.purpose}</p>
+    <dl>
+      <div><dt>Cuándo aplica</dt><dd>{variable.condition}</dd></div>
+      <div><dt>Valor predeterminado</dt><dd>{variable.defaultPolicy}</dd></div>
+      <div><dt>Plantillas revisadas</dt><dd>{variable.inExample ? 'El nombre aparece en al menos una plantilla .env.example* de esta aplicación.' : 'El nombre no aparece en las plantillas .env.example* revisadas de esta aplicación.'}</dd></div>
+    </dl>
+    <details>
+      <summary>Lecturas verificadas en el código</summary>
+      <ul>{variable.sources.map(source => <li><a href={`${sourceBase}${source.file}#L${source.line}`}>{source.file}:{source.line}</a></li>)}</ul>
+    </details>
+  </article>)}
+</section>)}
+<p><strong>Solo localizados en las plantillas:</strong> {application.exampleOnlyNames.map((name,index) => <>{index > 0 && ', '}<code>{name}</code></>)}. No se encontró una lectura explícita de esos nombres en el código propio inspeccionado; algunos pueden ser consumidos por el framework o el proceso. No se clasifican automáticamente como variables sin uso.</p>
+{application.commentedVariables.length > 0 && <section>
+  <h3>Referencias en código comentado</h3>
+  {application.commentedVariables.map(variable => <p><code>{variable.name}</code>: {variable.condition} {variable.sources.map((source,index) => <>{index > 0 && ' · '}<a href={`${sourceBase}${source.file}#L${source.line}`}>Referencia {index + 1}</a></>)}</p>)}
+</section>}
+
+<style>
+  .configuration-group { margin-block: 2rem; }
+  .configuration-entry { border-bottom: 1px solid var(--sl-color-gray-5); padding-block: 1rem; scroll-margin-top: 6rem; }
+  .configuration-entry h4 { margin-block: 0 .6rem; }
+  .configuration-entry code { overflow-wrap: anywhere; }
+  .configuration-entry p { margin-block: .5rem; }
+  .configuration-entry dl { margin-block: 1rem; font-size: .925rem; }
+  .configuration-entry dl > div { display: grid; grid-template-columns: minmax(8rem, 1fr) minmax(0, 3fr); gap: 1rem; margin-block: .5rem; }
+  .configuration-entry dt { font-weight: 600; }
+  .configuration-entry dd { margin: 0; }
+  .configuration-entry details { font-size: .875rem; }
+  .configuration-entry details a { overflow-wrap: anywhere; }
+  @media (max-width: 40rem) { .configuration-entry dl > div { display: block; } }
+</style>

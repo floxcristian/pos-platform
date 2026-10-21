@@ -1,0 +1,38 @@
+flowchart TB
+    accTitle: C3 · Sincronizador — Entrega durable y precios locales
+    accDescr: Un solo contenedor: worker de sincronización de sucursal. La API/DB de país y PostgreSQL local son colaboradores externos al proceso. Deltas y cargas completas comparten validación. Snapshot + watermark + staging + checksum + activación atómica; las ventas abiertas mantienen su versión.
+    subgraph syncScope["Sincronizador · UN proceso<br/>Contenedor worker Node.js"]
+        direction TB
+        schedule["Planificador y supervisor<br/>«Componente»<br/>Worker TypeScript<br/>Admite trabajos con límites y ventanas."]:::pos
+        sender["Emisor de outbox<br/>«Componente»<br/>Worker TypeScript / HTTPS<br/>Envía lotes con identidad estable."]:::pos
+        receiver["Receptor de deltas y acuses<br/>«Componente»<br/>Worker TypeScript / HTTPS<br/>Valida contratos y cursores de entrega."]:::pos
+        dedup["Inbox y deduplicación<br/>«Componente»<br/>Transacciones SQL / TypeScript<br/>Deduplica y prepara una candidata."]:::pos
+        snapshot["Carga de snapshot<br/>«Componente»<br/>Descarga HTTPS / TypeScript<br/>Prepara una versión fuera de servicio."]:::pos
+        validation["Validador de publicación<br/>«Componente»<br/>Reglas TypeScript / SQL<br/>Revisa integridad, cobertura y vigencia."]:::pos
+        activation["Activación de versión<br/>«Componente»<br/>Transacción SQL / TypeScript<br/>Cambia atómicamente la versión activa."]:::pos
+    end
+    branchDb[("Datos de sucursal<br/>«Contenedor de datos»<br/>PostgreSQL<br/>Guarda negocio, outbox y espejo local.")]:::store
+    countryApi["API de país<br/>«Contenedor»<br/>NestJS + Fastify / Node.js<br/>Aplica lotes y sirve publicaciones."]:::pos
+    legend["Leyenda · notación C4<br/>Verde: POS · Azul/cilindro: datos<br/>Gris: externo · Persona: rol humano<br/>Borde discontinuo: límite indicado<br/>Flecha: propósito y protocolo<br/>Contenedor: aplicación o almacén<br/>Componente: módulo de UN proceso"]:::key
+    schedule -->|"Admite lote / reintento acotado · TypeScript"| sender
+    sender -->|"Claim y lectura de outbox · SQL"| branchDb
+    sender -->|"Envía lote con eventId/contrato · HTTPS"| countryApi
+    schedule -->|"Programa consulta incremental · TypeScript"| receiver
+    receiver -->|"Consulta acuses y deltas con cursor · HTTPS"| countryApi
+    receiver -->|"Entrega unidad validada · TypeScript"| dedup
+    dedup -->|"Guarda recibido/staging; no avanza aplicado · SQL"| branchDb
+    schedule -->|"Carga programada o recuperación manual · TypeScript"| snapshot
+    snapshot -->|"Descarga manifiesto/chunks y watermark · HTTPS"| countryApi
+    snapshot -->|"Guarda staging aislado · SQL"| branchDb
+    snapshot -->|"Solicita validación de versión completa · TypeScript"| validation
+    validation -->|"Verifica checksum, referencias y vigencia · SQL"| branchDb
+    validation -->|"Autoriza versión y watermark válidos · TypeScript"| activation
+    dedup -->|"Entrega candidata completa desde deltas · TypeScript"| validation
+    activation -->|"Commit corto: inbox aplicada + versión + cursor aplicado · SQL"| branchDb
+    classDef pos fill:#e8f4ef,stroke:#087f70,color:#17302d,stroke-width:2px
+    classDef store fill:#edf3f9,stroke:#365f87,color:#17302d,stroke-width:2px
+    classDef external fill:#f4f6f5,stroke:#74827d,color:#17302d
+    classDef person fill:#152d2b,stroke:#152d2b,color:#ffffff
+    classDef infra fill:#fbf1e2,stroke:#a86516,color:#17302d
+    classDef key fill:#ffffff,stroke:#b9cbc3,color:#566762,font-size:14px
+    style syncScope fill:#ffffff,stroke:#b9cbc3,stroke-dasharray:6 4

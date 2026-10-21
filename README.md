@@ -103,3 +103,14 @@ Necesita Rust, MSVC/Windows SDK y WebView2. Consulta [preparación de Tauri](doc
 Esta entrega permite validar la UX y las reglas mock; **no es una caja certificada ni lista para operar en producción**. El adaptador local del navegador no sustituye una base transaccional de escritorio, autenticación corporativa, permisos verificados por servidor, conciliación bancaria ni homologación fiscal. Esas fronteras y el diseño para evolucionarlas se describen en [arquitectura](docs/architecture.md), [seguridad](docs/security.md) y [contratos mock](docs/mock-api.md).
 
 La cobertura de Chile y las referencias revisadas están en [inventario de la caja actual](docs/audit-chile-for-product.md). Ese inventario distingue la funcionalidad de referencia, la simulación y lo que necesita integración real.
+
+## Documentación técnica
+
+La guía Starlight pertenece a este monorepo: aplicación `apps/pos-docs`, fuentes en `docs/`, catálogo y diagramas versionados junto al producto. [Mantenimiento y publicación](apps/pos-docs/README.md).
+
+```sh
+npm run docs:install
+npm run docs:dev
+```
+
+`npm run docs:build` produce una salida estática independiente en `dist/apps/pos-docs`. `npm run build:vercel` ensambla la web y `/guide/` para el mismo despliegue. El repositorio de presentaciones consume un snapshot derivado fijado por commit; no mantiene otra fuente editable de la guía.

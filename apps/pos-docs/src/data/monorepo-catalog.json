@@ -1,0 +1,165 @@
+{
+  "schemaVersion": 1,
+  "product": "POS Platform",
+  "reviewedOn": "2026-10-21",
+  "repository": "https://github.com/floxcristian/pos-platform",
+  "evidence": "Workspace local revisado, con la base backend y su scaffolding todavía sin commit. No atribuir estos archivos a una revisión publicada ni a un despliegue productivo.",
+  "applications": [
+    {
+      "name": "pos-web",
+      "location": "Puesto o navegador",
+      "description": "Interfaz Angular de caja y administración",
+      "state": "Demostración con datos y adaptadores mock"
+    },
+    {
+      "name": "pos-desktop",
+      "location": "Puesto",
+      "description": "Contenedor Tauri de la interfaz compilada de pos-web",
+      "state": "Contenedor de demostración; periféricos reales pendientes"
+    },
+    {
+      "name": "pos-runtime",
+      "location": "Sucursal",
+      "description": "API y composición de negocio de sucursal",
+      "state": "Base HTTP local; sin persistencia ni operaciones comerciales"
+    },
+    {
+      "name": "pos-sync-worker",
+      "location": "Sucursal",
+      "description": "Proceso de entrega y recepción de sucursal",
+      "state": "Esqueleto local; sin jobs ni sincronización real"
+    },
+    {
+      "name": "country-api",
+      "location": "País",
+      "description": "API de recepción y capacidades de país",
+      "state": "Base HTTP local; sin recepción de ventas ni consolidación"
+    },
+    {
+      "name": "erp-worker",
+      "location": "Red autorizada del ERP",
+      "description": "Proceso de integración, traducción y conciliación ERP",
+      "state": "Esqueleto local; sin conexión a ERP"
+    }
+  ],
+  "libraries": [
+    {
+      "path": "backend/sales",
+      "description": "Ventas y documentos comerciales",
+      "kind": "backend-context"
+    },
+    {
+      "path": "backend/cash",
+      "description": "Turnos y movimientos de caja",
+      "kind": "backend-context"
+    },
+    {
+      "path": "backend/payments",
+      "description": "Intentos, resultados y conciliación de pagos",
+      "kind": "backend-context"
+    },
+    {
+      "path": "backend/collections",
+      "description": "Cobranzas y anticipos",
+      "kind": "backend-context"
+    },
+    {
+      "path": "backend/returns",
+      "description": "Devoluciones y referencias al documento original",
+      "kind": "backend-context"
+    },
+    {
+      "path": "backend/pricing",
+      "description": "Evaluación y versiones de precios y promociones",
+      "kind": "backend-context"
+    },
+    {
+      "path": "backend/catalog",
+      "description": "Maestros y proyecciones de consulta",
+      "kind": "backend-context"
+    },
+    {
+      "path": "backend/fiscal",
+      "description": "Documentos y estados fiscales por país/proveedor",
+      "kind": "backend-context"
+    },
+    {
+      "path": "backend/devices",
+      "description": "Contratos y coordinación de periféricos",
+      "kind": "backend-context"
+    },
+    {
+      "path": "backend/sync",
+      "description": "Protocolo y progreso de sincronización",
+      "kind": "backend-context"
+    },
+    {
+      "path": "backend/erp",
+      "description": "Contratos, ACL y adaptadores ERP",
+      "kind": "backend-context"
+    },
+    {
+      "path": "backend/reporting",
+      "description": "Consultas y proyecciones de reportes",
+      "kind": "backend-context"
+    },
+    {
+      "path": "backend/administration",
+      "description": "Configuración y ámbito organizacional",
+      "kind": "backend-context"
+    },
+    {
+      "path": "contracts",
+      "description": "Contratos versionados entre aplicaciones",
+      "kind": "pure"
+    },
+    {
+      "path": "shared-kernel",
+      "description": "Primitivas puras comunes: identidad, dinero y moneda",
+      "kind": "pure"
+    },
+    {
+      "path": "country-policies",
+      "description": "Perfiles y contratos de políticas nacionales",
+      "kind": "pure"
+    },
+    {
+      "path": "platform/backend",
+      "description": "Arranque, configuración, HTTP, logging y errores",
+      "kind": "platform"
+    },
+    {
+      "path": "domain",
+      "description": "Reglas puras del prototipo frontend existente",
+      "kind": "frontend"
+    },
+    {
+      "path": "data-access",
+      "description": "Estado y adaptadores mock del frontend",
+      "kind": "frontend"
+    },
+    {
+      "path": "ui",
+      "description": "Componentes y tokens visuales compartidos",
+      "kind": "frontend"
+    },
+    {
+      "path": "features",
+      "description": "Pantallas de acceso, caja, análisis y administración",
+      "kind": "frontend"
+    }
+  ],
+  "future": [
+    "Un backoffice independiente requiere justificar su separación; la administración de demostración está en pos-web.",
+    "El publicador central de maestros y precios requiere composición y proceso propios por decidir; no existe una app country-workers en este scaffolding.",
+    "El puente nativo de periféricos depende del SDK homologado; no se crea un proyecto adicional sin esa decisión."
+  ],
+  "documentationApplications": [
+    {
+      "location": "Sitio documental estático",
+      "description": "Guía Starlight de arquitectura, implementación y evidencia",
+      "name": "pos-docs",
+      "state": "Aplicación documental; no participa en la operación de caja"
+    }
+  ]
+}
