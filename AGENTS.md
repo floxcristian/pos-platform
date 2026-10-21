@@ -4,7 +4,7 @@ Maqueta funcional de producto con datos sintéticos. No conectar servicios corpo
 
 ## Arquitectura
 
-- Nx integrado: apps/pos-desktop, apps/pos-mobile, apps/pos-runtime, apps/pos-sync-worker, apps/country-api y apps/erp-worker, con librerías y límites explícitos. Ver docs/monorepo.md.
+- Nx integrado: apps/pos-desktop, apps/pos-mobile, apps/branch-api, apps/branch-sync-worker, apps/country-api y apps/erp-worker, con librerías y límites explícitos. Ver docs/monorepo.md.
 - Angular standalone, OnPush, signals y TypeScript estricto. PrimeNG nativo primero.
 - domain es TypeScript puro; data-access implementa puertos con adaptadores mock y persistencia local versionada. Las features consumen servicios, no localStorage ni datos duplicados.
 - client-shell compone AppComponent, createClientConfig(platform), rutas, guards y shell compartidos (type:shell, env:browser). Cada app tiene su bootstrap propio; ninguna app importa otra app y las features no importan el shell.
@@ -15,7 +15,9 @@ Maqueta funcional de producto con datos sintéticos. No conectar servicios corpo
 
 ## Backend
 
-`apps/pos-runtime` y `apps/country-api` contienen las entradas HTTP de sucursal y país con NestJS/Fastify. `apps/pos-sync-worker` y `apps/erp-worker` componen procesos de trabajo separados. La base técnica reutilizada pertenece a `libs/platform/backend`; las apps eligen identidad y módulos. Mantener el backend separado del mock del frontend: no importar `data-access`, UI, features Angular ni APIs del navegador. Los contratos compartidos y reglas puras viven en `contracts`, `shared-kernel` y `country-policies`, sin Nest, Fastify ni Angular; los controladores delegan los casos de uso.
+Nombrar las aplicaciones por ámbito o responsabilidad y tipo de proceso: `branch-api`, `branch-sync-worker`, `country-api` y `erp-worker`. La API y el worker de sucursal usan los prefijos `BRANCH_API_` y `BRANCH_SYNC_WORKER_`. Mantener los comandos públicos `api:*` y `sync:check`; `runtime` designa el entorno de ejecución y sus utilidades, no el nombre de una aplicación. Ver la correspondencia histórica en `docs/api.md`.
+
+`apps/branch-api` y `apps/country-api` contienen las entradas HTTP de sucursal y país con NestJS/Fastify. `apps/branch-sync-worker` y `apps/erp-worker` componen procesos de trabajo separados. La base técnica reutilizada pertenece a `libs/platform/backend`; las apps eligen identidad y módulos. Mantener el backend separado del mock del frontend: no importar `data-access`, UI, features Angular ni APIs del navegador. Los contratos compartidos y reglas puras viven en `contracts`, `shared-kernel` y `country-policies`, sin Nest, Fastify ni Angular; los controladores delegan los casos de uso.
 
 Usar Core como referencia de convenciones según el commit documentado en `docs/api.md`: composición de arranque, configuración inyectable, logging Pino, contrato de errores y pruebas Vitest/SWC con metadata de decoradores. El usuario solicita un scaffold explícito de contextos en `libs/backend`; mantener sus puntos de entrada y responsabilidades documentados sin simular casos de uso ni fachadas exitosas. Incorporar `api/application/domain/infrastructure/config` según exista responsabilidad real; no multiplicar capas o proyectos automáticamente. Los contextos se comunican mediante interfaces o fachadas públicas y conservan propiedad de sus datos.
 
@@ -35,7 +37,7 @@ Sentry es opt-in por aplicación: conservar `*_SENTRY_ENABLED=false` y `*_SENTRY
 
 Mantener el contrato de error `{ code, message, category, timestamp }`, sin `details` ni stack en las respuestas de esta base y con mensaje genérico para errores 500. La API usa prefijo `api` y versionado URI de Nest; las sondas son neutrales a versión y quedan fuera del prefijo. Documentar OpenAPI en español con `operationId` explícitos y estables. Los límites de Fastify son 1 MiB de cuerpo y 30 s para recibir la solicitud; ese timeout no sustituye los límites y cancelación de futuras llamadas externas.
 
-Las comprobaciones de la API se ejecutan con `npm run api:check`. Mantener pruebas Vitest con SWC y metadata de decoradores, probando la aplicación real y Fastify sin servicios externos. `npm run api:smoke` verifica el artefacto de `dist/apps/pos-runtime` desde una carpeta temporal fuera del monorepo con sus dependencias de producción. No copiar MongoDB, Redis, servicios cloud, OpenTelemetry ni la autenticación ecommerce de Core sin un requisito y contrato propios del POS. Ver `docs/api.md`.
+Las comprobaciones de la API se ejecutan con `npm run api:check`. Mantener pruebas Vitest con SWC y metadata de decoradores, probando la aplicación real y Fastify sin servicios externos. `npm run api:smoke` verifica el artefacto de `dist/apps/branch-api` desde una carpeta temporal fuera del monorepo con sus dependencias de producción. No copiar MongoDB, Redis, servicios cloud, OpenTelemetry ni la autenticación ecommerce de Core sin un requisito y contrato propios del POS. Ver `docs/api.md`.
 
 Para cambios compartidos ejecutar `npm run backend:check`, `npm run backend:smoke` y `npm run structure:check`. `sync:check` y `erp:check` solo verifican composición y cierre de los workers; no afirmar que existe programación, entrega o conciliación operativa hasta implementar y probar esas capacidades. Mantener seis aplicaciones operativas: desktop, mobile y cuatro entradas backend. pos-docs es la séptima, documental. Añadir backoffice o más workers requiere una responsabilidad y ciclo de vida definidos.
 

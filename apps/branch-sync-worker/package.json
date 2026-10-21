@@ -1,5 +1,5 @@
 {
-  "name": "pos-sync-worker",
+  "name": "branch-sync-worker",
   "version": "0.1.0",
   "private": true,
   "type": "commonjs",

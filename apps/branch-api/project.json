@@ -1,25 +1,25 @@
 {
-  "name": "pos-runtime",
+  "name": "branch-api",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "sourceRoot": "apps/pos-runtime/src",
+  "sourceRoot": "apps/branch-api/src",
   "tags": ["type:backend", "env:server", "scope:branch"],
   "targets": {
     "build": {
       "executor": "nx:run-commands",
       "cache": true,
       "inputs": ["production", "^production", "{workspaceRoot}/tools/backend/**/*"],
-      "outputs": ["{workspaceRoot}/dist/apps/pos-runtime"],
+      "outputs": ["{workspaceRoot}/dist/apps/branch-api"],
       "options": {
         "command": "rspack build",
-        "cwd": "apps/pos-runtime"
+        "cwd": "apps/branch-api"
       }
     },
     "serve": {
       "executor": "@nx/js:node",
       "continuous": true,
       "options": {
-        "buildTarget": "pos-runtime:build",
+        "buildTarget": "branch-api:build",
         "watch": true,
         "inspect": false
       }
@@ -27,7 +27,7 @@
     "lint": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "eslint apps/pos-runtime --max-warnings 0"
+        "command": "eslint apps/branch-api --max-warnings 0"
       }
     },
     "typecheck": {
@@ -35,7 +35,7 @@
       "cache": true,
       "inputs": ["default", "^production", "{workspaceRoot}/tools/backend/**/*"],
       "options": {
-        "command": "tsc -p apps/pos-runtime/tsconfig.spec.json --noEmit"
+        "command": "tsc -p apps/branch-api/tsconfig.spec.json --noEmit"
       }
     },
     "test": {
@@ -43,7 +43,7 @@
       "cache": true,
       "inputs": ["default", "^production", "{workspaceRoot}/tools/backend/**/*"],
       "options": {
-        "command": "vitest run --config apps/pos-runtime/vitest.config.mts"
+        "command": "vitest run --config apps/branch-api/vitest.config.mts"
       }
     }
   }

@@ -1,12 +1,12 @@
 import { describe, expect, it } from 'vitest';
 import { runWorkerCommand, loadConfig } from '../src/app.js';
 
-describe('pos-sync-worker scaffold', () => {
+describe('branch-sync-worker scaffold', () => {
   it('composes its contexts and exits with processing disabled', async () => {
-    const config = loadConfig({ NODE_ENV: 'test', POS_SYNC_WORKER_LOG_LEVEL: 'silent' });
+    const config = loadConfig({ NODE_ENV: 'test', BRANCH_SYNC_WORKER_LOG_LEVEL: 'silent' });
     const inspection = await runWorkerCommand(['check'], config);
     expect(inspection).toMatchObject({
-      service: 'pos-sync-worker',
+      service: 'branch-sync-worker',
       mode: 'scaffold',
       processingEnabled: false,
     });

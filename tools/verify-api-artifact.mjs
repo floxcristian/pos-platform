@@ -14,7 +14,7 @@ assert.ok(
   'Verify artifacts using the supported Node.js runtime: 22.19+ (22.x) or 24.x.',
 );
 const npmCli = process.env.npm_execpath;
-const backendProjects = ['pos-runtime', 'country-api', 'pos-sync-worker', 'erp-worker'];
+const backendProjects = ['branch-api', 'country-api', 'branch-sync-worker', 'erp-worker'];
 const args = process.argv.slice(2);
 assert.ok(
   args.length === 0 ||
@@ -22,7 +22,7 @@ assert.ok(
     args.every((arg) => backendProjects.includes(arg)),
   'Use --all or one or more backend project names.',
 );
-const projects = args.length === 0 ? ['pos-runtime'] : args[0] === '--all' ? backendProjects : args;
+const projects = args.length === 0 ? ['branch-api'] : args[0] === '--all' ? backendProjects : args;
 
 function run(artifact, args, { capture = false, timeoutMs = 180_000 } = {}) {
   const result = spawnSync(process.execPath, args, {
@@ -32,7 +32,7 @@ function run(artifact, args, { capture = false, timeoutMs = 180_000 } = {}) {
       NODE_ENV: 'production',
       NODE_PATH: '',
       ...Object.fromEntries(
-        ['POS_API', 'COUNTRY_API', 'POS_SYNC_WORKER', 'ERP_WORKER'].flatMap((prefix) => [
+        ['BRANCH_API', 'COUNTRY_API', 'BRANCH_SYNC_WORKER', 'ERP_WORKER'].flatMap((prefix) => [
           [`${prefix}_SENTRY_ENABLED`, 'false'],
           [`${prefix}_SENTRY_DSN`, ''],
           [`${prefix}_SENTRY_RELEASE`, ''],
@@ -59,9 +59,9 @@ for (const project of projects) {
     // Registry access and package extraction can be slower than application startup.
     run(artifact, [npmCli, 'ci', '--omit=dev'], { timeoutMs: 600_000 });
     const prefix = {
-      'pos-runtime': 'POS_API',
+      'branch-api': 'BRANCH_API',
       'country-api': 'COUNTRY_API',
-      'pos-sync-worker': 'POS_SYNC_WORKER',
+      'branch-sync-worker': 'BRANCH_SYNC_WORKER',
       'erp-worker': 'ERP_WORKER',
     }[project];
     // Exercise the actual SDK from the isolated bundle, with an in-memory

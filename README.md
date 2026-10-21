@@ -13,9 +13,9 @@ Los clientes Angular con PrimeNG para escritorio (Tauri) y móvil (Capacitor), l
 | `apps/pos-desktop` | Cliente Angular propio para escritorio, alojado en Tauri |
 | `apps/pos-mobile` | Cliente Angular propio para Android/iOS, alojado en Capacitor |
 | `libs/client-shell` | Composición Angular compartida: rutas, configuración y shell |
-| `apps/pos-runtime` | Base HTTP NestJS/Fastify de sucursal |
+| `apps/branch-api` | Base HTTP NestJS/Fastify de sucursal |
 | `apps/country-api` | Base HTTP de país |
-| `apps/pos-sync-worker`, `apps/erp-worker` | Composición de workers; procesamiento de jobs pendiente |
+| `apps/branch-sync-worker`, `apps/erp-worker` | Composición de workers; procesamiento de jobs pendiente |
 | `apps/pos-docs` | Documentación técnica en Starlight |
 | `libs/` | Features del frontend, contextos del backend y contratos compartidos, con límites de importación |
 
@@ -50,13 +50,15 @@ Todos los RUT, clientes, usuarios y operaciones son ejemplos sintéticos. No hay
 npm run api:dev
 ```
 
-La API escucha en **http://127.0.0.1:3000**. Expone información de la base en `/api/v1`, sondas en `/health/live` y `/health/ready`, y OpenAPI en `/api/docs` durante el desarrollo. Usa NestJS con Fastify como un proyecto Nx independiente: `apps/pos-runtime`.
+La API escucha en **http://127.0.0.1:3000**. Expone información de la base en `/api/v1`, sondas en `/health/live` y `/health/ready`, y OpenAPI en `/api/docs` durante el desarrollo. Usa NestJS con Fastify como un proyecto Nx independiente: `apps/branch-api`.
+
+Los nombres backend expresan ámbito y proceso: `branch-api`, `branch-sync-worker`, `country-api` y `erp-worker`. Para actualizar un checkout anterior, revisar la [migración de nombres y variables de entorno](docs/api.md#actualización-de-nombres-y-configuración); los comandos `api:*` y `sync:check` se conservan.
 
 La base sigue las convenciones verificadas de **Core**: composición de arranque separada, configuración tipada e inyectable, logging unificado con `nestjs-pino`, errores HTTP con contrato estable, versionado URI y pruebas Vitest/SWC. La [guía de la API](docs/api.md#referencia-core) identifica el commit de referencia y las decisiones adaptadas al backend de sucursal.
 
 El reporte de errores con Sentry es opcional y está deshabilitado en los ejemplos, con DSN vacío. Cada aplicación tiene un cliente privado que captura fallos en fronteras explícitas y admite solo metadatos técnicos y frames reducidos; no envía datos de clientes, cuerpos de operaciones ni logs completos. Consulta el [alcance de captura y configuración](docs/api.md#reporte-opcional-de-errores-con-sentry). No se ha conectado un proyecto real de Sentry.
 
-Los puntos de entrada `country-api`, `pos-sync-worker` y `erp-worker` preparan los procesos de país, sincronización y ERP. Comparten la base técnica de `libs/platform/backend`; los contextos de `libs/backend` delimitan dónde implementar las capacidades. Rspack/SWC empaqueta las aplicaciones Node y sus librerías fuente; TSC verifica tipos. Crear estas fronteras no conecta bases, colas ni proveedores.
+Los puntos de entrada `country-api`, `branch-sync-worker` y `erp-worker` preparan los procesos de país, sincronización y ERP. Comparten la base técnica de `libs/platform/backend`; los contextos de `libs/backend` delimitan dónde implementar las capacidades. Rspack/SWC empaqueta las aplicaciones Node y sus librerías fuente; TSC verifica tipos. Crear estas fronteras no conecta bases, colas ni proveedores.
 
 ```sh
 npm run api:check
@@ -103,8 +105,8 @@ La organización acordada agrupa lo transversal en `libs/shared/` y conserva los
 apps/
   pos-desktop/                  # [conservado] Cliente Angular con arranque propio y host Tauri
   pos-mobile/                   # [conservado] Cliente Angular con arranque propio y host Capacitor
-  pos-runtime/                  # [conservado] API y composición de negocio de sucursal
-  pos-sync-worker/              # [conservado] Proceso de entrega y recepción de sucursal
+  branch-api/                   # [conservado] API y composición de negocio de sucursal
+  branch-sync-worker/           # [conservado] Proceso de entrega y recepción de sucursal
   country-api/                  # [conservado] API de recepción y capacidades de país
   erp-worker/                   # [conservado] Proceso de integración, traducción y conciliación ERP
   pos-clients-e2e/              # [mover] Pruebas de la UI; proyecto Nx de pruebas, sin despliegue

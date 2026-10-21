@@ -9,7 +9,7 @@ describe('runtime HTTP contract', () => {
   let app: NestFastifyApplication;
 
   beforeAll(async () => {
-    app = await createApplication(loadConfig({ NODE_ENV: 'test', POS_API_LOG_LEVEL: 'silent' }));
+    app = await createApplication(loadConfig({ NODE_ENV: 'test', BRANCH_API_LOG_LEVEL: 'silent' }));
     await app.init();
     await app.getHttpAdapter().getInstance().ready();
   });
@@ -28,7 +28,7 @@ describe('runtime HTTP contract', () => {
     expect(ready.statusCode).toBe(200);
     expect(ready.json()).toEqual({ status: 'ready' });
     expect(info.statusCode).toBe(200);
-    expect(info.json()).toEqual({ service: 'pos-runtime', apiVersion: '1', mode: 'foundation' });
+    expect(info.json()).toEqual({ service: 'branch-api', apiVersion: '1', mode: 'foundation' });
     expect((await app.inject({ method: 'GET', url: '/api/v2' })).statusCode).toBe(404);
     expect((await app.inject({ method: 'GET', url: '/api/v1/health/live' })).statusCode).toBe(404);
   });
@@ -106,8 +106,8 @@ it('should stop advertising readiness during shutdown while liveness still respo
   const app = await createApplication(
     loadConfig({
       NODE_ENV: 'test',
-      POS_API_LOG_LEVEL: 'silent',
-      POS_API_DOCS_ENABLED: 'false',
+      BRANCH_API_LOG_LEVEL: 'silent',
+      BRANCH_API_DOCS_ENABLED: 'false',
     }),
   );
   try {
@@ -136,8 +136,8 @@ describe('production exposure', () => {
     app = await createApplication(
       loadConfig({
         NODE_ENV: 'production',
-        POS_API_LOG_LEVEL: 'silent',
-        POS_API_CORS_ORIGINS: 'https://pos.example.test',
+        BRANCH_API_LOG_LEVEL: 'silent',
+        BRANCH_API_CORS_ORIGINS: 'https://pos.example.test',
       }),
     );
     await app.init();

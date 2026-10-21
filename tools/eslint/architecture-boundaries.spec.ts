@@ -44,8 +44,8 @@ beforeAll(async () => {
   eslint = new ESLint({ cwd: workspace });
   // ESLint loads the Angular/Nx plugins lazily; include cold configuration
   // loading in integration setup instead of the first boundary assertion.
-  await eslint.calculateConfigForFile('apps/pos-runtime/src/main.ts');
-  await eslint.lintText('export {};', { filePath: 'apps/pos-runtime/src/main.ts' });
+  await eslint.calculateConfigForFile('apps/branch-api/src/main.ts');
+  await eslint.lintText('export {};', { filePath: 'apps/branch-api/src/main.ts' });
 }, 120_000);
 
 afterAll(() => {
@@ -56,7 +56,7 @@ afterAll(() => {
 // These are compiler-backed integration checks rather than isolated rule tests.
 describe('Nx architecture boundaries', { timeout: 30_000 }, () => {
   it('rejects frontend dependencies from the runtime', async () => {
-    const messages = await checkImport('apps/pos-runtime/src/main.ts', publicImport('libs/ui'));
+    const messages = await checkImport('apps/branch-api/src/main.ts', publicImport('libs/ui'));
     expect(messages.map((message) => message.ruleId)).toContain(rule);
   });
 
@@ -137,7 +137,7 @@ describe('Nx architecture boundaries', { timeout: 30_000 }, () => {
   it.each(['libs/backend/sales', 'libs/backend/payments', 'libs/platform/backend'])(
     'allows the runtime composition root to assemble %s',
     async (projectRoot) => {
-      expect(await checkImport('apps/pos-runtime/src/main.ts', publicImport(projectRoot))).toEqual([]);
+      expect(await checkImport('apps/branch-api/src/main.ts', publicImport(projectRoot))).toEqual([]);
     },
   );
 

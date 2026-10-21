@@ -5,7 +5,7 @@ import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 
 const workspace = fileURLToPath(new URL('../../', import.meta.url));
 const sourceFile = 'libs/backend/sales/src/lib/sales.module.ts';
-const testFile = 'apps/pos-runtime/test/http.test.ts';
+const testFile = 'apps/branch-api/test/http.test.ts';
 let eslint: ESLint;
 
 async function check(source: string, filePath = sourceFile) {
@@ -134,7 +134,7 @@ describe('backend observability and configuration boundaries', () => {
 
   it('allows reading the environment at the application entrypoint', async () => {
     expect(
-      await check("export const environment = process.env['NODE_ENV'];", 'apps/pos-runtime/src/main.ts'),
+      await check("export const environment = process.env['NODE_ENV'];", 'apps/branch-api/src/main.ts'),
     ).toEqual([]);
   });
 });

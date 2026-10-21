@@ -1,8 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
 
 export class RuntimeInfoDto {
-  @ApiProperty({ enum: ['pos-runtime'], description: 'Identificador del servicio.' })
-  readonly service = 'pos-runtime' as const;
+  @ApiProperty({ enum: ['branch-api'], description: 'Identificador del servicio.' })
+  readonly service = 'branch-api' as const;
   @ApiProperty({ enum: ['1'], description: 'Versión de la API.' })
   readonly apiVersion = '1' as const;
   @ApiProperty({

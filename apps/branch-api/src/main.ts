@@ -5,4 +5,4 @@ import { loadConfig } from './config/runtime-config.js';
 
 Promise.resolve()
   .then(() => startHttpApplication(createApplication, loadConfig(process.env)))
-  .catch(() => reportStartupFailure('pos-runtime'));
+  .catch(() => reportStartupFailure('branch-api'));

@@ -1,31 +1,31 @@
 {
-  "name": "pos-sync-worker",
+  "name": "branch-sync-worker",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "sourceRoot": "apps/pos-sync-worker/src",
+  "sourceRoot": "apps/branch-sync-worker/src",
   "tags": ["type:backend", "env:server", "scope:branch"],
   "targets": {
     "build": {
       "executor": "nx:run-commands",
       "cache": true,
       "inputs": ["production", "^production", "{workspaceRoot}/tools/backend/**/*"],
-      "outputs": ["{workspaceRoot}/dist/apps/pos-sync-worker"],
+      "outputs": ["{workspaceRoot}/dist/apps/branch-sync-worker"],
       "options": {
         "command": "rspack build",
-        "cwd": "apps/pos-sync-worker"
+        "cwd": "apps/branch-sync-worker"
       }
     },
     "serve": {
       "executor": "nx:run-commands",
       "dependsOn": ["build"],
       "options": {
-        "command": "node dist/apps/pos-sync-worker/main.js inspect"
+        "command": "node dist/apps/branch-sync-worker/main.js inspect"
       }
     },
     "lint": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "eslint apps/pos-sync-worker --max-warnings 0"
+        "command": "eslint apps/branch-sync-worker --max-warnings 0"
       }
     },
     "typecheck": {
@@ -33,7 +33,7 @@
       "cache": true,
       "inputs": ["default", "^production", "{workspaceRoot}/tools/backend/**/*"],
       "options": {
-        "command": "tsc -p apps/pos-sync-worker/tsconfig.spec.json --noEmit"
+        "command": "tsc -p apps/branch-sync-worker/tsconfig.spec.json --noEmit"
       }
     },
     "test": {
@@ -41,21 +41,21 @@
       "cache": true,
       "inputs": ["default", "^production", "{workspaceRoot}/tools/backend/**/*"],
       "options": {
-        "command": "vitest run --config apps/pos-sync-worker/vitest.config.mts"
+        "command": "vitest run --config apps/branch-sync-worker/vitest.config.mts"
       }
     },
     "inspect": {
       "executor": "nx:run-commands",
       "dependsOn": ["build"],
       "options": {
-        "command": "node dist/apps/pos-sync-worker/main.js inspect"
+        "command": "node dist/apps/branch-sync-worker/main.js inspect"
       }
     },
     "check": {
       "executor": "nx:run-commands",
       "dependsOn": ["build"],
       "options": {
-        "command": "node dist/apps/pos-sync-worker/main.js check"
+        "command": "node dist/apps/branch-sync-worker/main.js check"
       }
     }
   }

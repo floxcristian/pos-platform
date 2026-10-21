@@ -6,6 +6,8 @@ La [propuesta y sus decisiones](propuesta-arquitectura.md) gobiernan la recomend
 
 ## Niveles y alcance
 
+Los nombres funcionales de los diagramas se corresponden con los proyectos del [monorepo](monorepo.md#nombres-de-las-aplicaciones-backend): **Backend de sucursal** es `branch-api`, **Sincronizador de sucursal** es `branch-sync-worker`, **API de país** es `country-api` y el proceso de integración ERP es `erp-worker`. Los identificadores de nodos y los títulos C4 se conservan para mantener las referencias. La existencia de estos proyectos no acredita las capacidades de negocio futuras representadas en las vistas.
+
 También está disponible la [colección editable para draw.io](diagramas-drawio/README.md), con un [atlas de siete pestañas](diagramas-drawio/00-atlas-completo.drawio), archivos individuales y un [paquete ZIP](diagramas-drawio/diagramas-c4-drawio.zip).
 
 La [galería de Excalidraw](diagramas-excalidraw/index.html) ofrece estas cinco vistas y dos dinámicas complementarias, con diagramas nativos editables, leyendas, responsabilidades, condiciones de fallo y fuentes. Incluye un [atlas completo](diagramas-excalidraw/00-atlas-completo.excalidraw) y un [paquete descargable](diagramas-excalidraw/diagramas-c4-excalidraw.zip). La [guía de edición](diagramas-excalidraw/README.md) explica cómo abrir y mantener la colección.

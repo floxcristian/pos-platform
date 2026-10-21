@@ -8,12 +8,12 @@
     "allowImportingTsExtensions": true
   },
   "include": [
-    "apps/pos-runtime/**/*.ts",
-    "apps/pos-runtime/**/*.mts",
+    "apps/branch-api/**/*.ts",
+    "apps/branch-api/**/*.mts",
     "apps/country-api/**/*.ts",
     "apps/country-api/**/*.mts",
-    "apps/pos-sync-worker/**/*.ts",
-    "apps/pos-sync-worker/**/*.mts",
+    "apps/branch-sync-worker/**/*.ts",
+    "apps/branch-sync-worker/**/*.mts",
     "apps/erp-worker/**/*.ts",
     "apps/erp-worker/**/*.mts",
     "libs/backend/**/*.ts",

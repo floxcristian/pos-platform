@@ -182,8 +182,8 @@ Nx tiene integraciones para Angular y NestJS. Para Rust/Tauri y otros componente
 apps/
   pos-desktop/                  # [conservado] Cliente Angular con arranque propio y host Tauri
   pos-mobile/                   # [conservado] Cliente Angular con arranque propio y host Capacitor
-  pos-runtime/                  # [conservado] API y composición de negocio de sucursal
-  pos-sync-worker/              # [conservado] Proceso de entrega y recepción de sucursal
+  branch-api/                   # [conservado] API y composición de negocio de sucursal
+  branch-sync-worker/           # [conservado] Proceso de entrega y recepción de sucursal
   country-api/                  # [conservado] API de recepción y capacidades de país
   erp-worker/                   # [conservado] Proceso de integración, traducción y conciliación ERP
   pos-clients-e2e/              # [mover] Pruebas de la UI; proyecto Nx de pruebas, sin despliegue
@@ -242,8 +242,8 @@ El árbol expresa el destino. La migración física está pendiente y no cambia 
 | --- | --- | --- | --- |
 | `pos-desktop` | Puesto Windows | Cliente Angular con arranque propio y host Tauri | Cliente con adaptadores mock; integración nativa real pendiente |
 | `pos-mobile` | Dispositivo Android/iOS | Cliente Angular con arranque propio y host Capacitor | Base móvil con adaptadores mock; ejecución y distribución nativas por verificar |
-| `pos-runtime` | Sucursal | API y composición de negocio de sucursal | Base HTTP local; sin persistencia ni operaciones comerciales |
-| `pos-sync-worker` | Sucursal | Proceso de entrega y recepción de sucursal | Esqueleto local; sin jobs ni sincronización real |
+| `branch-api` | Sucursal | API y composición de negocio de sucursal | Base HTTP local; sin persistencia ni operaciones comerciales |
+| `branch-sync-worker` | Sucursal | Proceso de entrega y recepción de sucursal | Esqueleto local; sin jobs ni sincronización real |
 | `country-api` | País | API de recepción y capacidades de país | Base HTTP local; sin recepción de ventas ni consolidación |
 | `erp-worker` | Red autorizada del ERP | Proceso de integración, traducción y conciliación ERP | Esqueleto local; sin conexión a ERP |
 | `pos-docs` | Sitio documental estático | Guía Starlight de arquitectura, implementación y evidencia | Aplicación documental; no participa en la operación de caja |
@@ -260,9 +260,9 @@ La migración se organiza por responsabilidad y recorrido. Copiar un repositorio
 | Pieza actual | Destino del trabajo | Separación que debe comprobarse |
 | --- | --- | --- |
 | `mountain-implementos/frontend` | `pos-desktop`, `pos-mobile`, `client-shell`, `features` y UI transversal en `shared/frontend/ui`; `data-access` transitorio | Migrar pantallas y sustituir adaptadores mock por contratos autorizados; no copiar secretos ni reglas de servidor al navegador. |
-| `mountain-implementos/backend` | `pos-runtime` + contextos `libs/backend/{sales,cash,payments,collections,returns,pricing,catalog,fiscal,administration}` | El backend compone casos de uso y persistencia de sucursal; identidad, transacciones y autorización deben implementarse y probarse. |
+| `mountain-implementos/backend` | `branch-api` + contextos `libs/backend/{sales,cash,payments,collections,returns,pricing,catalog,fiscal,administration}` | El backend compone casos de uso y persistencia de sucursal; identidad, transacciones y autorización deben implementarse y probarse. |
 | `mountain-implementos/backend-concentrador` | Capacidades de consulta/monitor en `country-api`, `reporting`, `administration` y pantallas autorizadas | Es el backend del monitor; no equivale al motor de transporte del repositorio `mountain-concentrador`. |
-| `mountain-sync-sucursal` | `pos-sync-worker` + contexto `sync`, coordinado con `pricing` y `catalog` | El proceso entrega y recibe; los módulos propietarios validan cambios de negocio. Un worker no adquiere permiso para reescribir ventas. |
+| `mountain-sync-sucursal` | `branch-sync-worker` + contexto `sync`, coordinado con `pricing` y `catalog` | El proceso entrega y recibe; los módulos propietarios validan cambios de negocio. Un worker no adquiere permiso para reescribir ventas. |
 | `mountain-concentrador` | Recepción en `country-api` + `sync`; integración en `erp-worker` + `erp`; publicación de maestros por definir | Separar acuse durable, procesamiento ERP y distribución. No sustituir todos sus procesos por un único endpoint genérico. |
 | Adaptadores AX y APIs corporativas de `apis-implementos` | `erp-worker` + `erp`, y contratos del contexto correspondiente | Conservar o adaptar capacidades verificadas detrás de una ACL; no migrar todo el repositorio ni exponer tablas/identificadores de AX al dominio. |
 | `api-pagos-caja` | Revisar capacidades de `payments`, `collections` y `returns` | La API histórica agrega datos y estados de notas de crédito; su nombre no demuestra autorización bancaria. |
@@ -277,8 +277,8 @@ El [mapa de repositorios](mapa-repositorios-y-conexiones.md), los [informes con 
 | Bloque arquitectónico | Proyecto o responsabilidad de código | Estado de la correspondencia |
 | --- | --- | --- |
 | Clientes Angular | `pos-desktop` con Tauri y `pos-mobile` con Capacitor | Arranques propios y composición compartida en `client-shell`; verificación nativa independiente. |
-| Backend de sucursal | `pos-runtime` + contextos backend | Un proceso compone varios módulos; no existe una app por tabla o módulo. |
-| Sincronizador de sucursal | `pos-sync-worker` + `sync` | El ciclo de vida del proceso es independiente de la ventana del cliente. |
+| Backend de sucursal | `branch-api` + contextos backend | Un proceso compone varios módulos; no existe una app por tabla o módulo. |
+| Sincronizador de sucursal | `branch-sync-worker` + `sync` | El ciclo de vida del proceso es independiente de la ventana del cliente. |
 | API de país | `country-api` + contextos que necesite cada caso de uso | Recepción, autorización y persistencia son trabajo pendiente. |
 | Adaptador ERP / ACL | `erp-worker` + `erp` como composición inicial | La vista C2 muestra una frontera lógica y una opción de proceso separado; un servicio HTTP de ACL separado no está creado ni es requisito del scaffold. |
 | Workers/publicación de país | Responsabilidad objetivo; composición adicional por decidir | El C2 conserva esta necesidad. No existe hoy una app `country-workers` ni un publicador de precios productivo. |
@@ -291,11 +291,11 @@ Las vistas [C4](c4-arquitectura-propuesta.md) representan responsabilidades y to
 
 Ejemplo **propuesto**, pendiente de implementar en el backend: confirmar una venta en efectivo con una versión de precios válida y una modalidad fiscal permitida.
 
-1. El cliente autorizado (`pos-desktop` o `pos-mobile`) recoge la confirmación del operador y envía un comando identificado a `pos-runtime`. Tauri o Capacitor aloja la interfaz; el cliente no escribe SQL ni decide otro importe.
+1. El cliente autorizado (`pos-desktop` o `pos-mobile`) recoge la confirmación del operador y envía un comando identificado a `branch-api`. Tauri o Capacitor aloja la interfaz; el cliente no escribe SQL ni decide otro importe.
 2. La entrada HTTP valida contrato e identidad. El caso de uso de `sales` comprueba ámbito, turno y condiciones comerciales mediante interfaces de los módulos propietarios.
 3. `pricing` aporta un resultado y una versión; `cash` controla su estado. El caso de uso coordina sus efectos locales por una unidad de trabajo: compartir una transacción no permite acceder libremente a tablas ajenas.
 4. Los adaptadores de persistencia escriben la venta, los cambios asociados, auditoría y outbox en **la misma transacción PostgreSQL**. Esa infraestructura aún no existe en el scaffold. No se llama al ERP dentro de la transacción.
-5. Tras el commit, la API devuelve la confirmación local. `pos-sync-worker` entregará el evento posteriormente; la recepción de país y la confirmación ERP mantendrán estados independientes.
+5. Tras el commit, la API devuelve la confirmación local. `branch-sync-worker` entregará el evento posteriormente; la recepción de país y la confirmación ERP mantendrán estados independientes.
 
 El flujo fija dirección de dependencia y autoridad. Los [contratos de confirmación](propuesta-arquitectura.md#confirmación-local-de-una-venta) y la [recuperación ante fallos](revision-resiliencia-datos-pos.md) definen qué ocurre si se pierde una respuesta o falla una dependencia. En la demostración actual este recorrido usa adaptadores mock; no está conectado a la base HTTP.
 

@@ -4,7 +4,7 @@
 
 ## 1. Monorepo Nx con límites de dependencia
 
-Un producto multipaís con seis aplicaciones operativas: `pos-desktop`, `pos-mobile`, `pos-runtime`, `pos-sync-worker`, `country-api` y `erp-worker`. Las apps componen librerías por responsabilidad; no equivalen a seis servicios ya desplegados. El mismo repositorio incluye `pos-docs`, la séptima aplicación, para la documentación Starlight. La [guía del monorepo](monorepo.md) detalla el scaffold, su propiedad de datos y la evidencia del legado que orienta las fronteras.
+Un producto multipaís con seis aplicaciones operativas: `pos-desktop`, `pos-mobile`, `branch-api`, `branch-sync-worker`, `country-api` y `erp-worker`. Las apps componen librerías por responsabilidad; no equivalen a seis servicios ya desplegados. El mismo repositorio incluye `pos-docs`, la séptima aplicación, para la documentación Starlight. La [guía del monorepo](monorepo.md) detalla el scaffold, su propiedad de datos y la evidencia del legado que orienta las fronteras.
 
 Los clientes de escritorio (Angular + Tauri) y móvil (Angular + Capacitor para Android/iOS) tienen entradas independientes. Comparten `client-shell`, que compone configuración, rutas y navegación, y `ui`, que concentra componentes, activos y estilos. La [decisión de clientes nativos](decisions/native-clients.md) fija sus límites; `pos-web` se elimina y Vercel publica sólo documentación.
 
@@ -44,9 +44,9 @@ Las dependencias de servidor se limitan a adaptación/composición; el dominio p
 
 La dirección de producto propone un backend de sucursal NestJS/Fastify compartido por las cajas y conectado a PostgreSQL de sucursal. Ambos clientes Angular consumen su API, sin acceso SQL directo ni una base transaccional por terminal en el perfil de continuidad ante caída de WAN. La LAN y el servidor de sucursal siguen siendo dependencias de ese perfil. La sincronización duradera y el planificador pasarían a procesos supervisados que no dependan de la pestaña abierta. SQLite por terminal es una alternativa del perfil adicional sin LAN/servidor, pendiente de validación; no es la persistencia seleccionada por defecto. Esta dirección sigue la [propuesta de arquitectura](propuesta-arquitectura.md) y sus [opciones tecnológicas](opciones-tecnologicas.md).
 
-`apps/pos-runtime` incorpora la [base HTTP de ese backend](api.md): NestJS/Fastify, configuración y sondas de aplicación. Aún no tiene persistencia ni casos de uso de negocio, y no sustituye los adaptadores mock actuales del frontend. Instalar un framework no acredita las garantías transaccionales, de seguridad o continuidad de la propuesta.
+`apps/branch-api` incorpora la [base HTTP de ese backend](api.md): NestJS/Fastify, configuración y sondas de aplicación. Aún no tiene persistencia ni casos de uso de negocio, y no sustituye los adaptadores mock actuales del frontend. Instalar un framework no acredita las garantías transaccionales, de seguridad o continuidad de la propuesta.
 
-`country-api` prepara la composición del backend de país; `pos-sync-worker` y `erp-worker` preparan procesos separados para entrega y adaptadores. Son puntos de implementación, no sincronizadores reales. Los contextos scaffold no exponen fachadas que simulen una operación exitosa: deben incorporar casos de uso y pruebas antes de habilitar endpoints o jobs comerciales.
+`country-api` prepara la composición del backend de país; `branch-sync-worker` y `erp-worker` preparan procesos separados para entrega y adaptadores. Son puntos de implementación, no sincronizadores reales. Los contextos scaffold no exponen fachadas que simulen una operación exitosa: deben incorporar casos de uso y pruebas antes de habilitar endpoints o jobs comerciales.
 
 ## 3. Cuatro estados distintos
 
@@ -61,7 +61,7 @@ Una nota de crédito conserva las cantidades y valores del documento original. E
 
 Los flujos tienen dirección, entidades, programación, siguiente ejecución y ejecuciones históricas. Admiten manual, intervalo y hora diaria con selección de días en `America/Santiago`. Las ejecuciones en curso no se duplican. Un cierre interrumpido se recupera como error revisable.
 
-Ese comportamiento sigue siendo el mock del frontend. La estructura nueva asigna la ejecución supervisada a `pos-sync-worker` y los contratos/progreso a `libs/backend/sync`. Persistencia durable, locks, transportes, programación fuera de la pestaña y conciliación entre aplicaciones quedan pendientes.
+Ese comportamiento sigue siendo el mock del frontend. La estructura nueva asigna la ejecución supervisada a `branch-sync-worker` y los contratos/progreso a `libs/backend/sync`. Persistencia durable, locks, transportes, programación fuera de la pestaña y conciliación entre aplicaciones quedan pendientes.
 
 La cola de salida conserva la identidad de la operación y del evento durante los reintentos. Fiscal y ERP tienen confirmación independiente. El modo offline conserva el trabajo local autorizado y bloquea acciones que exigen un proveedor. En el producto real, la deduplicación debe existir también en el receptor; el mock no prueba garantías de servicios externos.
 

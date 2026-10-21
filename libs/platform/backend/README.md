@@ -1,6 +1,6 @@
 # Base técnica del backend
 
-**Estado: base técnica implementada.** Librería fuente Nx compartida por `pos-runtime`, `country-api`, `pos-sync-worker` y `erp-worker`. Su entrada pública es `@pos-platform/backend`; cada aplicación conserva su identidad, configuración y composición de módulos.
+**Estado: base técnica implementada.** Librería fuente Nx compartida por `branch-api`, `country-api`, `branch-sync-worker` y `erp-worker`. Su entrada pública es `@pos-platform/backend`; cada aplicación conserva su identidad, configuración y composición de módulos.
 
 ## Responsabilidad
 

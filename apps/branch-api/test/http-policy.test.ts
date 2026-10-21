@@ -45,8 +45,8 @@ describe('shared HTTP policy', () => {
       app,
       loadConfig({
         NODE_ENV: 'test',
-        POS_API_LOG_LEVEL: 'silent',
-        POS_API_DOCS_ENABLED: 'false',
+        BRANCH_API_LOG_LEVEL: 'silent',
+        BRANCH_API_DOCS_ENABLED: 'false',
       }),
     );
     await app.init();

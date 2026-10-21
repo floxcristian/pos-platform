@@ -15,7 +15,7 @@ describe('country API composition', () => {
 
   it('has its own listener settings and ignores branch configuration', () => {
     expect(
-      loadConfig({ POS_API_PORT: '9999', POS_API_CORS_ORIGINS: 'https://branch.example.test' }),
+      loadConfig({ BRANCH_API_PORT: '9999', BRANCH_API_CORS_ORIGINS: 'https://branch.example.test' }),
     ).toMatchObject({
       service: 'country-api',
       host: '127.0.0.1',

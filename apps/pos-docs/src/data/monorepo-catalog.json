@@ -18,13 +18,13 @@
       "state": "Base móvil con adaptadores mock; ejecución y distribución nativas por verificar"
     },
     {
-      "name": "pos-runtime",
+      "name": "branch-api",
       "location": "Sucursal",
       "description": "API y composición de negocio de sucursal",
       "state": "Base HTTP local; sin persistencia ni operaciones comerciales"
     },
     {
-      "name": "pos-sync-worker",
+      "name": "branch-sync-worker",
       "location": "Sucursal",
       "description": "Proceso de entrega y recepción de sucursal",
       "state": "Esqueleto local; sin jobs ni sincronización real"
@@ -184,12 +184,12 @@
         "state": "conservado"
       },
       {
-        "path": "apps/pos-runtime",
+        "path": "apps/branch-api",
         "description": "API y composición de negocio de sucursal",
         "state": "conservado"
       },
       {
-        "path": "apps/pos-sync-worker",
+        "path": "apps/branch-sync-worker",
         "description": "Proceso de entrega y recepción de sucursal",
         "state": "conservado"
       },

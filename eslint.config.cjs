@@ -7,9 +7,9 @@ const posQuality = require('./tools/eslint/pos-code-quality.cjs');
 const { builtinModules } = require('node:module');
 
 const backendRoots = [
-  'apps/pos-runtime',
+  'apps/branch-api',
   'apps/country-api',
-  'apps/pos-sync-worker',
+  'apps/branch-sync-worker',
   'apps/erp-worker',
   'libs/backend',
   'libs/platform/backend',
@@ -117,9 +117,9 @@ module.exports = tseslint.config(
   },
   {
     files: [
-      'apps/pos-runtime/src/**/*.ts',
+      'apps/branch-api/src/**/*.ts',
       'apps/country-api/src/**/*.ts',
-      'apps/pos-sync-worker/src/**/*.ts',
+      'apps/branch-sync-worker/src/**/*.ts',
       'apps/erp-worker/src/**/*.ts',
       'libs/backend/*/src/**/*.ts',
     ],

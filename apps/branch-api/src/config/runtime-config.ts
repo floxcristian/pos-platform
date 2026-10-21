@@ -3,5 +3,5 @@ import type { RuntimeConfig } from '@pos-platform/backend';
 export type { RuntimeConfig } from '@pos-platform/backend';
 
 export function loadConfig(env: NodeJS.ProcessEnv): RuntimeConfig {
-  return loadRuntimeConfig(env, { service: 'pos-runtime', envPrefix: 'POS_API', defaultPort: 3000 });
+  return loadRuntimeConfig(env, { service: 'branch-api', envPrefix: 'BRANCH_API', defaultPort: 3000 });
 }

@@ -4,7 +4,15 @@
 
 POS Platform es la base de un producto corporativo para varios países. El monorepo reúne clientes de escritorio y móvil, backend de sucursal, backend de país y workers con ciclos de ejecución propios. La demostración funcional actual cubre Chile; la estructura multipaís permite organizar la evolución sin afirmar que las reglas fiscales o integraciones de otros países estén implementadas.
 
-`apps/pos-desktop` y `apps/pos-mobile` tienen arranques Angular independientes y comparten `libs/client-shell`; sus pantallas, estado mock y componentes viven en `libs/features`, `libs/data-access`, `libs/domain` y `libs/ui`. El shell define `createClientConfig(platform)`, rutas, guards y navegación. `libs/ui/assets` y `libs/ui/src/styles.css` se consumen desde ambos builds. La [decisión de clientes nativos](decisions/native-clients.md) elimina `pos-web` y separa los artefactos Tauri y Capacitor. La API de sucursal está en `apps/pos-runtime`; comparte infraestructura técnica con las otras aplicaciones backend mediante `libs/platform/backend`. Todos se revisan y versionan en [pos-platform](https://github.com/floxcristian/pos-platform), con builds separados. Compartir repositorio no significa compartir proceso ni persistencia: el frontend aún no consume las operaciones de esta API, que tampoco están implementadas.
+`apps/pos-desktop` y `apps/pos-mobile` tienen arranques Angular independientes y comparten `libs/client-shell`; sus pantallas, estado mock y componentes viven en `libs/features`, `libs/data-access`, `libs/domain` y `libs/ui`. El shell define `createClientConfig(platform)`, rutas, guards y navegación. `libs/ui/assets` y `libs/ui/src/styles.css` se consumen desde ambos builds. La [decisión de clientes nativos](decisions/native-clients.md) elimina `pos-web` y separa los artefactos Tauri y Capacitor. La API de sucursal está en `apps/branch-api`; comparte infraestructura técnica con las otras aplicaciones backend mediante `libs/platform/backend`. Todos se revisan y versionan en [pos-platform](https://github.com/floxcristian/pos-platform), con builds separados. Compartir repositorio no significa compartir proceso ni persistencia: el frontend aún no consume las operaciones de esta API, que tampoco están implementadas.
+
+## Nombres de las aplicaciones backend
+
+Las aplicaciones se nombran por ámbito o responsabilidad y tipo de proceso: `branch-api`, `branch-sync-worker`, `country-api` y `erp-worker`. `branch` identifica la sucursal y `country` el ámbito de país; `api` identifica la entrada HTTP y `worker` un proceso de trabajo separado. Los contextos DDD (`sales`, `cash`, `payments`, etc.) conservan sus nombres y límites dentro de las bibliotecas: una aplicación puede componer varios contextos sin convertirlos en microservicios.
+
+El cambio de nombres del 21 de octubre de 2026 **ya está aplicado físicamente**: `pos-runtime` pasa a `branch-api` y `pos-sync-worker` a `branch-sync-worker`. Cambian las carpetas, proyectos Nx, paquetes, artefactos e identidades de servicio. Los comandos públicos `api:*` y `sync:check` se conservan. Los prefijos de entorno pasan de `POS_API_*` a `BRANCH_API_*` y de `POS_SYNC_WORKER_*` a `BRANCH_SYNC_WORKER_*`; los prefijos anteriores no son aliases. La [guía de API](api.md#actualización-de-nombres-y-configuración) describe el ajuste de configuraciones y consumidores.
+
+El término técnico `runtime` se mantiene cuando significa entorno o configuración de ejecución, por ejemplo `RuntimeConfigService`; ya no identifica la aplicación de sucursal. Este cambio es independiente del traslado pendiente de bibliotecas a `shared` y de las suites E2E.
 
 ## Estructura objetivo acordada
 
@@ -17,8 +25,8 @@ Este árbol describe el **destino de la organización**. Los clientes desktop/mo
 apps/
   pos-desktop/                  # [conservado] Cliente Angular con arranque propio y host Tauri
   pos-mobile/                   # [conservado] Cliente Angular con arranque propio y host Capacitor
-  pos-runtime/                  # [conservado] API y composición de negocio de sucursal
-  pos-sync-worker/              # [conservado] Proceso de entrega y recepción de sucursal
+  branch-api/                   # [conservado] API y composición de negocio de sucursal
+  branch-sync-worker/           # [conservado] Proceso de entrega y recepción de sucursal
   country-api/                  # [conservado] API de recepción y capacidades de país
   erp-worker/                   # [conservado] Proceso de integración, traducción y conciliación ERP
   pos-clients-e2e/              # [mover] Pruebas de la UI; proyecto Nx de pruebas, sin despliegue
@@ -102,8 +110,8 @@ Este inventario mantiene las rutas ejecutables que debe usar un desarrollador an
 apps/
   pos-desktop/            # Cliente Angular con arranque propio y host Tauri
   pos-mobile/             # Cliente Angular con arranque propio y host Capacitor
-  pos-runtime/            # API y composición de negocio de sucursal
-  pos-sync-worker/        # Proceso de entrega y recepción de sucursal
+  branch-api/             # API y composición de negocio de sucursal
+  branch-sync-worker/     # Proceso de entrega y recepción de sucursal
   country-api/            # API de recepción y capacidades de país
   erp-worker/             # Proceso de integración, traducción y conciliación ERP
   pos-docs/               # Documentación estática; fuera del runtime POS
@@ -196,8 +204,8 @@ Una suite `pos-system-e2e` requerirá un recorrido real sucursal–persistencia�
 | --- | --- | --- | --- |
 | `pos-desktop` | Puesto Windows | Cliente Angular con arranque propio y host Tauri | Cliente con adaptadores mock; integración nativa real pendiente |
 | `pos-mobile` | Dispositivo Android/iOS | Cliente Angular con arranque propio y host Capacitor | Base móvil con adaptadores mock; ejecución y distribución nativas por verificar |
-| `pos-runtime` | Sucursal | API y composición de negocio de sucursal | Base HTTP local; sin persistencia ni operaciones comerciales |
-| `pos-sync-worker` | Sucursal | Proceso de entrega y recepción de sucursal | Esqueleto local; sin jobs ni sincronización real |
+| `branch-api` | Sucursal | API y composición de negocio de sucursal | Base HTTP local; sin persistencia ni operaciones comerciales |
+| `branch-sync-worker` | Sucursal | Proceso de entrega y recepción de sucursal | Esqueleto local; sin jobs ni sincronización real |
 | `country-api` | País | API de recepción y capacidades de país | Base HTTP local; sin recepción de ventas ni consolidación |
 | `erp-worker` | Red autorizada del ERP | Proceso de integración, traducción y conciliación ERP | Esqueleto local; sin conexión a ERP |
 | `pos-docs` | Sitio documental estático | Guía Starlight de arquitectura, implementación y evidencia | Aplicación documental; no participa en la operación de caja |
@@ -229,7 +237,7 @@ Los workers tienen ciclo de vida propio. No se añade un listener HTTP de negoci
 | `npm run structure:check` | Comprueba las reglas arquitectónicas del scaffold                                |
 | `npm run graph`           | Muestra el grafo de proyectos Nx                                                 |
 
-Los comandos `api:*` se conservan para trabajar únicamente con `pos-runtime`. Los checks de workers comprueban composición y cierre; no equivalen a tener un consumidor, calendario o cola funcionando.
+Los comandos `api:*` se conservan para trabajar únicamente con `branch-api`. Los checks de workers comprueban composición y cierre; no equivalen a tener un consumidor, calendario o cola funcionando.
 
 ## Propiedad de datos por contexto
 
@@ -255,9 +263,9 @@ PostgreSQL de sucursal es la persistencia recomendada para negocio y mensajes du
 
 ```mermaid
 flowchart LR
-    Client["pos-desktop / pos-mobile"] -->|"API propuesta"| Branch["pos-runtime"]
+    Client["pos-desktop / pos-mobile"] -->|"API propuesta"| Branch["branch-api"]
     Branch -->|"Transacción propuesta"| Local[("PostgreSQL sucursal")]
-    Sync["pos-sync-worker"] -->|"Entrega / recepción propuesta"| Country["country-api"]
+    Sync["branch-sync-worker"] -->|"Entrega / recepción propuesta"| Country["country-api"]
     Sync -->|"Inbox / outbox"| Local
     Country --> Central[("PostgreSQL país")]
     ERP["erp-worker"] -->|"Trabajo autorizado"| Central

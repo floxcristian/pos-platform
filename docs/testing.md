@@ -7,7 +7,7 @@ La organización acordada separa aplicaciones operativas, documentación y proye
 | Comprobación | Ruta actual | Qué verifica | Límite |
 | --- | --- | --- | --- |
 | Playwright web | `e2e/`, `e2e-mobile/` y sus configuraciones Playwright | Acceso, checkout, administración, navegación y comportamiento visual con datos sintéticos | No recorre una venta persistida en PostgreSQL ni sincronizada con país |
-| HTTP de sucursal y país | `apps/pos-runtime/test` y `apps/country-api/test` | Composición Nest/Fastify, sondas, errores y políticas HTTP mediante la aplicación real | No hay operaciones comerciales ni persistencia |
+| HTTP de sucursal y país | `apps/branch-api/test` y `apps/country-api/test` | Composición Nest/Fastify, sondas, errores y políticas HTTP mediante la aplicación real | No hay operaciones comerciales ni persistencia |
 | Base técnica común | `libs/platform/backend/test` | Logging, Sentry y ciclo de vida de workers | No acredita colas ni integraciones operativas |
 | Reglas puras y mock | Tests junto a las bibliotecas | Invariantes y comportamiento local implementado | No sustituye pruebas del backend futuro |
 | Fronteras arquitectónicas | `tools/eslint` | Reglas de imports y calidad existentes | Los nuevos límites de shared requieren actualizar los controles |
