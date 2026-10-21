@@ -30,6 +30,9 @@ async function checkImport(filePath: string, target: string, typeOnly = false) {
 }
 
 beforeAll(async () => {
+  // Each lintText call replaces a file's contents. CI's single-run inference
+  // would treat subsequent snippets as autofixes and discard dependency types.
+  vi.stubEnv('TSESTREE_SINGLE_RUN', 'false');
   vi.stubEnv('NX_DAEMON', 'false');
   vi.stubEnv('NX_ISOLATE_PLUGINS', 'false');
   vi.stubEnv('NX_INTERACTIVE', 'false');
