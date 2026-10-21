@@ -1,0 +1,14 @@
+{
+  "name": "@pos-platform/mobile",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.19 <23 || >=24 <25"
+  },
+  "dependencies": {
+    "@capacitor/android": "8.5.3",
+    "@capacitor/app": "8.1.2",
+    "@capacitor/core": "8.5.3",
+    "@capacitor/ios": "8.5.3"
+  }
+}

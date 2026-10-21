@@ -1,0 +1,114 @@
+{
+  "name": "pos-mobile",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/pos-mobile/src",
+  "tags": ["type:app", "env:browser", "scope:mobile"],
+  "targets": {
+    "build": {
+      "executor": "@angular/build:application",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/pos-mobile",
+        "browser": "apps/pos-mobile/src/main.ts",
+        "index": "apps/pos-mobile/src/index.html",
+        "tsConfig": "apps/pos-mobile/tsconfig.app.json",
+        "assets": [{ "glob": "**/*", "input": "libs/ui/assets", "output": "/" }],
+        "styles": ["libs/ui/src/styles.css"],
+        "allowedCommonJsDependencies": []
+      },
+      "configurations": {
+        "production": {
+          "optimization": {
+            "scripts": true,
+            "styles": { "minify": true, "inlineCritical": false }
+          },
+          "budgets": [{ "type": "initial", "maximumWarning": "1.2MB", "maximumError": "1.5MB" }],
+          "outputHashing": "all",
+          "sourceMap": false
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular/build:dev-server",
+      "options": {
+        "buildTarget": "pos-mobile:build:development",
+        "host": "127.0.0.1",
+        "port": 4301
+      },
+      "configurations": {
+        "production": { "buildTarget": "pos-mobile:build:production" }
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "tsc --project apps/pos-mobile/tsconfig.app.json --noEmit",
+          "tsc --project apps/pos-mobile/tsconfig.capacitor.json --noEmit"
+        ],
+        "parallel": false
+      }
+    },
+    "sync-android": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "cache": false,
+      "options": {
+        "command": "cap sync android",
+        "cwd": "apps/pos-mobile"
+      }
+    },
+    "sync-ios": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "cache": false,
+      "options": {
+        "command": "cap sync ios",
+        "cwd": "apps/pos-mobile"
+      }
+    },
+    "open-android": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["sync-android"],
+      "cache": false,
+      "options": { "command": "cap open android", "cwd": "apps/pos-mobile" }
+    },
+    "open-ios": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["sync-ios"],
+      "cache": false,
+      "options": { "command": "cap open ios", "cwd": "apps/pos-mobile" }
+    },
+    "run-android": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["sync-android"],
+      "cache": false,
+      "options": { "command": "cap run android --no-sync", "cwd": "apps/pos-mobile" }
+    },
+    "run-ios": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["sync-ios"],
+      "cache": false,
+      "options": { "command": "cap run ios --no-sync", "cwd": "apps/pos-mobile" }
+    },
+    "compile-android": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["sync-android"],
+      "cache": false,
+      "options": { "command": "node apps/pos-mobile/tools/compile-native.mjs android" }
+    },
+    "compile-ios": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["sync-ios"],
+      "cache": false,
+      "options": { "command": "node apps/pos-mobile/tools/compile-native.mjs ios" }
+    }
+  }
+}

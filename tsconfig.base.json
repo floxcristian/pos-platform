@@ -17,6 +17,7 @@
     "esModuleInterop": true,
     "baseUrl": ".",
     "paths": {
+      "@pos-platform/client-shell": ["libs/client-shell/src/index.ts"],
       "@pos-platform/domain": ["libs/domain/src/index.ts"],
       "@pos-platform/data-access": ["libs/data-access/src/index.ts"],
       "@pos-platform/ui": ["libs/ui/src/index.ts"],

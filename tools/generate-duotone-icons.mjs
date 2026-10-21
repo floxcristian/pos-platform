@@ -130,7 +130,7 @@ const source = `/**
  * a Corporate POS adaptation, not an upstream Phosphor weight.
  * Copyright (c) 2023 Phosphor Icons.
  * Source: https://github.com/phosphor-icons/core
- * License: apps/pos-web/public/third-party-licenses.txt
+ * License: libs/ui/assets/third-party-licenses.txt
  */
 export const DUOTONE_ICONS = ${JSON.stringify(icons, null, 2)} as const;
 

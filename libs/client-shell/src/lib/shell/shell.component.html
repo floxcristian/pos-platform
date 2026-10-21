@@ -1,0 +1,395 @@
+<div class="pos-client-viewport flex flex-col bg-surface-50 dark:bg-surface-900 text-color">
+  <a
+    href="#main-content"
+    (click)="skipToContent($event)"
+    class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-2 focus:left-2 bg-surface-0 text-primary p-3 rounded-lg"
+    >Saltar al contenido</a
+  >
+  <header
+    class="brand-header-bg shrink-0 bg-primary-500 text-white h-16 flex items-center gap-1 sm:gap-3 px-2 sm:px-4 lg:px-6"
+  >
+    <a routerLink="/inicio" aria-label="Implementos, inicio" class="flex h-12 items-center shrink-0">
+      <img
+        src="images/implementos-logo.svg"
+        alt="Implementos"
+        width="754"
+        height="255"
+        class="h-auto w-24 sm:h-12 sm:w-auto"
+      />
+    </a>
+    @if (!mobileClient) {
+      <button
+        pButton
+        type="button"
+        posTooltip
+        posTooltipPosition="bottom"
+        [attr.aria-label]="sidebarCollapsed() ? 'Mostrar menú lateral' : 'Ocultar menú lateral'"
+        [attr.aria-expanded]="!sidebarCollapsed()"
+        aria-controls="desktop-navigation"
+        class="brand-header-menu h-11 hidden lg:inline-flex shrink-0 gap-2 px-3"
+        (click)="toggleSidebar()"
+      >
+        <pos-menu-toggle-icon pButtonIcon [expanded]="!sidebarCollapsed()" />
+        <span pButtonLabel>Menú</span>
+      </button>
+    }
+    <button
+      pButton
+      type="button"
+      posTooltip
+      posTooltipPosition="bottom"
+      aria-label="Abrir menú"
+      class="brand-header-menu h-11 w-11 shrink-0 gap-2 px-0 min-[375px]:w-auto min-[375px]:px-3"
+      [class.lg:hidden]="!mobileClient"
+      [attr.aria-expanded]="mobileOpen()"
+      aria-haspopup="dialog"
+      (click)="mobileOpen.set(true)"
+    >
+      <pos-menu-toggle-icon pButtonIcon />
+      <span pButtonLabel class="hidden min-[375px]:inline">Menú</span>
+    </button>
+    <button
+      type="button"
+      class="hidden md:flex items-center gap-3 h-11 rounded-md border border-surface-300 hover:border-surface-400 bg-surface-0 text-surface-600 px-3 text-base min-w-0 flex-1 max-w-xl cursor-pointer"
+      (click)="openSearch()"
+      aria-label="Buscar en la caja, Control K"
+      aria-haspopup="dialog"
+      [attr.aria-expanded]="searchOpen()"
+    >
+      <i class="pos-icon pos-icon-magnifying-glass text-xl" aria-hidden="true"></i
+      ><span class="truncate text-left flex-1">Buscar productos, documentos o módulos</span
+      ><kbd
+        class="shrink-0 text-xs text-surface-600 bg-surface-100 border border-surface-300 rounded px-1.5 py-0.5"
+        >Ctrl K</kbd
+      >
+    </button>
+    <span class="flex-1 md:hidden"></span>
+    <span class="hidden lg:block ml-auto border border-white/30 rounded-md px-2 py-1 text-xs tracking-wide"
+      >DEMO</span
+    >
+    <p-button
+      posTooltip
+      posTooltipPosition="bottom"
+      icon="pos-icon pos-icon-magnifying-glass text-2xl"
+      [text]="true"
+      ariaLabel="Buscar"
+      styleClass="h-11 md:!hidden"
+      (onClick)="openSearch()"
+    />
+    <p-button
+      posTooltip
+      posTooltipPosition="bottom"
+      [icon]="dark() ? 'pos-icon pos-icon-sun text-2xl' : 'pos-icon pos-icon-moon text-2xl'"
+      [text]="true"
+      [ariaLabel]="dark() ? 'Usar tema claro' : 'Usar tema oscuro'"
+      styleClass="brand-header-theme-action h-11 !hidden sm:!inline-flex"
+      (onClick)="toggleTheme()"
+    />
+    <p-button
+      posTooltip
+      posTooltipPosition="bottom"
+      icon="pos-icon pos-icon-bell text-2xl"
+      [text]="true"
+      [ariaLabel]="'Notificaciones: ' + notifications().length + ' avisos'"
+      styleClass="h-11"
+      (onClick)="notificationsOpen.set(true)"
+    />
+    <button
+      type="button"
+      class="brand-header-profile flex shrink-0 items-center gap-3 h-11 px-1.5 xl:pl-2 xl:pr-3 rounded-lg cursor-pointer"
+      (click)="profileOpen.set(true)"
+      [attr.aria-label]="'Perfil y entorno de demostración: ' + userName() + ', ' + roleLabel()"
+      aria-haspopup="dialog"
+      [attr.aria-expanded]="profileOpen()"
+    >
+      <span
+        class="size-8 shrink-0 rounded-lg bg-primary-100 text-primary-700 flex items-center justify-center text-sm font-semibold"
+        aria-hidden="true"
+        >{{ userInitials() }}</span
+      ><span class="hidden xl:flex min-w-0 max-w-36 flex-col gap-0.5 text-left text-xs leading-4"
+        ><span class="font-semibold truncate">{{ userName() }}</span
+        ><span class="truncate">{{ roleLabel() }}</span></span
+      ><i class="pos-icon pos-icon-caret-down shrink-0 text-base hidden xl:block" aria-hidden="true"></i>
+    </button>
+  </header>
+
+  <div class="flex flex-1 overflow-hidden">
+    @if (!mobileClient) {
+      <aside
+        id="desktop-navigation"
+        [class.lg:flex]="!sidebarCollapsed()"
+        class="hidden w-64 xl:w-68 shrink-0 flex-col border-r border-surface bg-surface-0 dark:bg-surface-950"
+      >
+        <div class="px-5 py-4 border-b border-surface">
+          <p class="text-sm font-semibold truncate">{{ branch()?.name ?? 'Sucursal' }}</p>
+          <div class="mt-2 flex items-center justify-between gap-2">
+            <span class="text-xs text-muted-color">{{ store.snapshot().settings.terminalId }}</span
+            ><pos-status-tag [value]="store.snapshot().online ? 'online' : 'offline'" />
+          </div>
+        </div>
+        <nav class="flex-1 overflow-y-auto p-3" aria-label="Navegación principal">
+          @for (group of groups(); track group.label) {
+            <section class="mb-5">
+              <h2 class="px-3 mb-2 text-xs font-semibold text-muted-color uppercase tracking-wider">
+                {{ group.label }}
+              </h2>
+              <div class="flex flex-col gap-2">
+                @for (item of group.items; track item.route) {
+                  <a
+                    [routerLink]="item.route"
+                    routerLinkActive="bg-primary-200 text-primary-700 dark:bg-primary-700 dark:text-primary-100"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    ariaCurrentWhenActive="page"
+                    class="pos-surface-action flex items-center gap-3 min-h-11 px-3 py-2.5 rounded-lg font-medium"
+                    ><i [class]="'pos-icon ' + item.icon + ' w-5 text-base'" aria-hidden="true"></i
+                    ><span>{{ item.label }}</span></a
+                  >
+                }
+              </div>
+            </section>
+          }
+        </nav>
+        <div
+          class="px-5 py-3 border-t border-surface text-xs text-muted-color flex items-center justify-between"
+        >
+          <span>Datos de demostración</span><span>v{{ store.snapshot().update.currentVersion }}</span>
+        </div>
+      </aside>
+    }
+    <div class="flex-1 min-w-0 flex flex-col overflow-hidden">
+      <div
+        class="shrink-0 min-h-12 px-4 lg:px-7 border-b border-surface bg-surface-0 dark:bg-surface-950 flex items-center justify-between gap-4 text-sm"
+      >
+        <div class="flex items-center gap-2 text-muted-color min-w-0">
+          <span class="hidden sm:inline">{{ activeGroup() }}</span
+          ><i class="pos-icon pos-icon-caret-right text-xs hidden sm:inline" aria-hidden="true"></i
+          ><span class="font-medium text-color truncate">{{ activeItem()?.label ?? 'Inicio' }}</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="hidden md:inline text-xs text-muted-color">{{
+            store.snapshot().session?.status === 'open' ? 'Turno abierto' : 'Caja sin abrir'
+          }}</span
+          ><span [class.lg:hidden]="!mobileClient"
+            ><pos-status-tag [value]="store.snapshot().online ? 'online' : 'offline'" /></span
+          ><span class="hidden lg:inline text-xs text-muted-color">Chile · CLP</span>
+        </div>
+      </div>
+      @if (!store.snapshot().online) {
+        <div
+          role="status"
+          class="px-4 lg:px-7 py-2 bg-orange-50 dark:bg-orange-950 text-orange-900 dark:text-orange-100 text-sm border-b border-orange-200 dark:border-orange-800"
+        >
+          <i class="pos-icon pos-icon-wifi-high mr-2" aria-hidden="true"></i>Sin conexión simulada. Las
+          operaciones permitidas quedan guardadas para sincronizar.
+        </div>
+      }
+      @if (store.persistenceError(); as persistenceError) {
+        <div
+          role="alert"
+          class="px-4 lg:px-7 py-3 bg-red-50 dark:bg-red-950 text-red-900 dark:text-red-100 text-sm border-b border-red-200 dark:border-red-800"
+        >
+          <p class="font-semibold">
+            <i class="pos-icon pos-icon-warning mr-2" aria-hidden="true"></i>No se pudo guardar en este equipo
+          </p>
+          <p class="mt-1">
+            {{ persistenceError }} Las operaciones que no se pudieron guardar no se han confirmado.
+          </p>
+        </div>
+      }
+      <main id="main-content" tabindex="-1" class="relative flex-1 min-w-0 overflow-y-auto p-4 lg:p-7">
+        <router-outlet />
+      </main>
+    </div>
+  </div>
+</div>
+
+<p-drawer
+  header="Corporate POS"
+  ariaCloseLabel="Cerrar navegación"
+  [visible]="mobileOpen()"
+  (visibleChange)="mobileOpen.set($event)"
+  styleClass="!w-80 !max-w-full"
+>
+  <p class="text-sm text-muted-color mb-5">
+    {{ branch()?.name }} · {{ store.snapshot().settings.terminalId }}
+  </p>
+  <nav aria-label="Navegación móvil">
+    @for (group of groups(); track group.label) {
+      <section class="mb-5">
+        <h2 class="text-xs font-semibold text-muted-color uppercase tracking-wider mb-2">
+          {{ group.label }}
+        </h2>
+        <div class="flex flex-col gap-2">
+          @for (item of group.items; track item.route) {
+            <a
+              [routerLink]="item.route"
+              (click)="mobileOpen.set(false)"
+              routerLinkActive="bg-primary-200 text-primary-700 dark:bg-primary-700 dark:text-primary-100"
+              ariaCurrentWhenActive="page"
+              class="pos-surface-action flex items-center gap-3 min-h-12 px-3 rounded-lg"
+              ><i [class]="'pos-icon ' + item.icon" aria-hidden="true"></i>{{ item.label }}</a
+            >
+          }
+        </div>
+      </section>
+    }
+  </nav>
+</p-drawer>
+
+<p-dialog
+  header="Buscar en Corporate POS"
+  [visible]="searchOpen()"
+  (visibleChange)="searchOpen.set($event)"
+  [modal]="true"
+  [draggable]="false"
+  [style]="{ width: '42rem', maxWidth: 'calc(100vw - 2rem)' }"
+  [contentStyle]="{ paddingTop: 'var(--spacing)' }"
+  (onShow)="focusSearch()"
+>
+  <label [for]="searchInputId" class="sr-only">Buscar productos, clientes, documentos o módulos</label
+  ><input
+    pInputText
+    [id]="searchInputId"
+    [ngModel]="query()"
+    (ngModelChange)="query.set($event)"
+    placeholder="Producto, RUT, documento o módulo…"
+    class="w-full mb-4"
+    autocomplete="off"
+  />
+  <div class="max-h-96 overflow-y-auto">
+    @for (result of searchResults(); track result.route + result.label) {
+      <button
+        type="button"
+        (click)="goTo(result)"
+        class="pos-surface-action flex items-center gap-3 w-full text-left p-3 rounded-lg cursor-pointer"
+      >
+        <i [class]="'pos-icon ' + result.icon + ' text-primary'" aria-hidden="true"></i
+        ><span class="min-w-0 flex-1"
+          ><span class="block font-medium">{{ result.label }}</span
+          ><span class="block text-sm text-muted-color">{{ result.detail }}</span></span
+        ><i class="pos-icon pos-icon-arrow-up-right text-xs text-muted-color" aria-hidden="true"></i>
+      </button>
+    } @empty {
+      <pos-empty-state
+        icon="magnifying-glass"
+        heading="No encontramos resultados."
+        description="Prueba con otro nombre o código."
+      />
+    }
+  </div>
+</p-dialog>
+
+<p-drawer
+  header="Avisos de la operación"
+  position="right"
+  [visible]="notificationsOpen()"
+  (visibleChange)="notificationsOpen.set($event)"
+  styleClass="!w-full sm:!w-100"
+>
+  <p class="mb-5 text-sm text-muted-color">Alertas y errores recientes de esta demostración.</p>
+  @for (notification of notifications(); track notification.id) {
+    <article class="py-4 border-b border-surface">
+      <div class="flex items-center justify-between gap-2">
+        <pos-status-tag [value]="notification.level" /><time class="text-xs text-muted-color">{{
+          dateTime(notification.createdAt)
+        }}</time>
+      </div>
+      <p class="mt-3 font-medium">{{ notification.message }}</p>
+      <p class="mt-1 text-sm text-muted-color">{{ notification.source }}</p>
+    </article>
+  } @empty {
+    <pos-empty-state
+      icon="check-circle"
+      heading="No hay avisos pendientes."
+      description="Las nuevas alertas de la operación aparecerán aquí."
+      [headingLevel]="3"
+    />
+  }
+  @if (store.can('audit', 'audit')) {
+    <p-button
+      label="Ver toda la actividad"
+      ariaLabel="Ver toda la actividad"
+      icon="pos-icon pos-icon-arrow-right"
+      [outlined]="true"
+      styleClass="mt-5 w-full"
+      routerLink="/actividad"
+      (onClick)="notificationsOpen.set(false)"
+    />
+  }
+</p-drawer>
+
+<p-dialog
+  header="Perfil y entorno"
+  [visible]="profileOpen()"
+  (visibleChange)="profileOpen.set($event)"
+  [modal]="true"
+  [draggable]="false"
+  [style]="{ width: '30rem', maxWidth: 'calc(100vw - 2rem)' }"
+>
+  <div class="flex items-center gap-4 p-4 bg-surface-50 dark:bg-surface-900 rounded-xl mb-6">
+    <span
+      class="size-12 shrink-0 rounded-xl bg-primary-100 dark:bg-primary-900 text-primary flex items-center justify-center font-semibold"
+      aria-hidden="true"
+      >{{ userInitials() }}</span
+    >
+    <div class="min-w-0">
+      <p class="font-semibold break-words">{{ userName() }}</p>
+      <p class="text-sm text-muted-color">{{ roleLabel() }}</p>
+      <p class="text-sm text-muted-color mt-2 break-words">{{ store.snapshot().settings.companyName }}</p>
+      <p class="text-sm text-muted-color">
+        {{ branch()?.name }} · {{ store.snapshot().settings.terminalId }}
+      </p>
+    </div>
+  </div>
+  <label for="demo-role" class="block mb-2 font-medium">Perfil de demostración</label
+  ><p-select
+    inputId="demo-role"
+    ariaLabel="Perfil de demostración"
+    [options]="roles"
+    optionLabel="label"
+    optionValue="value"
+    [ngModel]="store.role()"
+    (ngModelChange)="changeRole($event)"
+    appendTo="body"
+    styleClass="w-full"
+  />
+  <p class="text-sm text-muted-color mt-2">
+    Al cambiar de perfil se aplican sus permisos en módulos y acciones.
+  </p>
+  <div class="flex items-center justify-between gap-4 py-5 mt-4 border-t border-surface">
+    <div>
+      <label for="demo-online" class="font-medium">Conexión simulada</label>
+      <p class="text-sm text-muted-color mt-1">Prueba el funcionamiento sin red.</p>
+    </div>
+    <p-toggleswitch
+      inputId="demo-online"
+      [ngModel]="store.snapshot().online"
+      (ngModelChange)="toggleConnection($event)"
+    />
+  </div>
+  <div class="flex items-center justify-between gap-4 pb-5">
+    <label for="profile-theme" class="font-medium">Apariencia</label>
+    <p-select
+      inputId="profile-theme"
+      ariaLabel="Apariencia"
+      [options]="themes"
+      optionLabel="label"
+      optionValue="value"
+      [ngModel]="store.snapshot().settings.theme"
+      (ngModelChange)="changeTheme($event)"
+      appendTo="body"
+    />
+  </div>
+  <p class="text-xs text-muted-color">
+    Todos los datos y proveedores son simulados. No se realizan cobros ni se emiten documentos tributarios
+    reales.
+  </p>
+  <ng-template #footer>
+    <div class="w-full border-t border-surface pt-4">
+      <p class="text-sm text-muted-color mb-4 text-left">
+        Cerrar sesión conserva el turno abierto y la venta en curso.
+      </p>
+      <p-button label="Cerrar sesión" severity="secondary" styleClass="w-full" (onClick)="logout()" />
+    </div>
+  </ng-template>
+</p-dialog>

@@ -68,6 +68,26 @@ describe('Nx architecture boundaries', { timeout: 30_000 }, () => {
     expect(messages.map((message) => message.ruleId)).toContain(rule);
   });
 
+  it.each(['apps/pos-desktop/src/main.ts', 'apps/pos-mobile/src/main.ts'])(
+    'allows each client to compose the shared shell: %s',
+    async (filePath) => {
+      expect(await checkImport(filePath, publicImport('libs/client-shell'))).toEqual([]);
+    },
+  );
+
+  it.each([
+    ['libs/client-shell/src/index.ts', '@capacitor/core'],
+    ['libs/client-shell/src/index.ts', '@tauri-apps/api'],
+    ['libs/features/checkout/src/index.ts', '@capacitor/app'],
+    ['libs/data-access/src/index.ts', '@tauri-apps/api'],
+    ['libs/ui/src/index.ts', '@capacitor/core'],
+    ['apps/pos-desktop/src/main.ts', '@capacitor/core'],
+    ['apps/pos-mobile/src/main.ts', '@tauri-apps/api'],
+  ])('keeps native SDKs inside their platform: %s → %s', async (filePath, target) => {
+    const messages = await checkImport(filePath, target);
+    expect(messages.map((message) => message.messageId)).toContain('bannedExternalImportsViolation');
+  });
+
   it('keeps universal contracts independent of Nest', async () => {
     const messages = await checkImport('libs/contracts/src/index.ts', '@nestjs/common', true);
     expect(messages.map((message) => message.messageId)).toContain('bannedExternalImportsViolation');

@@ -1,9 +1,9 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": null,
-  "installCommand": "npx --yes npm@11.6.0 ci && npx --yes npm@11.6.0 ci --prefix apps/pos-docs",
-  "buildCommand": "npm run build:vercel",
-  "outputDirectory": "dist/vercel",
+  "installCommand": "npx --yes npm@11.6.0 ci --prefix apps/pos-docs",
+  "buildCommand": "npm --prefix apps/pos-docs run build",
+  "outputDirectory": "dist/apps/pos-docs",
   "headers": [
     {
       "source": "/(.*)",
@@ -29,6 +29,11 @@
     }
   ],
   "redirects": [
+    {
+      "source": "/",
+      "destination": "/guide/",
+      "permanent": false
+    },
     {
       "source": "/guide",
       "destination": "/guide/",

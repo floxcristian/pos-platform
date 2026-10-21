@@ -21,7 +21,18 @@ const backendSources = backendRoots.map((root) => `${root}/src/**/*.ts`);
 backendSources.push('libs/backend/*/src/**/*.ts');
 
 module.exports = tseslint.config(
-  { ignores: ['dist/**', 'node_modules/**', '.nx/**', 'coverage/**', '**/target/**', 'apps/pos-docs/.astro/**'] },
+  {
+    ignores: [
+      'dist/**',
+      '**/node_modules/**',
+      '.nx/**',
+      'coverage/**',
+      '**/target/**',
+      'apps/pos-docs/.astro/**',
+      'apps/pos-mobile/android/**',
+      'apps/pos-mobile/ios/**',
+    ],
+  },
   { linterOptions: { reportUnusedDisableDirectives: 'error', reportUnusedInlineConfigs: 'error' } },
   {
     files: ['**/*.{ts,mts}'],
@@ -133,7 +144,7 @@ module.exports = tseslint.config(
     },
   },
   {
-    files: ['apps/pos-web/src/main.ts'],
+    files: ['apps/pos-desktop/src/main.ts', 'apps/pos-mobile/src/main.ts'],
     rules: {
       // Angular has no injectable logger until bootstrap succeeds.
       'no-console': ['error', { allow: ['error'] }],
@@ -146,14 +157,23 @@ module.exports = tseslint.config(
     },
   },
   {
-    files: ['apps/pos-web/**/*.ts', 'libs/data-access/**/*.ts', 'libs/ui/**/*.ts', 'libs/features/**/*.ts'],
+    files: [
+      'apps/pos-desktop/src/**/*.ts',
+      'apps/pos-mobile/src/**/*.ts',
+      'libs/client-shell/**/*.ts',
+      'libs/data-access/**/*.ts',
+      'libs/ui/**/*.ts',
+      'libs/features/**/*.ts',
+    ],
     extends: [...angular.configs.tsRecommended],
     processor: angular.processInlineTemplates,
     rules: { '@angular-eslint/prefer-on-push-component-change-detection': 'error' },
   },
   {
     files: [
-      'apps/pos-web/src/**/*.ts',
+      'apps/pos-desktop/src/**/*.ts',
+      'apps/pos-mobile/src/**/*.ts',
+      'libs/client-shell/src/**/*.ts',
       'libs/domain/src/**/*.ts',
       'libs/data-access/src/**/*.ts',
       'libs/ui/src/**/*.ts',
@@ -207,7 +227,7 @@ module.exports = tseslint.config(
             {
               sourceTag: 'env:server',
               onlyDependOnLibsWithTags: ['env:server', 'env:universal'],
-              bannedExternalImports: ['@angular/*', 'primeng', 'primeng/*', '@tauri-apps/*'],
+              bannedExternalImports: ['@angular/*', 'primeng', 'primeng/*', '@tauri-apps/*', '@capacitor/*'],
             },
             {
               sourceTag: 'env:universal',
@@ -234,9 +254,24 @@ module.exports = tseslint.config(
             { sourceTag: 'type:policy', onlyDependOnLibsWithTags: ['type:kernel'] },
             { sourceTag: 'type:contract', onlyDependOnLibsWithTags: ['type:kernel'] },
             { sourceTag: 'type:kernel', onlyDependOnLibsWithTags: [] },
+            { sourceTag: 'scope:desktop', bannedExternalImports: ['@capacitor/*'] },
+            { sourceTag: 'scope:mobile', bannedExternalImports: ['@tauri-apps/*'] },
+            {
+              sourceTag: 'type:shell',
+              onlyDependOnLibsWithTags: [
+                'type:feature',
+                'type:ui',
+                'type:data-access',
+                'type:domain',
+                'type:contract',
+                'type:kernel',
+              ],
+              bannedExternalImports: ['@tauri-apps/*', '@capacitor/*'],
+            },
             {
               sourceTag: 'type:app',
               onlyDependOnLibsWithTags: [
+                'type:shell',
                 'type:feature',
                 'type:domain',
                 'type:data-access',
@@ -252,11 +287,17 @@ module.exports = tseslint.config(
             },
             {
               sourceTag: 'type:data-access',
+              bannedExternalImports: ['@tauri-apps/*', '@capacitor/*'],
               onlyDependOnLibsWithTags: ['type:domain', 'type:data-access', 'type:contract', 'type:kernel'],
             },
-            { sourceTag: 'type:ui', onlyDependOnLibsWithTags: ['type:ui', 'type:domain'] },
+            {
+              sourceTag: 'type:ui',
+              onlyDependOnLibsWithTags: ['type:ui', 'type:domain'],
+              bannedExternalImports: ['@tauri-apps/*', '@capacitor/*'],
+            },
             {
               sourceTag: 'type:feature',
+              bannedExternalImports: ['@tauri-apps/*', '@capacitor/*'],
               onlyDependOnLibsWithTags: [
                 'type:domain',
                 'type:data-access',

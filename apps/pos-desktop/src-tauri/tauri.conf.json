@@ -4,10 +4,14 @@
   "version": "0.1.0",
   "identifier": "com.floxcristian.corporatepos",
   "build": {
-    "beforeDevCommand": { "script": "npm start", "cwd": "../../..", "wait": false },
-    "beforeBuildCommand": { "script": "npm run build", "cwd": "../../.." },
+    "beforeDevCommand": {
+      "script": "npx nx serve pos-desktop --host 127.0.0.1 --port 4300",
+      "cwd": "../../..",
+      "wait": false
+    },
+    "beforeBuildCommand": { "script": "npx nx build pos-desktop", "cwd": "../../.." },
     "devUrl": "http://127.0.0.1:4300",
-    "frontendDist": "../../../dist/apps/pos-web/browser"
+    "frontendDist": "../../../dist/apps/pos-desktop/browser"
   },
   "app": {
     "withGlobalTauri": false,

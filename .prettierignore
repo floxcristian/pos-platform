@@ -4,9 +4,12 @@ dist
 .angular
 coverage
 playwright-report
+playwright-report-mobile
 test-results
 test-results-*
 package-lock.json
 **/target
 **/icons
 docs/npm-audit*.json
+apps/pos-mobile/android
+apps/pos-mobile/ios

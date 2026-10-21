@@ -1,0 +1,10 @@
+# Signing material is supplied outside source control for distribution.
+*.jks
+*.keystore
+*.p12
+*.p8
+*.mobileprovision
+
+# Native dependency/build caches; copied web assets and plugin payloads are
+# already excluded by the Android and iOS CLI-generated .gitignore files.
+ios/App/CapApp-SPM/.swiftpm/

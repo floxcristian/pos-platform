@@ -4,7 +4,7 @@ import { extname, isAbsolute, relative, resolve, sep } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const workspace = fileURLToPath(new URL('../', import.meta.url));
-const buildDirectory = resolve(workspace, 'dist/apps/pos-web/browser');
+const buildDirectory = resolve(workspace, 'dist/apps/pos-desktop/browser');
 const mime = {
   '.html': 'text/html; charset=utf-8',
   '.css': 'text/css; charset=utf-8',
@@ -32,12 +32,12 @@ function within(root, target) {
   return !isAbsolute(path) && path !== '..' && !path.startsWith(`..${sep}`);
 }
 
-export async function createBuildServer({ root = buildDirectory } = {}) {
+export async function createBuildServer({ root = buildDirectory, csp: suppliedCsp } = {}) {
   const publicRoot = await realpath(root);
   const tauri = JSON.parse(
     await readFile(resolve(workspace, 'apps/pos-desktop/src-tauri/tauri.conf.json'), 'utf8'),
   );
-  const csp = tauri.app.security.csp;
+  const csp = suppliedCsp ?? tauri.app.security.csp;
   if (typeof csp !== 'string' || !csp.trim())
     throw new Error('Missing production CSP in Tauri configuration.');
   // Read the exact production output; never compile, rewrite or fall back to dev assets here.
@@ -110,6 +110,8 @@ export async function createBuildServer({ root = buildDirectory } = {}) {
 
 if (process.argv[1] && pathToFileURL(resolve(process.argv[1])).href === import.meta.url) {
   const args = process.argv.slice(2);
+  const mobile = args[0] === '--mobile';
+  if (mobile) args.shift();
   const port =
     args.length === 0
       ? 4300
@@ -118,13 +120,28 @@ if (process.argv[1] && pathToFileURL(resolve(process.argv[1])).href === import.m
         : NaN;
   if (!Number.isInteger(port) || port < 1024 || port > 65535)
     throw new Error('Use --port with an integer from 1024 to 65535.');
-  const server = await createBuildServer();
+  const mobileRoot = resolve(workspace, 'dist/apps/pos-mobile/browser');
+  let mobileCsp;
+  if (mobile) {
+    const html = await readFile(resolve(mobileRoot, 'index.html'), 'utf8');
+    const meta = html.match(/<meta\s+http-equiv="Content-Security-Policy"\s+content="([^"]+)"\s*\/?\s*>/i);
+    if (!meta) throw new Error('The mobile production bundle must declare its native content policy.');
+    mobileCsp = meta[1];
+  }
+  const server = await createBuildServer(
+    mobile
+      ? {
+          root: mobileRoot,
+          csp: mobileCsp,
+        }
+      : {},
+  );
   server.on('error', (error) => {
     console.error(error.message);
     process.exitCode = 1;
   });
   server.listen(port, '127.0.0.1', () =>
-    console.log(`Production build + Tauri CSP: http://127.0.0.1:${port}`),
+    console.log(`${mobile ? 'Mobile' : 'Desktop'} production bundle: http://127.0.0.1:${port}`),
   );
   for (const signal of ['SIGINT', 'SIGTERM']) process.once(signal, () => server.close());
 }

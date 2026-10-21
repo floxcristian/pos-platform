@@ -1,0 +1,6 @@
+{
+  "name": "client-shell",
+  "sourceRoot": "libs/client-shell/src",
+  "projectType": "library",
+  "tags": ["type:shell", "scope:client", "env:browser"]
+}
