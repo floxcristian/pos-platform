@@ -185,9 +185,25 @@ for (const theme of ['light', 'dark'] as const) {
     const reset = page.getByRole('button', { name: 'Restablecer demostración', exact: true });
     await expectHover(page, reset);
     await reset.hover();
-    const danger = await colors(reset);
-    expect(danger.foreground[0]).toBeGreaterThan(danger.foreground[1]);
-    expect(danger.background[0]).toBeGreaterThan(danger.background[1]);
+    // Pointer movement can finish before the CSS transition paints, even with reduced motion.
+    await expect
+      .poll(
+        async () => {
+          const { foreground } = await colors(reset);
+          return foreground[0] - foreground[1];
+        },
+        { message: 'The destructive hover foreground must remain red (red channel > green).' },
+      )
+      .toBeGreaterThan(0);
+    await expect
+      .poll(
+        async () => {
+          const { background } = await colors(reset);
+          return background[0] - background[1];
+        },
+        { message: 'The destructive hover background must become red (red channel > green).' },
+      )
+      .toBeGreaterThan(0);
 
     await page.goto('/#/sucursales');
     await page.getByRole('button', { name: 'Nueva sucursal', exact: true }).click();
