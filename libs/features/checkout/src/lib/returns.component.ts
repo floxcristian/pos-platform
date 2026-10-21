@@ -7,8 +7,8 @@ import { SelectModule } from 'primeng/select';
 import { DialogModule } from 'primeng/dialog';
 import { DrawerModule } from 'primeng/drawer';
 import { MessageModule } from 'primeng/message';
-import { PosStore } from '@corporate-pos/data-access';
-import { PaymentMethod, PAYMENT_LABELS } from '@corporate-pos/domain';
+import { PosStore } from '@pos-platform/data-access';
+import { PaymentMethod, PAYMENT_LABELS } from '@pos-platform/domain';
 import {
   PageHeaderComponent,
   StatusTagComponent,
@@ -17,7 +17,7 @@ import {
   money,
   dateTime,
   downloadCsv,
-} from '@corporate-pos/ui';
+} from '@pos-platform/ui';
 
 @Component({
   selector: 'pos-returns',

@@ -1,4 +1,4 @@
-import { PosSnapshot, Result, failure, success } from '@corporate-pos/domain';
+import { PosSnapshot, Result, failure, success } from '@pos-platform/domain';
 import { DEMO_USER_NAMES } from './demo-user-names';
 
 export const STORAGE_KEY = 'corporate-pos:demo:v1';

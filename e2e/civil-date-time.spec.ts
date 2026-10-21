@@ -1,9 +1,10 @@
 import { expect, test } from './fixtures';
 
+test.use({ fixedTime: '2026-10-03T15:00:00Z' });
+
 test('calendario PrimeNG conserva el día civil elegido, limpia y admite teclado', async ({ page }) => {
   const errors: string[] = [];
   page.on('pageerror', (error) => errors.push(error.message));
-  await page.clock.setFixedTime(new Date('2026-10-03T15:00:00Z'));
   await page.goto('/#/reportes');
   const from = page.getByRole('combobox', { name: 'Desde', exact: true });
   await expect(from).toHaveValue('04/09/2026');
@@ -15,9 +16,9 @@ test('calendario PrimeNG conserva el día civil elegido, limpia y admite teclado
   await expect(from).toHaveValue('06/09/2026');
   await expect(calendar).not.toBeVisible();
 
-  const downloadPromise = page.waitForEvent('download');
-  await page.getByRole('button', { name: 'Exportar CSV', exact: true }).click();
-  const download = await downloadPromise;
+  const exportButton = page.getByRole('button', { name: 'Exportar CSV', exact: true });
+  await expect(exportButton).toBeEnabled();
+  const [download] = await Promise.all([page.waitForEvent('download'), exportButton.click()]);
   expect(download.suggestedFilename()).toBe('corporate-pos-sales-2026-09-06-2026-10-03.csv');
 
   await from.click();
@@ -35,7 +36,7 @@ test('hora de sincronización usa selector PrimeNG y persiste HH:mm', async ({ p
   page.on('pageerror', (error) => errors.push(error.message));
   await page.goto('/#/sincronizacion');
   await page.getByRole('button', { name: 'Programar', exact: true }).first().click();
-  const dialog = page.getByRole('dialog');
+  const dialog = page.getByRole('dialog', { name: 'Programar sincronización', exact: true });
   await dialog.getByRole('combobox', { name: 'Frecuencia', exact: true }).click();
   await page.getByRole('option', { name: 'Una vez al día', exact: true }).click();
   const time = dialog.getByRole('combobox', { name: 'Hora local', exact: true });
@@ -46,6 +47,7 @@ test('hora de sincronización usa selector PrimeNG y persiste HH:mm', async ({ p
   await time.press('Tab');
   await dialog.getByRole('button', { name: 'Guardar programación', exact: true }).click();
   await expect(dialog).not.toBeVisible();
+  await expect(page.locator('.p-datepicker-panel')).not.toBeVisible();
   await page.reload();
   await page.getByRole('button', { name: 'Programar', exact: true }).first().click();
   await expect(page.getByRole('combobox', { name: 'Hora local', exact: true })).toHaveValue('08:30');
@@ -55,7 +57,6 @@ test('hora de sincronización usa selector PrimeNG y persiste HH:mm', async ({ p
 test('documentos filtra un período inclusivo, conserva resultados al elegir y permite limpiar', async ({
   page,
 }) => {
-  await page.clock.setFixedTime(new Date('2026-10-03T15:00:00Z'));
   await page.goto('/#/documentos');
   await expect(page.getByRole('button', { name: 'F-10001', exact: true })).toBeVisible();
   // Exercise both Chilean day boundaries; UTC dates alone would include/exclude the wrong documents.
@@ -96,6 +97,7 @@ test('documentos filtra un período inclusivo, conserva resultados al elegir y p
   await sameDay.press('Enter');
   await expect(documents).toHaveCount(filteredCount);
   await sameDay.press('Enter');
+  await expect(calendar).not.toBeVisible();
   await expect(range).toHaveValue('03/10/2026 - 03/10/2026');
   await expect(page.getByRole('button', { name: 'F-10001', exact: true })).toHaveCount(0);
   await expect(page.getByRole('button', { name: 'B-10002', exact: true })).toBeVisible();
@@ -112,7 +114,6 @@ for (const width of [375, 768, 1600]) {
     page,
   }, testInfo) => {
     await page.setViewportSize({ width, height: 1000 });
-    await page.clock.setFixedTime(new Date('2026-10-03T15:00:00Z'));
     await page.goto('/#/documentos');
     const range = page.getByRole('combobox', { name: 'Período de documentos', exact: true });
     await range.click();

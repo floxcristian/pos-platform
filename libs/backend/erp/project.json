@@ -1,0 +1,23 @@
+{
+  "name": "backend-erp",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/backend/erp/src",
+  "tags": ["type:backend-module", "env:server", "scope:erp"],
+  "targets": {
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "eslint libs/backend/erp --max-warnings 0"
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "inputs": ["default", "^production"],
+      "options": {
+        "command": "tsc -p libs/backend/erp/tsconfig.lib.json --noEmit"
+      }
+    }
+  }
+}

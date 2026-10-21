@@ -1,16 +1,46 @@
-# Corporate POS
+# POS Platform
 
 Maqueta funcional de producto con datos sintéticos. No conectar servicios corporativos, dispositivos reales, proveedores fiscales ni medios de pago.
 
 ## Arquitectura
 
-- Nx integrado: apps/pos-web, apps/pos-desktop y librerías con límites explícitos.
+- Nx integrado: apps/pos-web, apps/pos-desktop, apps/pos-runtime, apps/pos-sync-worker, apps/country-api y apps/erp-worker, con librerías y límites explícitos. Ver docs/monorepo.md.
 - Angular standalone, OnPush, signals y TypeScript estricto. PrimeNG nativo primero.
 - domain es TypeScript puro; data-access implementa puertos con adaptadores mock y persistencia local versionada. Las features consumen servicios, no localStorage ni datos duplicados.
 - ui contiene el preset y componentes de presentación sin reglas de negocio.
 - Feature flags y permisos deben aplicarse a rutas y comandos, no solo al menú.
 - Identidad de operación, pago, fiscalidad y ERP son estados diferentes. Nunca repetir automáticamente un pago de resultado desconocido.
 - Datos de inventario solo consultivos: el POS de Chile no es autoridad de stock.
+
+## Backend
+
+`apps/pos-runtime` y `apps/country-api` contienen las entradas HTTP de sucursal y país con NestJS/Fastify. `apps/pos-sync-worker` y `apps/erp-worker` componen procesos de trabajo separados. La base técnica reutilizada pertenece a `libs/platform/backend`; las apps eligen identidad y módulos. Mantener el backend separado del mock del frontend: no importar `data-access`, UI, features Angular ni APIs del navegador. Los contratos compartidos y reglas puras viven en `contracts`, `shared-kernel` y `country-policies`, sin Nest, Fastify ni Angular; los controladores delegan los casos de uso.
+
+Usar Core como referencia de convenciones según el commit documentado en `docs/api.md`: composición de arranque, configuración inyectable, logging Pino, contrato de errores y pruebas Vitest/SWC con metadata de decoradores. El usuario solicita un scaffold explícito de contextos en `libs/backend`; mantener sus puntos de entrada y responsabilidades documentados sin simular casos de uso ni fachadas exitosas. Incorporar `api/application/domain/infrastructure/config` según exista responsabilidad real; no multiplicar capas o proyectos automáticamente. Los contextos se comunican mediante interfaces o fachadas públicas y conservan propiedad de sus datos.
+
+Usar aliases `@pos-platform/*`. Las aplicaciones backend consumen librerías fuente y se empaquetan con Rspack/SWC mediante el plugin oficial de Nx, sin parchear dependencias ni copiar plugins correctivos de Core. Conservar TSC para tipos, metadata de decoradores, npm y las versiones Nx/Nest del POS. Mantener artefactos con manifiesto y lockfile reproducibles y probarlos fuera del workspace. El build web y el despliegue estático Vercel siguen independientes.
+
+Esta base no implementa autenticación, persistencia, ventas ni sincronización. La dirección de persistencia propuesta es PostgreSQL compartido por sucursal detrás del backend; no introducir acceso SQL desde Angular/Tauri ni una base de negocio por caja como decisión implícita. Cada módulo será dueño de sus datos. Implementar identidad, autorización y fronteras transaccionales antes de exponer operaciones reales; conservar los estados independientes de operación, pago, fiscalidad y ERP.
+
+La configuración se valida al arrancar y no contiene secretos versionados. El listener local y CORS cerrado son los valores por defecto; habilitar orígenes exactos cuando exista un consumidor autorizado. CORS no sustituye autenticación. OpenAPI se habilita por configuración y está deshabilitado por defecto en producción. No registrar credenciales, cuerpos de negocio o datos personales. La sonda de readiness debe describir solo dependencias comprobadas; no presentar la disponibilidad del proceso como disponibilidad de PostgreSQL, ERP o pagos.
+
+Consumir el snapshot inmutable de configuración mediante `RuntimeConfigService`; no leer `process.env` desde casos de uso ni modificar la configuración después del arranque. Nest y HTTP comparten Pino a través de `nestjs-pino`, con servicio, ambiente e identificadores generados por el servidor. No habilitar otro logger HTTP automático ni registrar query, cuerpos o cabeceras. Los IDs se devuelven en `x-request-id` y `x-correlation-id`; no confiar en un ID enviado por el cliente como identidad o autorización.
+
+Inyectar el logger de `nestjs-pino` en aplicaciones y contextos; el puente `Logger` de Nest se limita a la plataforma técnica configurada con ese mismo destino. Ejecutar cada aplicación backend en su propio proceso: `nestjs-pino` comparte su logger raíz dentro del proceso y no garantiza aislamiento entre dos aplicaciones Nest con distinta configuración allí. No crear loggers independientes ni usar `console` para diagnósticos de producción. Registrar eventos estructurados y campos técnicos permitidos. La redacción configurada cubre claves sensibles en raíz y dos niveles; no garantiza sanitización recursiva ni de mensajes libres. No registrar objetos de negocio, excepciones originales o respuestas de proveedores confiando en que el logger los limpie.
+
+Conservar `wrapSerializers: false` y los serializadores explícitos `err`/`error`/`context` en `pino-http`, además del hook `logMethod` que sustituye las sobrecargas de error antes de derivar el mensaje. Mantener las pruebas con `Logger` y `PinoLogger` reales: comprobar solo el logger Pino base no detecta serializadores sustituidos por el adaptador ni stacks enviados como contexto. El evento técnico permitido y el mensaje fijo de error no habilitan registrar texto sensible arbitrario.
+
+Sentry es opt-in por aplicación: conservar `*_SENTRY_ENABLED=false` y `*_SENTRY_DSN=` en ejemplos. Usar el cliente privado de `platform/backend`; no importar el SDK en contextos ni usar `Sentry.init`, scopes globales, integraciones automáticas, profiling, traces o logs exportados sin un requisito explícito. Capturar una vez en las fronteras definidas; no volver a capturar desde un servicio un error que propagará al filtro HTTP. Mantener la lista de campos permitidos y `beforeSend`, sin mensajes originales, datos de solicitudes, PII, breadcrumbs ni contextos arbitrarios. Probar con transporte en memoria y canarios sintéticos; no enviar errores a servicios reales durante los tests. Cierre idempotente y acotado; no prometer entrega durable ni captura global de errores que esta base no implementa.
+
+Mantener el contrato de error `{ code, message, category, timestamp }`, sin `details` ni stack en las respuestas de esta base y con mensaje genérico para errores 500. La API usa prefijo `api` y versionado URI de Nest; las sondas son neutrales a versión y quedan fuera del prefijo. Documentar OpenAPI en español con `operationId` explícitos y estables. Los límites de Fastify son 1 MiB de cuerpo y 30 s para recibir la solicitud; ese timeout no sustituye los límites y cancelación de futuras llamadas externas.
+
+Las comprobaciones de la API se ejecutan con `npm run api:check`. Mantener pruebas Vitest con SWC y metadata de decoradores, probando la aplicación real y Fastify sin servicios externos. `npm run api:smoke` verifica el artefacto de `dist/apps/pos-runtime` desde una carpeta temporal fuera del monorepo con sus dependencias de producción. No copiar MongoDB, Redis, servicios cloud, OpenTelemetry ni la autenticación ecommerce de Core sin un requisito y contrato propios del POS. Ver `docs/api.md`.
+
+Para cambios compartidos ejecutar `npm run backend:check`, `npm run backend:smoke` y `npm run structure:check`. `sync:check` y `erp:check` solo verifican composición y cierre de los workers; no afirmar que existe programación, entrega o conciliación operativa hasta implementar y probar esas capacidades. Mantener los seis puntos de entrada actuales; añadir backoffice o más workers requiere una responsabilidad y ciclo de vida definidos.
+
+Mantener el lint tipado de las cuatro apps backend, `libs/backend`, `platform/backend` y las librerías puras, incluidos tests y configuración, mediante `tsconfig.eslint.backend.json`. Resolver promesas con `await` o manejo explícito; `void` no es una excepción. No usar `any`, non-null assertions ni casts para ocultar contratos incorrectos. No dejar tests con `only`/`skip`. Backend y librerías puras usan `noInlineConfig`: no admiten `eslint-disable` en fuentes, aunque tenga descripción; una excepción requiere configuración central revisable, alcance preciso, explicación y prueba. En el resto del TypeScript, no dejar supresiones sin motivo ni desactivaciones obsoletas. Prohibidos `@ts-ignore` y `@ts-nocheck`; `@ts-expect-error` exige descripción de al menos diez caracteres. Conservar fronteras Nx y pruebas negativas de imports. No desactivar reglas para un árbol completo cuando el problema pertenece a un archivo o a un tipo concreto. El frontend mantiene reglas sintácticas/Angular, sin atribuirle el alcance de lint tipado del backend.
+
+El producto y paquete raíz se llaman POS Platform / `pos-platform`. Conservar las claves `corporate-pos:demo:v1`, `corporate-pos:auth:v1` y el identificador Tauri `com.floxcristian.corporatepos` para compatibilidad; una migración de identidad requiere alcance propio. No modificar nombres de artefactos o URLs históricas al actualizar documentación. El nombre físico del checkout no es la identidad del producto; nuevos clones usan preferentemente la carpeta `pos-platform`.
 
 ## Diseño
 

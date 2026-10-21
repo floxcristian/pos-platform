@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { CheckoutInput } from '@corporate-pos/domain';
+import { CheckoutInput } from '@pos-platform/domain';
 import { createFixtures } from './fixtures';
 import {
   TransactionContext,

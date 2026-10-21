@@ -1,0 +1,23 @@
+{
+  "name": "backend-cash",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/backend/cash/src",
+  "tags": ["type:backend-module", "env:server", "scope:cash"],
+  "targets": {
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "eslint libs/backend/cash --max-warnings 0"
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "inputs": ["default", "^production"],
+      "options": {
+        "command": "tsc -p libs/backend/cash/tsconfig.lib.json --noEmit"
+      }
+    }
+  }
+}

@@ -8,9 +8,9 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
 import { TextareaModule } from 'primeng/textarea';
 import { MessageModule } from 'primeng/message';
-import { PosStore } from '@corporate-pos/data-access';
-import type { FeatureModule, PosSettings } from '@corporate-pos/domain';
-import { PageHeaderComponent, StatusTagComponent } from '@corporate-pos/ui';
+import { PosStore } from '@pos-platform/data-access';
+import type { FeatureModule, PosSettings } from '@pos-platform/domain';
+import { PageHeaderComponent, StatusTagComponent } from '@pos-platform/ui';
 import { FeedbackService } from './feedback.service';
 
 @Component({

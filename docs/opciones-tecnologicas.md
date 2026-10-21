@@ -165,9 +165,9 @@ El requisito de variantes por país/sucursal se desarrolla en [Extensibilidad de
 
 ## 5. Monorepo con Nx
 
-El producto y el repositorio objetivo se llaman **POS Platform**, con aliases `@pos-platform/*`. Este repositorio de documentación conserva la propuesta y sus evidencias; el [repositorio del producto](https://github.com/floxcristian/pos-platform) contiene su evolución de software. La carpeta local histórica `corporate-pos` no cambia el nombre del producto.
+El producto y su monorepo se llaman **POS Platform**, con aliases `@pos-platform/*`. El [repositorio del producto](https://github.com/floxcristian/pos-platform) reúne el software, esta propuesta, sus evidencias y la aplicación Starlight que las publica. La carpeta local histórica `corporate-pos` no cambia el nombre del producto.
 
-**Estado revisado el 21 de octubre de 2026:** la UI de demostración y el contenedor Tauri conviven con una base técnica NestJS/Fastify y el scaffolding de las aplicaciones backend en el workspace local. Ese scaffolding todavía tiene archivos sin commit: no se atribuye a una revisión publicada en GitHub ni a un despliegue. Una base HTTP que arranca no implica tener ventas, autenticación corporativa, PostgreSQL, sincronización o integración ERP funcionando. Los límites de negocio descritos a continuación son el objetivo de implementación.
+**Estado revisado el 21 de octubre de 2026:** la UI Angular/PrimeNG de demostración, el contenedor Tauri, la base técnica NestJS/Fastify y los esqueletos de workers se mantienen en el mismo monorepo. El frontend continúa usando adaptadores mock; la base HTTP aporta arranque, configuración, observabilidad, sondas y OpenAPI. Una base que arranca no implica tener ventas, autenticación corporativa, PostgreSQL, sincronización o integración ERP funcionando. Los límites de negocio descritos a continuación son el objetivo de implementación; no representan un despliegue backend productivo.
 
 Monorepo define cómo se organiza el código. Nx aporta un grafo de proyectos y tareas, caché y ejecución de tareas afectadas por cambios. Esto no determina cuántos procesos, bases o despliegues existen en producción. Su caché de compilación tampoco es una caché de datos del POS ni una solución offline de negocio. [Tareas Nx](https://nx.dev/docs/features/run-tasks), [caché de tareas](https://nx.dev/docs/features/cache-task-results), [tareas afectadas](https://nx.dev/docs/features/ci-features/affected).
 
@@ -230,7 +230,7 @@ libs/
 
 Los módulos de `libs/backend` tienen ubicación y composición inicial, pero sus casos de uso comerciales, repositorios, transacciones y adaptadores reales siguen pendientes. `contracts`, `shared-kernel` y `country-policies` contienen contratos iniciales que deben evolucionar con casos de uso y validación, no un protocolo productivo ya aprobado. La base técnica de Node incorpora configuración, logging con `nestjs-pino` y reporte opcional de errores a Sentry; su política exacta se mantiene junto al código del producto.
 
-Una aplicación `backoffice` separada, un publicador central adicional o un puente nativo de periféricos requieren justificar su proceso y sus contratos. No se incluyen entre las seis aplicaciones existentes. La administración de demostración vive actualmente en `pos-web`.
+Una aplicación `backoffice` separada, un publicador central adicional o un puente nativo de periféricos requieren justificar su proceso y sus contratos. No se incluyen entre las seis aplicaciones operativas existentes. `pos-docs` es una aplicación documental adicional. La administración de demostración vive actualmente en `pos-web`.
 
 ### Correspondencia del legacy con POS Platform
 

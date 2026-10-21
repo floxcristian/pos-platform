@@ -1,1 +1,6 @@
-{ "name": "ui", "sourceRoot": "libs/ui/src", "projectType": "library", "tags": ["scope:shared", "type:ui"] }
+{
+  "name": "ui",
+  "sourceRoot": "libs/ui/src",
+  "projectType": "library",
+  "tags": ["scope:shared", "type:ui", "env:browser"]
+}

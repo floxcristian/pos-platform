@@ -1,6 +1,6 @@
 # API de la maqueta y límites de simulación
 
-La interfaz consume `PosStore` de `@corporate-pos/data-access`. No accede a `localStorage`, endpoints empresariales ni dispositivos reales. `@corporate-pos/domain` no depende de Angular. Todos los nombres, correos, RUT, ventas y cuentas iniciales son sintéticos y se identifican como demostración; un RUT con dígito verificador válido no acredita una identidad.
+La interfaz consume `PosStore` de `@pos-platform/data-access`. No accede a `localStorage`, endpoints empresariales ni dispositivos reales. `@pos-platform/domain` no depende de Angular. Todos los nombres, correos, RUT, ventas y cuentas iniciales son sintéticos y se identifican como demostración; un RUT con dígito verificador válido no acredita una identidad.
 
 ## Estado y comandos
 

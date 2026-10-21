@@ -1,0 +1,23 @@
+{
+  "name": "backend-catalog",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/backend/catalog/src",
+  "tags": ["type:backend-module", "env:server", "scope:catalog"],
+  "targets": {
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "eslint libs/backend/catalog --max-warnings 0"
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "inputs": ["default", "^production"],
+      "options": {
+        "command": "tsc -p libs/backend/catalog/tsconfig.lib.json --noEmit"
+      }
+    }
+  }
+}

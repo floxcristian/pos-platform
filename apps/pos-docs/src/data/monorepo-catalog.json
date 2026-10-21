@@ -3,7 +3,7 @@
   "product": "POS Platform",
   "reviewedOn": "2026-10-21",
   "repository": "https://github.com/floxcristian/pos-platform",
-  "evidence": "Workspace local revisado, con la base backend y su scaffolding todavía sin commit. No atribuir estos archivos a una revisión publicada ni a un despliegue productivo.",
+  "evidence": "Estructura contrastada con los proyectos de este monorepo: frontend Angular/PrimeNG, contenedor Tauri, base NestJS/Fastify, workers y documentación. El estado de cada aplicación distingue código ejecutable, adaptadores mock y scaffolding sin operaciones comerciales; no acredita un despliegue backend ni integraciones productivas.",
   "applications": [
     {
       "name": "pos-web",

@@ -1,8 +1,10 @@
 # Monorepo POS Platform
 
-> **Estado de publicación: scaffolding local pendiente de integración.** Esta página documenta la estructura observada en el directorio local el 21 de octubre de 2026. La maqueta web y el contenedor de escritorio están versionados; las aplicaciones backend, sus librerías, dependencias y comandos aún no forman parte del commit que incorpora esta documentación. Las referencias a esa base implementada describen trabajo local en preparación, no capacidades disponibles al clonar esta revisión publicada.
+> **Alcance del código:** este monorepo reúne el frontend Angular/PrimeNG, su contenedor Tauri, la base NestJS/Fastify y la documentación Starlight. La interfaz mantiene adaptadores mock; la base backend aporta configuración, observabilidad, sondas y puntos de composición. Los módulos comerciales y workers todavía no ejecutan operaciones reales.
 
 POS Platform es la base de un producto corporativo para varios países. El monorepo reúne clientes web/escritorio, backend de sucursal, backend de país y workers con ciclos de ejecución propios. La demostración funcional actual cubre Chile; la estructura multipaís permite organizar la evolución sin afirmar que las reglas fiscales o integraciones de otros países estén implementadas.
+
+El cliente está en `apps/pos-web` y sus pantallas, estado mock y componentes viven en `libs/features`, `libs/data-access`, `libs/domain` y `libs/ui`. La API de sucursal está en `apps/pos-runtime`; comparte infraestructura técnica con las otras aplicaciones backend mediante `libs/platform/backend`. Todos se revisan y versionan en [pos-platform](https://github.com/floxcristian/pos-platform), con builds separados. Compartir repositorio no significa compartir proceso ni persistencia: el frontend aún no consume las operaciones de esta API, que tampoco están implementadas.
 
 ## Estructura
 
@@ -14,6 +16,7 @@ apps/
   pos-sync-worker/         Proceso de sincronización de sucursal
   country-api/             Entrada HTTP del backend de país
   erp-worker/              Proceso de integración ERP
+  pos-docs/                Documentación Starlight; aplicación estática independiente
 libs/
   backend/
     sales/                 Ventas y documentos comerciales
@@ -52,13 +55,14 @@ Las librerías se consumen por su entrada pública `@pos-platform/<nombre>`; las
 | `country-api`     | Recibir operaciones y servir capacidades corporativas delimitadas por país              | Base de aplicación; no consolida ventas ni administra países reales       |
 | `erp-worker`      | Ejecutar adaptadores en la red autorizada del ERP y conservar resultados de integración | Esqueleto de proceso; no se conecta a AX ni a otro ERP                    |
 
-Los workers tienen ciclo de vida propio. No se añade un listener HTTP de negocio solo para ejecutar tareas. Un futuro backoffice separado o un worker adicional de país requiere una necesidad concreta; no forma parte de estas seis aplicaciones.
+Los workers tienen ciclo de vida propio. No se añade un listener HTTP de negocio solo para ejecutar tareas. Un futuro backoffice separado o un worker adicional de país requiere una necesidad concreta; no forma parte de estas seis aplicaciones operativas. `pos-docs` es una séptima aplicación, documental: no ejecuta procesos del POS ni importa sus librerías de negocio.
 
 ## Comandos del workspace
 
 | Comando                   | Alcance                                                                          |
 | ------------------------- | -------------------------------------------------------------------------------- |
 | `npm start`               | Frontend en `http://127.0.0.1:4300`                                              |
+| `npm run docs:dev`        | Guía Starlight; instalar primero sus dependencias con `npm run docs:install`     |
 | `npm run api:dev`         | API de sucursal en `http://127.0.0.1:3000`                                       |
 | `npm run country:dev`     | API de país en `http://127.0.0.1:3001`                                           |
 | `npm run sync:check`      | Compone y cierra el contexto del worker de sincronización; no ejecuta jobs       |

@@ -1,0 +1,50 @@
+{
+  "name": "country-api",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/country-api/src",
+  "tags": ["type:backend", "env:server", "scope:country"],
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "inputs": ["production", "^production", "{workspaceRoot}/tools/backend/**/*"],
+      "outputs": ["{workspaceRoot}/dist/apps/country-api"],
+      "options": {
+        "command": "rspack build",
+        "cwd": "apps/country-api"
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "continuous": true,
+      "options": {
+        "buildTarget": "country-api:build",
+        "watch": true,
+        "inspect": false
+      }
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "eslint apps/country-api --max-warnings 0"
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "inputs": ["default", "^production", "{workspaceRoot}/tools/backend/**/*"],
+      "options": {
+        "command": "tsc -p apps/country-api/tsconfig.spec.json --noEmit"
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "inputs": ["default", "^production", "{workspaceRoot}/tools/backend/**/*"],
+      "options": {
+        "command": "vitest run --config apps/country-api/vitest.config.mts"
+      }
+    }
+  }
+}

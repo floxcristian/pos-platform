@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
-import { DuotoneIconComponent } from '@corporate-pos/ui';
+import { DuotoneIconComponent } from '@pos-platform/ui';
 @Component({
   selector: 'pos-access-denied',
   imports: [RouterLink, ButtonModule, DuotoneIconComponent],

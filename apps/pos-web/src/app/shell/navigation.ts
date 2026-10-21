@@ -1,4 +1,4 @@
-import type { ModuleId, Permission } from '@corporate-pos/domain';
+import type { ModuleId, Permission } from '@pos-platform/domain';
 
 export interface NavItem {
   label: string;

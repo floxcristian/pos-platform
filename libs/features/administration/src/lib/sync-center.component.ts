@@ -11,8 +11,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { MessageModule } from 'primeng/message';
-import { PosStore } from '@corporate-pos/data-access';
-import type { SyncJob, SyncSchedule } from '@corporate-pos/domain';
+import { PosStore } from '@pos-platform/data-access';
+import type { SyncJob, SyncSchedule } from '@pos-platform/domain';
 import {
   PosTooltipDirective,
   CivilDateTimeComponent,
@@ -22,7 +22,7 @@ import {
   MetricCardComponent,
   dateTime,
   downloadCsv,
-} from '@corporate-pos/ui';
+} from '@pos-platform/ui';
 import { FeedbackService } from './feedback.service';
 
 @Component({

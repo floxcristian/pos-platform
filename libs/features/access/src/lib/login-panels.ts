@@ -1,4 +1,4 @@
-import type { DuotoneIconName } from '@corporate-pos/ui';
+import type { DuotoneIconName } from '@pos-platform/ui';
 
 interface LoginPanel {
   kind: 'terminal' | 'feature' | 'statement' | 'receipt' | 'catalog';

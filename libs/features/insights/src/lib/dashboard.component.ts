@@ -13,7 +13,7 @@ import { ButtonModule } from 'primeng/button';
 import { SelectModule } from 'primeng/select';
 import { ChartModule } from 'primeng/chart';
 import { TableModule } from 'primeng/table';
-import { PosStore } from '@corporate-pos/data-access';
+import { PosStore } from '@pos-platform/data-access';
 import {
   DuotoneIconComponent,
   type DuotoneIconName,
@@ -25,7 +25,7 @@ import {
   money,
   dateTime,
   number,
-} from '@corporate-pos/ui';
+} from '@pos-platform/ui';
 import {
   PAYMENT_LABELS,
   branchName,

@@ -1,0 +1,23 @@
+{
+  "name": "shared-kernel",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/shared-kernel/src",
+  "tags": ["type:kernel", "env:universal", "scope:shared"],
+  "targets": {
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "eslint libs/shared-kernel --max-warnings 0"
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "inputs": ["default", "^production"],
+      "options": {
+        "command": "tsc -p libs/shared-kernel/tsconfig.lib.json --noEmit"
+      }
+    }
+  }
+}

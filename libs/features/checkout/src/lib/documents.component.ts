@@ -8,8 +8,8 @@ import { SelectModule } from 'primeng/select';
 import { DrawerModule } from 'primeng/drawer';
 import { DialogModule } from 'primeng/dialog';
 import { MessageModule } from 'primeng/message';
-import { PosStore } from '@corporate-pos/data-access';
-import { PAYMENT_LABELS } from '@corporate-pos/domain';
+import { PosStore } from '@pos-platform/data-access';
+import { PAYMENT_LABELS } from '@pos-platform/domain';
 import {
   PosTooltipDirective,
   CivilDateRangeComponent,
@@ -21,7 +21,7 @@ import {
   money,
   dateTime,
   downloadCsv,
-} from '@corporate-pos/ui';
+} from '@pos-platform/ui';
 
 @Component({
   selector: 'pos-documents',

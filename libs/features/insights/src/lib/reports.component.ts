@@ -15,7 +15,7 @@ import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { ChartModule } from 'primeng/chart';
 import { InputTextModule } from 'primeng/inputtext';
-import { PosStore } from '@corporate-pos/data-access';
+import { PosStore } from '@pos-platform/data-access';
 import {
   PosTooltipDirective,
   CivilDateTimeComponent,
@@ -28,7 +28,7 @@ import {
   dateTime,
   number,
   downloadCsv,
-} from '@corporate-pos/ui';
+} from '@pos-platform/ui';
 import {
   PAYMENT_LABELS,
   branchName,

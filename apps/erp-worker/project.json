@@ -1,0 +1,62 @@
+{
+  "name": "erp-worker",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/erp-worker/src",
+  "tags": ["type:backend", "env:server", "scope:country"],
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "inputs": ["production", "^production", "{workspaceRoot}/tools/backend/**/*"],
+      "outputs": ["{workspaceRoot}/dist/apps/erp-worker"],
+      "options": {
+        "command": "rspack build",
+        "cwd": "apps/erp-worker"
+      }
+    },
+    "serve": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "command": "node dist/apps/erp-worker/main.js inspect"
+      }
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "eslint apps/erp-worker --max-warnings 0"
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "inputs": ["default", "^production", "{workspaceRoot}/tools/backend/**/*"],
+      "options": {
+        "command": "tsc -p apps/erp-worker/tsconfig.spec.json --noEmit"
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "inputs": ["default", "^production", "{workspaceRoot}/tools/backend/**/*"],
+      "options": {
+        "command": "vitest run --config apps/erp-worker/vitest.config.mts"
+      }
+    },
+    "inspect": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "command": "node dist/apps/erp-worker/main.js inspect"
+      }
+    },
+    "check": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "command": "node dist/apps/erp-worker/main.js check"
+      }
+    }
+  }
+}

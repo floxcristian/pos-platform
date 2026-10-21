@@ -15,7 +15,7 @@ import {
   isValidRut,
   success,
   validMoney,
-} from '@corporate-pos/domain';
+} from '@pos-platform/domain';
 import { TransactionContext } from './transactions';
 
 export function saveCustomerRecord(

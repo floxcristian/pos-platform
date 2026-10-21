@@ -3,7 +3,7 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "sourceRoot": "apps/pos-desktop/src-tauri/src",
-  "tags": ["type:app", "scope:desktop"],
+  "tags": ["type:app", "scope:desktop", "env:browser"],
   "implicitDependencies": ["pos-web"],
   "targets": {
     "dev": {

@@ -6,6 +6,10 @@ interface Credentials {
   remember?: boolean;
 }
 
+interface DemoOptions {
+  fixedTime: string | undefined;
+}
+
 /** Use the public demo login so protected-page suites exercise the same session as the UI. */
 export async function signIn(page: Page, credentials: Credentials = {}): Promise<void> {
   await page
@@ -19,8 +23,11 @@ export async function signIn(page: Page, credentials: Credentials = {}): Promise
   await expect(page.locator('pos-shell')).toBeVisible();
 }
 
-export const test = base.extend({
-  page: async ({ page }, use) => {
+export const test = base.extend<DemoOptions>({
+  fixedTime: [undefined, { option: true }],
+  page: async ({ page, fixedTime }, use) => {
+    // Seed demo records and test filters from the same clock, before the first navigation.
+    if (fixedTime) await page.clock.setFixedTime(new Date(fixedTime));
     await page.goto('/#/login');
     await signIn(page);
     await use(page);

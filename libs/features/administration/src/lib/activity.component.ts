@@ -6,8 +6,8 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { SelectModule } from 'primeng/select';
 import { InputTextModule } from 'primeng/inputtext';
 import { DrawerModule } from 'primeng/drawer';
-import { PosStore } from '@corporate-pos/data-access';
-import type { LogEntry, AuditEntry } from '@corporate-pos/domain';
+import { PosStore } from '@pos-platform/data-access';
+import type { LogEntry, AuditEntry } from '@pos-platform/domain';
 import {
   PosTooltipDirective,
   EmptyStateComponent,
@@ -16,7 +16,7 @@ import {
   MetricCardComponent,
   dateTime,
   downloadCsv,
-} from '@corporate-pos/ui';
+} from '@pos-platform/ui';
 
 @Component({
   selector: 'pos-activity',

@@ -2,5 +2,5 @@
   "name": "administration",
   "sourceRoot": "libs/features/administration/src",
   "projectType": "library",
-  "tags": ["scope:administration", "type:feature"]
+  "tags": ["scope:administration", "type:feature", "env:browser"]
 }

@@ -6,9 +6,9 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { DialogModule } from 'primeng/dialog';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
 import { MessageModule } from 'primeng/message';
-import { PosStore } from '@corporate-pos/data-access';
-import { validMoney, type Branch } from '@corporate-pos/domain';
-import { DuotoneIconComponent, PageHeaderComponent, StatusTagComponent } from '@corporate-pos/ui';
+import { PosStore } from '@pos-platform/data-access';
+import { validMoney, type Branch } from '@pos-platform/domain';
+import { DuotoneIconComponent, PageHeaderComponent, StatusTagComponent } from '@pos-platform/ui';
 import { FeedbackService } from './feedback.service';
 
 @Component({

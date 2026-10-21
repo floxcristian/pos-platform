@@ -55,7 +55,7 @@ El [catálogo del monorepo](/guide/architecture/monorepo/) es la referencia de n
 | --- | --- |
 | Dirección indicada | Angular + Tauri para el cliente y Nx para organizar el código. La homologación y operación del producto siguen pendientes. |
 | Diseño recomendado | Backend modular NestJS/Fastify, PostgreSQL de sucursal y país, sincronización recuperable y adaptadores por capacidad. Requieren aprobación y piloto. |
-| Base de código revisada | Existen una maqueta y scaffolding local. El catálogo distingue lo presente de lo propuesto y registra el alcance de esa revisión. |
+| Base de código revisada | El monorepo incluye la demostración Angular/PrimeNG, el contenedor Tauri, la base técnica NestJS/Fastify y esqueletos de workers. El frontend sigue usando adaptadores mock; no hay persistencia ni operaciones comerciales backend. |
 | Legacy observado | Mountain ya tiene login, perfiles y accesos a módulos. Los informes fijan los snapshots y las limitaciones; no prueban la configuración productiva. |
 | Por acordar | Matriz de operaciones offline, vigencias y recotización, proveedores, límites por país, recuperación, capacidad y criterios cuantitativos de aceptación. |
 

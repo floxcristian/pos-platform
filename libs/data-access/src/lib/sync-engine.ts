@@ -10,7 +10,7 @@ import {
   failure,
   nextScheduledRun,
   success,
-} from '@corporate-pos/domain';
+} from '@pos-platform/domain';
 import { SimulationPort } from './ports';
 
 /** Mock orchestration depends on a state port, not on Angular components or browser storage. */

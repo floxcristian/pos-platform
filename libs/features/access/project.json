@@ -2,5 +2,5 @@
   "name": "access",
   "sourceRoot": "libs/features/access/src",
   "projectType": "library",
-  "tags": ["scope:access", "type:feature"]
+  "tags": ["scope:access", "type:feature", "env:browser"]
 }

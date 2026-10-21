@@ -9,8 +9,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DialogModule } from 'primeng/dialog';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
-import { PosStore } from '@corporate-pos/data-access';
-import type { Customer, Product, ReferenceItem, ReferenceKind } from '@corporate-pos/domain';
+import { PosStore } from '@pos-platform/data-access';
+import type { Customer, Product, ReferenceItem, ReferenceKind } from '@pos-platform/domain';
 import {
   EmptyStateComponent,
   PageHeaderComponent,
@@ -18,7 +18,7 @@ import {
   money,
   dateTime,
   downloadCsv,
-} from '@corporate-pos/ui';
+} from '@pos-platform/ui';
 import { FeedbackService } from './feedback.service';
 
 @Component({

@@ -6,7 +6,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { SelectModule } from 'primeng/select';
 import { DialogModule } from 'primeng/dialog';
 import { MessageModule } from 'primeng/message';
-import { PosStore } from '@corporate-pos/data-access';
+import { PosStore } from '@pos-platform/data-access';
 import {
   Agreement,
   Collection,
@@ -15,7 +15,7 @@ import {
   PAYMENT_LABELS,
   Receivable,
   chileCivilDate,
-} from '@corporate-pos/domain';
+} from '@pos-platform/domain';
 import {
   PosTooltipDirective,
   CivilDateTimeComponent,
@@ -28,7 +28,7 @@ import {
   date,
   dateTime,
   downloadCsv,
-} from '@corporate-pos/ui';
+} from '@pos-platform/ui';
 
 @Component({
   selector: 'pos-collections',

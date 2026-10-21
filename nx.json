@@ -16,7 +16,14 @@
     "test": { "cache": true, "inputs": ["default", "^production", "{workspaceRoot}/vitest.config.ts"] },
     "lint": {
       "cache": true,
-      "inputs": ["default", "{workspaceRoot}/eslint.config.cjs", "{workspaceRoot}/tools/eslint/**/*"]
+      "inputs": [
+        "default",
+        "^production",
+        "{workspaceRoot}/eslint.config.cjs",
+        "{workspaceRoot}/tsconfig.eslint.backend.json",
+        "{workspaceRoot}/tools/eslint/**/*",
+        "{workspaceRoot}/tools/lint-workspace.mjs"
+      ]
     }
   },
   "analytics": false

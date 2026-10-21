@@ -1,4 +1,4 @@
-name: Validate corporate POS
+name: Validate POS Platform
 on:
   push:
     branches: [main, 'codex/**']
@@ -13,6 +13,23 @@ env:
   NX_DAEMON: 'false'
   NX_INTERACTIVE: 'false'
 jobs:
+  api:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm install --global npm@11.6.0
+      - run: npm ci
+      - run: npm run backend:check
+      - run: npm run structure:check
+      - name: Verify standalone backend artifacts
+        run: npm run backend:smoke
   web:
     runs-on: ubuntu-latest
     timeout-minutes: 20
@@ -104,7 +121,7 @@ jobs:
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: success()
         with:
-          name: corporate-pos-windows-demo
+          name: pos-platform-windows-demo
           path: |
             apps/pos-desktop/src-tauri/target/release/bundle/nsis/*.exe
             apps/pos-desktop/src-tauri/Cargo.lock

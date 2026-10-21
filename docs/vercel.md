@@ -1,12 +1,12 @@
 # POS y documentación en Vercel
 
-Vercel publica la aplicación Angular como archivos estáticos. Nx compila `pos-web` y `pos-docs`, y el ensamblador conserva la web en `/` y Starlight en `/guide/`; no se ejecuta Rust ni se genera el instalador Tauri en este despliegue.
+Vercel publica la aplicación Angular y la documentación como archivos estáticos. Nx compila `pos-web` y `pos-docs`, y el ensamblador conserva la web en `/` y Starlight en `/guide/`. Las APIs y los workers se despliegan por separado; aquí no se ejecutan los procesos backend, Rust ni el instalador Tauri.
 
 ## Primer despliegue
 
 1. En [Vercel](https://vercel.com/new), selecciona **Add New → Project** e importa **floxcristian/pos-platform** desde GitHub.
 2. Mantén **Root Directory** en la raíz del repositorio (`./`, o el campo vacío). No selecciones `apps/pos-web`: el `package.json`, el lockfile, Nx y `libs` están en la raíz o fuera de esa carpeta.
-3. Usa **Framework Preset: Other**. El `vercel.json` versionado define los valores siguientes:
+3. Usa **Framework Preset: Other**. El `vercel.json` versionado define el framework, la instalación, el build y la salida. Comprueba también la rama de producción y la versión de Node en los ajustes del proyecto:
 
 | Ajuste               | Valor                       |
 | -------------------- | --------------------------- |
@@ -20,7 +20,7 @@ Vercel publica la aplicación Angular como archivos estáticos. Nx compila `pos-
 | Variables de entorno | Ninguna para esta demo      |
 
 4. Pulsa **Deploy**. Si Node.js no aparece durante la importación, comprueba **Settings → Build and Deployment → Node.js Version**. El rango `engines.node` de este repositorio admite Node 24; Vercel resuelve ese rango a la versión compatible más alta disponible.
-5. Abre la URL que asigne Vercel y comprueba `/#/inicio`, `/#/venta` y `/#/sincronizacion`. Recarga una ruta interna y verifica que cargan el fondo SVG del header, fuentes, gráficos y selectores.
+5. Abre la URL que asigne Vercel y comprueba `/#/inicio`, `/#/venta`, `/#/sincronizacion` y `/guide/`. Recarga una ruta interna del POS y de la guía; verifica gráficos, fuentes, navegación y búsqueda documental.
 
 El framework `null` en `vercel.json` equivale a **Other**: el comando explícito de Nx genera el sitio y Vercel sirve únicamente `dist/vercel`. No utilices `dist/apps/pos-web` ni la carpeta de código fuente como salida. Los campos versionados evitan depender de ajustes manuales diferentes en cada entorno.
 

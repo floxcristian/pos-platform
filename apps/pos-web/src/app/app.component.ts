@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, Component, effect, inject } from '@angular/cor
 import { RouterOutlet } from '@angular/router';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { createToastTooltipPassThrough, ThemeService } from '@corporate-pos/ui';
-import { PosStore } from '@corporate-pos/data-access';
+import { createToastTooltipPassThrough, ThemeService } from '@pos-platform/ui';
+import { PosStore } from '@pos-platform/data-access';
 
 @Component({
   selector: 'pos-root',

@@ -18,8 +18,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { SelectModule } from 'primeng/select';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
 import { MessageService } from 'primeng/api';
-import { PosStore } from '@corporate-pos/data-access';
-import type { Role } from '@corporate-pos/domain';
+import { PosStore } from '@pos-platform/data-access';
+import type { Role } from '@pos-platform/domain';
 import {
   PosTooltipDirective,
   dateTime,
@@ -28,7 +28,7 @@ import {
   StatusTagComponent,
   ThemeService,
   type ThemeMode,
-} from '@corporate-pos/ui';
+} from '@pos-platform/ui';
 import { NAV_GROUPS, NavItem } from './navigation';
 
 interface SearchResult {

@@ -49,7 +49,7 @@ import {
   toLocalDate,
   validMoney,
   validateSchedule,
-} from '@corporate-pos/domain';
+} from '@pos-platform/domain';
 import { createFixtures } from './fixtures';
 import { MockSyncEngine } from './sync-engine';
 import { POS_AUTH_SESSION, POS_REPOSITORY, POS_SIMULATION } from './ports';

@@ -1,0 +1,23 @@
+{
+  "name": "backend-payments",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/backend/payments/src",
+  "tags": ["type:backend-module", "env:server", "scope:payments"],
+  "targets": {
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "eslint libs/backend/payments --max-warnings 0"
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "inputs": ["default", "^production"],
+      "options": {
+        "command": "tsc -p libs/backend/payments/tsconfig.lib.json --noEmit"
+      }
+    }
+  }
+}

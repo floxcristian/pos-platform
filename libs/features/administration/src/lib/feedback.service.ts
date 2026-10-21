@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { MessageService, ConfirmationService } from 'primeng/api';
-import type { Result } from '@corporate-pos/domain';
+import type { Result } from '@pos-platform/domain';
 
 @Injectable({ providedIn: 'root' })
 export class FeedbackService {

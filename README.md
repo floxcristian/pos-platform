@@ -1,18 +1,36 @@
 # POS Platform
 
-Caja corporativa para Chile: prototipo funcional de producto, con datos sintéticos y recorridos conectados. Conserva el lenguaje visual de **prime-showcase** (PrimeNG, Aura corporativo, Inter, tablas y navegación) sobre un repositorio Nx independiente. No incorpora los módulos ni dependencias de negocio del sistema anterior.
+Plataforma POS corporativa preparada para evolucionar a varios países: monorepo Nx con clientes web/escritorio, backend de sucursal, backend de país y workers. Incluye una demostración funcional de Chile con datos sintéticos y una base técnica NestJS/Fastify; las operaciones de negocio del backend y las integraciones están pendientes. Conserva el lenguaje visual de **prime-showcase** (PrimeNG, Aura corporativo, Inter, tablas y navegación).
 
-Repositorio principal: [floxcristian/pos-platform](https://github.com/floxcristian/pos-platform). La aplicación mantiene el nombre **Corporate POS**.
+Producto y repositorio: [POS Platform](https://github.com/floxcristian/pos-platform). Los aliases internos usan `@pos-platform/*`. La [guía del monorepo](docs/monorepo.md) explica aplicaciones, propietarios de datos, estructura por contexto y compatibilidad del cambio de nombre.
+
+## Repositorio del producto
+
+El frontend Angular con PrimeNG, el contenedor de escritorio, la base del backend y la documentación se mantienen juntos en este repositorio. `floxcristian/corporate-pos` conserva una versión anterior del frontend; el desarrollo vigente continúa en `floxcristian/pos-platform`.
+
+| Ubicación | Responsabilidad y estado |
+| --- | --- |
+| `apps/pos-web` | Cliente Angular con PrimeNG y adaptadores mock |
+| `apps/pos-desktop` | Contenedor Tauri del mismo cliente |
+| `apps/pos-runtime` | Base HTTP NestJS/Fastify de sucursal |
+| `apps/country-api` | Base HTTP de país |
+| `apps/pos-sync-worker`, `apps/erp-worker` | Composición de workers; procesamiento de jobs pendiente |
+| `apps/pos-docs` | Documentación técnica en Starlight |
+| `libs/` | Features del frontend, contextos del backend y contratos compartidos, con límites de importación |
+
+Las aplicaciones comparten repositorio y contratos, con builds independientes. El cliente conserva sus datos de demostración; la conexión con los casos de uso del backend se implementará a medida que existan esos contratos.
 
 ![Centro de operación con indicadores, gráficos y pendientes](docs/screenshots/dashboard.png)
 
 ## Iniciar
 
-Requiere Node.js 22.13+ o 24 LTS y npm 11.6.0.
+Requiere Node.js 22.19 o posterior en la rama 22, o Node.js 24, y npm 11.6.0.
 
 Si tu instalación usa otra versión de npm, instala las dependencias con `npx --yes npm@11.6.0 ci`.
 
 ```sh
+git clone https://github.com/floxcristian/pos-platform.git
+cd pos-platform
 npm ci
 npm start
 ```
@@ -23,9 +41,35 @@ Hay una caja abierta con datos de ejemplo. El menú de usuario permite cambiar e
 
 Todos los RUT, clientes, usuarios y operaciones son ejemplos sintéticos. No hay autenticación real, cargos bancarios, DTE válidos ni conexiones a sistemas corporativos. No ingreses información de producción.
 
-## Publicar el frontend en Vercel
+## API de sucursal
 
-El repositorio incluye `vercel.json` para compilar el frontend estático. Importa `floxcristian/pos-platform` en Vercel con **Root Directory en la raíz del repositorio**, Framework Preset **Other** y Node.js **24.x**. Los comandos y la carpeta de salida se leen del archivo. No requiere variables de entorno para la demostración.
+```sh
+npm run api:dev
+```
+
+La API escucha en **http://127.0.0.1:3000**. Expone información de la base en `/api/v1`, sondas en `/health/live` y `/health/ready`, y OpenAPI en `/api/docs` durante el desarrollo. Usa NestJS con Fastify como un proyecto Nx independiente: `apps/pos-runtime`.
+
+La base sigue las convenciones verificadas de **Core**: composición de arranque separada, configuración tipada e inyectable, logging unificado con `nestjs-pino`, errores HTTP con contrato estable, versionado URI y pruebas Vitest/SWC. La [guía de la API](docs/api.md#referencia-core) identifica el commit de referencia y las decisiones adaptadas al backend de sucursal.
+
+El reporte de errores con Sentry es opcional y está deshabilitado en los ejemplos, con DSN vacío. Cada aplicación tiene un cliente privado que captura fallos en fronteras explícitas y admite solo metadatos técnicos y frames reducidos; no envía datos de clientes, cuerpos de operaciones ni logs completos. Consulta el [alcance de captura y configuración](docs/api.md#reporte-opcional-de-errores-con-sentry). No se ha conectado un proyecto real de Sentry.
+
+Los puntos de entrada `country-api`, `pos-sync-worker` y `erp-worker` preparan los procesos de país, sincronización y ERP. Comparten la base técnica de `libs/platform/backend`; los contextos de `libs/backend` delimitan dónde implementar las capacidades. Rspack/SWC empaqueta las aplicaciones Node y sus librerías fuente; TSC verifica tipos. Crear estas fronteras no conecta bases, colas ni proveedores.
+
+```sh
+npm run api:check
+npm run api:build
+npm run api:smoke
+```
+
+Para comprobar el scaffold completo: `npm run backend:check`, `npm run backend:smoke` y `npm run structure:check`. `npm run country:dev` inicia la API de país en el puerto 3001; `npm run sync:check` y `npm run erp:check` verifican la composición y cierre de los workers sin ejecutar jobs. Consulta todos los [comandos del workspace](docs/monorepo.md#comandos-del-workspace).
+
+El backend y las librerías puras tienen lint con información de tipos para detectar promesas sin manejar y usos inseguros, además de fronteras Nx verificadas. Las [reglas y su alcance](docs/monorepo.md#reglas-de-código-y-fronteras) distinguen esos controles de los del frontend; no sustituyen pruebas de comportamiento ni los requisitos pendientes de producción.
+
+El frontend sigue usando sus adaptadores mock. Esta base de API aún no implementa autenticación, base de datos, operaciones de negocio ni sincronizadores; la sonda de readiness comprueba únicamente la aplicación. Consulta [configuración, contratos y despliegue de la API](docs/api.md).
+
+## Publicar el frontend y la documentación en Vercel
+
+El repositorio incluye `vercel.json` para compilar el frontend estático y la guía Starlight. Importa `floxcristian/pos-platform` en Vercel con **Root Directory en la raíz del repositorio**, Framework Preset **Other** y Node.js **24.x**. Los comandos y la carpeta de salida se leen del archivo. Publica el POS en `/` y la documentación en `/guide/`; las aplicaciones del backend tienen sus propios artefactos y despliegues. No requiere variables de entorno para la demostración.
 
 Consulta la [guía de despliegue](docs/vercel.md) con los valores exactos y los pasos de comprobación. El instalador de Windows se genera por separado con Tauri.
 
@@ -53,18 +97,28 @@ El inventario consultivo no cambia al vender: la caja de Chile no es la autorida
 
 ```text
 apps/
-  pos-web/          Angular standalone, rutas y shell
+  pos-web/          Interfaz Angular con adaptadores mock
   pos-desktop/      Contenedor Tauri 2 para Windows
+  pos-runtime/      Backend HTTP de sucursal
+  pos-sync-worker/  Sincronización de sucursal
+  country-api/      Backend HTTP de país
+  erp-worker/       Integración ERP
+  pos-docs/         Documentación Starlight
 libs/
-  domain/          Contratos, dinero CLP, permisos y calendario; TypeScript puro
-  data-access/     Comandos, transacciones mock, puertos y persistencia versionada
-  ui/              Preset, componentes visuales y formatos compartidos
-  features/
-    access/        Login, validación y ayuda con cuentas de demostración
-    checkout/      Venta, caja, documentos, cobranza y devolución
-    insights/      Dashboard y reportes
-    administration/ Maestros, políticas, módulos y operación técnica
+  backend/          Contextos: sales, cash, payments, collections, returns,
+                    pricing, catalog, fiscal, devices, sync, erp,
+                    reporting y administration
+  contracts/        Contratos entre aplicaciones
+  shared-kernel/    Primitivas puras del producto
+  country-policies/ Perfiles y políticas nacionales
+  platform/backend/ Base técnica compartida por las aplicaciones Node
+  domain/           Reglas puras del prototipo frontend actual
+  data-access/      Estado y adaptadores mock del frontend
+  ui/               Preset y componentes de presentación
+  features/         Access, checkout, insights y administration de la UI
 ```
+
+La [guía del monorepo](docs/monorepo.md) distingue base implementada, scaffold y trabajo pendiente. Las librerías backend no importan Angular ni los adaptadores mock; los contextos se implementan progresivamente con sus propios contratos y datos.
 
 Las features consumen `PosStore`; no escriben en `localStorage`. Los permisos y módulos se validan en rutas **y comandos**. El estado se publica como snapshots inmutables. Las transacciones guardan primero el snapshot y publican el resultado solo si la persistencia tuvo éxito. Las ventas y eventos conservan identificadores para evitar duplicados. Pago, fiscalidad y ERP tienen ciclos separados.
 
@@ -83,11 +137,11 @@ npm run test:e2e
 npm run desktop:info
 ```
 
-Las pruebas cubren políticas, montos, persistencia, permisos, reintentos, calendarios y recorridos de navegador. CI está configurada para compilar y empaquetar la demostración para Windows. Las acciones de CI están fijadas por commit y tienen permisos de lectura.
+Las pruebas cubren políticas, montos, persistencia, permisos, reintentos, calendarios y recorridos de navegador. CI está configurada para compilar y empaquetar la demostración para Windows; las nuevas ejecuciones publican el artefacto `pos-platform-windows-demo` durante siete días. Las acciones de CI están fijadas por commit y tienen permisos de lectura.
 
 Validación tras la revisión de calidad (3 de octubre de 2026): **144 pruebas de lógica e infraestructura y 37 recorridos de navegador pasan**, junto con lint, formato y compilación web de producción. Los recorridos ejecutan el bundle productivo con la CSP de Tauri, incluyen tamaños de 375 y 1440 px y verifican controles de prime-showcase y accesibilidad del dashboard/reportes en claro y oscuro. El [informe de revisión](docs/quality-review.md) detalla correcciones y condiciones pendientes para producción.
 
-La [ejecución de CI de la revisión](https://github.com/floxcristian/corporate-pos/actions/runs/37151843645) completó correctamente las validaciones web y el instalador NSIS de Windows. El artefacto `corporate-pos-windows-demo` tiene una retención de siete días; se puede regenerar con `npm run desktop:build`.
+La [ejecución histórica de CI](https://github.com/floxcristian/corporate-pos/actions/runs/37151843645), del repositorio anterior, completó las validaciones de esa revisión. Las comprobaciones actuales se consultan en [Actions de pos-platform](https://github.com/floxcristian/pos-platform/actions). El instalador se puede regenerar con `npm run desktop:build`.
 
 ## Escritorio
 
@@ -100,7 +154,7 @@ Necesita Rust, MSVC/Windows SDK y WebView2. Consulta [preparación de Tauri](doc
 
 ## De maqueta a producto
 
-Esta entrega permite validar la UX y las reglas mock; **no es una caja certificada ni lista para operar en producción**. El adaptador local del navegador no sustituye una base transaccional de escritorio, autenticación corporativa, permisos verificados por servidor, conciliación bancaria ni homologación fiscal. Esas fronteras y el diseño para evolucionarlas se describen en [arquitectura](docs/architecture.md), [seguridad](docs/security.md) y [contratos mock](docs/mock-api.md).
+Esta entrega permite validar la UX y las reglas mock; **no es una caja certificada ni lista para operar en producción**. El adaptador local del navegador y la base HTTP no sustituyen la persistencia transaccional de sucursal, autenticación corporativa, permisos verificados por servidor, conciliación bancaria ni homologación fiscal. Esas fronteras y el diseño para evolucionarlas se describen en [arquitectura](docs/architecture.md), [seguridad](docs/security.md), [base de API](docs/api.md) y [contratos mock](docs/mock-api.md).
 
 La cobertura de Chile y las referencias revisadas están en [inventario de la caja actual](docs/audit-chile-for-product.md). Ese inventario distingue la funcionalidad de referencia, la simulación y lo que necesita integración real.
 

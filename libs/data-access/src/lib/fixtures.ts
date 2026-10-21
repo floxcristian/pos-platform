@@ -1,4 +1,4 @@
-import { ModuleId, PosSnapshot, Product, SyncSchedule, calculateTotals } from '@corporate-pos/domain';
+import { ModuleId, PosSnapshot, Product, SyncSchedule, calculateTotals } from '@pos-platform/domain';
 import { DEMO_USER_NAMES } from './demo-user-names';
 
 const iso = (base: Date, days = 0, hours = 0): string =>

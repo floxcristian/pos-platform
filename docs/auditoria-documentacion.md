@@ -1,6 +1,6 @@
 # Auditoría de consistencia y organización documental
 
-Revisión editorial y técnica del **21 de octubre de 2026** sobre la guía Starlight de POS Platform, sus fuentes, catálogos, diagramas y recorridos vinculados. El punto de partida publicado era el commit `61bdb60` del repositorio de documentación. Esta revisión no ejecuta el legacy ni acredita la arquitectura desplegada.
+Revisión editorial y técnica del **21 de octubre de 2026** sobre la guía Starlight de POS Platform, sus fuentes, catálogos, diagramas y recorridos vinculados. El punto de partida publicado era el commit `61bdb60`, anterior al traslado de la guía al monorepo del producto. Las ubicaciones y comandos de este informe se mantienen para su estructura actual. Esta revisión no ejecuta el legacy ni acredita la arquitectura desplegada.
 
 ## Resultado y alcance
 
@@ -12,7 +12,7 @@ Se revisaron la organización de todas las páginas y sus fuentes; se contrastar
 
 | Hallazgo | Consecuencia para el lector | Corrección en la fuente |
 | --- | --- | --- |
-| Tres árboles distintos del monorepo | Nombres de aplicaciones y ubicaciones de módulos incompatibles; un desarrollador podía empezar en una estructura equivocada. | Catálogo único de seis apps y 21 ubicaciones de bibliotecas. Documentación y dos vistas de presentación se generan desde él. Se contrasta opcionalmente con los proyectos del workspace. |
+| Tres árboles distintos del monorepo | Nombres de aplicaciones y ubicaciones de módulos incompatibles; un desarrollador podía empezar en una estructura equivocada. | Catálogo único de seis apps operativas, la aplicación documental y 21 ubicaciones de bibliotecas. La documentación se genera desde él; la presentación consume su snapshot versionado. Se contrasta opcionalmente con los proyectos del workspace. |
 | Scaffolding local confundible con producto publicado | Un árbol y un módulo podían interpretarse como funcionalidad implementada o disponible en GitHub. | Estado por aplicación, alcance de revisión local y separación de negocio pendiente, maqueta y base técnica. La narración de esa lámina se actualizó. |
 | Tauri figuraba como candidato en algunos documentos | La dirección de cliente parecía abierta en unas páginas y indicada en otras. | Dirección Angular + Tauri consistente; homologación y despliegue permanecen pendientes. |
 | «ACK» sin nombrar su frontera | Recepción de un paquete podía confundirse con aceptación central, aplicación comercial o contabilización ERP. | Contrato canónico por frontera: aceptación central tras transacción pactada; recepción de paquetes y activación separadas; resultado ERP independiente. |
@@ -31,7 +31,7 @@ Se revisaron la organización de todas las páginas y sus fuentes; se contrastar
 | Tema | Fuente canónica | Cómo se mantienen las otras vistas |
 | --- | --- | --- |
 | Producto, autoridad de datos y contratos de comportamiento | [Propuesta y decisiones](propuesta-arquitectura.md) | Starlight la divide sin perder ni duplicar líneas. C4 y simulaciones sintetizan los contratos y requieren revisión semántica cuando cambian. |
-| Apps y ubicaciones del monorepo | `apps/pos-docs/src/data/monorepo-catalog.json` | `tools/sync-monorepo-catalog.mjs` genera los árboles y tabla de apps; `--check` detecta deriva. [Estructura y estado](opciones-tecnologicas.md#5-monorepo-con-nx). |
+| Apps y ubicaciones del monorepo | `apps/pos-docs/src/data/monorepo-catalog.json` | `apps/pos-docs/scripts/sync-monorepo-catalog.mjs` genera los árboles y tabla de apps; `--check` detecta deriva. [Estructura y estado](opciones-tecnologicas.md#5-monorepo-con-nx). |
 | Rutas y configuración de Mountain | `legacy-endpoints.json` y `legacy-configuration.json`, en `apps/pos-docs/src/data/` | Componentes de Starlight generan grupos, conteos y referencias. Cada entrada conserva el snapshot y evidencia de código. |
 | Evidencia del sistema actual | [Informes por repositorio](analisis-repositorios/README.md) | Catálogos y resúmenes conservan sus límites. Un commit revisado no se convierte en versión productiva confirmada. |
 | Orden, rutas y estado de páginas | `apps/pos-docs/content-map.mjs` | Navegación, recorrido principal y generación comparten el mapa; no se mantienen listas independientes de nombres de aplicaciones. |
@@ -41,9 +41,9 @@ Se revisaron la organización de todas las páginas y sus fuentes; se contrastar
 
 - `npm run docs:validate`: rutas sin duplicar, páginas alcanzables, alcance editorial, recorrido principal, catálogos y representaciones del monorepo.
 - `npm run docs:typecheck`: componentes, TypeScript y contenido de Astro.
-- `npm run build`: cobertura de fuentes, referencias, render de Starlight, scripts compatibles con CSP y medios verificados.
+- `npm run docs:build`: cobertura de fuentes, referencias, render de Starlight, scripts compatibles con CSP y medios verificados.
 - `npm run docs:check`: enlaces, anclas, encabezados, búsqueda, filtros, configuración, diagramas, recorridos y diseño a 1440, 768, 375 y 320 píxeles.
-- `node tools/sync-monorepo-catalog.mjs --check --workspace <checkout-pos-platform>`: contraste opcional contra proyectos reales; no ejecuta el producto.
+- `node apps/pos-docs/scripts/sync-monorepo-catalog.mjs --check --workspace .`: contraste contra los proyectos del monorepo desde su raíz; no ejecuta el producto.
 
 El workflow `Documentation quality` ejecuta los controles en pushes a `main` y pull requests. La compilación también rechaza referencias de fuente rotas y árboles divergentes. Las pruebas del navegador producen un informe y capturas; no detectan por sí solas todas las contradicciones de significado.
 
@@ -62,7 +62,7 @@ No se realizaron sesiones de comprensión con integrantes junior del equipo. La 
 | Operaciones permitidas sin WAN y vigencias de cotización | Producto, comercial, fiscalidad y pagos | Matriz aprobada por país y casos de vencimiento antes/después de iniciar pago. |
 | Recuperación, capacidad y objetivos de servicio | Operaciones, plataforma y DBA | Mediciones, restauración, fallos controlados y capacidad de proveedores. |
 | Versiones realmente instaladas y perfiles activos del legacy | Equipos de sucursal, integración y seguridad | Inventario productivo y contraste con los snapshots revisados. |
-| Publicación y evolución de la base de código POS | Ingeniería POS | Versionar la estructura que corresponda, implementar casos de uso y demostrar sus pruebas. Este repositorio de documentación no publica por sí solo el scaffolding de otro checkout. |
+| Evolución y despliegue de la base de código POS | Ingeniería POS | Implementar casos de uso y demostrar sus pruebas sobre la estructura versionada en este monorepo. Publicar la guía y el frontend estático no despliega las APIs ni los workers. |
 | Comprensión por el equipo destinatario | Responsable de documentación y referentes del equipo | Sesiones de lectura de la propuesta y registro de términos o recorridos todavía ambiguos. |
 
 Los [criterios del piloto](validacion-y-decisiones.md) y la [información pendiente](solicitud-informacion-equipo.md) conservan el detalle técnico y operativo. Esta auditoría no sustituye esas decisiones.

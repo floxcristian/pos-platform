@@ -1,4 +1,33 @@
-# Contratos visuales de PrimeNG
+# Reglas de código y contratos visuales
+
+`eslint.config.cjs` centraliza las reglas del workspace. `npm run lint` prepara el grafo real de Nx y falla ante errores o advertencias; no depende de una caché creada por otro comando.
+
+## Backend y librerías universales
+
+`tsconfig.eslint.backend.json` aporta información de tipos para las cuatro apps Node, `libs/backend`, `libs/platform/backend`, `contracts`, `shared-kernel` y `country-policies`, incluidos sus tests y configuración TypeScript. Un solo programa de lint evita cargar un proyecto completo por cada módulo. Sus comprobaciones incluyen:
+
+- Promesas sin gestionar, incluso precedidas de `void`, y callbacks async utilizados donde se espera `void`.
+- `await` aplicado a valores que no son promesas; retorno de promesas sin `await` cuando cambia el comportamiento de `try`/`catch`/`finally`.
+- Asignaciones, argumentos, llamadas, accesos y retornos inseguros provenientes de `any`; aserciones innecesarias y no nulas.
+- Excepciones y rechazos que no son objetos `Error`, switches incompletos sobre uniones y métodos separados de su receptor.
+
+La API fluida `FastifyReply` también es un thenable: `reply.header()` configura una cabecera y no debe esperarse con `await`, que esperaría a que termine la respuesta. Por eso `no-floating-promises` conserva la comprobación oficial de `Promise` sin extenderla a cualquier thenable. Las pruebas cubren esta diferencia.
+
+No se admiten directivas `eslint-disable` en estos proyectos: las excepciones deben ser cambios precisos en la configuración central y revisarse junto con una prueba. `noInlineConfig` mantiene activa la regla y la advertencia por intento de supresión también hace fallar el comando. `@ts-ignore` y `@ts-nocheck` están prohibidos; `@ts-expect-error` requiere una explicación de al menos diez caracteres.
+
+Los módulos reciben configuración validada por inyección. La lectura de `process.env` queda en configuración y entradas de proceso, con pruebas de entorno fuera del código de negocio. Los SDK de Sentry y la construcción de Pino pertenecen a `platform/backend`; los servicios pueden inyectar `PinoLogger` de `nestjs-pino`. Los límites Nx se siguen comprobando, incluidos imports dinámicos literales de paquetes.
+
+## Reglas compartidas y frontend
+
+Todo TypeScript conserva las comprobaciones sintácticas, sin `any` explícito, variables no utilizadas, `eval`, `Function` dinámico o `debugger`. La igualdad es estricta salvo la comprobación idiomática `value == null`. Los parámetros de callback que deben conservar su posición pueden usar prefijo `_`; las variables locales sin usar no quedan excluidas por ese prefijo.
+
+`console` está prohibido; únicamente `apps/pos-web/src/main.ts` permite `console.error` para un fallo previo al arranque de Angular. El frontend mantiene reglas Angular, plantillas, accesibilidad y límites Nx, pero esta entrega no le aplica el programa de lint con tipos del backend. Sus directivas de supresión sin uso son errores.
+
+`pos-code-quality.cjs` impide `.only` y `.skip` en archivos de test TS/MTS al identificar imports de Vitest, incluidos alias y namespace. No confunde campos ordinarios como `pagination.skip` con controles de ejecución de tests.
+
+`backend-quality.spec.ts` comprueba estas reglas mediante el ESLint real y archivos incluidos en el programa TypeScript. `architecture-boundaries.spec.ts` verifica dependencias prohibidas y composiciones permitidas. Ninguna suite reemplaza el compilador ni las pruebas del comportamiento de la aplicación.
+
+## Contratos visuales de PrimeNG
 
 `pos-ui-contracts.cjs` conserva las recetas de botones y ayudas compartidas. Analiza templates Angular, incluidos los templates inline mediante el procesador ya configurado.
 
@@ -17,7 +46,7 @@ La regla de tooltips también cubre botones HTML nativos. Identifica el atributo
 <button posTooltip aria-label="Cerrar"><i class="pos-icon pos-icon-x" aria-hidden="true"></i></button>
 ```
 
-Importar `PosTooltipDirective` desde `@corporate-pos/ui` en el componente consumidor. El valor vacío reutiliza `ariaLabel`/`aria-label`, incluidas las etiquetas dinámicas; no duplicar el texto en un atributo nativo `title`. ESLint comprueba la presencia declarada de la directiva, no su comportamiento ejecutado ni el contenido final de la etiqueta. Hover, foco, Escape, clic y limpieza de overlays se comprueban en los recorridos de navegador.
+Importar `PosTooltipDirective` desde `@pos-platform/ui` en el componente consumidor. El valor vacío reutiliza `ariaLabel`/`aria-label`, incluidas las etiquetas dinámicas; no duplicar el texto en un atributo nativo `title`. ESLint comprueba la presencia declarada de la directiva, no su comportamiento ejecutado ni el contenido final de la etiqueta. Hover, foco, Escape, clic y limpieza de overlays se comprueban en los recorridos de navegador.
 
 Las pruebas forman parte de `npm test`. Para ejecutar solo este contrato:
 

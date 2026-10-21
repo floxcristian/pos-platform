@@ -8,7 +8,7 @@ import {
 import { provideRouter, withHashLocation, withComponentInputBinding } from '@angular/router';
 import { PrimeNG, providePrimeNG } from 'primeng/config';
 import { MessageService, ConfirmationService } from 'primeng/api';
-import { AppPreset, PRIMENG_OPTIONS, createTooltipPassThrough } from '@corporate-pos/ui';
+import { AppPreset, PRIMENG_OPTIONS, createTooltipPassThrough } from '@pos-platform/ui';
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {

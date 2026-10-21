@@ -1,0 +1,23 @@
+{
+  "name": "backend-returns",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/backend/returns/src",
+  "tags": ["type:backend-module", "env:server", "scope:returns"],
+  "targets": {
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "eslint libs/backend/returns --max-warnings 0"
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "inputs": ["default", "^production"],
+      "options": {
+        "command": "tsc -p libs/backend/returns/tsconfig.lib.json --noEmit"
+      }
+    }
+  }
+}

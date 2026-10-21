@@ -27,7 +27,7 @@ npm --prefix apps/pos-docs run check
 npm --prefix apps/pos-docs run preview
 ```
 
-Nx registra `pos-docs` con tags documentales y entradas de caché que incluyen las fuentes de `docs/`. No importa bibliotecas del producto ni forma parte de los procesos de caja, sucursal o país. La revisión publicada incluye web, escritorio y documentación; el catálogo describe además cuatro procesos backend observados en scaffolding local pendiente de integración. Las seis aplicaciones operativas pertenecen a la estructura objetivo y no acreditan seis servicios disponibles en esta revisión.
+Nx registra `pos-docs` con tags documentales y entradas de caché que incluyen las fuentes de `docs/`. No importa bibliotecas del producto ni forma parte de los procesos de caja, sucursal o país. El monorepo incluye web, escritorio, cuatro entradas backend y esta aplicación documental. El catálogo distingue la demostración frontend, la base HTTP y los esqueletos de workers; seis entradas operativas no acreditan seis servicios productivos ni sus integraciones.
 
 <span id="fuente-de-cada-contenido"></span>
 <span id="diagramas-e-interacción"></span>

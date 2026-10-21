@@ -8,9 +8,9 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { InputTextModule } from 'primeng/inputtext';
 import { DialogModule } from 'primeng/dialog';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
-import { PosStore } from '@corporate-pos/data-access';
-import { PosUser, Role, ROLE_LABELS, ROLE_PERMISSIONS, Permission } from '@corporate-pos/domain';
-import { PageHeaderComponent, StatusTagComponent } from '@corporate-pos/ui';
+import { PosStore } from '@pos-platform/data-access';
+import { PosUser, Role, ROLE_LABELS, ROLE_PERMISSIONS, Permission } from '@pos-platform/domain';
+import { PageHeaderComponent, StatusTagComponent } from '@pos-platform/ui';
 import { FeedbackService } from './feedback.service';
 
 @Component({

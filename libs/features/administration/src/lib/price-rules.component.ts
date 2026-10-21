@@ -7,9 +7,9 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
 import { DialogModule } from 'primeng/dialog';
-import { PosStore } from '@corporate-pos/data-access';
-import type { PriceRule } from '@corporate-pos/domain';
-import { EmptyStateComponent, StatusTagComponent, money } from '@corporate-pos/ui';
+import { PosStore } from '@pos-platform/data-access';
+import type { PriceRule } from '@pos-platform/domain';
+import { EmptyStateComponent, StatusTagComponent, money } from '@pos-platform/ui';
 import { FeedbackService } from './feedback.service';
 
 @Component({

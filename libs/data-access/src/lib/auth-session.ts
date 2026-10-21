@@ -1,4 +1,4 @@
-import { Result, failure, success } from '@corporate-pos/domain';
+import { Result, failure, success } from '@pos-platform/domain';
 import { StorageAdapter } from './persistence';
 
 /** Public credentials for the local demonstration; this is not a production authentication adapter. */

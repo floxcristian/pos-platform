@@ -7,8 +7,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { SelectModule } from 'primeng/select';
 import { DialogModule } from 'primeng/dialog';
 import { MessageModule } from 'primeng/message';
-import { PosStore } from '@corporate-pos/data-access';
-import { CashMovement, chileCivilDate } from '@corporate-pos/domain';
+import { PosStore } from '@pos-platform/data-access';
+import { CashMovement, chileCivilDate } from '@pos-platform/domain';
 import {
   PosTooltipDirective,
   CivilDateTimeComponent,
@@ -21,7 +21,7 @@ import {
   date,
   dateTime,
   downloadCsv,
-} from '@corporate-pos/ui';
+} from '@pos-platform/ui';
 
 @Component({
   selector: 'pos-cash-session',

@@ -1,7 +1,7 @@
 import '@angular/compiler';
 import { Injector, runInInjectionContext } from '@angular/core';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { CheckoutInput, PosSnapshot, success } from '@corporate-pos/domain';
+import { CheckoutInput, PosSnapshot, success } from '@pos-platform/domain';
 import { createFixtures } from './fixtures';
 import { POS_AUTH_SESSION, POS_REPOSITORY, POS_SIMULATION, SimulationPort } from './ports';
 import { AuthSession, AuthSessionRepository, DEMO_PASSWORD } from './auth-session';

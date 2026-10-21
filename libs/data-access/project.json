@@ -2,5 +2,5 @@
   "name": "data-access",
   "sourceRoot": "libs/data-access/src",
   "projectType": "library",
-  "tags": ["scope:shared", "type:data-access"]
+  "tags": ["scope:shared", "type:data-access", "env:browser"]
 }

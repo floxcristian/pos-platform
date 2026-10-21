@@ -16,7 +16,7 @@ import { SelectModule } from 'primeng/select';
 import { DialogModule } from 'primeng/dialog';
 import { DrawerModule } from 'primeng/drawer';
 import { MessageModule } from 'primeng/message';
-import { PosStore } from '@corporate-pos/data-access';
+import { PosStore } from '@pos-platform/data-access';
 import {
   CartLine,
   DocumentType,
@@ -27,7 +27,7 @@ import {
   PAYMENT_LABELS,
   roundCash,
   chileCivilDate,
-} from '@corporate-pos/domain';
+} from '@pos-platform/domain';
 import {
   PosTooltipDirective,
   CivilDateTimeComponent,
@@ -38,7 +38,7 @@ import {
   money,
   date,
   dateTime,
-} from '@corporate-pos/ui';
+} from '@pos-platform/ui';
 
 @Component({
   selector: 'pos-checkout',

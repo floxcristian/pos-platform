@@ -24,7 +24,7 @@ import {
   success,
   toLocalDate,
   validMoney,
-} from '@corporate-pos/domain';
+} from '@pos-platform/domain';
 
 export interface TransactionContext {
   now: string;

@@ -1,0 +1,50 @@
+{
+  "name": "pos-runtime",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/pos-runtime/src",
+  "tags": ["type:backend", "env:server", "scope:branch"],
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "inputs": ["production", "^production", "{workspaceRoot}/tools/backend/**/*"],
+      "outputs": ["{workspaceRoot}/dist/apps/pos-runtime"],
+      "options": {
+        "command": "rspack build",
+        "cwd": "apps/pos-runtime"
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "continuous": true,
+      "options": {
+        "buildTarget": "pos-runtime:build",
+        "watch": true,
+        "inspect": false
+      }
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "eslint apps/pos-runtime --max-warnings 0"
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "inputs": ["default", "^production", "{workspaceRoot}/tools/backend/**/*"],
+      "options": {
+        "command": "tsc -p apps/pos-runtime/tsconfig.spec.json --noEmit"
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "inputs": ["default", "^production", "{workspaceRoot}/tools/backend/**/*"],
+      "options": {
+        "command": "vitest run --config apps/pos-runtime/vitest.config.mts"
+      }
+    }
+  }
+}

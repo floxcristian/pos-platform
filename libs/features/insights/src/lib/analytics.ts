@@ -1,6 +1,6 @@
-import type { Sale, Branch } from '@corporate-pos/domain';
-import { addCalendarDays, chileCivilDate } from '@corporate-pos/domain';
-export { PAYMENT_LABELS } from '@corporate-pos/domain';
+import type { Sale, Branch } from '@pos-platform/domain';
+import { addCalendarDays, chileCivilDate } from '@pos-platform/domain';
+export { PAYMENT_LABELS } from '@pos-platform/domain';
 
 export function localDate(value: string | Date): string {
   return chileCivilDate(value);

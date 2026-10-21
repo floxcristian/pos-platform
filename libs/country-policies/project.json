@@ -1,0 +1,23 @@
+{
+  "name": "country-policies",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/country-policies/src",
+  "tags": ["type:policy", "env:universal", "scope:shared"],
+  "targets": {
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "eslint libs/country-policies --max-warnings 0"
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "inputs": ["default", "^production"],
+      "options": {
+        "command": "tsc -p libs/country-policies/tsconfig.lib.json --noEmit"
+      }
+    }
+  }
+}

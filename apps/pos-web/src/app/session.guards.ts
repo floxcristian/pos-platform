@@ -1,6 +1,6 @@
 import { inject } from '@angular/core';
 import { CanActivateChildFn, CanMatchFn, Router, UrlTree } from '@angular/router';
-import { PosStore } from '@corporate-pos/data-access';
+import { PosStore } from '@pos-platform/data-access';
 
 function requireSession(returnUrl: string): true | UrlTree {
   return (
