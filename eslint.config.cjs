@@ -28,7 +28,7 @@ module.exports = tseslint.config(
       '.nx/**',
       'coverage/**',
       '**/target/**',
-      'apps/pos-docs/.astro/**',
+      '**/.astro/**',
       'apps/pos-mobile/android/**',
       'apps/pos-mobile/ios/**',
     ],
@@ -210,7 +210,6 @@ module.exports = tseslint.config(
           enforceBuildableLibDependency: false,
           allow: [],
           depConstraints: [
-            { sourceTag: 'type:docs', onlyDependOnLibsWithTags: [] },
             {
               sourceTag: 'env:browser',
               onlyDependOnLibsWithTags: ['env:browser', 'env:universal'],

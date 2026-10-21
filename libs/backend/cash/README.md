@@ -16,4 +16,4 @@ Consumir únicamente la entrada pública `@pos-platform/cash`. La app compone m�
 
 Crear dentro de `src/lib` las carpetas que ese caso necesite: `domain` para invariantes puras, `application` para coordinación y puertos, `infrastructure` para persistencia/adaptadores y `api` para transporte. No generar capas vacías por defecto. Las migraciones pertenecen al contexto y se incorporan junto con persistencia real.
 
-Mountain/CajasUsuarioController y reportes de custodia. Véase [trazabilidad y mapa del monorepo](../../../docs/monorepo.md).
+Mountain/CajasUsuarioController y reportes de custodia. Véase [trazabilidad y mapa del monorepo](https://github.com/developer-implementos/pos-docs/blob/main/docs/monorepo.md).

@@ -16,4 +16,4 @@ Consumir únicamente la entrada pública `@pos-platform/sales`. La app compone m
 
 Crear dentro de `src/lib` las carpetas que ese caso necesite: `domain` para invariantes puras, `application` para coordinación y puertos, `infrastructure` para persistencia/adaptadores y `api` para transporte. No generar capas vacías por defecto. Las migraciones pertenecen al contexto y se incorporan junto con persistencia real.
 
-Recuperación de OV y confirmación de venta en Mountain/PuntoDeVentaController. Véase [trazabilidad y mapa del monorepo](../../../docs/monorepo.md).
+Recuperación de OV y confirmación de venta en Mountain/PuntoDeVentaController. Véase [trazabilidad y mapa del monorepo](https://github.com/developer-implementos/pos-docs/blob/main/docs/monorepo.md).

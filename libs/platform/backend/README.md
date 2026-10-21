@@ -20,4 +20,4 @@ Los contratos de intercambio pertenecen a `@pos-platform/contracts` y los tipos 
 
 Las aplicaciones empaquetan esta librería fuente mediante Rspack/SWC y el plugin oficial de Nx; no se publica como un paquete independiente. TSC comprueba tipos y Vitest/SWC prueba el comportamiento. `npm run backend:check`, `npm run structure:check` y `npm run backend:smoke` verifican el conjunto y sus artefactos aislados.
 
-Consultar [configuración y contratos HTTP](../../../docs/api.md) y [responsabilidades del monorepo](../../../docs/monorepo.md).
+Consultar [configuración y contratos HTTP](https://github.com/developer-implementos/pos-docs/blob/main/docs/api.md) y [responsabilidades del monorepo](https://github.com/developer-implementos/pos-docs/blob/main/docs/monorepo.md).

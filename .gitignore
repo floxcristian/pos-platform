@@ -18,12 +18,3 @@ target/
 .vscode/*
 !.vscode/extensions.json
 *.local
-
-# Starlight generated content; authoritative sources are in docs/.
-/apps/pos-docs/.astro/
-/apps/pos-docs/src/content/docs/proposal/
-/apps/pos-docs/src/content/docs/architecture/
-/apps/pos-docs/src/content/docs/operations/
-/apps/pos-docs/src/content/docs/evidence/
-/apps/pos-docs/src/content/docs/reference/
-/apps/pos-docs/src/content/docs/implementation/

@@ -44,14 +44,7 @@
     "backend:check": "nx run-many -t lint typecheck test build -p tag:env:server tag:type:contract tag:type:kernel tag:type:policy --parallel=3",
     "backend:smoke": "npm run backend:build && node tools/verify-api-artifact.mjs --all",
     "structure:check": "vitest run tools/eslint/architecture-boundaries.spec.ts tools/eslint/backend-quality.spec.ts",
-    "graph": "nx graph",
-    "docs:install": "npm --prefix apps/pos-docs ci",
-    "docs:dev": "nx serve pos-docs",
-    "docs:build": "nx build pos-docs",
-    "docs:validate": "nx run pos-docs:validate",
-    "docs:typecheck": "nx run pos-docs:typecheck",
-    "docs:check": "nx run pos-docs:check",
-    "build:vercel": "npm run docs:build"
+    "graph": "nx graph"
   },
   "dependencies": {
     "@angular/animations": "21.2.25",
