@@ -1,6 +1,6 @@
 # Host de escritorio Tauri
 
-`apps/pos-desktop` prepara una aplicación Windows con Tauri 2 y reutiliza exactamente el frontend Angular de `apps/pos-web`. No hay una segunda interfaz ni servicios de caja duplicados. El instalador NSIS por usuario fue generado correctamente en CI.
+`apps/pos-desktop` contiene un arranque y build Angular propios, alojados en Tauri 2 para Windows. Comparte composición y funcionalidades con `pos-mobile` mediante `libs/client-shell`, sin depender de otra aplicación. La [decisión de clientes nativos](decisions/native-clients.md) delimita ambos clientes. El resultado histórico de un instalador no acredita el nuevo artefacto hasta comprobar su build y ejecución.
 
 ## Prerrequisitos Windows
 
@@ -21,9 +21,9 @@ npm run desktop:dev
 npm run desktop:build
 ```
 
-`desktop:dev` inicia el frontend en `http://127.0.0.1:4300` antes de abrir la ventana nativa. No inicies otro servidor en ese mismo puerto. Para trabajar solo con la web, usa `npm start`.
+`desktop:dev` inicia el frontend en `http://127.0.0.1:4300` antes de abrir la ventana nativa. No inicies otro servidor en ese mismo puerto. Para desarrollar la interfaz de escritorio en navegador, usa `npm start`; ese servidor no es una aplicación web independiente.
 
-`desktop:build` ejecuta el build Angular e incorpora `dist/apps/pos-web/browser`. Los artefactos de Windows se generan en `apps/pos-desktop/src-tauri/target/release/bundle/nsis`.
+`desktop:build` ejecuta el build Angular e incorpora `dist/apps/pos-desktop/browser`. Los artefactos de Windows se generan en `apps/pos-desktop/src-tauri/target/release/bundle/nsis`.
 
 Nx ejecuta Tauri desde `apps/pos-desktop`. Los hooks `beforeDevCommand` y `beforeBuildCommand` declaran `cwd: "../../.."`: Tauri los ejecuta después de cambiar al directorio `src-tauri`, por lo que apuntan explícitamente a la raíz del workspace. `frontendDist` también se resuelve desde `src-tauri`. Ver [configuración de Tauri](https://v2.tauri.app/reference/config/#buildconfig) y su [implementación del build](https://github.com/tauri-apps/tauri/blob/dev/crates/tauri-cli/src/build.rs).
 
@@ -35,7 +35,7 @@ La ventana `main` tiene una capability explícita sin permisos nativos. No se re
 
 El almacenamiento de esta maqueta sigue siendo el adaptador local del frontend. El host no transforma localStorage en una base transaccional ni implementa un servicio de sincronización cuando la aplicación está cerrada. La impresión, terminal de pago, Orsan, fiscalidad, ERP y actualización siguen simulados.
 
-Antes de distribuir a sucursales faltan la persistencia de Edge, integración nativa con dispositivos probados, identidad real, firma de instaladores, manejo del cierre con operaciones pendientes y pruebas sobre los equipos objetivo. Un updater futuro debe validar firmas, usar un canal autenticado de distribución, controlar el despliegue gradual y definir recuperación. No hay endpoints de actualización ni claves privadas en este scaffold; la pantalla de actualizaciones es una simulación.
+Antes de distribuir a sucursales faltan la persistencia transaccional de sucursal, integración nativa con dispositivos probados, identidad real, firma de instaladores, manejo del cierre con operaciones pendientes y pruebas sobre los equipos objetivo. Un updater futuro debe validar firmas, usar un canal autenticado de distribución, controlar el despliegue gradual y definir recuperación. No hay endpoints de actualización ni claves privadas en este scaffold; la pantalla de actualizaciones es una simulación.
 
 ## Verificación y límite actual
 

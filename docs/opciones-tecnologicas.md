@@ -4,7 +4,7 @@ Registro iniciado el 1 de octubre de 2026, precisado el 5 de octubre de 2026. Co
 
 La evaluación de **WSO2, RabbitMQ, BullMQ, workers PostgreSQL y Pub/Sub** está en [Investigación de mensajería](investigacion-mensajeria-pos.md). Incluye el backend PostgreSQL documentado actualmente por BullMQ, sin asumir que sea tan probado como Redis ni que comparta automáticamente la transacción de venta. La [revisión corporativa](revision-arquitectura-corporativa.md) reúne selección provisional, simplificación de motores, horario y condiciones de retirada. Estas decisiones son independientes de NestJS/Fastify o del monorepo.
 
-La [revisión posterior de la plataforma corporativa](analisis-repositorios/aportes-plataforma-corporativa.md) encontró Nx, NestJS/Fastify, Pino y Sentry implementados en `core`, con módulos y workers. Por tanto, TEC-01/02/04/05 tienen un precedente interno que debe aprovecharse. Su reutilización requiere límites claros y adaptación offline; Tauri y la entrega de una flota de cajas no quedan resueltos por ese precedente. Los tres informes incorporan commits y evidencias sin certificar despliegues.
+La [revisión de la plataforma corporativa](analisis-repositorios/aportes-plataforma-corporativa.md) encontró precedentes de Nx, NestJS/Fastify, Pino y Sentry en Core. **Decisión vigente del 21 de octubre de 2026:** ese código es referencia de organización y convenciones; el POS no consume sus bibliotecas ni servicios. La estructura propia con `shared/` está acordada y su migración física sigue pendiente.
 
 La evaluación de **servicios de IA** está en [Propuestas de IA para el POS](servicios-ia-pos.md). Compara tareas y alternativas convencionales antes de seleccionar generación de texto, búsqueda semántica, OCR o modelos de anomalías. Los proveedores y runtimes son candidatos; se conservan contratos propios, autonomía del núcleo, autorización de datos y alternativas offline. Incorporar IA no obliga a otro motor de base ni a un modelo por caja.
 
@@ -175,52 +175,73 @@ Nx tiene integraciones para Angular y NestJS. Para Rust/Tauri y otros componente
 
 ### Organización ilustrativa
 
-La estructura usa los nombres del workspace revisado. `apps/` contiene puntos de arranque; `libs/` contiene código que las aplicaciones componen. Un **contexto de negocio** agrupa las reglas, interfaces y datos de una capacidad, como ventas o caja. No es una aplicación adicional ni un servicio de red por defecto. Los árboles de la documentación y de ambas presentaciones se generan desde un mismo catálogo para conservar esos nombres.
+**Estructura objetivo acordada el 21 de octubre de 2026.** `apps/` reúne puntos de entrada operativos, documentación y proyectos de pruebas clasificados por separado. `libs/backend/` conserva los contextos de negocio; `libs/shared/` agrupa infraestructura técnica, presentación y conceptos mínimos compartidos. Core sirve únicamente como referencia, sin consumo de código, paquetes o servicios.
 
-<!-- monorepo:full:start -->
+<!-- monorepo:target:start -->
 ```text
 apps/
-  pos-web/                # Interfaz Angular de caja y administración
-  pos-desktop/            # Contenedor Tauri de la interfaz compilada de pos-web
-  pos-runtime/            # API y composición de negocio de sucursal
-  pos-sync-worker/        # Proceso de entrega y recepción de sucursal
-  country-api/            # API de recepción y capacidades de país
-  erp-worker/             # Proceso de integración, traducción y conciliación ERP
-  pos-docs/               # Documentación estática; fuera del runtime POS
+  pos-desktop/                  # [conservado] Cliente Angular con arranque propio y host Tauri
+  pos-mobile/                   # [conservado] Cliente Angular con arranque propio y host Capacitor
+  pos-runtime/                  # [conservado] API y composición de negocio de sucursal
+  pos-sync-worker/              # [conservado] Proceso de entrega y recepción de sucursal
+  country-api/                  # [conservado] API de recepción y capacidades de país
+  erp-worker/                   # [conservado] Proceso de integración, traducción y conciliación ERP
+  pos-clients-e2e/              # [mover] Pruebas de la UI; proyecto Nx de pruebas, sin despliegue
+    mobile/                     # [mover] Suite Angular móvil; no prueba el host Capacitor
+  pos-docs/                     # [conservado] Documentación Starlight; fuera del runtime POS
 libs/
-  backend/sales/          # Ventas y documentos comerciales
-  backend/cash/           # Turnos y movimientos de caja
-  backend/payments/       # Intentos, resultados y conciliación de pagos
-  backend/collections/    # Cobranzas y anticipos
-  backend/returns/        # Devoluciones y referencias al documento original
-  backend/pricing/        # Evaluación y versiones de precios y promociones
-  backend/catalog/        # Maestros y proyecciones de consulta
-  backend/fiscal/         # Documentos y estados fiscales por país/proveedor
-  backend/devices/        # Contratos y coordinación de periféricos
-  backend/sync/           # Protocolo y progreso de sincronización
-  backend/erp/            # Contratos, ACL y adaptadores ERP
-  backend/reporting/      # Consultas y proyecciones de reportes
-  backend/administration/ # Configuración y ámbito organizacional
-  contracts/              # Contratos versionados entre aplicaciones
-  shared-kernel/          # Primitivas puras comunes: identidad, dinero y moneda
-  country-policies/       # Perfiles y contratos de políticas nacionales
-  platform/backend/       # Arranque, configuración, HTTP, logging y errores
-  domain/                 # Reglas puras del prototipo frontend existente
-  data-access/            # Estado y adaptadores mock del frontend
-  ui/                     # Componentes y tokens visuales compartidos
-  features/               # Pantallas de acceso, caja, análisis y administración
+  backend/
+    sales/                      # [conservado] Ventas y documentos comerciales; scaffold comercial
+    cash/                       # [conservado] Turnos y movimientos de caja; scaffold comercial
+    payments/                   # [conservado] Intentos, resultados y conciliación de pagos; scaffold comercial
+    collections/                # [conservado] Cobranzas y anticipos; scaffold comercial
+    returns/                    # [conservado] Devoluciones y referencias al documento original; scaffold comercial
+    pricing/                    # [conservado] Evaluación y versiones de precios y promociones; scaffold comercial
+    catalog/                    # [conservado] Maestros y proyecciones de consulta; scaffold comercial
+    fiscal/                     # [conservado] Documentos y estados fiscales por país/proveedor; scaffold comercial
+    devices/                    # [conservado] Contratos y coordinación de periféricos; scaffold comercial
+    sync/                       # [conservado] Protocolo y progreso de sincronización; scaffold comercial
+    erp/                        # [conservado] Contratos, ACL y adaptadores ERP; scaffold comercial
+    reporting/                  # [conservado] Consultas y proyecciones de reportes; scaffold comercial
+    administration/             # [conservado] Configuración y ámbito organizacional; scaffold comercial
+  client-shell/                 # [conservado] Composición Angular compartida; no es una aplicación desplegable
+  features/                     # [conservado] Funcionalidades de la interfaz
+  shared/
+    backend/                    # [mover] Base técnica del servidor; división de proyectos por definir
+      bootstrap/                # [mover] Creación, arranque y cierre
+      config/                   # [mover] Configuración validada e inyectable
+      http/                     # [mover] Adaptación HTTP, errores y contrato técnico
+      observability/            # [mover] Pino, correlación y Sentry opcional
+      health/                   # [mover] Sondas del proceso y disponibilidad comprobada
+      worker/                   # [mover] Ciclo de vida de procesos de trabajo
+    frontend/
+      ui/                       # [mover] Preset, tokens y componentes de presentación
+    kernel/                     # [mover] Modelo mínimo acordado entre contextos; sin frameworks
+    contracts/                  # [mover] Sobres y metadatos técnicos comunes; no todos los DTO de negocio
+    testing/                    # [por incorporar] Soporte técnico extraído cuando existan consumidores comunes
+  country-policies/             # [transitorio] Perfiles puros actuales; reglas específicas bajo su contexto
+  domain/                       # [transitorio] Reglas del prototipo; revisar propiedad antes de migrar
+  data-access/                  # [transitorio] Adaptadores mock; revisar por funcionalidad, sin mover en bloque a shared
+tools/                          # [conservado] Herramientas de build, lint, pruebas y diagramas
+docs/                           # [conservado] Fuentes canónicas de Starlight
+.github/
+  workflows/                    # [conservado] Validaciones y entrega
 ```
-<!-- monorepo:full:end -->
+<!-- monorepo:target:end -->
 
-`libs/domain` conserva reglas del prototipo frontend; no representa todo el dominio del backend. Las nuevas capacidades comerciales se ubican por contexto en `libs/backend/`. `libs/platform/backend` reúne mecanismos técnicos; no contiene reglas de precio, caja ni fiscalidad. Un `CountryProfile` selecciona reglas y adaptadores soportados; no implementa por sí solo la legislación de otro país.
+El árbol expresa el destino. La migración física está pendiente y no cambia las seis aplicaciones operativas: `pos-docs` es documental y `pos-clients-e2e` será un proyecto de pruebas sin despliegue. La [guía del monorepo](monorepo.md#correspondencia-con-el-checkout-actual) muestra rutas actuales, correspondencia y reglas DDD.
+
+`shared` es una agrupación, no una biblioteca universal. `shared/backend` contiene mecanismos técnicos; `shared/kernel`, conceptos de dominio mínimos acordados; `shared/contracts`, sobres y metadatos comunes. Los eventos y DTO de negocio conservan propietario en su contexto. El dominio permanece independiente de Nest, Angular, ORM y transporte.
+
+`libs/domain` y `libs/data-access` siguen siendo piezas transitorias del prototipo; no se trasladan completas a `shared`. `country-policies` conserva inicialmente perfiles puros, mientras que las reglas nacionales concretas pertenecen a fiscalidad, pagos o al contexto correspondiente.
 
 ### Estado de las aplicaciones
 
 <!-- monorepo:applications:start -->
 | Aplicación | Lugar previsto | Responsabilidad | Estado revisado |
 | --- | --- | --- | --- |
-| `pos-web` | Puesto o navegador | Interfaz Angular de caja y administración | Demostración con datos y adaptadores mock |
-| `pos-desktop` | Puesto | Contenedor Tauri de la interfaz compilada de pos-web | Contenedor de demostración; periféricos reales pendientes |
+| `pos-desktop` | Puesto Windows | Cliente Angular con arranque propio y host Tauri | Cliente con adaptadores mock; integración nativa real pendiente |
+| `pos-mobile` | Dispositivo Android/iOS | Cliente Angular con arranque propio y host Capacitor | Base móvil con adaptadores mock; ejecución y distribución nativas por verificar |
 | `pos-runtime` | Sucursal | API y composición de negocio de sucursal | Base HTTP local; sin persistencia ni operaciones comerciales |
 | `pos-sync-worker` | Sucursal | Proceso de entrega y recepción de sucursal | Esqueleto local; sin jobs ni sincronización real |
 | `country-api` | País | API de recepción y capacidades de país | Base HTTP local; sin recepción de ventas ni consolidación |
@@ -230,7 +251,7 @@ libs/
 
 Los módulos de `libs/backend` tienen ubicación y composición inicial, pero sus casos de uso comerciales, repositorios, transacciones y adaptadores reales siguen pendientes. `contracts`, `shared-kernel` y `country-policies` contienen contratos iniciales que deben evolucionar con casos de uso y validación, no un protocolo productivo ya aprobado. La base técnica de Node incorpora configuración, logging con `nestjs-pino` y reporte opcional de errores a Sentry; su política exacta se mantiene junto al código del producto.
 
-Una aplicación `backoffice` separada, un publicador central adicional o un puente nativo de periféricos requieren justificar su proceso y sus contratos. No se incluyen entre las seis aplicaciones operativas existentes. `pos-docs` es una aplicación documental adicional. La administración de demostración vive actualmente en `pos-web`.
+Una aplicación `backoffice` separada, un publicador central adicional o un puente nativo de periféricos requieren justificar su proceso y sus contratos. No se incluyen entre las seis aplicaciones operativas existentes. `pos-docs` es una aplicación documental adicional. La administración de demostración se compone desde `client-shell` y sus features.
 
 ### Correspondencia del legacy con POS Platform
 
@@ -238,7 +259,7 @@ La migración se organiza por responsabilidad y recorrido. Copiar un repositorio
 
 | Pieza actual | Destino del trabajo | Separación que debe comprobarse |
 | --- | --- | --- |
-| `mountain-implementos/frontend` | `pos-web`, contenedor `pos-desktop` y `libs/features`, `ui`, `data-access` | Migrar pantallas y sustituir adaptadores mock por contratos autorizados; no copiar secretos ni reglas de servidor al navegador. |
+| `mountain-implementos/frontend` | `pos-desktop`, `pos-mobile`, `client-shell`, `features` y UI transversal en `shared/frontend/ui`; `data-access` transitorio | Migrar pantallas y sustituir adaptadores mock por contratos autorizados; no copiar secretos ni reglas de servidor al navegador. |
 | `mountain-implementos/backend` | `pos-runtime` + contextos `libs/backend/{sales,cash,payments,collections,returns,pricing,catalog,fiscal,administration}` | El backend compone casos de uso y persistencia de sucursal; identidad, transacciones y autorización deben implementarse y probarse. |
 | `mountain-implementos/backend-concentrador` | Capacidades de consulta/monitor en `country-api`, `reporting`, `administration` y pantallas autorizadas | Es el backend del monitor; no equivale al motor de transporte del repositorio `mountain-concentrador`. |
 | `mountain-sync-sucursal` | `pos-sync-worker` + contexto `sync`, coordinado con `pricing` y `catalog` | El proceso entrega y recibe; los módulos propietarios validan cambios de negocio. Un worker no adquiere permiso para reescribir ventas. |
@@ -246,7 +267,8 @@ La migración se organiza por responsabilidad y recorrido. Copiar un repositorio
 | Adaptadores AX y APIs corporativas de `apis-implementos` | `erp-worker` + `erp`, y contratos del contexto correspondiente | Conservar o adaptar capacidades verificadas detrás de una ACL; no migrar todo el repositorio ni exponer tablas/identificadores de AX al dominio. |
 | `api-pagos-caja` | Revisar capacidades de `payments`, `collections` y `returns` | La API histórica agrega datos y estados de notas de crédito; su nombre no demuestra autorización bancaria. |
 | `api-impresion-caja` y otros agentes de dispositivos | `devices` y adaptador/puente homologado cuando el SDK lo exija | Conservar la diferencia entre comando aceptado, spooler y efecto físico; la implementación nativa puede permanecer fuera de Node. |
-| `core` y `devops-platform` | Base técnica en `platform/backend`, paquetes seleccionados y acciones de entrega versionadas | Reutilizar mecanismos compatibles; no copiar sus dominios ni introducir una llamada central obligatoria en cada venta. |
+| `core` | Referencia de organización para el código propio de `shared/backend` | No es origen de una migración de código, proveedor de paquetes ni servicio consumido por el POS. |
+| `devops-platform` | Antecedente de herramientas de entrega, sujeto a una decisión independiente | La organización del monorepo no adopta automáticamente acciones o infraestructura corporativa. |
 
 El [mapa de repositorios](mapa-repositorios-y-conexiones.md), los [informes con commits](analisis-repositorios/README.md) y el [inventario de reutilización corporativa](analisis-repositorios/aportes-plataforma-corporativa.md) sustentan este reparto. Es un destino propuesto, no una migración ya realizada.
 
@@ -254,7 +276,7 @@ El [mapa de repositorios](mapa-repositorios-y-conexiones.md), los [informes con 
 
 | Bloque arquitectónico | Proyecto o responsabilidad de código | Estado de la correspondencia |
 | --- | --- | --- |
-| Cliente Angular + Tauri | `pos-web` + `pos-desktop` | Dos proyectos construyen la experiencia del puesto; Tauri aloja el frontend compilado. |
+| Clientes Angular | `pos-desktop` con Tauri y `pos-mobile` con Capacitor | Arranques propios y composición compartida en `client-shell`; verificación nativa independiente. |
 | Backend de sucursal | `pos-runtime` + contextos backend | Un proceso compone varios módulos; no existe una app por tabla o módulo. |
 | Sincronizador de sucursal | `pos-sync-worker` + `sync` | El ciclo de vida del proceso es independiente de la ventana del cliente. |
 | API de país | `country-api` + contextos que necesite cada caso de uso | Recepción, autorización y persistencia son trabajo pendiente. |
@@ -269,7 +291,7 @@ Las vistas [C4](c4-arquitectura-propuesta.md) representan responsabilidades y to
 
 Ejemplo **propuesto**, pendiente de implementar en el backend: confirmar una venta en efectivo con una versión de precios válida y una modalidad fiscal permitida.
 
-1. `pos-web` recoge la confirmación del operador y envía un comando identificado a `pos-runtime`. Tauri aloja la interfaz; no escribe SQL ni decide otro importe.
+1. El cliente autorizado (`pos-desktop` o `pos-mobile`) recoge la confirmación del operador y envía un comando identificado a `pos-runtime`. Tauri o Capacitor aloja la interfaz; el cliente no escribe SQL ni decide otro importe.
 2. La entrada HTTP valida contrato e identidad. El caso de uso de `sales` comprueba ámbito, turno y condiciones comerciales mediante interfaces de los módulos propietarios.
 3. `pricing` aporta un resultado y una versión; `cash` controla su estado. El caso de uso coordina sus efectos locales por una unidad de trabajo: compartir una transacción no permite acceder libremente a tablas ajenas.
 4. Los adaptadores de persistencia escriben la venta, los cambios asociados, auditoría y outbox en **la misma transacción PostgreSQL**. Esa infraestructura aún no existe en el scaffold. No se llama al ERP dentro de la transacción.
@@ -329,7 +351,7 @@ Probar que una dependencia prohibida/circular falla en CI; que un cambio de cont
 
 ## 7. Información adicional para decidir
 
-Además de las preguntas siguientes, el [análisis corporativo](analisis-repositorios/aportes-plataforma-corporativa.md#7-información-nueva-para-pedir-al-equipo) solicita responsables de bibliotecas/contratos, relación del producto POS con `core`, autoridad de precios y ofertas, versiones de las acciones CI/CD y garantías reales de las ACL. La recomendación inicial es un monorepo del producto POS con paquetes corporativos versionados; ubicarlo dentro de `core` requiere acordar propiedad y releases independientes. No se propone copiar el repositorio completo ni compartir sus tablas como contrato.
+La relación con Core ya está decidida: es únicamente una referencia; el POS tendrá código, contratos, infraestructura y releases propios. La organización acordada se detalla en la [guía del monorepo](monorepo.md). Siguen pendientes responsables internos por contexto, autoridad de precios/ofertas y requisitos de entrega.
 
 Ampliar Q08–Q10 de la [solicitud al equipo](solicitud-informacion-equipo.md) con: versiones/SO y recursos mínimos de cajas; modelos, drivers y SDK de periféricos; administración de dispositivos y permisos de instalación; experiencia NestJS/Rust; política de telemetría; capacidad de distribuir paquetes y soporte de sucursales desconectadas.
 

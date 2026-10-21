@@ -1,5 +1,7 @@
 # Servicios de IA para el POS: asistencia con fuentes y decisiones controladas
 
+**Decisión posterior — 21 de octubre de 2026:** las referencias a capacidades de Core son antecedentes de comparación. El POS no consumirá su código, paquetes ni servicios; cualquier recomendación anterior de reutilizarlos queda sustituida por la [decisión de independencia](propuesta-arquitectura.md#independencia-del-pos-y-referencias-de-organización). Las alternativas tecnológicas de este documento requieren evaluación propia.
+
 Fecha: **1 de octubre de 2026**. Estado: **diseño propuesto para Chile, Perú y España; servicios, proveedores y pilotos sin aprobar**. Este documento complementa la [arquitectura POS](propuesta-arquitectura.md), sus [opciones tecnológicas](opciones-tecnologicas.md) y la [extensibilidad de proveedores](extensibilidad-proveedores-dispositivos.md).
 
 Se proponen **dos candidatos a piloto: ayuda sobre procedimientos y búsqueda asistida de catálogo**, condicionados a un problema operativo medido y a que mejoren la alternativa convencional con un coste y riesgo aceptables. Los demás casos forman una cartera priorizada, no un alcance obligatorio. La IA debe ahorrar búsquedas y preparación de información; no convertirse en autoridad financiera, fiscal o comercial.

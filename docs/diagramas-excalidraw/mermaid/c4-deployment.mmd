@@ -1,10 +1,13 @@
 flowchart TB
     accTitle: Complemento · Despliegue — Dónde corre cada pieza
     accDescr: Entorno objetivo de referencia: una tienda y una plataforma por país. No describe servidores o proveedores cloud ya contratados. Varias cajas comparten servidor y PostgreSQL de sucursal. Sin WAN puede continuar la operación autorizada; sin LAN o escritor, no se crea otra autoridad en cada puesto.
-    subgraph terminalNode["Puestos POS x N · Nodo<br/>Sistema operativo por inventariar"]
+    subgraph terminalNode["Puestos POS x N · Nodo<br/>Windows por homologar"]
         direction TB
-        client["Cliente de caja<br/>«Instancia de contenedor»<br/>Angular + Tauri<br/>Presenta caja y comandos del operador."]:::pos
+        client["Cliente de escritorio<br/>«Instancia de contenedor»<br/>Angular + Tauri<br/>Presenta caja y comandos del operador."]:::pos
         device["Puente de periféricos<br/>«Instancia de contenedor condicional»<br/>Proceso nativo según SDK<br/>Ejecuta capacidades del puesto."]:::pos
+    end
+    subgraph mobileNode["Dispositivos móviles · Nodo<br/>Android/iOS por homologar"]
+        mobileClient["Cliente móvil<br/>«Instancia de contenedor»<br/>Angular + Capacitor<br/>Presenta operaciones en Android/iOS."]:::pos
     end
     subgraph serverNode["Servidor de sucursal · Nodo<br/>Entorno de ejecución por homologar"]
         direction TB
@@ -25,6 +28,7 @@ flowchart TB
     backup["Respaldo y recuperación<br/>«Infraestructura»<br/>Backups PostgreSQL / herramienta por definir<br/>Conserva y ensaya restauraciones."]:::infra
     legend["Leyenda · notación C4<br/>Verde: POS · Azul/cilindro: datos<br/>Gris: externo · Persona: rol humano<br/>Borde discontinuo: límite indicado<br/>Flecha: propósito y protocolo<br/>Contenedor: aplicación o almacén<br/>Componente: módulo de UN proceso"]:::key
     client -->|"Comandos autenticados · HTTPS/LAN"| branchApi
+    mobileClient -->|"Comandos autenticados · HTTPS/LAN"| branchApi
     client -->|"Comando autorizado por backend · IPC/loopback por homologar"| device
     branchApi -->|"Negocio + outbox · SQL local"| branchDb
     syncWorker -->|"Pendientes, cursores y espejo · SQL local"| branchDb
@@ -47,5 +51,6 @@ flowchart TB
     classDef infra fill:#fbf1e2,stroke:#a86516,color:#17302d
     classDef key fill:#ffffff,stroke:#b9cbc3,color:#566762,font-size:14px
     style terminalNode fill:#ffffff,stroke:#b9cbc3,stroke-dasharray:6 4
+    style mobileNode fill:#ffffff,stroke:#b9cbc3,stroke-dasharray:6 4
     style serverNode fill:#ffffff,stroke:#b9cbc3,stroke-dasharray:6 4
     style countryNode fill:#ffffff,stroke:#b9cbc3,stroke-dasharray:6 4

@@ -1,8 +1,12 @@
 # Decisiones de arquitectura
 
+**Organización acordada:** la estructura objetivo agrupa lo transversal en `libs/shared/`. El código todavía conserva las rutas anteriores. La [guía del monorepo](monorepo.md#correspondencia-con-el-checkout-actual) distingue el destino y la migración pendiente; este documento conserva los detalles ejecutables actuales. Core es únicamente referencia de organización, sin dependencia de código, paquetes o servicios.
+
 ## 1. Monorepo Nx con límites de dependencia
 
-Un producto multipaís con seis aplicaciones operativas: `pos-web`, `pos-desktop`, `pos-runtime`, `pos-sync-worker`, `country-api` y `erp-worker`. Las apps componen librerías por responsabilidad; no equivalen a seis servicios ya desplegados. El mismo repositorio incluye `pos-docs`, la séptima aplicación, para la documentación Starlight. La [guía del monorepo](monorepo.md) detalla el scaffold, su propiedad de datos y la evidencia del legado que orienta las fronteras.
+Un producto multipaís con seis aplicaciones operativas: `pos-desktop`, `pos-mobile`, `pos-runtime`, `pos-sync-worker`, `country-api` y `erp-worker`. Las apps componen librerías por responsabilidad; no equivalen a seis servicios ya desplegados. El mismo repositorio incluye `pos-docs`, la séptima aplicación, para la documentación Starlight. La [guía del monorepo](monorepo.md) detalla el scaffold, su propiedad de datos y la evidencia del legado que orienta las fronteras.
+
+Los clientes de escritorio (Angular + Tauri) y móvil (Angular + Capacitor para Android/iOS) tienen entradas independientes. Comparten `client-shell`, que compone configuración, rutas y navegación, y `ui`, que concentra componentes, activos y estilos. La [decisión de clientes nativos](decisions/native-clients.md) fija sus límites; `pos-web` se elimina y Vercel publica sólo documentación.
 
 El frontend conserva `domain`, que no importa Angular, y `data-access`, que implementa las mutaciones mock. Las features no se importan entre sí; el shell compone sus rutas. `ui` contiene presentación y formatos, sin acceso a persistencia ni reglas de operación. El backend dispone de contextos en `libs/backend`, contratos y políticas puras en `contracts`, `shared-kernel` y `country-policies`, y reutiliza la infraestructura técnica de `platform/backend`. ESLint verifica las direcciones de importación y Nx conoce los proyectos.
 
@@ -10,13 +14,35 @@ Las aplicaciones Node se empaquetan con Rspack/SWC y el plugin oficial de Nx par
 
 No se copió el backend, autenticación, módulos sociales, marketing o integraciones de prime-showcase. La referencia aporta el sistema visual. Los formularios utilizan componentes PrimeNG nativos y las capacidades de Angular; no hay modificaciones a paquetes de terceros.
 
+### Organización compartida objetivo
+
+`shared/backend` agrupa mecanismos del servidor; `shared/frontend/ui`, presentación; `shared/kernel`, el modelo mínimo acordado; `shared/contracts`, sobres y metadatos comunes; `shared/testing`, soporte exclusivamente de pruebas. Los contratos de ventas, pagos o caja pertenecen a su contexto. No existe un barrel universal ni se centralizan entidades de negocio.
+
+El diagrama expresa **dependencias objetivo de código**. No representa nuevas conexiones de red ni reglas ya instaladas.
+
+```mermaid
+flowchart TB
+    Apps["Apps: composición"] --> Context["Contextos: API, aplicación y adaptadores"]
+    Context --> Domain["Dominio del contexto"]
+    Context --> Technical["shared/backend"]
+    Domain --> Kernel["shared/kernel"]
+    Context --> Contracts["shared/contracts y contratos públicos del contexto"]
+    Clients["pos-desktop / pos-mobile"] --> Shell["client-shell: composición"]
+    Shell --> Web["Features del frontend"]
+    Web --> UI["shared/frontend/ui"]
+    Web --> Contracts
+    Tests["Suites de pruebas"] --> Support["shared/testing"]
+```
+
+Las dependencias de servidor se limitan a adaptación/composición; el dominio permanece puro. La migración deberá actualizar reglas Nx/ESLint y pruebas negativas. `apps/pos-clients-e2e` será un proyecto de pruebas vinculado a ambos clientes Angular; no amplía las seis aplicaciones operativas.
+
 ## 2. Estado y puertos
 
 `PosStore` expone un snapshot signal de solo lectura y comandos que retornan `Result<T>`. Los fallos esperados se muestran como mensajes accionables. Las features nunca alteran las colecciones directamente. El reloj, la generación de identificadores y las esperas de simulación son sustituibles para probar casos deterministas.
 
 `POS_REPOSITORY` permite sustituir el adaptador local. El formato se valida al cargar y tiene una versión explícita. Cada mutación se construye sobre una copia; la aplicación solo anuncia éxito después de persistirla. El almacenamiento web es suficiente para una demostración, pero tiene límites de tamaño, concurrencia y seguridad. No tiene las garantías de una base de datos.
 
-La dirección de producto propone un backend de sucursal NestJS/Fastify compartido por las cajas y conectado a PostgreSQL de sucursal. Angular/Tauri consume su API, sin acceso SQL directo ni una base transaccional por terminal en el perfil de continuidad ante caída de WAN. La LAN y el servidor de sucursal siguen siendo dependencias de ese perfil. La sincronización duradera y el planificador pasarían a procesos supervisados que no dependan de la pestaña abierta. SQLite por terminal es una alternativa del perfil adicional sin LAN/servidor, pendiente de validación; no es la persistencia seleccionada por defecto. Esta dirección sigue la [propuesta de arquitectura](propuesta-arquitectura.md) y sus [opciones tecnológicas](opciones-tecnologicas.md).
+La dirección de producto propone un backend de sucursal NestJS/Fastify compartido por las cajas y conectado a PostgreSQL de sucursal. Ambos clientes Angular consumen su API, sin acceso SQL directo ni una base transaccional por terminal en el perfil de continuidad ante caída de WAN. La LAN y el servidor de sucursal siguen siendo dependencias de ese perfil. La sincronización duradera y el planificador pasarían a procesos supervisados que no dependan de la pestaña abierta. SQLite por terminal es una alternativa del perfil adicional sin LAN/servidor, pendiente de validación; no es la persistencia seleccionada por defecto. Esta dirección sigue la [propuesta de arquitectura](propuesta-arquitectura.md) y sus [opciones tecnológicas](opciones-tecnologicas.md).
 
 `apps/pos-runtime` incorpora la [base HTTP de ese backend](api.md): NestJS/Fastify, configuración y sondas de aplicación. Aún no tiene persistencia ni casos de uso de negocio, y no sustituye los adaptadores mock actuales del frontend. Instalar un framework no acredita las garantías transaccionales, de seguridad o continuidad de la propuesta.
 

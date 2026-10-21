@@ -12,12 +12,14 @@ flowchart TB
         fiscalPort["Fiscalidad y adaptadores<br/>«Componente»<br/>Puertos + TypeScript<br/>Aplica modalidad fiscal por país."]:::pos
         unitOfWork["Persistencia transaccional<br/>«Componente»<br/>Repositorios TypeScript / SQL<br/>Confirma negocio, auditoría y outbox."]:::pos
     end
-    client["Cliente de caja<br/>«Contenedor»<br/>Angular + Tauri<br/>Presenta caja y comandos del operador."]:::pos
+    mobileClient["Cliente móvil<br/>«Contenedor»<br/>Angular + Capacitor<br/>Presenta operaciones en Android/iOS."]:::pos
+    client["Cliente de escritorio<br/>«Contenedor»<br/>Angular + Tauri<br/>Presenta caja y comandos del operador."]:::pos
     branchDb[("Datos de sucursal<br/>«Contenedor de datos»<br/>PostgreSQL<br/>Guarda negocio, outbox y espejo local.")]:::store
     payments["Proveedor de pagos<br/>«Sistema externo»<br/>API / SDK según proveedor<br/>Autoriza o informa el resultado del pago."]:::external
     fiscal["Proveedor fiscal<br/>«Sistema externo»<br/>Contrato por país y modalidad<br/>Emite o transmite documentos fiscales."]:::external
     legend["Leyenda · notación C4<br/>Verde: POS · Azul/cilindro: datos<br/>Gris: externo · Persona: rol humano<br/>Borde discontinuo: límite indicado<br/>Flecha: propósito y protocolo<br/>Contenedor: aplicación o almacén<br/>Componente: módulo de UN proceso"]:::key
     client -->|"Comando con identidad estable · HTTPS/LAN"| entry
+    mobileClient -->|"Comando con identidad estable · HTTPS/LAN"| entry
     entry -->|"Comprueba permiso y contexto · llamada TypeScript"| access
     entry -->|"Ejecuta venta/devolución · llamada TypeScript"| sales
     entry -->|"Abre, mueve o cierra caja · llamada TypeScript"| cash

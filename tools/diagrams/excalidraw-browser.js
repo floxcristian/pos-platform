@@ -25,7 +25,7 @@ function header(skeleton,width,number,level,title,scope){
   skeleton.push(text('kicker',64,40,`POS CORPORATIVO  /  ${number}  /  ${level.toUpperCase()}`,19,width-128,C.primary));
   skeleton.push(text('title',64,85,title,44,width-128));
   skeleton.push(text('scope',64,152,scope,24,width-128,C.muted));
-  skeleton.push(text('status',64,230,'ARQUITECTURA PROPUESTA · 05 OCT 2026 · Chile / Perú / España · No representa una implementación homologada',19,width-128,C.muted));
+  skeleton.push(text('status',64,230,'ARQUITECTURA PROPUESTA · 21 OCT 2026 · Chile / Perú / España · No representa una implementación homologada',19,width-128,C.muted));
   const items=[['Persona',C.person],['Software POS',C.primary],['Almacén de datos',C.data],['Sistema externo',C.external],['Infraestructura / condición',C.infra]];
   let x=64;for(let i=0;i<items.length;i++){skeleton.push(box(`key-${i}`,x,290,18,18,items[i][1],items[i][1]));skeleton.push(text(`key-text-${i}`,x+28,285,items[i][0],20,310));x+=i===3?260:Math.max(190,ctx.measureText(items[i][0]).width+76);}
   skeleton.push(text('legend-desc',64,330,'Flecha: iniciador → destino; texto: propósito y protocolo. Borde discontinuo: límite nombrado. Todo el contenido es editable.',19,width-128,C.muted));
@@ -39,7 +39,7 @@ function cards(skeleton,items,x,y,width,cols=3){
 function footer(skeleton,width,y,sources){
   skeleton.push(text('footer',64,y,'C4: contenedor = aplicación o almacén; componente = módulo dentro de un proceso. Despliegue y dinámicas son vistas complementarias, no el nivel de código.',20,width-128,C.muted));
   skeleton.push(text('glossary',64,y+66,'LAN: red de tienda · WAN: enlace a país · ACK: acuse de aplicación durable · ACL: capa anticorrupción · outbox/inbox: registros de envío/recepción · watermark: corte consistente del origen',20,width-128,C.muted));
-  skeleton.push(text('sources',64,y+135,`FUENTES DEL REPOSITORIO\n${sources.join('  ·  ')}\nAngular + Tauri y Nx: dirección elegida. Backend, bases, integración y topología: diseño por implementar y validar. Nx organiza código y CI; no es un proceso runtime.`,18,width-128,C.muted));
+  skeleton.push(text('sources',64,y+135,`FUENTES DEL REPOSITORIO\n${sources.join('  ·  ')}\nAngular + Tauri (escritorio), Angular + Capacitor (móvil) y Nx: dirección elegida. Backend, bases, integración y topología: diseño por implementar y validar. Nx organiza código y CI; no es un proceso runtime.`,18,width-128,C.muted));
 }
 const decisionNotes={
   context:[{title:'Límites de autoridad',body:'Sucursal conserva la venta original. País consolida una proyección. Precio, efecto financiero del pago, documento fiscal y contabilización ERP tienen autoridades y estados diferentes.'},{title:'Continuidad autorizada',body:'Perfil inicial: caída de WAN con LAN, backend y PostgreSQL de sucursal disponibles. Vigencia de precios, permisos, límites y capacidades de pago/fiscalidad determinan qué puede continuar.'},{title:'Chile y evolución multinacional',body:'Antecedentes: Chile Dynamics AX on-premise; España Gira; Perú sistema custom. Interfaces por validar. No se asigna stock al POS ni se declara un ERP futuro ya aprobado.'}],
@@ -86,10 +86,15 @@ function nativeGraph(svgSource,view,model){
   if(view.id==='containers'){
     const a=shapes.get('countryWorker'),b=shapes.get('masters'),cx=b.x+b.width/2,y=a.y+a.height/2;
     route('countryWorker_masters',[[a.x,y],[cx,y],[cx,b.y]],(a.x+cx)/2-106,y-128);
+    // Reserve the gap between desktop and branch API for their shared contract.
+    // Adding a parallel mobile client must not place this label over the API box.
+    const desktop=shapes.get('client'),api=shapes.get('branchApi'),sx=desktop.x+desktop.width/2,sy=desktop.y+desktop.height,tx=api.x+api.width/2,lane=(sy+api.y)/2;
+    const label=labelSk.find(e=>e.id==='label-bg-client_branchApi');
+    route('client_branchApi',[[sx,sy],[sx,lane],[tx,lane],[tx,api.y]],(sx+tx-label.width+10)/2,lane-label.height-8);
   }
   if(view.id==='deployment'){
-    const a=shapes.get('client'),b=shapes.get('branchApi'),cx=b.x+b.width/2,y=a.y+a.height/2;
-    route('client_branchApi',[[a.x+a.width,y],[cx,y],[cx,b.y]],(a.x+a.width+cx)/2-68,y-100);
+    const a=shapes.get('client'),b=shapes.get('branchApi'),mobile=shapes.get('mobileClient'),cx=b.x+b.width/2,startY=a.y+a.height/2,bendX=a.x+a.width+40,laneY=(Math.max(a.y+a.height,mobile.y+mobile.height)+b.y)/2;
+    route('client_branchApi',[[a.x+a.width,startY],[bendX,startY],[bendX,laneY],[cx,laneY],[cx,b.y]],(bendX+cx)/2-68,laneY-100);
     const s=shapes.get('syncWorker'),p=shapes.get('countryApi'),lane=s.y+s.height+114,sx=s.x+s.width/2,px=p.x+p.width/2;
     route('syncWorker_countryApi',[[sx,s.y+s.height],[sx,lane],[px,lane],[px,p.y]],s.x-158,lane-102);
   }

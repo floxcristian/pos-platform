@@ -1,17 +1,18 @@
 # POS Platform
 
-Plataforma POS corporativa preparada para evolucionar a varios países: monorepo Nx con clientes web/escritorio, backend de sucursal, backend de país y workers. Incluye una demostración funcional de Chile con datos sintéticos y una base técnica NestJS/Fastify; las operaciones de negocio del backend y las integraciones están pendientes. Conserva el lenguaje visual de **prime-showcase** (PrimeNG, Aura corporativo, Inter, tablas y navegación).
+Plataforma POS corporativa preparada para evolucionar a varios países: monorepo Nx con clientes de escritorio y móvil, backend de sucursal, backend de país y workers. Incluye una demostración funcional de Chile con datos sintéticos y una base técnica NestJS/Fastify; las operaciones de negocio del backend y las integraciones están pendientes. Conserva el lenguaje visual de **prime-showcase** (PrimeNG, Aura corporativo, Inter, tablas y navegación).
 
 Producto y repositorio: [POS Platform](https://github.com/floxcristian/pos-platform). Los aliases internos usan `@pos-platform/*`. La [guía del monorepo](docs/monorepo.md) explica aplicaciones, propietarios de datos, estructura por contexto y compatibilidad del cambio de nombre.
 
 ## Repositorio del producto
 
-El frontend Angular con PrimeNG, el contenedor de escritorio, la base del backend y la documentación se mantienen juntos en este repositorio. `floxcristian/corporate-pos` conserva una versión anterior del frontend; el desarrollo vigente continúa en `floxcristian/pos-platform`.
+Los clientes Angular con PrimeNG para escritorio (Tauri) y móvil (Capacitor), la base del backend y la documentación se mantienen juntos en este repositorio. `floxcristian/corporate-pos` conserva una versión anterior del frontend; el desarrollo vigente continúa en `floxcristian/pos-platform`.
 
 | Ubicación | Responsabilidad y estado |
 | --- | --- |
-| `apps/pos-web` | Cliente Angular con PrimeNG y adaptadores mock |
-| `apps/pos-desktop` | Contenedor Tauri del mismo cliente |
+| `apps/pos-desktop` | Cliente Angular propio para escritorio, alojado en Tauri |
+| `apps/pos-mobile` | Cliente Angular propio para Android/iOS, alojado en Capacitor |
+| `libs/client-shell` | Composición Angular compartida: rutas, configuración y shell |
 | `apps/pos-runtime` | Base HTTP NestJS/Fastify de sucursal |
 | `apps/country-api` | Base HTTP de país |
 | `apps/pos-sync-worker`, `apps/erp-worker` | Composición de workers; procesamiento de jobs pendiente |
@@ -35,7 +36,9 @@ npm ci
 npm start
 ```
 
-Abre **http://127.0.0.1:4300**. La pantalla de acceso permite iniciar sesión con cuentas de demostración. Puedes completar el formulario desde **Accesos de demostración** o usar `admin@example.test` y la contraseña pública `Demo123!`. También están disponibles `supervisor@example.test`, `caja@example.test` y `auditor@example.test`, con la misma contraseña.
+Abre **http://127.0.0.1:4300** para desarrollar la interfaz del cliente de escritorio. Este servidor local no es una aplicación web independiente ni un despliegue público. `npm run desktop:dev` abre Tauri; `npm run mobile:start` sirve la interfaz móvil para desarrollo. La [decisión de clientes nativos](docs/decisions/native-clients.md) explica la separación y los límites.
+
+ La pantalla de acceso permite iniciar sesión con cuentas de demostración. Puedes completar el formulario desde **Accesos de demostración** o usar `admin@example.test` y la contraseña pública `Demo123!`. También están disponibles `supervisor@example.test`, `caja@example.test` y `auditor@example.test`, con la misma contraseña.
 
 Hay una caja abierta con datos de ejemplo. El menú de usuario permite cambiar el perfil de demostración, simular desconexión, cambiar el tema y **Cerrar sesión**. La sesión se conserva en la pestaña; **Mantener sesión en este equipo** permite restaurarla al volver a abrir el navegador. Cerrar sesión elimina ese acceso, sin cerrar el turno ni borrar la venta en curso. Para comenzar de nuevo con los datos de ejemplo: **Módulos y configuración → Demostración → Restablecer**.
 
@@ -67,11 +70,9 @@ El backend y las librerías puras tienen lint con información de tipos para det
 
 El frontend sigue usando sus adaptadores mock. Esta base de API aún no implementa autenticación, base de datos, operaciones de negocio ni sincronizadores; la sonda de readiness comprueba únicamente la aplicación. Consulta [configuración, contratos y despliegue de la API](docs/api.md).
 
-## Publicar el frontend y la documentación en Vercel
+## Publicar la documentación en Vercel
 
-El repositorio incluye `vercel.json` para compilar el frontend estático y la guía Starlight. Importa `floxcristian/pos-platform` en Vercel con **Root Directory en la raíz del repositorio**, Framework Preset **Other** y Node.js **24.x**. Los comandos y la carpeta de salida se leen del archivo. Publica el POS en `/` y la documentación en `/guide/`; las aplicaciones del backend tienen sus propios artefactos y despliegues. No requiere variables de entorno para la demostración.
-
-Consulta la [guía de despliegue](docs/vercel.md) con los valores exactos y los pasos de comprobación. El instalador de Windows se genera por separado con Tauri.
+`vercel.json` publica únicamente la guía Starlight en `/guide/` y redirige `/` hacia ella. Los clientes se distribuyen mediante sus artefactos nativos; sus bundles Angular no se publican como demo en Vercel. El backend conserva sus despliegues propios. Consulta la [guía de publicación documental](docs/vercel.md).
 
 ## Recorridos
 
@@ -95,30 +96,61 @@ El inventario consultivo no cambia al vender: la caja de Chile no es la autorida
 
 ## Arquitectura
 
+La organización acordada agrupa lo transversal en `libs/shared/` y conserva los contextos en `libs/backend/`. **La migración física está pendiente:** el árbol siguiente es el destino, y la [guía del monorepo](docs/monorepo.md#correspondencia-con-el-checkout-actual) conserva las rutas actuales y su correspondencia.
+
+<!-- monorepo:target:start -->
 ```text
 apps/
-  pos-web/          Interfaz Angular con adaptadores mock
-  pos-desktop/      Contenedor Tauri 2 para Windows
-  pos-runtime/      Backend HTTP de sucursal
-  pos-sync-worker/  Sincronización de sucursal
-  country-api/      Backend HTTP de país
-  erp-worker/       Integración ERP
-  pos-docs/         Documentación Starlight
+  pos-desktop/                  # [conservado] Cliente Angular con arranque propio y host Tauri
+  pos-mobile/                   # [conservado] Cliente Angular con arranque propio y host Capacitor
+  pos-runtime/                  # [conservado] API y composición de negocio de sucursal
+  pos-sync-worker/              # [conservado] Proceso de entrega y recepción de sucursal
+  country-api/                  # [conservado] API de recepción y capacidades de país
+  erp-worker/                   # [conservado] Proceso de integración, traducción y conciliación ERP
+  pos-clients-e2e/              # [mover] Pruebas de la UI; proyecto Nx de pruebas, sin despliegue
+    mobile/                     # [mover] Suite Angular móvil; no prueba el host Capacitor
+  pos-docs/                     # [conservado] Documentación Starlight; fuera del runtime POS
 libs/
-  backend/          Contextos: sales, cash, payments, collections, returns,
-                    pricing, catalog, fiscal, devices, sync, erp,
-                    reporting y administration
-  contracts/        Contratos entre aplicaciones
-  shared-kernel/    Primitivas puras del producto
-  country-policies/ Perfiles y políticas nacionales
-  platform/backend/ Base técnica compartida por las aplicaciones Node
-  domain/           Reglas puras del prototipo frontend actual
-  data-access/      Estado y adaptadores mock del frontend
-  ui/               Preset y componentes de presentación
-  features/         Access, checkout, insights y administration de la UI
+  backend/
+    sales/                      # [conservado] Ventas y documentos comerciales; scaffold comercial
+    cash/                       # [conservado] Turnos y movimientos de caja; scaffold comercial
+    payments/                   # [conservado] Intentos, resultados y conciliación de pagos; scaffold comercial
+    collections/                # [conservado] Cobranzas y anticipos; scaffold comercial
+    returns/                    # [conservado] Devoluciones y referencias al documento original; scaffold comercial
+    pricing/                    # [conservado] Evaluación y versiones de precios y promociones; scaffold comercial
+    catalog/                    # [conservado] Maestros y proyecciones de consulta; scaffold comercial
+    fiscal/                     # [conservado] Documentos y estados fiscales por país/proveedor; scaffold comercial
+    devices/                    # [conservado] Contratos y coordinación de periféricos; scaffold comercial
+    sync/                       # [conservado] Protocolo y progreso de sincronización; scaffold comercial
+    erp/                        # [conservado] Contratos, ACL y adaptadores ERP; scaffold comercial
+    reporting/                  # [conservado] Consultas y proyecciones de reportes; scaffold comercial
+    administration/             # [conservado] Configuración y ámbito organizacional; scaffold comercial
+  client-shell/                 # [conservado] Composición Angular compartida; no es una aplicación desplegable
+  features/                     # [conservado] Funcionalidades de la interfaz
+  shared/
+    backend/                    # [mover] Base técnica del servidor; división de proyectos por definir
+      bootstrap/                # [mover] Creación, arranque y cierre
+      config/                   # [mover] Configuración validada e inyectable
+      http/                     # [mover] Adaptación HTTP, errores y contrato técnico
+      observability/            # [mover] Pino, correlación y Sentry opcional
+      health/                   # [mover] Sondas del proceso y disponibilidad comprobada
+      worker/                   # [mover] Ciclo de vida de procesos de trabajo
+    frontend/
+      ui/                       # [mover] Preset, tokens y componentes de presentación
+    kernel/                     # [mover] Modelo mínimo acordado entre contextos; sin frameworks
+    contracts/                  # [mover] Sobres y metadatos técnicos comunes; no todos los DTO de negocio
+    testing/                    # [por incorporar] Soporte técnico extraído cuando existan consumidores comunes
+  country-policies/             # [transitorio] Perfiles puros actuales; reglas específicas bajo su contexto
+  domain/                       # [transitorio] Reglas del prototipo; revisar propiedad antes de migrar
+  data-access/                  # [transitorio] Adaptadores mock; revisar por funcionalidad, sin mover en bloque a shared
+tools/                          # [conservado] Herramientas de build, lint, pruebas y diagramas
+docs/                           # [conservado] Fuentes canónicas de Starlight
+.github/
+  workflows/                    # [conservado] Validaciones y entrega
 ```
+<!-- monorepo:target:end -->
 
-La [guía del monorepo](docs/monorepo.md) distingue base implementada, scaffold y trabajo pendiente. Las librerías backend no importan Angular ni los adaptadores mock; los contextos se implementan progresivamente con sus propios contratos y datos.
+Core es solo referencia de organización y convenciones; no es dependencia ni servicio del POS. Las bibliotecas backend no importan Angular ni los adaptadores mock. Las carpetas compartidas conservan responsabilidades independientes y entradas públicas explícitas.
 
 Las features consumen `PosStore`; no escriben en `localStorage`. Los permisos y módulos se validan en rutas **y comandos**. El estado se publica como snapshots inmutables. Las transacciones guardan primero el snapshot y publican el resultado solo si la persistencia tuvo éxito. Las ventas y eventos conservan identificadores para evitar duplicados. Pago, fiscalidad y ERP tienen ciclos separados.
 
@@ -143,14 +175,14 @@ Validación tras la revisión de calidad (3 de octubre de 2026): **144 pruebas d
 
 La [ejecución histórica de CI](https://github.com/floxcristian/corporate-pos/actions/runs/37151843645), del repositorio anterior, completó las validaciones de esa revisión. Las comprobaciones actuales se consultan en [Actions de pos-platform](https://github.com/floxcristian/pos-platform/actions). El instalador se puede regenerar con `npm run desktop:build`.
 
-## Escritorio
+## Clientes nativos
 
 ```sh
 npm run desktop:dev
 npm run desktop:build
 ```
 
-Necesita Rust, MSVC/Windows SDK y WebView2. Consulta [preparación de Tauri](docs/desktop.md). El contenedor no tiene comandos para cobrar, imprimir físicamente o acceder libremente al sistema. El instalador de CI es una demostración sin firma comercial.
+El escritorio necesita Rust, MSVC/Windows SDK y WebView2. Consulta [preparación de Tauri](docs/desktop.md). Para Android/iOS consulta [preparación de Capacitor](docs/mobile.md); su compilación Angular no acredita apertura, permisos, periféricos ni distribución nativa. `npm run build` compila los dos clientes Angular secuencialmente; `desktop:build` empaqueta Tauri y los comandos móviles sincronizan o ejecutan sus proyectos nativos. El contenedor no tiene comandos para cobrar, imprimir físicamente o acceder libremente al sistema. El instalador de CI es una demostración sin firma comercial.
 
 ## De maqueta a producto
 
@@ -167,4 +199,4 @@ npm run docs:install
 npm run docs:dev
 ```
 
-`npm run docs:build` produce una salida estática independiente en `dist/apps/pos-docs`. `npm run build:vercel` ensambla la web y `/guide/` para el mismo despliegue. El repositorio de presentaciones consume un snapshot derivado fijado por commit; no mantiene otra fuente editable de la guía.
+`npm run docs:build` produce una salida estática independiente en `dist/apps/pos-docs`. `npm run build:vercel` prepara únicamente el sitio documental, disponible en `/guide/`. El repositorio de presentaciones consume un snapshot derivado fijado por commit; no mantiene otra fuente editable de la guía.

@@ -1,5 +1,7 @@
 # Iconografía
 
+**Ubicación durante la transición:** las rutas `libs/ui` de esta guía siguen vigentes. El destino de la UI transversal es `libs/shared/frontend/ui`, según el [mapa del monorepo](monorepo.md#correspondencia-con-el-checkout-actual). La migración debe actualizar generadores, licencias, imports y referencias a activos antes de cambiar estas instrucciones.
+
 Corporate POS utiliza geometría de Phosphor Icons 2.1.1, con licencia MIT. Los controles compactos usan dibujos Bold oficiales; los iconos decorativos grandes combinan el dibujo Bold con la capa secundaria del Duotone del mismo nombre. Esta combinación es una adaptación propia del producto, no una variante publicada por Phosphor.
 
 `DuotoneIconComponent` dibuja dos capas SVG de 256 × 256 unidades, sin modificar sus coordenadas: secundaria al 40 % y principal opaca. Ambas heredan `currentColor`. Las tarjetas usan 28–32 px; los estados vacíos, 40 px; las confirmaciones, 48 px. Se conserva `aria-hidden` porque su texto acompaña al dibujo. Los botones mantienen su nombre accesible y tooltip.
@@ -41,4 +43,4 @@ Se validan la versión, el `viewBox`, los atributos y las capas antes de extraer
 
 Para añadir un icono, elegir un nombre disponible en ambas variantes, incluirlo en el catálogo y regenerar. Revisar visualmente la superposición en claro y oscuro, especialmente los huecos y contornos internos. La capa principal Bold puede tener proporciones distintas de su equivalente Duotone: el generador conserva el diseño original de cada capa y no deforma ninguna para ajustarla.
 
-La atribución y la licencia completas se incluyen en `apps/pos-web/public/third-party-licenses.txt`, distribuido con la web y Tauri. El paquete de origen es una dependencia de desarrollo para generar recursos locales; la interfaz no lo consulta en ejecución.
+La atribución y la licencia completas se incluyen en `libs/ui/assets/third-party-licenses.txt`, distribuido con los bundles Angular de escritorio y móvil. El paquete de origen es una dependencia de desarrollo para generar recursos locales; la interfaz no lo consulta en ejecución.

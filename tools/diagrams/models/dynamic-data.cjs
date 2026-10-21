@@ -16,7 +16,7 @@ module.exports = [
       { id: 'syncWorker', nodeId: 'syncWorker', name: 'Sincronizador de sucursal', type: 'Contenedor', technology: 'Worker TypeScript / Node.js', summary: 'Recibe, prepara y valida candidatas antes de activar un espejo local.' },
       { id: 'branchDb', nodeId: 'branchDb', name: 'Datos de sucursal', type: 'Contenedor de datos', technology: 'PostgreSQL', summary: 'Guarda staging, inbox, cursores y versiones de lectura en la base compartida.' },
       { id: 'branchApi', nodeId: 'branchApi', name: 'Backend de sucursal', type: 'Contenedor', technology: 'NestJS + Fastify / Node.js', summary: 'Cotiza y confirma operaciones con datos y políticas vigentes.' },
-      { id: 'client', nodeId: 'client', name: 'Cliente de caja', type: 'Contenedor', technology: 'Angular + Tauri', summary: 'Solicita una cotización por LAN y presenta su versión y resultado.' }
+      { id: 'client', nodeId: 'client', name: 'Cliente de escritorio', type: 'Contenedor', technology: 'Angular + Tauri', summary: 'Solicita una cotización por LAN y presenta su versión y resultado.' }
     ],
     steps: [
       { from: 'countryWorker', to: 'masters', label: 'Obtiene cambios o carga completa autorizada', note: 'Interfaz por confirmar; el contrato identifica origen, cobertura, versión y vigencia. La secuencia no presupone CDC ni un broker.' },
@@ -49,7 +49,7 @@ module.exports = [
     scope: 'Venta con pago por API habilitada: intención durable, resultado del proveedor, commit local y entrega asíncrona hasta el ACK de aplicación de país. La integración ERP continúa después.',
     note: 'Secuencia objetivo recomendada con resultado de pago conocido. Cada flecha representa una interacción; no una transacción distribuida. Venta, pago, fiscalidad, entrega a país y contabilización ERP conservan estados separados.',
     participants: [
-      { id: 'client', nodeId: 'client', name: 'Cliente de caja', type: 'Contenedor', technology: 'Angular + Tauri', summary: 'Envía comandos identificados y presenta el resultado durable al operador.' },
+      { id: 'client', nodeId: 'client', name: 'Cliente de escritorio', type: 'Contenedor', technology: 'Angular + Tauri', summary: 'Envía comandos identificados y presenta el resultado durable al operador.' },
       { id: 'branchApi', nodeId: 'branchApi', name: 'Backend de sucursal', type: 'Contenedor', technology: 'NestJS + Fastify / Node.js', summary: 'Autoriza la operación y coordina negocio, pago y evidencia local.' },
       { id: 'branchDb', nodeId: 'branchDb', name: 'Datos de sucursal', type: 'Contenedor de datos', technology: 'PostgreSQL', summary: 'Custodia intención, venta, caja, auditoría y outbox en un primario compartido.' },
       { id: 'payments', nodeId: 'payments', name: 'Proveedor de pagos', type: 'Sistema externo', technology: 'API / SDK según proveedor', summary: 'Informa resultado y referencia; la consulta posterior está sujeta a homologación.' },

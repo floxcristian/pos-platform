@@ -180,9 +180,9 @@ Para evaluar [NestJS/Fastify, Pino/Sentry, Tauri, Nx y monolito modular](opcione
 
 ## Validación de componentes corporativos candidatos
 
-La [revisión de plataforma](analisis-repositorios/aportes-plataforma-corporativa.md) añade escenarios concretos. Son verificaciones futuras en entornos controlados; no se ejecutaron contra la empresa durante esta revisión.
+La revisión de plataforma aportó estos escenarios. Se conservan los identificadores CORP como trazabilidad; la decisión vigente no incorpora Core. Los criterios se aplican a mecanismos propios del POS o a decisiones independientes de entrega. Son verificaciones futuras en entornos controlados.
 
-| ID | Escenario | Criterio para reutilizar |
+| ID | Escenario | Criterio para implementación propia o entrega |
 | --- | --- | --- |
 | CORP-01 | Producir un efecto ERP y perder la respuesta con timeout/reset de conexión. | Una identidad estable permite consultar/conciliar; ningún reintento repite el efecto. El código de socket no se toma como prueba de que nada fue procesado. |
 | CORP-02 | Caer entre el cambio de negocio y el guardado del evento, y entre publicar y marcar outbox. | Commit común para negocio/outbox local; reentrega deduplicada duraderamente. Verificar cada consumidor, no solo la biblioteca. |

@@ -3,7 +3,8 @@ flowchart TB
     accDescr: Interior del POS corporativo: cliente, sucursal y plataforma de país. Un contenedor C4 es una aplicación o almacén, no necesariamente Docker. Una base y autoridad de negocio por sucursal; país mantiene proyecciones e integración. HTTPS con outbox/inbox durable es la base; RabbitMQ y Kafka no son requisitos.
     subgraph systemScope["Sistema POS corporativo · propuesta"]
         direction TB
-        client["Cliente de caja<br/>«Contenedor»<br/>Angular + Tauri<br/>Presenta caja y comandos del operador."]:::pos
+        client["Cliente de escritorio<br/>«Contenedor»<br/>Angular + Tauri<br/>Presenta caja y comandos del operador."]:::pos
+        mobileClient["Cliente móvil<br/>«Contenedor»<br/>Angular + Capacitor<br/>Presenta operaciones en Android/iOS."]:::pos
         device["Puente de periféricos<br/>«Contenedor condicional»<br/>Proceso nativo según SDK<br/>Ejecuta capacidades del puesto."]:::pos
         branchApi["Backend de sucursal<br/>«Contenedor»<br/>NestJS + Fastify / Node.js<br/>Valida y confirma la operación local."]:::pos
         branchDb[("Datos de sucursal<br/>«Contenedor de datos»<br/>PostgreSQL<br/>Guarda negocio, outbox y espejo local.")]:::store
@@ -20,9 +21,11 @@ flowchart TB
     fiscal["Proveedor fiscal<br/>«Sistema externo»<br/>Contrato por país y modalidad<br/>Emite o transmite documentos fiscales."]:::external
     legend["Leyenda · notación C4<br/>Verde: POS · Azul/cilindro: datos<br/>Gris: externo · Persona: rol humano<br/>Borde discontinuo: límite indicado<br/>Flecha: propósito y protocolo<br/>Contenedor: aplicación o almacén<br/>Componente: módulo de UN proceso"]:::key
     cashier -->|"Opera caja · interfaz local"| client
+    cashier -->|"Opera funciones habilitadas · interfaz móvil"| mobileClient
+    mobileClient -->|"Comandos y consultas autorizados · HTTPS sobre LAN"| branchApi
     client -->|"Transporta comando autorizado por backend / recoge evidencia · IPC o loopback"| device
     device -->|"Ejecuta terminal bancario si requiere agente · SDK/API homologado"| payments
-    client -->|"Envía comandos / consulta estado · HTTPS sobre LAN"| branchApi
+    client -->|"Comandos y consultas · HTTPS/LAN"| branchApi
     branchApi -->|"Confirma negocio + outbox · SQL/transacción"| branchDb
     branchApi -->|"Pago remoto directo si aplica · API HTTPS validada"| payments
     branchApi ---->|"Emisión / estado fiscal · puerto por país"| fiscal

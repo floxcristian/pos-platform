@@ -1,5 +1,7 @@
 # Aportes de la plataforma corporativa a la arquitectura POS
 
+**Decisión posterior — 21 de octubre de 2026:** este informe conserva la evidencia y las alternativas evaluadas en su fecha. La organización vigente es un POS independiente con `libs/shared/`; Core se usa solo como referencia, sin incorporar su código, paquetes ni servicios. Las recomendaciones históricas de reutilización de Core quedan sustituidas por la [decisión vigente](../propuesta-arquitectura.md#independencia-del-pos-y-referencias-de-organización).
+
 Revisión estática del 1 de octubre de 2026 de `core`, `devops-platform` e `integration-presentations`, contrastada con los cinco repositorios del POS chileno analizados previamente. Complementa la [propuesta](../propuesta-arquitectura.md), las [opciones tecnológicas](../opciones-tecnologicas.md) y el [índice de análisis](README.md).
 
 ## 1. Conclusión y cambio en la recomendación

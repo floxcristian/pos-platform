@@ -27,7 +27,7 @@ npm --prefix apps/pos-docs run check
 npm --prefix apps/pos-docs run preview
 ```
 
-Nx registra `pos-docs` con tags documentales y entradas de caché que incluyen las fuentes de `docs/`. No importa bibliotecas del producto ni forma parte de los procesos de caja, sucursal o país. El monorepo incluye web, escritorio, cuatro entradas backend y esta aplicación documental. El catálogo distingue la demostración frontend, la base HTTP y los esqueletos de workers; seis entradas operativas no acreditan seis servicios productivos ni sus integraciones.
+Nx registra `pos-docs` con tags documentales y entradas de caché que incluyen las fuentes de `docs/`. No importa bibliotecas del producto ni forma parte de los procesos de caja, sucursal o país. El monorepo incluye escritorio, móvil, cuatro entradas backend y esta aplicación documental. El catálogo distingue la demostración frontend, la base HTTP y los esqueletos de workers; seis entradas operativas no acreditan seis servicios productivos ni sus integraciones.
 
 <span id="fuente-de-cada-contenido"></span>
 <span id="diagramas-e-interacción"></span>
@@ -38,7 +38,7 @@ Nx registra `pos-docs` con tags documentales y entradas de caché que incluyen l
 - `content-map.mjs` gobierna las rutas en inglés, el menú, el recorrido principal y el alcance de cada página.
 - Los documentos técnicos de `docs/` son fuentes editables. El generador divide las fuentes extensas sin perder ni duplicar líneas, mantiene anclas y comprueba referencias.
 - Los catálogos en `src/data/` conservan el snapshot revisado, las descripciones de endpoints y la configuración del legacy, sin valores de despliegue.
-- `monorepo-catalog.json` gobierna el árbol propuesto. `npm --prefix apps/pos-docs run sync:catalog` actualiza las representaciones del propio repositorio.
+- `monorepo-catalog.json` conserva por separado el inventario físico actual y `targetStructure`, la organización acordada con `shared/`. `npm --prefix apps/pos-docs run sync:catalog` genera los árboles de README, la guía del monorepo y las opciones tecnológicas, además de la tabla de migración. `node apps/pos-docs/scripts/sync-monorepo-catalog.mjs --check --workspace .` contrasta las rutas actuales; las rutas futuras no se presentan como ya creadas. Los proyectos de pruebas se clasifican aparte de aplicaciones operativas y documentación.
 - `docs/diagramas-excalidraw/` conserva las escenas editables y sus derivados. Los modelos y generadores canónicos están en `tools/diagrams/`.
 - Las carpetas generadas de `src/content/docs/` no se editan ni se versionan. Los componentes Astro, estilos y páginas de entrada se mantienen a mano.
 
@@ -50,7 +50,7 @@ Actualizar fuentes, contratos y sus síntesis en el mismo cambio. Conservar la d
 
 La salida estática autocontenida es `dist/apps/pos-docs`: incluye `/guide/`, los documentos y activos públicos necesarios. No requiere un checkout de la presentación, repositorios legacy, claves, video ni MP3. Los scripts inline se externalizan para conservar CSP; Pagefind usa WebAssembly solo bajo `/guide/`.
 
-`npm run build` continúa construyendo la web. `npm run build:vercel` compila ambas aplicaciones y ensambla `dist/vercel`, con POS en `/` y documentación en `/guide/`. La [configuración de Vercel](../../docs/vercel.md) detalla instalación y publicación. El workflow `Documentation quality` valida esta aplicación de forma independiente.
+`npm run build` construye los clientes Angular de escritorio y móvil. `npm run build:vercel` publica únicamente Starlight en `/guide/`; `/` redirige a esa entrada. Los clientes nativos y el backend se construyen y distribuyen por separado. La [configuración de Vercel](../../docs/vercel.md) detalla instalación y publicación. El workflow `Documentation quality` valida esta aplicación de forma independiente.
 
 La [presentación y narrador](https://presentation-gamma-rust.vercel.app/reveal) conservan su repositorio. Consumen un snapshot generado de la documentación, identificado por commit y hashes, para compilar sin depender de `main` mutable ni de un checkout vecino. `tools/export-documentation.mjs` produce ese artefacto durante el build; solo se exportan datos públicos seleccionados. Una versión con cambios locales se marca como tal y no debe actualizar el consumidor publicado. El snapshot es un derivado, no otra fuente editorial.
 

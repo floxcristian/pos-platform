@@ -1,10 +1,12 @@
 # Base de API de sucursal
 
+**Rutas actuales y destino:** la base técnica propia del POS continúa en `libs/platform/backend`. Su destino acordado es `libs/shared/backend`; la migración física está pendiente. Los contratos transversales y el kernel pasarán a `libs/shared/contracts` y `libs/shared/kernel`. Los comandos, imports y rutas de esta guía describen el código que existe hoy. Ver la [correspondencia del monorepo](monorepo.md#correspondencia-con-el-checkout-actual).
+
 > **Alcance de esta base:** el monorepo incluye el frontend Angular/PrimeNG y las entradas backend con su configuración, dependencias y comprobaciones. La API ofrece información del servicio y sondas; los módulos comerciales siguen siendo estructuras iniciales. Compartir repositorio no conecta automáticamente la interfaz a la API ni habilita una caja real.
 
 `apps/pos-runtime` es el punto de entrada HTTP del backend de sucursal propuesto. Usa NestJS 12, Fastify 5 y TypeScript dentro del monorepo Nx. Su alcance actual es una base ejecutable y verificable: arranque, configuración, información del servicio, sondas y contrato OpenAPI. La composición de `country-api`, `pos-sync-worker` y `erp-worker` reutiliza la base técnica de `libs/platform/backend`; la [guía del monorepo](monorepo.md) delimita esos procesos y los contextos de negocio.
 
-El frontend Angular/Tauri conserva sus datos sintéticos y adaptadores mock. Esta API no tiene autenticación, base de datos, ventas, precios ni sincronizadores implementados. Los endpoints disponibles no habilitan operaciones de caja.
+Los clientes Angular/Tauri y Angular/Capacitor conservan sus datos sintéticos y adaptadores mock. Esta API no tiene autenticación, base de datos, ventas, precios ni sincronizadores implementados. Los endpoints disponibles no habilitan operaciones de caja.
 
 ## Referencia Core
 
@@ -163,9 +165,11 @@ node --env-file=/ruta/api.env main.js
 
 El archivo del despliegue o el entorno del proceso debe definir `NODE_ENV=production`. Configure host, puerto y orígenes según el servicio que reciba tráfico. Mantenga OpenAPI deshabilitado salvo habilitación deliberada. El archivo de entorno del ejemplo es externo al artefacto y no se incluye en el repositorio.
 
-Esta API es un proceso Node independiente. El `vercel.json` despliega el frontend estático y la documentación Starlight; no publica `pos-runtime` ni las demás aplicaciones backend. El despliegue del backend de sucursal necesita su propia supervisión de proceso, terminación TLS, identidad y política de acceso antes de incorporar operaciones reales.
+Esta API es un proceso Node independiente. El `vercel.json` despliega únicamente la documentación Starlight; no publica `pos-runtime` ni las demás aplicaciones backend. El despliegue del backend de sucursal necesita su propia supervisión de proceso, terminación TLS, identidad y política de acceso antes de incorporar operaciones reales.
 
 ## Evolución prevista
+
+La organización objetivo distingue infraestructura compartida de propiedad de negocio: conexiones y ejecutores técnicos en `shared/backend`; modelos, repositorios y migraciones en cada contexto. Los contratos comerciales se publican desde su contexto; `shared/contracts` no contiene un catálogo global de DTO de negocio.
 
 La propuesta usa un backend modular de sucursal y PostgreSQL como persistencia compartida por sus cajas. Los clientes hablan con la API; no consultan tablas directamente. Las librerías `contracts`, `shared-kernel` y `country-policies` fijan la ubicación de contratos y reglas puras; los adaptadores HTTP y de persistencia permanecen en su frontera. Los contextos de negocio ya tienen ubicación en el scaffold, pero autenticación, autorización, persistencia, migraciones, transacciones e inbox/outbox se incorporarán con pruebas de sus garantías, sin presentarlos como implementados por esta base.
 

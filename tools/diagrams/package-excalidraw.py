@@ -13,6 +13,8 @@ with ZipFile(output, "w", compression=ZIP_DEFLATED) as archive:
     # the repository layout so their relative links remain useful in POS Platform.
     for item in sorted((root / "docs").glob("*.md")):
         archive.write(item, "pos-c4/docs/" + item.name)
+    for item in sorted((root / "docs" / "decisions").glob("*.md")):
+        archive.write(item, "pos-c4/docs/decisions/" + item.name)
     archive.writestr("pos-c4/ABRIR.txt", "Abre docs/diagramas-excalidraw/index.html para consultar la galeria.\nAbre cualquier .excalidraw con Archivo > Abrir en Excalidraw.\nLas fuentes incluidas son documentos de referencia; sus enlaces al resto del repositorio se consultan en POS Platform.\n")
 with ZipFile(output) as archive:
     assert archive.testzip() is None

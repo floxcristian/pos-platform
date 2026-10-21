@@ -21,11 +21,13 @@ Los módulos reciben configuración validada por inyección. La lectura de `proc
 
 Todo TypeScript conserva las comprobaciones sintácticas, sin `any` explícito, variables no utilizadas, `eval`, `Function` dinámico o `debugger`. La igualdad es estricta salvo la comprobación idiomática `value == null`. Los parámetros de callback que deben conservar su posición pueden usar prefijo `_`; las variables locales sin usar no quedan excluidas por ese prefijo.
 
-`console` está prohibido; únicamente `apps/pos-web/src/main.ts` permite `console.error` para un fallo previo al arranque de Angular. El frontend mantiene reglas Angular, plantillas, accesibilidad y límites Nx, pero esta entrega no le aplica el programa de lint con tipos del backend. Sus directivas de supresión sin uso son errores.
+`console` está prohibido; únicamente los bootstraps `apps/pos-desktop/src/main.ts` y `apps/pos-mobile/src/main.ts` permiten `console.error` para un fallo previo al arranque de Angular. El frontend mantiene reglas Angular, plantillas, accesibilidad y límites Nx, pero esta entrega no le aplica el programa de lint con tipos del backend. Sus directivas de supresión sin uso son errores.
 
 `pos-code-quality.cjs` impide `.only` y `.skip` en archivos de test TS/MTS al identificar imports de Vitest, incluidos alias y namespace. No confunde campos ordinarios como `pagination.skip` con controles de ejecución de tests.
 
 `backend-quality.spec.ts` comprueba estas reglas mediante el ESLint real y archivos incluidos en el programa TypeScript. `architecture-boundaries.spec.ts` verifica dependencias prohibidas y composiciones permitidas. Ninguna suite reemplaza el compilador ni las pruebas del comportamiento de la aplicación.
+
+`libs/client-shell` tiene tags `type:shell` y `env:browser`: compone features, UI y acceso a datos para ambos clientes. Las apps no importan otras apps; las features no importan el shell y las bibliotecas de navegador no importan servidor. Los SDK nativos se mantienen en los hosts y adaptadores autorizados; compartir Angular no elimina esa frontera.
 
 ## Contratos visuales de PrimeNG
 

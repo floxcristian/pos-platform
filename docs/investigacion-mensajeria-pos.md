@@ -1,5 +1,7 @@
 # Mensajería del POS: WSO2, RabbitMQ, BullMQ y alternativas durables
 
+**Decisión posterior — 21 de octubre de 2026:** las referencias a capacidades de Core son antecedentes de comparación. El POS no consumirá su código, paquetes ni servicios; cualquier recomendación anterior de reutilizarlos queda sustituida por la [decisión de independencia](propuesta-arquitectura.md#independencia-del-pos-y-referencias-de-organización). Las alternativas tecnológicas de este documento requieren evaluación propia.
+
 **Fecha de consulta: 1 de octubre de 2026. Estado: investigación y recomendación provisional, no ADR aprobado.** Fuentes primarias oficiales, contrastadas con los informes locales. No se ejecutaron aplicaciones, instalaciones, pruebas, despliegues ni conexiones a servicios corporativos. Las capacidades de un producto no acreditan la configuración ni las garantías del POS instalado.
 
 ## 1. Recomendación para esta empresa

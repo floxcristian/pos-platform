@@ -1,5 +1,7 @@
 # Revisión crítica de la arquitectura corporativa del POS
 
+**Decisión posterior — 21 de octubre de 2026:** este informe conserva la evidencia y las alternativas evaluadas en su fecha. La organización vigente es un POS independiente con `libs/shared/`; Core se usa solo como referencia, sin incorporar su código, paquetes ni servicios. Las recomendaciones históricas de reutilización de Core quedan sustituidas por la [decisión vigente](propuesta-arquitectura.md#independencia-del-pos-y-referencias-de-organización).
+
 **Función de esta revisión:** conservar motivos, alternativas, objeciones y evidencia que sustentan el diseño. La [propuesta y sus ADR](propuesta-arquitectura.md#decisiones-de-arquitectura) son la fuente de la recomendación vigente, todavía por aprobar; esta revisión no mantiene una segunda arquitectura objetivo independiente.
 
 Fecha: 1 de octubre de 2026. Complementa y ajusta la [propuesta de arquitectura](propuesta-arquitectura.md). Se apoya en los ocho repositorios ya analizados, nuevos apuntes operativos y fuentes públicas primarias. **Es una decisión de diseño propuesta, no una implementación ni una aprobación de producción.**

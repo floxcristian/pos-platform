@@ -1,5 +1,7 @@
 # Análisis de `core` como referencia para el POS
 
+**Decisión posterior — 21 de octubre de 2026:** este informe conserva la evidencia y las alternativas evaluadas en su fecha. La organización vigente es un POS independiente con `libs/shared/`; Core se usa solo como referencia, sin incorporar su código, paquetes ni servicios. Las recomendaciones históricas de reutilización de Core quedan sustituidas por la [decisión vigente](../propuesta-arquitectura.md#independencia-del-pos-y-referencias-de-organización).
+
 ## 1. Alcance y conclusión
 
 Revisión estática realizada el **1 de octubre de 2026** del repositorio privado [developer-implementos/core](https://github.com/developer-implementos/core), rama `main`, commit **`f43688abeda81d9935744c74994691df28dd6b1a`**, fechado el 8 de septiembre de 2026, 16:42:30 UTC−03:00. La rama y el código revisados **no se atribuyen a producción**. La indicación del usuario de que probablemente se utiliza `main` no sustituye el inventario de despliegues.

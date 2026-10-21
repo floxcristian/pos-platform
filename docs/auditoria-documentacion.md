@@ -12,9 +12,9 @@ Se revisaron la organización de todas las páginas y sus fuentes; se contrastar
 
 | Hallazgo | Consecuencia para el lector | Corrección en la fuente |
 | --- | --- | --- |
-| Tres árboles distintos del monorepo | Nombres de aplicaciones y ubicaciones de módulos incompatibles; un desarrollador podía empezar en una estructura equivocada. | Catálogo único de seis apps operativas, la aplicación documental y 21 ubicaciones de bibliotecas. La documentación se genera desde él; la presentación consume su snapshot versionado. Se contrasta opcionalmente con los proyectos del workspace. |
+| Tres árboles distintos del monorepo | Nombres de aplicaciones y ubicaciones de módulos incompatibles; un desarrollador podía empezar en una estructura equivocada. | Catálogo único de seis apps operativas, la aplicación documental y 22 ubicaciones de bibliotecas. La documentación se genera desde él; la presentación consume su snapshot versionado. Se contrasta opcionalmente con los proyectos del workspace. |
 | Scaffolding local confundible con producto publicado | Un árbol y un módulo podían interpretarse como funcionalidad implementada o disponible en GitHub. | Estado por aplicación, alcance de revisión local y separación de negocio pendiente, maqueta y base técnica. La narración de esa lámina se actualizó. |
-| Tauri figuraba como candidato en algunos documentos | La dirección de cliente parecía abierta en unas páginas y indicada en otras. | Dirección Angular + Tauri consistente; homologación y despliegue permanecen pendientes. |
+| Tauri figuraba como candidato en algunos documentos | La dirección de cliente parecía abierta en unas páginas y indicada en otras. | La decisión actual separa Angular + Tauri en escritorio y Angular + Capacitor en móvil; homologación y despliegue permanecen pendientes. |
 | «ACK» sin nombrar su frontera | Recepción de un paquete podía confundirse con aceptación central, aplicación comercial o contabilización ERP. | Contrato canónico por frontera: aceptación central tras transacción pactada; recepción de paquetes y activación separadas; resultado ERP independiente. |
 | Contrato detallado de precios disperso | Condiciones críticas vivían solo en el documento de diagramas. | La propuesta contiene preparación aislada, corte consistente, deltas, bajas, validación y activación. C4 resume y enlaza ese contrato. |
 | Versión fijada sin aclarar vencimiento | Podía interpretarse que una promoción vencida seguía disponible por conservar su versión. | Revalidación antes de cobrar, política de cotización por acordar y recuperación de un pago iniciado conservando identidad e importe. |
@@ -62,7 +62,7 @@ No se realizaron sesiones de comprensión con integrantes junior del equipo. La 
 | Operaciones permitidas sin WAN y vigencias de cotización | Producto, comercial, fiscalidad y pagos | Matriz aprobada por país y casos de vencimiento antes/después de iniciar pago. |
 | Recuperación, capacidad y objetivos de servicio | Operaciones, plataforma y DBA | Mediciones, restauración, fallos controlados y capacidad de proveedores. |
 | Versiones realmente instaladas y perfiles activos del legacy | Equipos de sucursal, integración y seguridad | Inventario productivo y contraste con los snapshots revisados. |
-| Evolución y despliegue de la base de código POS | Ingeniería POS | Implementar casos de uso y demostrar sus pruebas sobre la estructura versionada en este monorepo. Publicar la guía y el frontend estático no despliega las APIs ni los workers. |
+| Evolución y despliegue de la base de código POS | Ingeniería POS | Implementar casos de uso y demostrar sus pruebas sobre la estructura versionada en este monorepo. Publicar la guía no despliega los clientes nativos, las APIs ni los workers. |
 | Comprensión por el equipo destinatario | Responsable de documentación y referentes del equipo | Sesiones de lectura de la propuesta y registro de términos o recorridos todavía ambiguos. |
 
 Los [criterios del piloto](validacion-y-decisiones.md) y la [información pendiente](solicitud-informacion-equipo.md) conservan el detalle técnico y operativo. Esta auditoría no sustituye esas decisiones.

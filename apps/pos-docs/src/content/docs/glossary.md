@@ -29,6 +29,9 @@ Estas definiciones precisan el uso de los términos **en esta propuesta**. Los e
 | Adaptador | Implementación de un contrato para un ERP, proveedor o dispositivo concreto. | [Proveedores](/guide/architecture/providers/) |
 | Conciliación | Comparación de evidencias para resolver diferencias o resultados inciertos entre POS, pagos, fiscalidad y ERP. | [Integración](/guide/proposal/integration/#contrato-común-y-conciliación) |
 | Contenedor C4 | Aplicación o almacén de datos en el modelo arquitectónico; no implica que se despliegue con Docker. | [Modelo C4](/guide/architecture/c4-model/) |
+| Shared | Agrupación de infraestructura, presentación y soporte reutilizables con entradas independientes; no un dominio global. | [Límites DDD](/guide/implementation/monorepo/#límites-ddd-de-shared) |
+| Shared Kernel | Modelo mínimo acordado entre contextos, independiente de frameworks y con cambios coordinados. | [Kernel y contratos](/guide/implementation/monorepo/#límites-ddd-de-shared) |
+| Proyecto E2E | Suite de pruebas de una aplicación o sistema; no un servicio de negocio desplegable. | [Pruebas](/guide/implementation/testing/) |
 | Monorepo | Organización del código de varios proyectos relacionados. Sus aplicaciones pueden ejecutarse y desplegarse de manera independiente. | [Estructura y límites](/guide/architecture/monorepo/) |
 | BullMQ / RabbitMQ | Alternativas de coordinación de trabajos y distribución de mensajes que requieren un caso de uso y operación justificados. | [Evaluación de mensajería](/guide/architecture/messaging/) |
 | Homologación | Evidencia de compatibilidad de una combinación de país, reglas, versiones, proveedor y dispositivo para las operaciones admitidas. | [Validación](/guide/operations/validation/) |
